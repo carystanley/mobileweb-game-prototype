@@ -40,15 +40,15 @@ function correctionWall(rect1, rect2, distX, distY, correctX, correctY) {
    }
 }
 
-var $canvas = $('#myCanvas');
-var canvas = $canvas.get(0);
+var canvas = document.getElementById('myCanvas');
 var ctx = canvas.getContext('2d');
 
-$canvas.click(function(e) {
+canvas.addEventListener('click', function(e) {
     var x = e.offsetX;
     var y = e.offsetY;
     myBouncySquare.goal(x, y);
-})
+}, false);
+
 
 // Create a simple Class that represents a moving square. Any JavaScript function can be treated as
 // a constructor by calling it with the "new" keyword - shown below. The keyword "this" is tricky
@@ -71,7 +71,7 @@ var BouncySquare = function () {
     this.maxX = canvas.width - 10;
     // Note that jQuery also has a height method which would work here, but it actually gets the CSS height,
     // not the height that is defined in the height attribute.
-    this.maxY = $canvas.attr('height') - 10;
+    this.maxY = canvas.height - 10;
 
     this.move = function () {
         this.velocityX = 0;
