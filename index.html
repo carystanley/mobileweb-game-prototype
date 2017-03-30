@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <title>MobileWeb Game Prototype</title>
+</head>
+<body onmousedown="return!1" onselectstart="return!1">
+    <canvas id="myCanvas" height="100" width="120"></canvas>
+
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-5075951-7"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script>
+var AABB = {
+    collision: function(rect1, rect2, handler) {
+        var rect1halfx = rect1.width/2;
+        var rect1halfy = rect1.height/2;
+        var rect2halfx = rect2.width/2;
+        var rect2halfy = rect2.height/2;
+        var rect1centerx = rect1.x + rect1halfx;
+        var rect1centery = rect1.y + rect1halfy;
+        var rect2centerx = rect2.x + rect2halfx;
+        var rect2centery = rect2.y + rect2halfy;
+        var distX = rect2centerx - rect1centerx;
+        var distY = rect2centery - rect1centery;
+        var correctX = Math.abs(distX) - rect1halfx - rect2halfx;
+        var correctY = Math.abs(distY) - rect1halfy - rect2halfy;
+        if (correctX < 0 && correctY < 0) {
+           handler(rect1, rect2, distX, distY, correctX, correctY);
+        }
+    }
+};
+
+function correctionWall(rect1, rect2, distX, distY, correctX, correctY) {
+   if (correctX > correctY) {
+      rect1.x += ((distX > 0) ? 1 : -1) * correctX;
+   } else {
+      rect1.y += ((distY > 0) ? 1 : -1) * correctY;
+   }
+}
+
+var $canvas = $('#myCanvas');
+var canvas = $canvas.get(0);
+var ctx = canvas.getContext('2d');
+
+$canvas.click(function(e) {
+    var x = e.offsetX;
+    var y = e.offsetY;
+    myBouncySquare.goal(x, y);
+})
+
+// Create a simple Class that represents a moving square. Any JavaScript function can be treated as
+// a constructor by calling it with the "new" keyword - shown below. The keyword "this" is tricky
+// to understand in JavaScript, as it can behave strangely. In this case, "this" refers to an instance
+// of a BouncySquare class (its "prototype" property). A more detailed explanation can be found here:
+// http://stackoverflow.com/questions/3127429/javascript-this-keyword
+var BouncySquare = function () {
+    this.color = 'rgb(200, 0, 0)';
+    this.x = 0;
+    this.y = 0;
+    this.z = 0;
+    this.velocityX = 1;
+    this.velocityY = 1;
+    this.velocityZ = 0;
+    this.width = 10;
+    this.height = 5;
+    this.minX = 0;
+    this.minY = 0;
+    // 2 different ways to get the dimensions of a canvas.
+    this.maxX = canvas.width - 10;
+    // Note that jQuery also has a height method which would work here, but it actually gets the CSS height,
+    // not the height that is defined in the height attribute.
+    this.maxY = $canvas.attr('height') - 10;
+
+    this.move = function () {
+        this.velocityX = 0;
+        this.velocityY = 0;
+
+        if (this.going) {
+            if ((this.goalX === this.x && this.goalY === this.y) || this.blockedCount > 30) {
+                this.going = false;
+            } else {
+                if (this.goalX < this.x) { // Left
+                    this.velocityX = -1;
+                }
+                if (this.goalY < this.y) { // Up
+                    this.velocityY = -1;
+                }
+                if (this.goalX > this.x) { // Right
+                    this.velocityX = 1;
+                }
+                if (this.goalY > this.y) { // Down
+                    this.velocityY = 1;
+                }
+            }
+        }
+
+        this.prevX = this.x;
+        this.prevY = this.y;
+
+        this.x = this.x + this.velocityX;
+        this.y = this.y + this.velocityY;
+
+        this.x = Math.min(this.x, this.maxX);
+        this.x = Math.max(this.x, this.minX);
+        this.y = Math.min(this.y, this.maxY);
+        this.y = Math.max(this.y, this.minY);
+
+        if (this.z <= 0) {
+            this.z = 0;
+            if (this.velocityX || this.velocityY) {
+                this.velocityZ = 2;
+            } else {
+                this.velocityZ = 0;
+            }
+        } else {
+            this.velocityZ -= 0.25
+        }
+        this.z += this.velocityZ;
+
+        var self = this;
+        walls.forEach(function(wall) {
+            AABB.collision(self, wall, correctionWall);
+        });
+        if (this.going && (this.prevX === this.x && this.prevY === this.y)) {
+            this.blockedCount++;
+        }
+    };
+
+    this.goal = function (x, y) {
+       this.goalX = x;
+       this.goalY = y;
+       this.going = true;
+       this.blockedCount = 0;
+    };
+
+    this.draw = function () {
+        walls.forEach(function(obj) {
+        ctx.fillStyle = obj.color;
+        ctx.fillRect(obj.x, obj.y, obj.width, obj.height);
+        });
+
+        entities.sort(function(a, b) { return a.y - b.y; });
+        entities.forEach(function(obj) {
+        ctx.fillStyle = 'rgb(170, 170, 170)';
+        ctx.beginPath();
+        ctx.ellipse(obj.x + obj.width/2, obj.y + obj.height/2, obj.width/2, obj.height/2, 0, 0, Math.PI*2);
+        ctx.fill();
+        ctx.closePath();
+        ctx.fillStyle = obj.color;
+        ctx.fillRect(obj.x, obj.y - 7.5 - obj.z, obj.width, 10);
+        });
+    };
+};
+
+var myBouncySquare = new BouncySquare();
+var entities = [
+    myBouncySquare,
+    {x: 50, y: 25, z:0, width: 10, height: 5, color: 'rgb(0, 200, 0)'},
+    {x: 25, y: 50, z:0, width: 10, height: 5, color: 'rgb(0, 200, 0)'},
+    {x: 75, y: 75, z:0, width: 10, height: 5, color: 'rgb(0, 0, 200)'}
+];
+
+var walls = [
+    {x: 15, y: 0, width: 20, height: 45, color: 'rgb(80, 80, 80)'},
+    {x: 50, y: 50, width: 35, height: 20, color: 'rgb(80, 80, 80)'},
+    {x: 70, y: 30, width: 35, height: 20, color: 'rgb(80, 80, 80)'}
+]
+
+// IMPORTANT: This is the entire key to doing animation in JavaScript. It is essential to know that JavaScript
+// will take control of the browser and run to completion before releasing control (usually, this is called
+// the "Event Loop" because it is implemented as a loop internally). This means that nothing
+// can happen while JavaScript is running (rendering html/canvas, other JavaScript, etc). So what we have
+// to do is use JavaScript's setTimeout function. setTimeout calls the given function after the specified
+// time in milliseconds has ellapsed. If 0 is specified, it runs on the next Event Loop.
+function run() {
+    // Clear anything drawn to the canvas off.
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    myBouncySquare.move();
+    myBouncySquare.draw();
+
+    // Note that this is not really a recursive function. It does not add to the call stack since run
+    // will be called later. This also shows another quirk of JavaScript, functions can be used just like
+    // variables. Alternative to using "function run() { ..." like above, I could use
+    // "var run = function() {..."
+    setTimeout(run, 1000 / 60); // 60 fps
+}
+
+// Start the animation
+run();
+</script>
+</body>
+</html>
