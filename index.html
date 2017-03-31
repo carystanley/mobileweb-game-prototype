@@ -39,6 +39,20 @@
         -ms-interpolation-mode: nearest-neighbor;   /* IE                            */
     }
 
+    @media screen and (min-width: 284px) and (min-height: 160px) {
+        canvas {
+            width: 284px !important;
+            height: 160px !important;
+        }
+    }
+
+    @media screen and (min-width: 568px) and (min-height: 320px) {
+        canvas {
+            width: 568px !important;
+            height: 320px !important;
+        }
+    }
+
     @media screen and (min-width: 568px) and (min-height: 320px) {
         canvas {
             width: 568px !important;
@@ -50,13 +64,6 @@
         canvas {
             width: 1138px !important;
             height: 640px !important;
-        }
-    }
-
-    @media screen and (min-width: 1704px) and (min-height: 960px) {
-        canvas {
-            width: 1704px !important;
-            height: 960px !important;
         }
     }
 
@@ -85,7 +92,7 @@
     </style>
 </head>
 <body onmousedown="return!1" onselectstart="return!1">
-    <canvas id="myCanvas" height="320" width="568"></canvas>
+    <canvas id="myCanvas" height="160" width="284"></canvas>
     <div id="must-landscape"><h1>Sorry</h1>you must switch to landscape view</div>
 
 <script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-5075951-7"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
@@ -128,11 +135,7 @@ canvas.addEventListener('click', function(e) {
 }, false);
 
 
-// Create a simple Class that represents a moving square. Any JavaScript function can be treated as
-// a constructor by calling it with the "new" keyword - shown below. The keyword "this" is tricky
-// to understand in JavaScript, as it can behave strangely. In this case, "this" refers to an instance
-// of a BouncySquare class (its "prototype" property). A more detailed explanation can be found here:
-// http://stackoverflow.com/questions/3127429/javascript-this-keyword
+
 var BouncySquare = function () {
     this.color = 'rgb(200, 0, 0)';
     this.x = 0;
@@ -145,10 +148,8 @@ var BouncySquare = function () {
     this.height = 5;
     this.minX = 0;
     this.minY = 0;
-    // 2 different ways to get the dimensions of a canvas.
+
     this.maxX = canvas.width - 10;
-    // Note that jQuery also has a height method which would work here, but it actually gets the CSS height,
-    // not the height that is defined in the height attribute.
     this.maxY = canvas.height - 10;
 
     this.move = function () {
@@ -265,22 +266,12 @@ var walls = [
     {x: 160, y: 130, width: 40, height: 100, color: 'rgb(80, 80, 80)'}
 ]
 
-// IMPORTANT: This is the entire key to doing animation in JavaScript. It is essential to know that JavaScript
-// will take control of the browser and run to completion before releasing control (usually, this is called
-// the "Event Loop" because it is implemented as a loop internally). This means that nothing
-// can happen while JavaScript is running (rendering html/canvas, other JavaScript, etc). So what we have
-// to do is use JavaScript's setTimeout function. setTimeout calls the given function after the specified
-// time in milliseconds has ellapsed. If 0 is specified, it runs on the next Event Loop.
 function run() {
     // Clear anything drawn to the canvas off.
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     myBouncySquare.move();
     myBouncySquare.draw();
 
-    // Note that this is not really a recursive function. It does not add to the call stack since run
-    // will be called later. This also shows another quirk of JavaScript, functions can be used just like
-    // variables. Alternative to using "function run() { ..." like above, I could use
-    // "var run = function() {..."
     window.requestAnimationFrame(run); // 60 fps
 }
 
