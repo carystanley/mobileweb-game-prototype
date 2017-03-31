@@ -22,7 +22,7 @@
     }
 
     canvas {
-        background-color: #fff;
+        background-color: #000;
         padding: 0;
         margin: auto;
         display: block;
@@ -149,8 +149,11 @@ var BouncySquare = function () {
     this.minX = 0;
     this.minY = 0;
 
-    this.maxX = canvas.width - 10;
-    this.maxY = canvas.height - 10;
+    this.cameraX = -142;
+    this.cameraY = -80;
+
+    this.maxX = 426;
+    this.maxY = 240;
 
     this.move = function () {
         this.velocityX = 0;
@@ -209,41 +212,47 @@ var BouncySquare = function () {
         if (this.goalRadius > 0) {
             this.goalRadius -= 1;
         }
+
+        this.cameraX = this.x - 142;
+        this.cameraY = this.y - 80;
     };
 
     this.goal = function (x, y) {
-       this.goalX = x - 8;
-       this.goalY = y - 4;
+       this.goalX = x - 8 + this.cameraX;
+       this.goalY = y - 4 + this.cameraY;
        this.goalRadius = 20;
        this.going = true;
        this.blockedCount = 0;
     };
 
     this.draw = function () {
+        var self = this;
+
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(-self.cameraX, -self.cameraY, this.maxX, this.maxY);
+
         walls.forEach(function(obj) {
             ctx.fillStyle = obj.color;
-            ctx.fillRect(obj.x, obj.y, obj.width, obj.height);
+            ctx.fillRect(obj.x - self.cameraX, obj.y - self.cameraY, obj.width, obj.height);
         });
 
         entities.sort(function(a, b) { return a.y - b.y; });
         entities.forEach(function(obj) {
             ctx.fillStyle = 'rgb(170, 170, 170)';
             ctx.beginPath();
-            ctx.ellipse(obj.x + obj.width/2, obj.y + obj.height/2, obj.width/2, obj.height/2, 0, 0, Math.PI*2);
+            ctx.ellipse(obj.x + obj.width/2  - self.cameraX, obj.y + obj.height/2  - self.cameraY, obj.width/2, obj.height/2, 0, 0, Math.PI*2);
             ctx.fill();
             ctx.closePath();
             ctx.fillStyle = obj.color;
-            ctx.fillRect(obj.x, obj.y - 20 - obj.z, obj.width, 24);
+            ctx.fillRect(obj.x - self.cameraX, obj.y - 20 - obj.z - self.cameraY, obj.width, 24);
         });
 
         if (this.goalRadius > 0) {
-            //ctx.globalAlpha = 0.5;
             ctx.fillStyle = 'rgba(170, 170, 170, 0.5)';
             ctx.beginPath();
-            ctx.ellipse(this.goalX + 8, this.goalY + 4, this.goalRadius, this.goalRadius, 0, 0, Math.PI*2);
+            ctx.ellipse(this.goalX + 8 - self.cameraX, this.goalY + 4 - self.cameraY, this.goalRadius, this.goalRadius, 0, 0, Math.PI*2);
             ctx.fill();
             ctx.closePath();
-            //ctx.globalAlpha = 1;
         }
     };
 };
