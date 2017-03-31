@@ -212,8 +212,8 @@ var BouncySquare = function () {
     };
 
     this.goal = function (x, y) {
-       this.goalX = x;
-       this.goalY = y;
+       this.goalX = x - 8;
+       this.goalY = y - 4;
        this.goalRadius = 20;
        this.going = true;
        this.blockedCount = 0;
@@ -240,7 +240,7 @@ var BouncySquare = function () {
             //ctx.globalAlpha = 0.5;
             ctx.fillStyle = 'rgba(170, 170, 170, 0.5)';
             ctx.beginPath();
-            ctx.ellipse(this.goalX, this.goalY, this.goalRadius, this.goalRadius, 0, 0, Math.PI*2);
+            ctx.ellipse(this.goalX + 8, this.goalY + 4, this.goalRadius, this.goalRadius, 0, 0, Math.PI*2);
             ctx.fill();
             ctx.closePath();
             //ctx.globalAlpha = 1;
