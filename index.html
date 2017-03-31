@@ -6,9 +6,17 @@
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-touch-fullscreen" content="yes"/>
     <title>MobileWeb Game Prototype</title>
+    <style>
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    </style>
 </head>
 <body onmousedown="return!1" onselectstart="return!1">
-    <canvas id="myCanvas" height="100" width="120"></canvas>
+    <canvas id="myCanvas" height="480" width="800"></canvas>
 
 <script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-5075951-7"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
 <script>
@@ -165,7 +173,11 @@ var entities = [
 var walls = [
     {x: 15, y: 0, width: 20, height: 45, color: 'rgb(80, 80, 80)'},
     {x: 50, y: 50, width: 35, height: 20, color: 'rgb(80, 80, 80)'},
-    {x: 70, y: 30, width: 35, height: 20, color: 'rgb(80, 80, 80)'}
+    {x: 70, y: 30, width: 35, height: 20, color: 'rgb(80, 80, 80)'},
+    {x: 140, y: 60, width: 200, height: 40, color: 'rgb(80, 80, 80)'},
+    {x: 340, y: 240, width: 200, height: 40, color: 'rgb(80, 80, 80)'},
+    {x: 140, y: 160, width: 40, height: 200, color: 'rgb(80, 80, 80)'},
+    {x: 680, y: 100, width: 40, height: 200, color: 'rgb(80, 80, 80)'}
 ]
 
 // IMPORTANT: This is the entire key to doing animation in JavaScript. It is essential to know that JavaScript
@@ -184,7 +196,7 @@ function run() {
     // will be called later. This also shows another quirk of JavaScript, functions can be used just like
     // variables. Alternative to using "function run() { ..." like above, I could use
     // "var run = function() {..."
-    setTimeout(run, 1000 / 60); // 60 fps
+    window.requestAnimationFrame(run); // 60 fps
 }
 
 // Start the animation
