@@ -181,31 +181,46 @@ var BouncySquare = function () {
         if (this.going && (this.prevX === this.x && this.prevY === this.y)) {
             this.blockedCount++;
         }
+
+        if (this.goalRadius > 0) {
+            this.goalRadius -= 1;
+        }
     };
 
     this.goal = function (x, y) {
        this.goalX = x;
        this.goalY = y;
+       this.goalRadius = 20;
        this.going = true;
        this.blockedCount = 0;
     };
 
     this.draw = function () {
         walls.forEach(function(obj) {
-        ctx.fillStyle = obj.color;
-        ctx.fillRect(obj.x, obj.y, obj.width, obj.height);
+            ctx.fillStyle = obj.color;
+            ctx.fillRect(obj.x, obj.y, obj.width, obj.height);
         });
 
         entities.sort(function(a, b) { return a.y - b.y; });
         entities.forEach(function(obj) {
-        ctx.fillStyle = 'rgb(170, 170, 170)';
-        ctx.beginPath();
-        ctx.ellipse(obj.x + obj.width/2, obj.y + obj.height/2, obj.width/2, obj.height/2, 0, 0, Math.PI*2);
-        ctx.fill();
-        ctx.closePath();
-        ctx.fillStyle = obj.color;
-        ctx.fillRect(obj.x, obj.y - 7.5 - obj.z, obj.width, 10);
+            ctx.fillStyle = 'rgb(170, 170, 170)';
+            ctx.beginPath();
+            ctx.ellipse(obj.x + obj.width/2, obj.y + obj.height/2, obj.width/2, obj.height/2, 0, 0, Math.PI*2);
+            ctx.fill();
+            ctx.closePath();
+            ctx.fillStyle = obj.color;
+            ctx.fillRect(obj.x, obj.y - 7.5 - obj.z, obj.width, 10);
         });
+
+        if (this.goalRadius > 0) {
+            //ctx.globalAlpha = 0.5;
+            ctx.fillStyle = 'rgba(170, 170, 170, 0.5)';
+            ctx.beginPath();
+            ctx.ellipse(this.goalX, this.goalY, this.goalRadius, this.goalRadius, 0, 0, Math.PI*2);
+            ctx.fill();
+            ctx.closePath();
+            //ctx.globalAlpha = 1;
+        }
     };
 };
 
