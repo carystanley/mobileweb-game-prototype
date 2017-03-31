@@ -144,8 +144,8 @@ var BouncySquare = function () {
     this.velocityX = 1;
     this.velocityY = 1;
     this.velocityZ = 0;
-    this.width = 10;
-    this.height = 5;
+    this.width = 16;
+    this.height = 8;
     this.minX = 0;
     this.minY = 0;
 
@@ -233,7 +233,7 @@ var BouncySquare = function () {
             ctx.fill();
             ctx.closePath();
             ctx.fillStyle = obj.color;
-            ctx.fillRect(obj.x, obj.y - 7.5 - obj.z, obj.width, 10);
+            ctx.fillRect(obj.x, obj.y - 20 - obj.z, obj.width, 24);
         });
 
         if (this.goalRadius > 0) {
@@ -251,9 +251,9 @@ var BouncySquare = function () {
 var myBouncySquare = new BouncySquare();
 var entities = [
     myBouncySquare,
-    {x: 50, y: 25, z:0, width: 10, height: 5, color: 'rgb(0, 200, 0)'},
-    {x: 25, y: 50, z:0, width: 10, height: 5, color: 'rgb(0, 200, 0)'},
-    {x: 75, y: 75, z:0, width: 10, height: 5, color: 'rgb(0, 0, 200)'}
+    {x: 50, y: 25, z:0, width: 16, height: 8, color: 'rgb(0, 200, 0)'},
+    {x: 25, y: 50, z:0, width: 16, height: 8, color: 'rgb(0, 200, 0)'},
+    {x: 75, y: 75, z:0, width: 16, height: 8, color: 'rgb(0, 0, 200)'}
 ];
 
 var walls = [
