@@ -3,6 +3,7 @@
   "short_name": "WebProto",
   "start_url": ".",
   "display": "standalone",
+  "orientation": "landscape",
   "background_color": "#ccc",
   "description": "Mobile Web Prototype",
   "icons": [{
