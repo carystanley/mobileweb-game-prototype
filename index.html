@@ -60,10 +60,33 @@
         }
     }
 
+    #must-landscape {
+        display: none;
+        background-color: #000;
+        color: #fff;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
+
+    @media screen and (orientation:portrait) {
+        canvas {
+            display: none;
+        }
+
+        #must-landscape {
+            display: block;
+        }
+    }
+
     </style>
 </head>
 <body onmousedown="return!1" onselectstart="return!1">
     <canvas id="myCanvas" height="320" width="568"></canvas>
+    <div id="must-landscape"><h1>Sorry</h1>you must switch to landscape view</div>
 
 <script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-5075951-7"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
 <script>
