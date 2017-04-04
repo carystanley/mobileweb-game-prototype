@@ -215,6 +215,18 @@ var BouncySquare = function () {
 
         this.cameraX = this.x - 142;
         this.cameraY = this.y - 80;
+        if (this.cameraX < 0) {
+            this.cameraX = 0;
+        }
+        if (this.cameraY < 0) {
+            this.cameraY = 0;
+        }
+        if (this.cameraX + canvas.width > this.maxX) {
+            this.cameraX = this.maxX - canvas.width;
+        }
+        if (this.cameraY + canvas.height > this.maxY) {
+            this.cameraY = this.maxY - canvas.height;
+        }
     };
 
     this.goal = function (x, y) {
