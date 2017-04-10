@@ -97,6 +97,16 @@
 
 <script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-5075951-7"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
 <script>
+
+function loadImage(url, options) {
+    options = options || {};
+    var image = new Image();
+    if (options.onload)
+        image.on('load', options.onload);
+    image.src = url;
+    return image;
+}
+
 var AABB = {
     collision: function(rect1, rect2, handler) {
         var rect1halfx = rect1.width/2;
@@ -255,8 +265,11 @@ var BouncySquare = function () {
             ctx.ellipse(obj.x + obj.width/2  - self.cameraX, obj.y + obj.height/2  - self.cameraY, obj.width/2, obj.height/2, 0, 0, Math.PI*2);
             ctx.fill();
             ctx.closePath();
-            ctx.fillStyle = obj.color;
-            ctx.fillRect(obj.x - self.cameraX, obj.y - 20 - obj.z - self.cameraY, obj.width, 24);
+            ctx.drawImage(
+                sprites,
+                0, 0, 16, 24,
+                (obj.x - self.cameraX) | 0, (obj.y - 20 - obj.z - self.cameraY) | 0, obj.width, 24
+            );
         });
 
         if (this.goalRadius > 0) {
@@ -268,6 +281,8 @@ var BouncySquare = function () {
         }
     };
 };
+
+var sprites = loadImage('./sprites.gif');
 
 var myBouncySquare = new BouncySquare();
 var entities = [
