@@ -179,7 +179,7 @@ canvas.addEventListener('touchmove', function(e) {
     var x = Math.floor(touch.offsetX * (canvas.width / canvas.offsetWidth));
     var y = Math.floor(touch.offsetY * (canvas.height / canvas.offsetHeight));
     myBouncySquare.goal(x, y);
-}, false);
+}, true);
 
 
 var BouncySquare = function () {
