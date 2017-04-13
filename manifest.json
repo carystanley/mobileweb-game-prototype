@@ -2,7 +2,7 @@
   "name": "WebProto",
   "short_name": "WebProto",
   "start_url": ".",
-  "display": "standalone",
+  "display": "fullscreen",
   "orientation": "landscape",
   "background_color": "#ccc",
   "description": "Mobile Web Prototype",
