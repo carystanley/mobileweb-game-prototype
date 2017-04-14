@@ -176,8 +176,14 @@ canvas.addEventListener('click', function(e) {
 
 canvas.addEventListener('touchmove', function(e) {
     var touch = e.changedTouches[0];
-    var touchX = touch.pageX - this.offsetLeft
-    var touchY = touch.pageY - this.offsetTop
+
+    var canvasRect = this.getBoundingClientRect();
+    var docEl = document.documentElement;
+    var canvasTop = canvasRect.top + window.pageYOffset - docEl.clientTop;
+    var canvasLeft = canvasRect.left + window.pageXOffset - docEl.clientLeft;
+
+    var touchX = touch.pageX - canvasLeft;
+    var touchY = touch.pageY - canvasTop;
     var x = Math.floor(touchX * (canvas.width / canvas.offsetWidth));
     var y = Math.floor(touchY * (canvas.height / canvas.offsetHeight));
     myBouncySquare.goal(x, y);
