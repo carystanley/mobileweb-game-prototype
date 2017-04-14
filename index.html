@@ -61,34 +61,6 @@
         -ms-interpolation-mode: nearest-neighbor;   /* IE                            */
     }
 
-    @media screen and (min-width: 284px) and (min-height: 160px) {
-        canvas {
-            width: 284px !important;
-            height: 160px !important;
-        }
-    }
-
-    @media screen and (min-width: 568px) and (min-height: 320px) {
-        canvas {
-            width: 568px !important;
-            height: 320px !important;
-        }
-    }
-
-    @media screen and (min-width: 852px) and (min-height: 480px) {
-        canvas {
-            width: 852px !important;
-            height: 480px !important;
-        }
-    }
-
-    @media screen and (min-width: 1138px) and (min-height: 640px) {
-        canvas {
-            width: 1138px !important;
-            height: 640px !important;
-        }
-    }
-
     #must-landscape {
         display: none;
         background-color: #000;
@@ -350,7 +322,19 @@ var walls = [
     {x: 60, y: 230, width: 40, height: 100, color: 'rgba(80, 80, 80, 0.5)'},
     {x: 190, y: 240, width: 110, height: 40, color: 'rgba(80, 80, 80, 0.5)'},
     {x: 240, y: 210, width: 70, height: 30, color: 'rgba(80, 80, 80, 0.5)'}
-]
+];
+
+function resizeCanvas() {
+    var viewPortWidth = document.documentElement.clientWidth;
+    var viewPortHeight = document.documentElement.clientHeight;
+    var canvasWidth = canvas.width;
+    var canvasHeight = canvas.height;
+    var xScale = Math.round(viewPortWidth / canvasWidth);
+    var yScale = Math.round(viewPortHeight / canvasHeight);
+    var scaleFactor = Math.min(xScale, yScale);
+    canvas.style.width = canvasWidth * scaleFactor + 'px';
+    canvas.style.height = canvasHeight * scaleFactor + 'px';
+}
 
 function run() {
     // Clear anything drawn to the canvas off.
@@ -362,6 +346,8 @@ function run() {
 }
 
 // Start the animation
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 run();
 </script>
 </body>
