@@ -323,7 +323,7 @@ Dialog.prototype.draw = function(ctx) {
     ctx.fillRect(this.x - margin, this.y - margin, width + (2 * margin), (lineCount * lineHeight) + (2 * margin));
 
     ctx.font = this.font;
-    ctx.textBaseline = 'alphabetic';
+    ctx.textBaseline = 'bottom';
     ctx.fillStyle = "white";
     for (i = 0; i < lines.length; i++) {
         text = lines[i];
