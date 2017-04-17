@@ -45,6 +45,18 @@ function correctionWall(rect1, rect2, distX, distY, correctX, correctY) {
    }
 }
 
+function collideEvent(rect1, rect2, distX, distY, correctX, correctY) {
+   if (correctX > correctY) {
+      rect1.x += ((distX > 0) ? 1 : -1) * correctX;
+   } else {
+      rect1.y += ((distY > 0) ? 1 : -1) * correctY;
+   }
+   if (rect2.text) {
+       rect1.going = false;
+       dialog.showText(rect2.text);
+   }
+}
+
 var canvas = document.getElementById('myCanvas');
 var ctx = canvas.getContext('2d');
 
@@ -90,6 +102,10 @@ var BouncySquare = function () {
     this.maxY = 372;
 
     this.move = function () {
+        dialog.update();
+        if (dialog.visible) return;
+
+
         this.velocityX = 0;
         this.velocityY = 0;
 
@@ -139,6 +155,9 @@ var BouncySquare = function () {
         walls.forEach(function(wall) {
             AABB.collision(self, wall, correctionWall);
         });
+        events.forEach(function(event) {
+            AABB.collision(self, event, collideEvent);
+        });
         if (this.going && (this.prevX === this.x && this.prevY === this.y)) {
             this.blockedCount++;
         }
@@ -164,6 +183,10 @@ var BouncySquare = function () {
     };
 
     this.goal = function (x, y) {
+       if (dialog.visible) {
+           dialog.action();
+           return;
+       }
        this.goalX = x - 8 + this.cameraX;
        this.goalY = y - 4 + this.cameraY;
        this.goalRadius = 20;
@@ -206,19 +229,138 @@ var BouncySquare = function () {
             ctx.fill();
             ctx.closePath();
         }
+
+        dialog.draw(ctx);
     };
 };
+
+function Dialog(ctx, x, y, width, lineCount) {
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.lineCount = lineCount;
+    this.lineHeight = 16;
+    this.font = '10pt Verdana,Geneva,sans-serif';
+    this.visible = false;
+    this.reset();
+    this.ctx = ctx;
+}
+
+Dialog.prototype.show = function() {
+    this.visible = true;
+}
+
+Dialog.prototype.hide = function() {
+    this.visible = false;
+}
+
+Dialog.prototype.showText = function(text) {
+    this.buffer += text;
+    this.show();
+}
+
+Dialog.prototype.update = function() {
+    if (this.visible) {
+        this.tick++;
+        if (this.tick % 5 === 0) {
+            this.onTick();
+        }
+    }
+}
+
+Dialog.prototype.onTick = function() {
+    if (this.lines.length && this.lines[this.cursorLine].length > this.cursorPos) {
+        this.cursorPos++;
+    } else if (this.buffer.length > 0) {
+        if (this.lines.length === this.lineCount) {
+            this.lines.shift();
+        }
+        this.lines.push(this.getNextLine());
+        this.cursorLine = this.lines.length - 1;
+        this.cursorPos = 0;
+    }
+}
+
+Dialog.prototype.getNextLine = function() {
+    var line = '';
+    var lineLength
+    var chunks = this.buffer.split(' ');
+    var done = false;
+    var length;
+    var i = 0;
+
+    this.ctx.font = this.font;
+    while (!done && chunks[i]) {
+        length = this.ctx.measureText(line + chunks[i] + ' ').width;
+        if (length > this.width) {
+            done = true;
+        } else {
+            line += chunks[i] + ' ';
+            i++;
+        }
+    }
+
+    this.buffer = this.buffer.substr(line.length);
+    return line;
+}
+
+Dialog.prototype.draw = function(ctx) {
+    if (!this.visible) return;
+
+    var margin = 8;
+    var width = this.width;
+    var lineCount = this.lineCount;
+    var lineHeight = this.lineHeight;
+    var x = this.x;
+    var y = this.y + lineHeight;
+    var lines = this.lines;
+    var cursorLine = this.cursorLine;
+    var cursorPos = this.cursorPos;
+    var text;
+    var i;
+
+    ctx.fillStyle = "black";
+    ctx.fillRect(this.x - margin, this.y - margin, width + (2 * margin), (lineCount * lineHeight) + (2 * margin));
+
+    ctx.font = this.font;
+    ctx.textBaseline = 'alphabetic';
+    ctx.fillStyle = "white";
+    for (i = 0; i < lines.length; i++) {
+        text = lines[i];
+        if (cursorLine === i) {
+            text = text.substr(0, cursorPos);
+        }
+        ctx.fillText (text, x, y);
+        y += lineHeight;
+    }
+}
+
+Dialog.prototype.reset = function() {
+    this.buffer = '';
+    this.lines = [];
+    this.cursorLine = 0;
+    this.cursorPos = 0;
+    this.tick = 0;
+}
+
+Dialog.prototype.action = function() {
+    this.hide();
+    this.reset();
+}
 
 var sprites = loadImage('./sprites.gif');
 var worldSprite = loadImage('./world.gif');
 
 var myBouncySquare = new BouncySquare();
-var entities = [
-    myBouncySquare,
-    {x: 150, y: 205, z:0, width: 16, height: 8, color: 'rgb(0, 200, 0)'},
-    {x: 355, y: 220, z:0, width: 16, height: 8, color: 'rgb(0, 200, 0)'},
-    {x: 175, y: 235, z:0, width: 16, height: 8, color: 'rgb(0, 0, 200)'}
+var dialog = new Dialog(ctx, 40, 100, 180, 3);
+
+var events = [
+    {x: 150, y: 205, z:0, width: 16, height: 8, color: 'rgb(0, 200, 0)', text: 'Ouch!!'},
+    {x: 355, y: 220, z:0, width: 16, height: 8, color: 'rgb(0, 200, 0)', text: 'To Understand the Banana, You Must Become the Banana'},
+    {x: 175, y: 235, z:0, width: 16, height: 8, color: 'rgb(0, 0, 200)', text: 'When you can snatch the pebble from my hand, it will be time for you to leave.'}
 ];
+var entities = events.slice(0);
+entities.push(myBouncySquare);
 
 var walls = [
     {x: 0, y: 0, width: 440, height: 100, color: 'rgba(80, 80, 80, 0.5)'},
