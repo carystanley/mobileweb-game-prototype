@@ -343,9 +343,24 @@ Dialog.prototype.reset = function() {
     this.tick = 0;
 }
 
+Dialog.prototype.flush = function() {
+    while (this.buffer.length > 0) {
+        if (this.lines.length === this.lineCount) {
+            this.lines.shift();
+        }
+        this.lines.push(this.getNextLine());
+        this.cursorLine = this.lines.length - 1;
+        this.cursorPos = this.lines[this.cursorLine].length;
+    }
+}
+
 Dialog.prototype.action = function() {
-    this.hide();
-    this.reset();
+    if (this.buffer === '') {
+        this.hide();
+        this.reset();
+    } else {
+        this.flush();
+    }
 }
 
 var sprites = loadImage('./sprites.gif');
