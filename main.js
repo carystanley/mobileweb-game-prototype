@@ -262,7 +262,7 @@ Dialog.prototype.showText = function(text) {
 Dialog.prototype.update = function() {
     if (this.visible) {
         this.tick++;
-        if (this.tick % 5 === 0) {
+        if (this.tick % 3 === 0) {
             this.onTick();
         }
     }
