@@ -1,0 +1,23 @@
+{
+  "name": "mobileweb-game-prototype",
+  "version": "1.0.0",
+  "description": "Simple RPG Game Prototype",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --quiet --cache . --ext .js --ext .jsx"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carystanley/mobileweb-game-prototype.git"
+  },
+  "author": "Cary Stanley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carystanley/mobileweb-game-prototype/issues"
+  },
+  "homepage": "https://github.com/carystanley/mobileweb-game-prototype#readme",
+  "devDependencies": {
+    "eslint": "^3.19.0"
+  }
+}
