@@ -37,6 +37,15 @@ var AABB = {
     }
 };
 
+function hitTest(px, py, x, y, width, height) {
+    return (
+        (px >= x) &&
+        (px <= x + width) &&
+        (py >= y) &&
+        (py <= y + height)
+    );
+}
+
 function correctionWall(rect1, rect2, distX, distY, correctX, correctY) {
    if (correctX > correctY) {
       rect1.x += ((distX > 0) ? 1 : -1) * correctX;
@@ -51,8 +60,9 @@ function collideEvent(rect1, rect2, distX, distY, correctX, correctY) {
    } else {
       rect1.y += ((distY > 0) ? 1 : -1) * correctY;
    }
-   if (rect2.text) {
+   if (rect2.text && (rect1.goalEvent === rect2)) {
        rect1.going = false;
+       this.goalEvent = null;
        dialog.showText(rect2.text);
    }
 }
@@ -183,15 +193,34 @@ var BouncySquare = function () {
     };
 
     this.goal = function (x, y) {
-       if (dialog.visible) {
-           dialog.action();
-           return;
-       }
-       this.goalX = x - 8 + this.cameraX;
-       this.goalY = y - 4 + this.cameraY;
-       this.goalRadius = 20;
-       this.going = true;
-       this.blockedCount = 0;
+        if (dialog.visible) {
+            dialog.action();
+            return;
+        }
+
+        var wx = x + this.cameraX;
+        var wy = y + this.cameraY;
+        var event;
+
+        var found = null;
+        for (var i = 0; i < events.length; i++) {
+            event = events[i];
+            if (hitTest(wx, wy, event.x, event.y-24, 16, 24)) {
+                found = event;
+            }
+        }
+        if (found) {
+            this.goalX = found.x + found.width/2 - 8;
+            this.goalY = found.y + found.height/2 - 4;
+            this.goalEvent = found;
+        } else {
+            this.goalX = wx - 8;
+            this.goalY = wy - 4;
+            this.goalEvent = null;
+        }
+        this.goalRadius = 20;
+        this.going = true;
+        this.blockedCount = 0;
     };
 
     this.draw = function () {
