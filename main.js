@@ -362,6 +362,16 @@ Dialog.prototype.draw = function(ctx) {
         ctx.fillText (text, x, y);
         y += lineHeight;
     }
+
+    if (this.buffer === '') {
+        var arrowTop = this.y + (lineCount * lineHeight) + (Math.floor(this.tick / 10) % 3);
+        var arrowCenter = this.x + width/2;
+        ctx.beginPath();
+        ctx.moveTo(arrowCenter - 5, arrowTop);
+        ctx.lineTo(arrowCenter + 5, arrowTop);
+        ctx.lineTo(arrowCenter, arrowTop + 5);
+        ctx.fill();
+    }
 }
 
 Dialog.prototype.reset = function() {
