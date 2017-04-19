@@ -117,10 +117,10 @@ var BouncySquare = function () {
         this.z += this.velocityZ;
 
         var self = this;
-        walls.forEach(function(wall) {
+        world.walls.forEach(function(wall) {
             AABB.collision(self, wall, correctionWall);
         });
-        events.forEach(function(event) {
+        world.events.forEach(function(event) {
             AABB.collision(self, event, collideEvent);
         });
         if (this.going && (this.prevX === this.x && this.prevY === this.y)) {
@@ -158,8 +158,8 @@ var BouncySquare = function () {
         var event;
 
         var found = null;
-        for (var i = 0; i < events.length; i++) {
-            event = events[i];
+        for (var i = 0; i < world.events.length; i++) {
+            event = world.events[i];
             if (hitTest(wx, wy, event.x, event.y-24, 16, 24)) {
                 found = event;
             }
@@ -192,8 +192,8 @@ var BouncySquare = function () {
             ctx.fillRect(obj.x - self.cameraX, obj.y - self.cameraY, obj.width, obj.height);
         });
 */
-        entities.sort(function(a, b) { return a.y - b.y; });
-        entities.forEach(function(obj) {
+        world.entities.sort(function(a, b) { return a.y - b.y; });
+        world.entities.forEach(function(obj) {
             ctx.fillStyle = 'rgba(170, 170, 170, 0.5)';
             ctx.beginPath();
             ctx.ellipse(obj.x + obj.width/2  - self.cameraX, obj.y + obj.height/2  - self.cameraY,
@@ -235,8 +235,8 @@ function resizeCanvas() {
 function run() {
     // Clear anything drawn to the canvas off.
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    myBouncySquare.move();
-    myBouncySquare.draw(ctx);
+    world.player.move();
+    world.player.draw(ctx);
 
     window.requestAnimationFrame(run); // 60 fps
 }
@@ -249,7 +249,7 @@ var ctx = canvas.getContext('2d');
 canvas.addEventListener('click', function(e) {
     var x = Math.floor(e.offsetX * (canvas.width / canvas.offsetWidth));
     var y = Math.floor(e.offsetY * (canvas.height / canvas.offsetHeight));
-    myBouncySquare.goal(x, y);
+    world.player.goal(x, y);
 }, false);
 
 canvas.addEventListener('touchmove', function(e) {
@@ -264,38 +264,15 @@ canvas.addEventListener('touchmove', function(e) {
     var touchY = touch.pageY - canvasTop;
     var x = Math.floor(touchX * (canvas.width / canvas.offsetWidth));
     var y = Math.floor(touchY * (canvas.height / canvas.offsetHeight));
-    myBouncySquare.goal(x, y);
+    world.player.goal(x, y);
 }, true);
 
 var sprites = loadImage('./sprites.gif');
 var worldSprite = loadImage('./world.gif');
 
-var myBouncySquare = new BouncySquare();
+
 var dialog = new Dialog(ctx, 40, 100, 180, 3);
-
-var events = [
-    {x: 150, y: 205, z: 0, width: 16, height: 8, color: 'rgb(0, 200, 0)',
-        text: 'Ouch!!'},
-    {x: 355, y: 220, z: 0, width: 16, height: 8, color: 'rgb(0, 200, 0)',
-        text: 'To Understand the Banana, You Must Become the Banana'},
-    {x: 175, y: 235, z: 0, width: 16, height: 8, color: 'rgb(0, 0, 200)',
-        text: 'When you can snatch the pebble from my hand, it will be time for you to leave.'}
-];
-var entities = events.slice(0);
-entities.push(myBouncySquare);
-
-var walls = [
-    {x: 0, y: 0, width: 440, height: 100, color: 'rgba(80, 80, 80, 0.5)'},
-    {x: 0, y: 0, width: 75, height: 372, color: 'rgba(80, 80, 80, 0.5)'},
-    {x: 0, y: 280, width: 300, height: 150, color: 'rgba(80, 80, 80, 0.5)'},
-    {x: 300, y: 340, width: 140, height: 60, color: 'rgba(80, 80, 80, 0.5)'},
-    {x: 390, y: 0, width: 200, height: 290, color: 'rgba(80, 80, 80, 0.5)'},
-    {x: 100, y: 100, width: 150, height: 65, color: 'rgba(80, 80, 80, 0.5)'},
-    {x: 60, y: 230, width: 40, height: 100, color: 'rgba(80, 80, 80, 0.5)'},
-    {x: 190, y: 240, width: 110, height: 40, color: 'rgba(80, 80, 80, 0.5)'},
-    {x: 240, y: 210, width: 70, height: 30, color: 'rgba(80, 80, 80, 0.5)'}
-];
-
+var world = new World();
 
 
 
