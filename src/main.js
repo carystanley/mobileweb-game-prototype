@@ -236,7 +236,7 @@ WorldState.prototype.onMouse = function (x, y) {
         return;
     }
     var v = this.viewport;
-    world.player.goal(x + v.y, y + v.y);
+    world.player.goal(x + v.x, y + v.y);
 }
 
 WorldState.prototype.onTap = function (x, y) {
