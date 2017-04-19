@@ -40,7 +40,6 @@ function collideEvent(rect1, rect2, distX, distY, correctX, correctY) {
 }
 
 var BouncySquare = function () {
-    this.color = 'rgb(200, 0, 0)';
     this.x = 150;
     this.y = 180;
     this.z = 0;

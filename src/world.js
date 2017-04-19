@@ -1,11 +1,11 @@
 function World() {
     this.player = new BouncySquare();
     this.events = [
-        {x: 150, y: 205, z: 0, width: 16, height: 8, color: 'rgb(0, 200, 0)',
+        {x: 150, y: 205, z: 0, width: 16, height: 8,
             text: 'Ouch!!'},
-        {x: 355, y: 220, z: 0, width: 16, height: 8, color: 'rgb(0, 200, 0)',
+        {x: 355, y: 220, z: 0, width: 16, height: 8,
             text: 'To Understand the Banana, You Must Become the Banana'},
-        {x: 175, y: 235, z: 0, width: 16, height: 8, color: 'rgb(0, 0, 200)',
+        {x: 175, y: 235, z: 0, width: 16, height: 8,
             text: 'When you can snatch the pebble from my hand, it will be time for you to leave.'}
     ];
     this.entities = this.events.slice(0);
