@@ -120,7 +120,7 @@ var BouncySquare = function (world) {
         );
 /*
         walls.forEach(function(obj) {
-            ctx.fillStyle = obj.color;
+            ctx.fillStyle = 'rgba(80, 80, 80, 0.5)';
             ctx.fillRect(obj.x - v.x, obj.y - v.y, obj.width, obj.height);
         });
 */
