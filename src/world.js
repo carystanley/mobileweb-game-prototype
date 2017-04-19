@@ -1,5 +1,5 @@
 function World() {
-    this.player = new BouncySquare();
+    this.player = new BouncySquare(this);
     this.events = [
         {x: 150, y: 205, z: 0, width: 16, height: 8,
             text: 'Ouch!!'},
