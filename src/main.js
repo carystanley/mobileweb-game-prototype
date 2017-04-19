@@ -113,8 +113,6 @@ var BouncySquare = function (world) {
     };
 
     this.draw = function (ctx, v) {
-        var self = this;
-
         ctx.drawImage(
             worldSprite,
             v.x, v.y, v.width, v.height,
@@ -152,7 +150,7 @@ var BouncySquare = function (world) {
     };
 
     this.showText = function(text) {
-        dialog.showText(rect2.text);
+        this.world.state.dialog.showText(text);
     }
 };
 
@@ -189,7 +187,7 @@ Viewport.prototype.update = function(player, world) {
 function WorldState(ctx) {
     this.dialog = new Dialog(ctx, 40, 100, 180, 3);
     this.viewport = new Viewport(ctx.canvas.width, ctx.canvas.height);
-    this.world = new World();
+    this.world = new World(this);
 }
 
 WorldState.prototype.update = function () {
