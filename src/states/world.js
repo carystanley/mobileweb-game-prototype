@@ -10,7 +10,7 @@ WorldState.prototype.update = function () {
     var dialog = this.dialog;
     dialog.update();
     if (!dialog.visible) {
-        player.move();
+        player.update();
         world.update();
         this.viewport.update(player, world);
     }
