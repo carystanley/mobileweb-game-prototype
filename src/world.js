@@ -1,3 +1,24 @@
+function correctionWall(rect1, rect2, distX, distY, correctX, correctY) {
+    if (correctX > correctY) {
+        rect1.x += ((distX > 0) ? 1 : -1) * correctX;
+    } else {
+        rect1.y += ((distY > 0) ? 1 : -1) * correctY;
+    }
+}
+
+function collideEvent(rect1, rect2, distX, distY, correctX, correctY) {
+    if (correctX > correctY) {
+        rect1.x += ((distX > 0) ? 1 : -1) * correctX;
+    } else {
+        rect1.y += ((distY > 0) ? 1 : -1) * correctY;
+    }
+    if (rect2.text && (rect1.goalEvent === rect2)) {
+        rect1.going = false;
+        rect1.goalEvent = null;
+        rect1.showText(rect2.text);
+    }
+}
+
 function World(state) {
     this.state = state;
     this.player = new BouncySquare(this);
@@ -27,3 +48,43 @@ function World(state) {
     this.width = 440;
     this.height = 372;
 }
+
+World.prototype.draw = function (ctx, v) {
+    var player = this.player;
+    var entities = this.entities;
+
+    ctx.drawImage(
+        worldSprite,
+        v.x, v.y, v.width, v.height,
+        0, 0, v.width, v.height
+    );
+/*
+    walls.forEach(function(obj) {
+        ctx.fillStyle = 'rgba(80, 80, 80, 0.5)';
+        ctx.fillRect(obj.x - v.x, obj.y - v.y, obj.width, obj.height);
+    });
+*/
+    entities.sort(function(a, b) { return a.y - b.y; });
+    entities.forEach(function(obj) {
+        ctx.fillStyle = 'rgba(170, 170, 170, 0.5)';
+        ctx.beginPath();
+        ctx.ellipse(obj.x + obj.width/2  - v.x, obj.y + obj.height/2  - v.y,
+            obj.width/2, obj.height/2, 0, 0, Math.PI*2);
+        ctx.fill();
+        ctx.closePath();
+        ctx.drawImage(
+            sprites,
+            0, 0, 16, 24,
+            (obj.x - v.x) | 0, (obj.y - 20 - obj.z - v.y) | 0, obj.width, 24
+        );
+    });
+
+    if (player.goalRadius > 0) {
+        ctx.fillStyle = 'rgba(170, 170, 170, 0.5)';
+        ctx.beginPath();
+        ctx.ellipse(player.goalX + 8 - v.x, player.goalY + 4 - v.y,
+            player.goalRadius, player.goalRadius, 0, 0, Math.PI*2);
+        ctx.fill();
+        ctx.closePath();
+    }
+};

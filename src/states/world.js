@@ -16,7 +16,7 @@ WorldState.prototype.update = function () {
 }
 
 WorldState.prototype.draw = function (ctx) {
-    this.world.player.draw(ctx, this.viewport);
+    this.world.draw(ctx, this.viewport);
     this.dialog.draw(ctx);
 }
 
@@ -36,7 +36,7 @@ WorldState.prototype.onMouse = function (x, y) {
 
     for (var i = 0; i < events.length; i++) {
         event = events[i];
-        if (hitTest(wx, wy, event.x, event.y-24, 16, 24)) {
+        if (AABB.pointInRect(wx, wy, event.x, event.y-24, 16, 24)) {
             found = event;
         }
     }

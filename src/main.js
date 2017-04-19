@@ -9,35 +9,7 @@ function loadImage(url, options) {
     return image;
 }
 
-function hitTest(px, py, x, y, width, height) {
-    return (
-        (px >= x) &&
-        (px <= x + width) &&
-        (py >= y) &&
-        (py <= y + height)
-    );
-}
 
-function correctionWall(rect1, rect2, distX, distY, correctX, correctY) {
-    if (correctX > correctY) {
-        rect1.x += ((distX > 0) ? 1 : -1) * correctX;
-    } else {
-        rect1.y += ((distY > 0) ? 1 : -1) * correctY;
-    }
-}
-
-function collideEvent(rect1, rect2, distX, distY, correctX, correctY) {
-    if (correctX > correctY) {
-        rect1.x += ((distX > 0) ? 1 : -1) * correctX;
-    } else {
-        rect1.y += ((distY > 0) ? 1 : -1) * correctY;
-    }
-    if (rect2.text && (rect1.goalEvent === rect2)) {
-        rect1.going = false;
-        rect1.goalEvent = null;
-        rect1.showText(rect2.text);
-    }
-}
 
 var BouncySquare = function (world) {
     this.x = 150;
@@ -109,43 +81,6 @@ var BouncySquare = function (world) {
 
         if (this.goalRadius > 0) {
             this.goalRadius -= 1;
-        }
-    };
-
-    this.draw = function (ctx, v) {
-        ctx.drawImage(
-            worldSprite,
-            v.x, v.y, v.width, v.height,
-            0, 0, v.width, v.height
-        );
-/*
-        walls.forEach(function(obj) {
-            ctx.fillStyle = 'rgba(80, 80, 80, 0.5)';
-            ctx.fillRect(obj.x - v.x, obj.y - v.y, obj.width, obj.height);
-        });
-*/
-        this.world.entities.sort(function(a, b) { return a.y - b.y; });
-        this.world.entities.forEach(function(obj) {
-            ctx.fillStyle = 'rgba(170, 170, 170, 0.5)';
-            ctx.beginPath();
-            ctx.ellipse(obj.x + obj.width/2  - v.x, obj.y + obj.height/2  - v.y,
-                obj.width/2, obj.height/2, 0, 0, Math.PI*2);
-            ctx.fill();
-            ctx.closePath();
-            ctx.drawImage(
-                sprites,
-                0, 0, 16, 24,
-                (obj.x - v.x) | 0, (obj.y - 20 - obj.z - v.y) | 0, obj.width, 24
-            );
-        });
-
-        if (this.goalRadius > 0) {
-            ctx.fillStyle = 'rgba(170, 170, 170, 0.5)';
-            ctx.beginPath();
-            ctx.ellipse(this.goalX + 8 - v.x, this.goalY + 4 - v.y,
-                this.goalRadius, this.goalRadius, 0, 0, Math.PI*2);
-            ctx.fill();
-            ctx.closePath();
         }
     };
 

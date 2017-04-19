@@ -15,5 +15,13 @@ AABB = {
         if (correctX < 0 && correctY < 0) {
             handler(rect1, rect2, distX, distY, correctX, correctY);
         }
+    },
+    pointInRect: function(px, py, x, y, width, height) {
+        return (
+            (px >= x) &&
+            (px <= x + width) &&
+            (py >= y) &&
+            (py <= y + height)
+        );
     }
 };
