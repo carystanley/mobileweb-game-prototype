@@ -1,21 +1,21 @@
-function correctionWall(rect1, rect2, distX, distY, correctX, correctY) {
+function correctionWall(player, obstacle, distX, distY, correctX, correctY) {
     if (correctX > correctY) {
-        rect1.x += ((distX > 0) ? 1 : -1) * correctX;
+        player.x += ((distX > 0) ? 1 : -1) * correctX;
     } else {
-        rect1.y += ((distY > 0) ? 1 : -1) * correctY;
+        player.y += ((distY > 0) ? 1 : -1) * correctY;
     }
 }
 
-function collideEvent(rect1, rect2, distX, distY, correctX, correctY) {
+function collideEvent(player, event, distX, distY, correctX, correctY) {
     if (correctX > correctY) {
-        rect1.x += ((distX > 0) ? 1 : -1) * correctX;
+        player.x += ((distX > 0) ? 1 : -1) * correctX;
     } else {
-        rect1.y += ((distY > 0) ? 1 : -1) * correctY;
+        player.y += ((distY > 0) ? 1 : -1) * correctY;
     }
-    if (rect2.text && (rect1.goalEvent === rect2)) {
-        rect1.going = false;
-        rect1.goalEvent = null;
-        rect1.showText(rect2.text);
+    if (event.text && (player.goalEvent === event)) {
+        player.going = false;
+        player.goalEvent = null;
+        player.showText(event.text);
     }
 }
 
@@ -88,3 +88,13 @@ World.prototype.draw = function (ctx, v) {
         ctx.closePath();
     }
 };
+
+World.prototype.update = function () {
+    var player = this.player;
+    this.walls.forEach(function(wall) {
+        AABB.collision(player, wall, correctionWall);
+    });
+    this.events.forEach(function(event) {
+        AABB.collision(player, event, collideEvent);
+    });
+}

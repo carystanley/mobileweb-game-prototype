@@ -45,6 +45,14 @@ var BouncySquare = function (world) {
             }
         }
 
+        if (this.going && (this.prevX === this.x && this.prevY === this.y)) {
+            this.blockedCount++;
+        }
+
+        if (this.goalRadius > 0) {
+            this.goalRadius -= 1;
+        }
+
         this.prevX = this.x;
         this.prevY = this.y;
 
@@ -67,21 +75,6 @@ var BouncySquare = function (world) {
             this.velocityZ -= 0.25
         }
         this.z += this.velocityZ;
-
-        var self = this;
-        this.world.walls.forEach(function(wall) {
-            AABB.collision(self, wall, correctionWall);
-        });
-        this.world.events.forEach(function(event) {
-            AABB.collision(self, event, collideEvent);
-        });
-        if (this.going && (this.prevX === this.x && this.prevY === this.y)) {
-            this.blockedCount++;
-        }
-
-        if (this.goalRadius > 0) {
-            this.goalRadius -= 1;
-        }
     };
 
     this.showText = function(text) {
