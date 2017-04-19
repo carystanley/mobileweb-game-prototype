@@ -10,10 +10,6 @@ function loadImage(url, options) {
 }
 
 
-var sprites = loadImage('./sprites.gif');
-var worldSprite = loadImage('./world.gif');
-
-
 Game = {};
 Game.setup = function(canvasId, window) {
     var canvas = document.getElementById(canvasId);
@@ -64,11 +60,16 @@ Game.setup = function(canvasId, window) {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
+    var resources = {
+        world: loadImage('./world.gif'),
+        sprites: loadImage('./sprites.gif')
+    };
+
     function run() {
         // Clear anything drawn to the canvas off.
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         state.update();
-        state.draw(ctx);
+        state.draw(ctx, resources);
 
         window.requestAnimationFrame(run); // 60 fps
     }

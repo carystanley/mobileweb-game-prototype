@@ -49,12 +49,12 @@ function World(state) {
     this.height = 372;
 }
 
-World.prototype.draw = function (ctx, v) {
+World.prototype.draw = function (ctx, v, res) {
     var player = this.player;
     var entities = this.entities;
 
     ctx.drawImage(
-        worldSprite,
+        res.world,
         v.x, v.y, v.width, v.height,
         0, 0, v.width, v.height
     );
@@ -73,7 +73,7 @@ World.prototype.draw = function (ctx, v) {
         ctx.fill();
         ctx.closePath();
         ctx.drawImage(
-            sprites,
+            res.sprites,
             0, 0, 16, 24,
             (obj.x - v.x) | 0, (obj.y - 20 - obj.z - v.y) | 0, obj.width, 24
         );

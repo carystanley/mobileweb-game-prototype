@@ -16,8 +16,8 @@ WorldState.prototype.update = function () {
     }
 }
 
-WorldState.prototype.draw = function (ctx) {
-    this.world.draw(ctx, this.viewport);
+WorldState.prototype.draw = function (ctx, res) {
+    this.world.draw(ctx, this.viewport, res);
     this.dialog.draw(ctx);
 }
 
