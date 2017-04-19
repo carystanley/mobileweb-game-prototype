@@ -22,4 +22,7 @@ function World() {
         {x: 190, y: 240, width: 110, height: 40, color: 'rgba(80, 80, 80, 0.5)'},
         {x: 240, y: 210, width: 70, height: 30, color: 'rgba(80, 80, 80, 0.5)'}
     ];
+
+    this.width = 440;
+    this.height = 372;
 }

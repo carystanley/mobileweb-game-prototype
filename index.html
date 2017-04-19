@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body onmousedown="return!1" onselectstart="return!1">
-    <div id="screen"><canvas id="myCanvas" height="160" width="284"></canvas></div>
+    <div id="screen"><canvas id="gameCanvas" height="160" width="284"></canvas></div>
     <div id="must-landscape"><h1>Sorry</h1>you must switch to landscape view</div>
 
 <script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-5075951-7"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
@@ -25,5 +25,8 @@
 <script src="src/world.js"></script>
 <script src="src/dialog.js"></script>
 <script src="src/main.js"></script>
+<script>
+    Game.setup('gameCanvas', window);
+</script>
 </body>
 </html>
