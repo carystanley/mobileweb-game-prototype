@@ -1,13 +1,12 @@
-function Dialog(ctx, x, y, width, lineCount) {
+function Dialog(font, x, y, width, lineCount) {
     this.x = x;
     this.y = y;
     this.width = width;
     this.lineCount = lineCount;
     this.lineHeight = 16;
-    this.font = '10pt Verdana,Geneva,sans-serif';
+    this.font = font;
     this.visible = false;
     this.reset();
-    this.ctx = ctx;
 }
 
 Dialog.prototype.show = function() {
@@ -51,10 +50,10 @@ Dialog.prototype.getNextLine = function() {
     var done = false;
     var length;
     var i = 0;
+    var font = this.font;
 
-    this.ctx.font = this.font;
     while (!done && chunks[i]) {
-        length = this.ctx.measureText(line + chunks[i] + ' ').width;
+        length = font.measureText(line + chunks[i] + ' ');
         if (length > this.width) {
             done = true;
         } else {
@@ -72,12 +71,13 @@ Dialog.prototype.draw = function(ctx) {
         return;
     }
 
+    var font = this.font;
     var margin = 8;
     var width = this.width;
     var lineCount = this.lineCount;
     var lineHeight = this.lineHeight;
     var x = this.x;
-    var y = this.y + lineHeight;
+    var y = this.y;
     var lines = this.lines;
     var cursorLine = this.cursorLine;
     var cursorPos = this.cursorPos;
@@ -87,21 +87,19 @@ Dialog.prototype.draw = function(ctx) {
     ctx.fillStyle = 'black';
     ctx.fillRect(this.x - margin, this.y - margin, width + (2 * margin), (lineCount * lineHeight) + (2 * margin));
 
-    ctx.font = this.font;
-    ctx.textBaseline = 'bottom';
-    ctx.fillStyle = 'white';
     for (i = 0; i < lines.length; i++) {
         text = lines[i];
         if (cursorLine === i) {
             text = text.substr(0, cursorPos);
         }
-        ctx.fillText (text, x, y);
+        font.drawText(ctx, text, x, y)
         y += lineHeight;
     }
 
     if (this.buffer === '') {
         var arrowTop = this.y + (lineCount * lineHeight) + (Math.floor(this.tick / 10) % 3);
         var arrowCenter = this.x + width/2;
+        ctx.fillStyle = 'white';
         ctx.beginPath();
         ctx.moveTo(arrowCenter - 5, arrowTop);
         ctx.lineTo(arrowCenter + 5, arrowTop);

@@ -1,5 +1,5 @@
-function WorldState(ctx) {
-    this.dialog = new Dialog(ctx, 40, 100, 180, 3);
+function WorldState(ctx, resources) {
+    this.dialog = new Dialog(resources.basicfont, 40, 100, 180, 3);
     this.viewport = new Viewport(ctx.canvas.width, ctx.canvas.height);
     this.world = new World(this);
 }

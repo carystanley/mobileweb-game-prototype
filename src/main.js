@@ -14,7 +14,6 @@ Game = {};
 Game.setup = function(canvasId, window) {
     var canvas = document.getElementById(canvasId);
     var ctx = canvas.getContext('2d');
-    var state = new WorldState(ctx);
 
     var disableSwipeFn = function (e) {
         e.preventDefault();
@@ -62,8 +61,11 @@ Game.setup = function(canvasId, window) {
 
     var resources = {
         world: loadImage('./world.gif'),
-        sprites: loadImage('./sprites.gif')
+        sprites: loadImage('./sprites.gif'),
+        basicfontsheet: loadImage('./fonts/basic.png'),
     };
+    resources.basicfont = new BitmapFont(BasicFontMeta, resources.basicfontsheet);
+    var state = new WorldState(ctx, resources);
 
     function run() {
         // Clear anything drawn to the canvas off.
