@@ -1,4 +1,5 @@
 function Player (world) {
+    this.frame = 0;
     this.x = 150;
     this.y = 180;
     this.z = 0;

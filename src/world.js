@@ -23,11 +23,11 @@ function World(state) {
     this.state = state;
     this.player = new Player(this);
     this.events = [
-        {x: 150, y: 205, z: 0, width: 16, height: 8,
+        {x: 150, y: 205, z: 0, width: 16, height: 8, frame: 1,
             text: 'Ouch!!'},
-        {x: 355, y: 220, z: 0, width: 16, height: 8,
+        {x: 355, y: 220, z: 0, width: 16, height: 8, frame: 1,
             text: 'To Understand the Banana, You Must Become the Banana'},
-        {x: 175, y: 235, z: 0, width: 16, height: 8,
+        {x: 175, y: 235, z: 0, width: 16, height: 8, frame: 1,
             text: 'When you can snatch the pebble from my hand, it will be time for you to leave.'}
     ];
     this.entities = this.events.slice(0);
@@ -74,7 +74,7 @@ World.prototype.draw = function (ctx, v, res) {
         ctx.closePath();
         ctx.drawImage(
             res.sprites,
-            0, 0, 16, 24,
+            obj.frame * 16, 0, 16, 24,
             (obj.x - v.x) | 0, (obj.y - 20 - obj.z - v.y) | 0, obj.width, 24
         );
     });
