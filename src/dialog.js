@@ -19,6 +19,7 @@ Dialog.prototype.hide = function() {
 
 Dialog.prototype.showText = function(text) {
     this.buffer += text;
+    this.finished = false;
     this.show();
 }
 
@@ -41,6 +42,8 @@ Dialog.prototype.onTick = function() {
         this.lines.push(this.getNextLine());
         this.cursorLine = this.lines.length - 1;
         this.cursorPos = 0;
+    } else if (!this.finished) {
+        this.finished = true;
     }
 }
 
@@ -96,7 +99,7 @@ Dialog.prototype.draw = function(ctx) {
         y += lineHeight;
     }
 
-    if (this.buffer === '') {
+    if (this.finished) {
         var arrowTop = this.y + (lineCount * lineHeight) + (Math.floor(this.tick / 10) % 3);
         var arrowCenter = this.x + width/2;
         ctx.fillStyle = 'white';
