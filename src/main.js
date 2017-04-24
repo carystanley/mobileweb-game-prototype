@@ -70,8 +70,9 @@ Game.setup = function(canvasId, window) {
     game.ctx = ctx;
     game.resources = resources;
     game.state = new StateManager(game, {
-        world: new WorldState(game)
-    }, 'world');
+        world: new WorldState(game),
+        worldmenu: new WorldMenuState(game)
+    }, 'worldmenu');
 
 
     function run() {
