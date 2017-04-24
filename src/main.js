@@ -36,25 +36,27 @@ Game.setup = function(canvasId, window) {
         canvas.style.height = canvasHeight * scaleFactor + 'px';
     }
 
-    canvas.addEventListener('click', function(e) {
-        var x = Math.floor(e.offsetX * (canvas.width / canvas.offsetWidth));
-        var y = Math.floor(e.offsetY * (canvas.height / canvas.offsetHeight));
-        game.state.event('click', x, y);
-    }, false);
+    function normalizeEvent(type, viewX, viewY) {
+        var x = Math.floor(viewX * (canvas.width / canvas.offsetWidth));
+        var y = Math.floor(viewY * (canvas.height / canvas.offsetHeight));
+        game.state.event(type, x, y);
+    }
 
-    canvas.addEventListener('touchmove', function(e) {
+    function normalizeTouch(type, e) {
         var touch = e.changedTouches[0];
-
-        var canvasRect = this.getBoundingClientRect();
+        var canvasRect = canvas.getBoundingClientRect();
         var docEl = document.documentElement;
         var canvasTop = canvasRect.top + window.pageYOffset - docEl.clientTop;
         var canvasLeft = canvasRect.left + window.pageXOffset - docEl.clientLeft;
+        normalizeEvent(type, touch.pageX - canvasLeft, touch.pageY - canvasTop);
+    }
 
-        var touchX = touch.pageX - canvasLeft;
-        var touchY = touch.pageY - canvasTop;
-        var x = Math.floor(touchX * (canvas.width / canvas.offsetWidth));
-        var y = Math.floor(touchY * (canvas.height / canvas.offsetHeight));
-        game.state.event('move', x, y);
+    canvas.addEventListener('click', function(e) {
+        normalizeEvent('click', e.offsetX, e.offsetY);
+    }, false);
+
+    canvas.addEventListener('touchmove', function(e) {
+        normalizeTouch('move', e);
     }, true);
 
     resizeCanvas();
@@ -72,7 +74,7 @@ Game.setup = function(canvasId, window) {
     game.state = new StateManager(game, {
         world: new WorldState(game),
         worldmenu: new WorldMenuState(game)
-    }, 'worldmenu');
+    }, 'world');
 
 
     function run() {
