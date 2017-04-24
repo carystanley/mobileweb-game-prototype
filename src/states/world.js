@@ -1,8 +1,7 @@
 function WorldState(game) {
     this.game = game;
-    this.dialog = new Dialog(game.resources.basicfont, 40, 100, 180, 3);
     this.viewport = new Viewport(game.ctx.canvas.width, game.ctx.canvas.height);
-    this.world = new World(this);
+    this.world = new World(this.game);
     var basicFont = game.resources.basicfont;
     this.menuButton = new TextMenu(basicFont, 250, 140, 26, 4, [
         {id: 'menu', text: 'Menu'},
@@ -13,28 +12,19 @@ function WorldState(game) {
 WorldState.prototype.update = function () {
     var world = this.world;
     var player = world.player;
-    var dialog = this.dialog;
-    dialog.update();
-    if (!dialog.visible) {
-        player.update();
-        world.update();
-        this.viewport.update(player, world);
-    }
+    player.update();
+    world.update();
+    this.viewport.update(player, world);
 }
 
 WorldState.prototype.draw = function (ctx, res) {
     this.world.draw(ctx, this.viewport, res);
-    this.dialog.draw(ctx);
     if (this.game.state.currentState === this) {
         this.menuButton.draw(ctx);
     }
 }
 
 WorldState.prototype.onMouse = function (x, y) {
-    if (this.dialog.visible) {
-        this.dialog.action();
-        return;
-    }
     var v = this.viewport;
     var wx = x + v.x;
     var wy = y + v.y;

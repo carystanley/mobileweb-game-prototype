@@ -67,5 +67,5 @@ Player.prototype.update = function () {
 };
 
 Player.prototype.showText = function(text) {
-    this.world.state.dialog.showText(text);
+    this.world.game.state.switch('cutscene', text);
 }

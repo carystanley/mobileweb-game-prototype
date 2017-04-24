@@ -73,7 +73,8 @@ Game.setup = function(canvasId, window) {
     game.resources = resources;
     game.state = new StateManager(game, {
         world: new WorldState(game),
-        worldmenu: new WorldMenuState(game)
+        worldmenu: new WorldMenuState(game),
+        cutscene: new CutSceneState(game),
     }, 'world');
 
 

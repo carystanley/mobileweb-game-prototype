@@ -19,8 +19,8 @@ function collideEvent(player, event, distX, distY, correctX, correctY) {
     }
 }
 
-function World(state) {
-    this.state = state;
+function World(game) {
+    this.game = game;
     this.player = new Player(this);
     this.events = [
         {x: 150, y: 205, z: 0, width: 16, height: 8, frame: 1,

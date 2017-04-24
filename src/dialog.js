@@ -134,7 +134,9 @@ Dialog.prototype.action = function() {
     if (this.buffer === '') {
         this.hide();
         this.reset();
+        return false;
     } else {
         this.flush();
+        return true;
     }
 }
