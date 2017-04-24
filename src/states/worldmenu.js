@@ -74,11 +74,10 @@ WorldMenuState.prototype.draw = function (ctx, res) {
 
 
 WorldMenuState.prototype.event = function (type, x, y) {
-    var hit = false;
     for (var id in this.menus) {
-        hit = hit || this.menus[id].event(type, x, y);
+        if (this.menus[id].event(type, x, y)) {
+            return;
+        }
     }
-    if (!hit) {
-        this.onCancel();
-    }
+    this.onCancel();
 }
