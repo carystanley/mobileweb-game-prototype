@@ -1,19 +1,21 @@
 
-function TextMenu(font, x, y, width, options) {
+function TextMenu(font, x, y, width, margin, options, choiceHandler) {
     this.font = font;
     this.x = x;
     this.y = y;
-    this.margin = 8;
+    this.margin = margin;
     this.width = width;
     this.lineHeight = font.data.lineHeight;
     this.setOptions(options);
+    this.choiceHandler = choiceHandler;
+    this.visible = true;
 }
 
 TextMenu.prototype.setOptions = function(options) {
     this.options = options || [];
 };
 
-TextMenu.prototype.draw = function (ctx, res) {
+TextMenu.prototype.draw = function (ctx) {
     if (!this.visible) {
         return;
     }
@@ -47,8 +49,11 @@ TextMenu.prototype.event = function(type, x, y) {
         var height = this.options.length * lineHeight;
         if (mx > 0 && my > 0 && mx < this.width && my < height) {
             var option = this.options[Math.floor(my / lineHeight)];
+            this.choiceHandler(option);
+            return true;
         }
     }
+    return false;
 }
 
 TextMenu.prototype.show = function() {

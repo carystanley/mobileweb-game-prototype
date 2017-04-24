@@ -3,6 +3,11 @@ function WorldState(game) {
     this.dialog = new Dialog(game.resources.basicfont, 40, 100, 180, 3);
     this.viewport = new Viewport(game.ctx.canvas.width, game.ctx.canvas.height);
     this.world = new World(this);
+    var basicFont = game.resources.basicfont;
+    this.menuButton = new TextMenu(basicFont, 250, 140, 26, 4, [
+        {id: 'menu', text: 'Menu'},
+    ], this.openMenu.bind(this));
+    this.menuButton.show();
 }
 
 WorldState.prototype.update = function () {
@@ -20,6 +25,9 @@ WorldState.prototype.update = function () {
 WorldState.prototype.draw = function (ctx, res) {
     this.world.draw(ctx, this.viewport, res);
     this.dialog.draw(ctx);
+    if (this.game.state.currentState === this) {
+        this.menuButton.draw(ctx);
+    }
 }
 
 WorldState.prototype.onMouse = function (x, y) {
@@ -57,9 +65,15 @@ WorldState.prototype.onMouse = function (x, y) {
 }
 
 WorldState.prototype.event = function (type, x, y) {
-    switch (type) {
-        case 'click':
-        case 'move':
-            this.onMouse(x, y);
+    if (!this.menuButton.event(type, x, y)) {
+        switch (type) {
+            case 'click':
+            case 'move':
+                this.onMouse(x, y);
+        }
     }
+}
+
+WorldState.prototype.openMenu = function () {
+    this.game.state.switch('worldmenu');
 }
