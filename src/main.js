@@ -14,6 +14,7 @@ Game = {};
 Game.setup = function(canvasId, window) {
     var canvas = document.getElementById(canvasId);
     var ctx = canvas.getContext('2d');
+    var game = {};
 
     var disableSwipeFn = function (e) {
         e.preventDefault();
@@ -38,7 +39,7 @@ Game.setup = function(canvasId, window) {
     canvas.addEventListener('click', function(e) {
         var x = Math.floor(e.offsetX * (canvas.width / canvas.offsetWidth));
         var y = Math.floor(e.offsetY * (canvas.height / canvas.offsetHeight));
-        state.onTap(x, y);
+        game.state.event('click', x, y);
     }, false);
 
     canvas.addEventListener('touchmove', function(e) {
@@ -53,7 +54,7 @@ Game.setup = function(canvasId, window) {
         var touchY = touch.pageY - canvasTop;
         var x = Math.floor(touchX * (canvas.width / canvas.offsetWidth));
         var y = Math.floor(touchY * (canvas.height / canvas.offsetHeight));
-        state.onMove(x, y);
+        game.state.event('move', x, y);
     }, true);
 
     resizeCanvas();
@@ -65,13 +66,19 @@ Game.setup = function(canvasId, window) {
         basicfontsheet: loadImage('./fonts/basic.png'),
     };
     resources.basicfont = new BitmapFont(BasicFontMeta, resources.basicfontsheet);
-    var state = new WorldState(ctx, resources);
+
+    game.ctx = ctx;
+    game.resources = resources;
+    game.state = new StateManager(game, {
+        world: new WorldState(game)
+    }, 'world');
+
 
     function run() {
         // Clear anything drawn to the canvas off.
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        state.update();
-        state.draw(ctx, resources);
+        game.state.update();
+        game.state.draw(ctx, resources);
 
         window.requestAnimationFrame(run); // 60 fps
     }

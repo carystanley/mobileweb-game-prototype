@@ -1,6 +1,7 @@
-function WorldState(ctx, resources) {
-    this.dialog = new Dialog(resources.basicfont, 40, 100, 180, 3);
-    this.viewport = new Viewport(ctx.canvas.width, ctx.canvas.height);
+function WorldState(game) {
+    this.game = game;
+    this.dialog = new Dialog(game.resources.basicfont, 40, 100, 180, 3);
+    this.viewport = new Viewport(game.ctx.canvas.width, game.ctx.canvas.height);
     this.world = new World(this);
 }
 
@@ -55,10 +56,10 @@ WorldState.prototype.onMouse = function (x, y) {
     player.blockedCount = 0;
 }
 
-WorldState.prototype.onTap = function (x, y) {
-    this.onMouse(x, y);
-}
-
-WorldState.prototype.onMove = function (x, y) {
-    this.onMouse(x, y);
+WorldState.prototype.event = function (type, x, y) {
+    switch (type) {
+        case 'click':
+        case 'move':
+            this.onMouse(x, y);
+    }
 }
