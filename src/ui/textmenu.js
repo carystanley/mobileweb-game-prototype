@@ -10,6 +10,7 @@ function TextMenu(font, x, y, width, rowHeight, winMargin, options, choiceHandle
     this.itemOffset = Math.max(Math.floor((this.rowHeight - this.lineHeight) / 2), 0);
     this.setOptions(options);
     this.choiceHandler = choiceHandler;
+    this.selected = null;
     this.visible = true;
 }
 
@@ -39,6 +40,11 @@ TextMenu.prototype.draw = function (ctx) {
         font.drawText(ctx, options[i].text, x + offset, y + offset)
         y += rowHeight;
     }
+
+    if (this.selected !== null) {
+        ctx.fillStyle = 'rgba(170, 170, 170, 0.5)';
+        ctx.fillRect(this.x, this.y + (this.selected * rowHeight), this.width, rowHeight);
+    }
 }
 
 TextMenu.prototype.event = function(type, x, y) {
@@ -46,17 +52,24 @@ TextMenu.prototype.event = function(type, x, y) {
         return;
     }
 
-    if (type === 'click') {
-        var mx = x - this.x;
-        var my = y - this.y;
-        var rowHeight = this.rowHeight;
-        var height = this.options.length * rowHeight;
-        if (mx > 0 && my > 0 && mx < this.width && my < height) {
-            var option = this.options[Math.floor(my / rowHeight)];
-            this.choiceHandler(option);
-            return true;
+    var mx = x - this.x;
+    var my = y - this.y;
+    var rowHeight = this.rowHeight;
+    var height = this.options.length * rowHeight;
+    if (mx > 0 && my > 0 && mx < this.width && my < height) {
+        var optionIdx = Math.floor(my / rowHeight);
+        switch (type) {
+            case 'click':
+                this.choiceHandler(this.options[optionIdx]);
+                this.selected = null;
+                break;
+            case 'mousedown':
+                this.selected = optionIdx;
+                break;
         }
+        return true;
     }
+
     return false;
 }
 

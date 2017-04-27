@@ -51,9 +51,11 @@ Game.setup = function(canvasId, window) {
         normalizeEvent(type, touch.pageX - canvasLeft, touch.pageY - canvasTop);
     }
 
-    canvas.addEventListener('click', function(e) {
-        normalizeEvent('click', e.offsetX, e.offsetY);
-    }, false);
+    ['click', 'mouseup', 'mousedown'].forEach(function(eventType) {
+        canvas.addEventListener(eventType, function(e) {
+            normalizeEvent(eventType, e.offsetX, e.offsetY);
+        }, false);
+    });
 
     canvas.addEventListener('touchmove', function(e) {
         normalizeTouch('move', e);

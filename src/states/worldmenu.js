@@ -82,5 +82,7 @@ WorldMenuState.prototype.event = function (type, x, y) {
             return;
         }
     }
-    this.onCancel();
+    if (type === 'click') {
+        this.onCancel();
+    }
 }
