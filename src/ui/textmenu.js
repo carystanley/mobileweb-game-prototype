@@ -1,11 +1,13 @@
 
-function TextMenu(font, x, y, width, margin, options, choiceHandler) {
+function TextMenu(font, x, y, width, rowHeight, winMargin, options, choiceHandler) {
     this.font = font;
     this.x = x;
     this.y = y;
-    this.margin = margin;
+    this.winMargin = winMargin;
     this.width = width;
     this.lineHeight = font.data.lineHeight;
+    this.rowHeight = rowHeight;
+    this.itemOffset = Math.max(Math.floor((this.rowHeight - this.lineHeight) / 2), 0);
     this.setOptions(options);
     this.choiceHandler = choiceHandler;
     this.visible = true;
@@ -22,18 +24,20 @@ TextMenu.prototype.draw = function (ctx) {
     var options = this.options;
     var optionsSize = options.length;
     var lineHeight = this.lineHeight;
-    var margin = this.margin;
+    var rowHeight = this.rowHeight;
+    var winMargin = this.winMargin;
+    var offset = this.itemOffset;
 
     ctx.fillStyle = 'black';
-    ctx.fillRect(this.x - margin, this.y - margin, this.width + margin*2, optionsSize * lineHeight + margin*2);
+    ctx.fillRect(this.x - winMargin, this.y - winMargin, this.width + winMargin*2, optionsSize * rowHeight + winMargin*2);
 
     var x = this.x;
     var y = this.y;
     var font = this.font;
 
     for (var i = 0; i < optionsSize; i++) {
-        font.drawText(ctx, options[i].text, x, y)
-        y += lineHeight;
+        font.drawText(ctx, options[i].text, x + offset, y + offset)
+        y += rowHeight;
     }
 }
 
@@ -45,10 +49,10 @@ TextMenu.prototype.event = function(type, x, y) {
     if (type === 'click') {
         var mx = x - this.x;
         var my = y - this.y;
-        var lineHeight = this.lineHeight;
-        var height = this.options.length * lineHeight;
+        var rowHeight = this.rowHeight;
+        var height = this.options.length * rowHeight;
         if (mx > 0 && my > 0 && mx < this.width && my < height) {
-            var option = this.options[Math.floor(my / lineHeight)];
+            var option = this.options[Math.floor(my / rowHeight)];
             this.choiceHandler(option);
             return true;
         }
