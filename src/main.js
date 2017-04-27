@@ -51,15 +51,31 @@ Game.setup = function(canvasId, window) {
         normalizeEvent(type, touch.pageX - canvasLeft, touch.pageY - canvasTop);
     }
 
-    ['click', 'mouseup', 'mousedown'].forEach(function(eventType) {
-        canvas.addEventListener(eventType, function(e) {
-            normalizeEvent(eventType, e.offsetX, e.offsetY);
-        }, false);
-    });
+    var mouseMap = {
+        click: 'click',
+        mouseup: 'up',
+        mousedown: 'down'
+    };
+    for (var event in mouseMap) {
+        (function (event) {
+            canvas.addEventListener(event, function(e) {
+                normalizeEvent(mouseMap[event], e.offsetX, e.offsetY);
+            }, false);
+        })(event);
+    }
 
-    canvas.addEventListener('touchmove', function(e) {
-        normalizeTouch('move', e);
-    }, true);
+    var touchMap = {
+        touchmove: 'move',
+        touchend: 'up',
+        touchstart: 'down'
+    };
+    for (var event in touchMap) {
+        (function (event) {
+            canvas.addEventListener(event, function(e) {
+                normalizeTouch(touchMap[event], e);
+            }, true);
+        })(event);
+    }
 
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);

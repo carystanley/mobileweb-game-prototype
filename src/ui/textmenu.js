@@ -63,7 +63,7 @@ TextMenu.prototype.event = function(type, x, y) {
                 this.choiceHandler(this.options[optionIdx]);
                 this.selected = null;
                 break;
-            case 'mousedown':
+            case 'down':
                 this.selected = optionIdx;
                 break;
         }
