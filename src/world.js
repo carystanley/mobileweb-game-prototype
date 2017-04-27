@@ -12,10 +12,12 @@ function collideEvent(player, event, distX, distY, correctX, correctY) {
     } else {
         player.y += ((distY > 0) ? 1 : -1) * correctY;
     }
-    if (event.text && (player.goalEvent === event)) {
+    if (event.eventId && (player.goalEvent === event)) {
         player.going = false;
         player.goalEvent = null;
-        player.showText(event.text);
+
+        var game = player.world.game;
+        game.state.switch('cutscene', event.eventId);
     }
 }
 
@@ -23,12 +25,9 @@ function World(game) {
     this.game = game;
     this.player = new Player(this);
     this.events = [
-        {x: 150, y: 205, z: 0, width: 16, height: 8, frame: 1,
-            text: 'Ouch!!'},
-        {x: 355, y: 220, z: 0, width: 16, height: 8, frame: 1,
-            text: 'To Understand the Banana, You Must Become the Banana'},
-        {x: 175, y: 235, z: 0, width: 16, height: 8, frame: 1,
-            text: 'When you can snatch the pebble from my hand, it will be time for you to leave.'}
+        {x: 150, y: 205, z: 0, width: 16, height: 8, frame: 1, eventId: 1},
+        {x: 355, y: 220, z: 0, width: 16, height: 8, frame: 1, eventId: 2},
+        {x: 175, y: 235, z: 0, width: 16, height: 8, frame: 1, eventId: 3}
     ];
     this.entities = this.events.slice(0);
     this.entities.push(this.player);

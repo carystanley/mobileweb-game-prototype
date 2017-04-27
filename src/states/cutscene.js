@@ -3,7 +3,8 @@ function CutSceneState(game) {
     this.dialog = new Dialog(game.resources.basicfont, 40, 100, 180, 3);
 }
 
-CutSceneState.prototype.enter = function (text) {
+CutSceneState.prototype.enter = function (eventId) {
+    var text = this.game.config.events[eventId];
     this.dialog.showText(text);
 }
 

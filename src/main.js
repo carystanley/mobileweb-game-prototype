@@ -15,6 +15,8 @@ Game.setup = function(canvasId, window) {
     var canvas = document.getElementById(canvasId);
     var ctx = canvas.getContext('2d');
     var game = {};
+    game.config = {};
+    game.config.events = EVENTS;
 
     var disableSwipeFn = function (e) {
         e.preventDefault();

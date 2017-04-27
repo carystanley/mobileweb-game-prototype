@@ -65,7 +65,3 @@ Player.prototype.update = function () {
     }
     this.z += this.velocityZ;
 };
-
-Player.prototype.showText = function(text) {
-    this.world.game.state.switch('cutscene', text);
-}
