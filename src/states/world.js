@@ -3,7 +3,7 @@ function WorldState(game) {
     this.viewport = new Viewport(game.ctx.canvas.width, game.ctx.canvas.height);
     this.world = new World(this.game);
     var basicFont = game.resources.basicfont;
-    this.menuButton = new TextMenu(basicFont, 250, 140, 26, 13, 4, [
+    this.menuButton = new TextMenu(basicFont, 250, 135, 29, 20, 4, [
         {id: 'menu', text: 'Menu'},
     ], this.openMenu.bind(this));
     this.menuButton.show();
