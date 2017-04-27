@@ -7,6 +7,7 @@ function Dialog(font, x, y, width, lineCount) {
     this.font = font;
     this.visible = false;
     this.reset();
+    this.callback = null;
 }
 
 Dialog.prototype.show = function() {
@@ -17,9 +18,10 @@ Dialog.prototype.hide = function() {
     this.visible = false;
 }
 
-Dialog.prototype.showText = function(text) {
+Dialog.prototype.showText = function(text, callback) {
     this.buffer += text;
     this.finished = false;
+    this.callback = callback;
     this.show();
 }
 
@@ -112,6 +114,7 @@ Dialog.prototype.draw = function(ctx) {
 }
 
 Dialog.prototype.reset = function() {
+    this.hide();
     this.buffer = '';
     this.lines = [];
     this.cursorLine = 0;
@@ -132,11 +135,24 @@ Dialog.prototype.flush = function() {
 
 Dialog.prototype.action = function() {
     if (this.buffer === '') {
-        this.hide();
-        this.reset();
-        return false;
+        this.done();
     } else {
         this.flush();
-        return true;
+    }
+}
+
+Dialog.prototype.event = function(type) {
+    if (!this.visible) {
+        return;
+    }
+    if (type === 'click') {
+        this.action();
+    }
+}
+
+Dialog.prototype.done = function() {
+    if (this.callback()) {
+        this.callback();
+        this.callback = null;
     }
 }
