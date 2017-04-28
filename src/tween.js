@@ -1,22 +1,22 @@
 
 var Ease = {
-    //Linear
+    // Linear
     linear: function(x) {return x;},
 
-    //Smoothstep
+    // Smoothstep
     smoothstep: function(x) {return x * x * (3 - 2 * x);},
     smoothstepSquared: function(x) {return Math.pow((x * x * (3 - 2 * x)), 2);},
     smoothstepCubed: function(x) {return Math.pow((x * x * (3 - 2 * x)), 3);},
 
-    //Acceleration
+    // Acceleration
     acceleration: function(x) {return x * x;},
     accelerationCubed: function(x) {return Math.pow(x * x, 3);},
 
-    //Deceleration
+    // Deceleration
     deceleration: function(x) {return 1 - Math.pow(1 - x, 2);},
     decelerationCubed: function(x) {return 1 - Math.pow(1 - x, 3);},
 
-    //Sine
+    // Sine
     sine: function(x) {return Math.sin(x * Math.PI / 2);},
     sineSquared: function(x) {return Math.pow(Math.sin(x * Math.PI / 2), 2);},
     sineCubed: function(x) {return Math.pow(Math.sin(x * Math.PI / 2), 2);},
