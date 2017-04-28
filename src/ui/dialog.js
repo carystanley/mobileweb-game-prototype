@@ -131,10 +131,11 @@ Dialog.prototype.flush = function() {
         this.cursorLine = this.lines.length - 1;
         this.cursorPos = this.lines[this.cursorLine].length;
     }
+    this.finished = true;
 }
 
 Dialog.prototype.action = function() {
-    if (this.buffer === '') {
+    if (this.finished) {
         this.done();
     } else {
         this.flush();
@@ -151,8 +152,9 @@ Dialog.prototype.event = function(type) {
 }
 
 Dialog.prototype.done = function() {
-    if (this.callback()) {
-        this.callback();
+    if (this.callback) {
+        var callback = this.callback;
         this.callback = null;
+        callback();
     }
 }

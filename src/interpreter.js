@@ -14,7 +14,7 @@ Interpreter.prototype.run = function(commands, context, done) {
 
 Interpreter.prototype.next = function () {
     if (this.ip < this.lines.length) {
-        this.exec(this.lines[this.ip], this.inc);
+        this.exec(this.lines[this.ip]);
     } else {
         this.done();
     }
@@ -29,8 +29,8 @@ Interpreter.prototype.inc = function (err) {
     }
 }
 
-Interpreter.prototype.exec = function(command, done) {
-    this.commands[command.cmd](this.context, command, done);
+Interpreter.prototype.exec = function(command) {
+    this.commands[command.cmd](this.context, command, this.inc);
 }
 
 /*

@@ -17,6 +17,12 @@ Game.setup = function(canvasId, window) {
     var game = {};
     game.config = {};
     game.config.events = EVENTS;
+    game.getWidth = function () {
+        return canvas.width;
+    };
+    game.getHeight = function () {
+        return canvas.height;
+    };
 
     var disableSwipeFn = function (e) {
         e.preventDefault();

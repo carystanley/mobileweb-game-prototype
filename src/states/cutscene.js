@@ -1,6 +1,7 @@
 function CutSceneState(game) {
     this.game = game;
     this.dialog = new Dialog(game.resources.basicfont, 40, 100, 204, 3);
+    this.matte = new Matte(game);
     this.interpreter = new Interpreter(Commands);
     this.done = this.done.bind(this);
 }
@@ -13,11 +14,13 @@ CutSceneState.prototype.enter = function (eventId) {
 
 CutSceneState.prototype.update = function () {
     this.dialog.update();
+    this.matte.update();
 }
 
 CutSceneState.prototype.draw = function (ctx, res) {
     var worldState = this.game.state.world;
     worldState.draw(ctx, res);
+    this.matte.draw(ctx);
     this.dialog.draw(ctx);
 }
 
