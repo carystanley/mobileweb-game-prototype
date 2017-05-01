@@ -60,7 +60,7 @@ BattleBackground.prototype.drawLayer = function(ctx, layer) {
         // offset = (y % 2) ? offset : -offset;
         ctx.drawImage(
             pattern,
-            Math.floor((offset + width) % width), y % patternHeight,
+            Math.floor((offset + 160) % width), y % patternHeight,
             width, 1,
             bx, by + y,
             width, 1
