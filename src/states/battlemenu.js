@@ -52,7 +52,7 @@ BattleMenuState.prototype.enter = function () {
 }
 
 BattleMenuState.prototype.update = function () {
-
+    this.game.state.battlebackground.update();
 }
 
 BattleMenuState.prototype.onBaseMenu = function (option) {
@@ -81,8 +81,7 @@ BattleMenuState.prototype.onCancel = function () {
 }
 
 BattleMenuState.prototype.draw = function (ctx, res) {
-    var worldState = this.game.state.world;
-    worldState.draw(ctx, res);
+    this.game.state.battlebackground.draw(ctx, res);
     for (var id in this.menus) {
         this.menus[id].draw(ctx, res);
     }

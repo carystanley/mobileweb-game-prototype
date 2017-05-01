@@ -92,6 +92,7 @@ Game.setup = function(canvasId, window) {
         world: loadImage('./world.gif'),
         sprites: loadImage('./sprites.gif'),
         basicfontsheet: loadImage('./fonts/basic.png'),
+        pattern: loadImage('./pattern.png')
     };
     resources.basicfont = new BitmapFont(BasicFontMeta, resources.basicfontsheet);
 
@@ -101,9 +102,9 @@ Game.setup = function(canvasId, window) {
         world: new WorldState(game),
         worldmenu: new WorldMenuState(game),
         cutscene: new CutSceneState(game),
-        battlemenu: new BattleMenuState(game)
+        battlemenu: new BattleMenuState(game),
+        battlebackground: new BattleBackgroundState(game),
     }, 'world');
-
 
     function run() {
         // Clear anything drawn to the canvas off.
