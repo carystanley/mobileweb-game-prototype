@@ -3,7 +3,7 @@ function BattleBackground(game) {
     this.game = game;
     this.x = 0;
     this.y = Math.floor(game.getHeight() / 4);
-    this.width = game.getWidth();
+    this.width = Math.floor(game.getWidth());
     this.height = Math.floor(game.getHeight() / 2);
     this.pattern = game.resources.pattern;
     this.visible = true;
@@ -22,10 +22,6 @@ BattleBackground.prototype.draw = function(ctx) {
         return;
     }
 
-    var x = this.x;
-    var y = this.y;
-    var width = this.width;
-    var height = this.height;
     var pattern = this.pattern;
 
     this.drawLayer(ctx, {
@@ -62,10 +58,12 @@ BattleBackground.prototype.drawLayer = function(ctx, layer) {
     for (var y = 0; y < height; y++) {
         var offset = A * Math.sin(F * y + S * t);
         // offset = (y % 2) ? offset : -offset;
-        ctx.drawImage(pattern, Math.floor((offset + width) % width), y % patternHeight, width, 1, bx, by + y, width, 1);
+        ctx.drawImage(
+            pattern,
+            Math.floor((offset + width) % width), y % patternHeight,
+            width, 1,
+            bx, by + y,
+            width, 1
+        );
     }
-}
-
-function update() {
-    this.t++;
 }
