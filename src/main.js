@@ -101,6 +101,7 @@ Game.setup = function(canvasId, window) {
         world: new WorldState(game),
         worldmenu: new WorldMenuState(game),
         cutscene: new CutSceneState(game),
+        battlemenu: new BattleMenuState(game)
     }, 'world');
 
 
