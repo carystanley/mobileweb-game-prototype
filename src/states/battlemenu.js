@@ -8,9 +8,6 @@ function BattleMenuState(game) {
             {id: 'goods', text: 'Goods'}
         ], this.onBaseMenu.bind(this)),
         goods: new TextMenu(basicFont, 72, 16, 80, 20, 4, [
-            {id: 'sneaker', text: 'Old Sneaker'},
-            {id: 'stungun', text: 'Stun Gun'},
-            {id: 'sock', text: 'Sock'}
         ], this.onGoodsMenu.bind(this)),
         psi: new TextMenu(basicFont, 72, 16, 80, 20, 4, [
             {id: 'love', text: 'Love'},
@@ -33,6 +30,7 @@ BattleMenuState.prototype.setState = function (state) {
             break;
 
         case 'goods':
+            menus['goods'].setOptions(this.game.player.getGoodsMenu());
             menus['goods'].show();
             menus['base'].show();
             break;

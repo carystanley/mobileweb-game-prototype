@@ -17,12 +17,31 @@ Game.setup = function(canvasId, window) {
     var game = {};
     game.config = {};
     game.config.events = EVENTS;
+    game.config.items = ITEMS;
     game.getWidth = function () {
         return canvas.width;
     };
     game.getHeight = function () {
         return canvas.height;
     };
+    game.player = {
+        inventory: new Inventory(8)
+    };
+    game.player.inventory.add('sneaker');
+    game.player.getGoodsMenu = function () {
+        var menuItems = [];
+        var items = this.inventory.getItems();
+        var len = items.length;
+        for (var i = 0; i < len; i++) {
+            var id = items[i];
+            var item = game.config.items[id];
+            menuItems.push({
+                id: id,
+                text: item.label
+            });
+        }
+        return menuItems;
+    }
 
     var disableSwipeFn = function (e) {
         e.preventDefault();

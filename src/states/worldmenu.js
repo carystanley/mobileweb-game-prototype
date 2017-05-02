@@ -8,9 +8,6 @@ function WorldMenuState(game) {
             {id: 'status', text: 'Status'}
         ], this.onBaseMenu.bind(this)),
         goods: new TextMenu(basicFont, 72, 16, 80, 20, 4, [
-            {id: 'sneaker', text: 'Old Sneaker'},
-            {id: 'stungun', text: 'Stun Gun'},
-            {id: 'sock', text: 'Sock'}
         ], this.onGoodsMenu.bind(this))
     };
 }
@@ -23,6 +20,7 @@ WorldMenuState.prototype.setState = function (state) {
     }
     switch (state) {
         case 'goods':
+            menus['goods'].setOptions(this.game.player.getGoodsMenu());
             menus['goods'].show();
             menus['base'].show();
             break;
