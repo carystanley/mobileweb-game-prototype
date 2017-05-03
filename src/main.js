@@ -1,3 +1,11 @@
+var Inventory = require('./inventory');
+var StateManager = require('./statemanager');
+var WorldState = require('./state/world');
+var WorldMenuState = require('./state/worldmenu');
+var CutSceneState = require('./state/cutscene');
+var BattleMenuState = require('./state/battlemenu');
+var BattleBackgroundState = require('./state/battlebackground');
+
 
 function loadImage(url, options) {
     options = options || {};
@@ -83,12 +91,13 @@ Game.setup = function(canvasId, window) {
         mouseup: 'up',
         mousedown: 'down'
     };
-    for (var event in mouseMap) {
+    var e;
+    for (e in mouseMap) {
         (function (event) {
             canvas.addEventListener(event, function(e) {
                 normalizeEvent(mouseMap[event], e.offsetX, e.offsetY);
             }, false);
-        })(event);
+        })(e);
     }
 
     var touchMap = {
@@ -96,12 +105,12 @@ Game.setup = function(canvasId, window) {
         touchend: 'up',
         touchstart: 'down'
     };
-    for (var event in touchMap) {
+    for (e in touchMap) {
         (function (event) {
             canvas.addEventListener(event, function(e) {
                 normalizeTouch(touchMap[event], e);
             }, true);
-        })(event);
+        })(e);
     }
 
     resizeCanvas();
