@@ -84,3 +84,5 @@ WorldMenuState.prototype.event = function (type, x, y) {
         this.onCancel();
     }
 }
+
+module.exports = WorldMenuState;

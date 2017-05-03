@@ -25,3 +25,5 @@ AABB = {
         );
     }
 };
+
+module.exports = AABB;

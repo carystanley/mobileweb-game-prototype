@@ -67,3 +67,5 @@ WorldState.prototype.event = function (type, x, y) {
 WorldState.prototype.openMenu = function () {
     this.game.state.switch('worldmenu');
 }
+
+module.exports = WorldState;

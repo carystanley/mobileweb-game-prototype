@@ -135,3 +135,5 @@ Game.setup = function(canvasId, window) {
     }
     run();
 }
+
+module.exports = Game;

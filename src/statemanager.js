@@ -40,3 +40,5 @@ StateManager.prototype.event = function (type, x, y) {
         state.event(type, x, y);
     }
 }
+
+module.exports = StateManager;

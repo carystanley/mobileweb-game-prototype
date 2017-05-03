@@ -32,3 +32,5 @@ CutSceneState.prototype.done = function () {
 CutSceneState.prototype.event = function (type, x, y) {
     this.dialog.event(type, x, y);
 }
+
+module.exports = CutSceneState;

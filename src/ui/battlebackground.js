@@ -67,3 +67,5 @@ BattleBackground.prototype.drawLayer = function(ctx, layer) {
         );
     }
 }
+
+module.exports = BattleBackground;

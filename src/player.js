@@ -65,3 +65,5 @@ Player.prototype.update = function () {
     }
     this.z += this.velocityZ;
 };
+
+module.exports = Player;

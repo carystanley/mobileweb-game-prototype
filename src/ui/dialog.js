@@ -158,3 +158,5 @@ Dialog.prototype.done = function() {
         callback();
     }
 }
+
+module.exports = Dialog;

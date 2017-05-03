@@ -10,3 +10,5 @@ Commands = {
         context.matte.fadeIn(params.ticks, done);
     }
 };
+
+module.exports = Commands;

@@ -1,3 +1,4 @@
+var Tween = require('../tween');
 
 function Matte(game) {
     this.game = game;
@@ -40,3 +41,5 @@ Matte.prototype.draw = function(ctx) {
     ctx.fillStyle = 'rgba(' + c.r + ', ' + c.g + ', ' + c.b + ', ' + alpha + ')';
     ctx.fillRect(0, 0, this.width, this.height);
 }
+
+module.exports = Matte;

@@ -21,3 +21,5 @@ Viewport.prototype.update = function(player, world) {
         this.y = world.height - this.height;
     }
 }
+
+module.exports = Viewport;

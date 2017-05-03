@@ -69,3 +69,5 @@ BitmapFont.prototype.measureText = function(text) {
     }
     return len;
 }
+
+module.exports = BitmapFont;

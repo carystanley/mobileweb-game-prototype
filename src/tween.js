@@ -22,7 +22,7 @@ var Ease = {
     sineCubed: function(x) {return Math.pow(Math.sin(x * Math.PI / 2), 2);},
     inverseSine: function(x) {return 1 - Math.sin((1 - x) * Math.PI / 2);},
     inverseSineSquared: function(x) {return 1 - Math.pow(Math.sin((1 - x) * Math.PI / 2), 2);},
-    inverseSineCubed: function(x) {return 1 - Math.pow(Math.sin((1 - x) * Math.PI / 2), 3);},
+    inverseSineCubed: function(x) {return 1 - Math.pow(Math.sin((1 - x) * Math.PI / 2), 3);}
 }
 
 function Tween() {
@@ -65,3 +65,5 @@ Tween.prototype.update = function () {
         }
     }
 }
+
+module.exports = Tween;

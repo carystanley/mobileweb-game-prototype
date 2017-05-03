@@ -10,3 +10,5 @@ BattleBackgroundState.prototype.update = function () {
 BattleBackgroundState.prototype.draw = function (ctx, res) {
     this.background.draw(ctx);
 }
+
+module.exports = BattleBackgroundState;

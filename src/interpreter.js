@@ -50,3 +50,5 @@ var commands = {
 var interpreter = Interpreter(commands);
 
 */
+
+module.exports = Interpreter;

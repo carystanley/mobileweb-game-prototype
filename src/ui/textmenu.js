@@ -24,13 +24,13 @@ TextMenu.prototype.draw = function (ctx) {
     }
     var options = this.options;
     var optionsSize = options.length;
-    var lineHeight = this.lineHeight;
     var rowHeight = this.rowHeight;
     var winMargin = this.winMargin;
     var offset = this.itemOffset;
 
     ctx.fillStyle = 'black';
-    ctx.fillRect(this.x - winMargin, this.y - winMargin, this.width + winMargin*2, optionsSize * rowHeight + winMargin*2);
+    ctx.fillRect(this.x - winMargin, this.y - winMargin,
+        this.width + winMargin * 2, optionsSize * rowHeight + winMargin * 2);
 
     var x = this.x;
     var y = this.y;
@@ -80,3 +80,5 @@ TextMenu.prototype.show = function() {
 TextMenu.prototype.hide = function() {
     this.visible = false;
 };
+
+module.exports = TextMenu;

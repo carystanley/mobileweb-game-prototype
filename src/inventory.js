@@ -25,3 +25,5 @@ Inventory.prototype.contains = function(itemId) {
 Inventory.prototype.isFull = function() {
     return (this.items.length >= this.maxSize);
 }
+
+module.exports = Inventory;

@@ -1,3 +1,6 @@
+var Player = require('../player');
+var AABB = require('aabb');
+
 function correctionWall(player, obstacle, distX, distY, correctX, correctY) {
     if (correctX > correctY) {
         player.x += ((distX > 0) ? 1 : -1) * correctX;
@@ -97,3 +100,5 @@ World.prototype.update = function () {
         AABB.collision(player, event, collideEvent);
     });
 }
+
+module.exports = World;
