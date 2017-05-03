@@ -1,5 +1,5 @@
 
- function Inventory (maxSize) {
+function Inventory (maxSize) {
     this.items = [];
     this.maxSize = maxSize;
 };

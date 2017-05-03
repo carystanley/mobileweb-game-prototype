@@ -11,10 +11,8 @@ function BitmapFont(json, sheet, xSpacing, ySpacing) {
         chars: {}
     };
 
-    json.font.chars["char"].forEach(
-
+    json.font.chars['char'].forEach(
         function parseChar(letter) {
-
             var charCode = parseInt(letter._id, 10);
 
             data.chars[charCode] = {

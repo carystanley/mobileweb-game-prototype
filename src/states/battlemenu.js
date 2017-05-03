@@ -1,3 +1,5 @@
+var TextMenu = require('../ui/textmenu');
+
 function BattleMenuState(game) {
     this.game = game;
     var basicFont = game.resources.basicfont;

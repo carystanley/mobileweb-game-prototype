@@ -1,4 +1,4 @@
-AABB = {
+var AABB = {
     collision: function(rect1, rect2, handler) {
         var rect1halfx = rect1.width/2;
         var rect1halfy = rect1.height/2;

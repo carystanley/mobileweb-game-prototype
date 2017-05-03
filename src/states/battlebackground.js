@@ -1,3 +1,5 @@
+var BattleBackground = require('../ui/battlebackground');
+
 function BattleBackgroundState(game) {
     this.game = game;
     this.background = new BattleBackground(game);

@@ -1,3 +1,8 @@
+var Dialog = require('../ui/dialog');
+var Matte = require('../ui/matte');
+var Interpreter = require('../interpreter');
+var Commands = require('../commands');
+
 function CutSceneState(game) {
     this.game = game;
     this.dialog = new Dialog(game.resources.basicfont, 40, 100, 204, 3);
