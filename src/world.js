@@ -10,7 +10,7 @@ function World(game) {
         {x: 175, y: 235, z: 0, width: 16, height: 8, frame: 1, eventId: 3}
     ];
     this.enemies = [
-        {x: 320, y: 120, z: 0, width: 16, height: 8, frame: 1, eventId: 1}
+        {x: 320, y: 120, z: 0, width: 16, height: 8, frame: 2, eventId: 1}
     ];
     this.entities = [].concat(
         [this.player],
