@@ -1,4 +1,5 @@
 var Player = require('./player');
+var Enemy = require('./enemy');
 var AABB = require('./utils/aabb');
 
 function World(game) {
@@ -10,7 +11,7 @@ function World(game) {
         {x: 175, y: 235, z: 0, width: 16, height: 8, frame: 1, eventId: 3}
     ];
     this.enemies = [
-        {x: 320, y: 120, z: 0, width: 16, height: 8, frame: 2, eventId: 1}
+        new Enemy(this, {x: 320, y: 120, z: 0, width: 16, height: 8, frame: 2, eventId: 1})
     ];
     this.entities = [].concat(
         [this.player],
@@ -55,6 +56,9 @@ World.prototype.draw = function (ctx, v, res) {
 */
     entities.sort(function(a, b) { return a.y - b.y; });
     entities.forEach(function(obj) {
+        if (obj.dead) {
+            return;
+        }
         ctx.fillStyle = 'rgba(170, 170, 170, 0.5)';
         ctx.beginPath();
         ctx.ellipse(obj.x + obj.width/2  - v.x, obj.y + obj.height/2  - v.y,
@@ -87,8 +91,12 @@ World.prototype.update = function () {
     this.events.forEach(function(event) {
         AABB.collision(player, event, self.collideEvent);
     });
-    this.enemies.forEach(function(event) {
-        AABB.collision(player, event, self.collideEnemy);
+    this.enemies.forEach(function(enemy) {
+        if (enemy.dead) {
+            return;
+        }
+        enemy.update();
+        AABB.collision(player, enemy, self.collideEnemy);
     });
 }
 
@@ -114,7 +122,7 @@ World.prototype.collideEvent = function(player, event, distX, distY, correctX, c
     }
 }
 
-World.prototype.collideEnemy = function(player, event, distX, distY, correctX, correctY) {
+World.prototype.collideEnemy = function(player, enemy, distX, distY, correctX, correctY) {
     if (correctX > correctY) {
         player.x += ((distX > 0) ? 1 : -1) * correctX;
     } else {
@@ -123,8 +131,9 @@ World.prototype.collideEnemy = function(player, event, distX, distY, correctX, c
 
     player.going = false;
     player.goalEvent = null;
+    enemy.dead = true;
 
-    this.game.state.switch('battlemenu');
+    this.game.state.switch('battlemenu', enemy);
 }
 
 module.exports = World;
