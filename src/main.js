@@ -1,4 +1,4 @@
-/* global BasicFontMeta */
+/* global BasicFontMeta, window */
 
 var Inventory = require('./inventory');
 var StateManager = require('./statemanager');
@@ -148,5 +148,7 @@ Game.setup = function(canvasId, window, config) {
     }
     run();
 }
+
+window.Game = Game;
 
 module.exports = Game;
