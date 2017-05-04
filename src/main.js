@@ -2,11 +2,11 @@
 
 var Inventory = require('./inventory');
 var StateManager = require('./statemanager');
-var WorldState = require('./state/world');
-var WorldMenuState = require('./state/worldmenu');
-var CutSceneState = require('./state/cutscene');
-var BattleMenuState = require('./state/battlemenu');
-var BattleBackgroundState = require('./state/battlebackground');
+var WorldState = require('./states/world');
+var WorldMenuState = require('./states/worldmenu');
+var CutSceneState = require('./states/cutscene');
+var BattleMenuState = require('./states/battlemenu');
+var BattleBackgroundState = require('./states/battlebackground');
 var BitmapFont = require('./bitmapfont')
 
 function loadImage(url, options) {

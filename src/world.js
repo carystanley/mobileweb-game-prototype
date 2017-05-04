@@ -1,5 +1,5 @@
-var Player = require('../player');
-var AABB = require('aabb');
+var Player = require('./player');
+var AABB = require('./aabb');
 
 function correctionWall(player, obstacle, distX, distY, correctX, correctY) {
     if (correctX > correctY) {
