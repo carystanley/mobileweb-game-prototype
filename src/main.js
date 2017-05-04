@@ -1,3 +1,5 @@
+/* global BasicFontMeta */
+
 var Inventory = require('./inventory');
 var StateManager = require('./statemanager');
 var WorldState = require('./state/world');
@@ -5,7 +7,7 @@ var WorldMenuState = require('./state/worldmenu');
 var CutSceneState = require('./state/cutscene');
 var BattleMenuState = require('./state/battlemenu');
 var BattleBackgroundState = require('./state/battlebackground');
-
+var BitmapFont = require('./bitmapfont')
 
 function loadImage(url, options) {
     options = options || {};
@@ -18,14 +20,12 @@ function loadImage(url, options) {
 }
 
 
-Game = {};
-Game.setup = function(canvasId, window) {
+var Game = {};
+Game.setup = function(canvasId, window, config) {
     var canvas = document.getElementById(canvasId);
     var ctx = canvas.getContext('2d');
     var game = {};
-    game.config = {};
-    game.config.events = EVENTS;
-    game.config.items = ITEMS;
+    game.config = config;
     game.getWidth = function () {
         return canvas.width;
     };
@@ -93,11 +93,13 @@ Game.setup = function(canvasId, window) {
     };
     var e;
     for (e in mouseMap) {
-        (function (event) {
-            canvas.addEventListener(event, function(e) {
-                normalizeEvent(mouseMap[event], e.offsetX, e.offsetY);
-            }, false);
-        })(e);
+        if (Object.prototype.hasOwnProperty.call(mouseMap, e)) {
+            (function (event) {
+                canvas.addEventListener(event, function(e) {
+                    normalizeEvent(mouseMap[event], e.offsetX, e.offsetY);
+                }, false);
+            })(e);
+        }
     }
 
     var touchMap = {
@@ -106,11 +108,13 @@ Game.setup = function(canvasId, window) {
         touchstart: 'down'
     };
     for (e in touchMap) {
-        (function (event) {
-            canvas.addEventListener(event, function(e) {
-                normalizeTouch(touchMap[event], e);
-            }, true);
-        })(e);
+        if (Object.prototype.hasOwnProperty.call(touchMap, e)) {
+            (function (event) {
+                canvas.addEventListener(event, function(e) {
+                    normalizeTouch(touchMap[event], e);
+                }, true);
+            })(e);
+        }
     }
 
     resizeCanvas();
@@ -131,7 +135,7 @@ Game.setup = function(canvasId, window) {
         worldmenu: new WorldMenuState(game),
         cutscene: new CutSceneState(game),
         battlemenu: new BattleMenuState(game),
-        battlebackground: new BattleBackgroundState(game),
+        battlebackground: new BattleBackgroundState(game)
     }, 'world');
 
     function run() {

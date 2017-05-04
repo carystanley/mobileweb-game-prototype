@@ -1,4 +1,6 @@
-BasicFontMeta = {
+/* global window */
+
+window.BasicFontMeta = {
     'font': {
         'info': {
             '_face': 'basic',

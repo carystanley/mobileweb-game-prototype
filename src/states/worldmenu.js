@@ -18,7 +18,9 @@ WorldMenuState.prototype.setState = function (state) {
     this.state = state;
     var menus = this.menus;
     for (var id in menus) {
-        menus[id].hide();
+        if (Object.prototype.hasOwnProperty.call(menus, id)) {
+            menus[id].hide();
+        }
     }
     switch (state) {
         case 'goods':
@@ -71,15 +73,19 @@ WorldMenuState.prototype.draw = function (ctx, res) {
     var worldState = this.game.state.world;
     worldState.draw(ctx, res);
     for (var id in this.menus) {
-        this.menus[id].draw(ctx, res);
+        if (Object.prototype.hasOwnProperty.call(this.menus, id)) {
+            this.menus[id].draw(ctx, res);
+        }
     }
 }
 
 
 WorldMenuState.prototype.event = function (type, x, y) {
     for (var id in this.menus) {
-        if (this.menus[id].event(type, x, y)) {
-            return;
+        if (Object.prototype.hasOwnProperty.call(this.menus, id)) {
+            if (this.menus[id].event(type, x, y)) {
+                return;
+            }
         }
     }
     if (type === 'click') {

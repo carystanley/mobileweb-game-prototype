@@ -1,4 +1,6 @@
-var EVENTS = {
+/* global window */
+
+window.EVENTS = {
     1: [
         {cmd: 'dialog', text: 'Ouch!!'},
         {cmd: 'dialog', text: 'Watch it!!'},
