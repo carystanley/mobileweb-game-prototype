@@ -1,7 +1,7 @@
-var Viewport = require('../viewport');
+var Viewport = require('../utils/viewport');
 var World = require('../world');
 var TextMenu = require('../ui/textmenu');
-var AABB = require('../aabb');
+var AABB = require('../utils/aabb');
 
 function WorldState(game) {
     this.game = game;

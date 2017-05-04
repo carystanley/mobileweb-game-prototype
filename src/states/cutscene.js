@@ -1,6 +1,6 @@
 var Dialog = require('../ui/dialog');
 var Matte = require('../ui/matte');
-var Interpreter = require('../interpreter');
+var Interpreter = require('../utils/interpreter');
 var Commands = require('../commands');
 
 function CutSceneState(game) {

@@ -1,4 +1,4 @@
-var Tween = require('../tween');
+var Tween = require('../utils/tween');
 
 function Matte(game) {
     this.game = game;

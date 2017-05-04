@@ -1,7 +1,7 @@
 /* global BasicFontMeta, window */
 
 var Inventory = require('./inventory');
-var StateManager = require('./statemanager');
+var StateManager = require('./utils/statemanager');
 var WorldState = require('./states/world');
 var WorldMenuState = require('./states/worldmenu');
 var CutSceneState = require('./states/cutscene');
