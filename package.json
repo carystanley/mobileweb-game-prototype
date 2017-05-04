@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --quiet --cache . --ext .js --ext .jsx",
-    "dev": "webpack-dev-server --hot --history-api-fallback --open"
+    "dev": "webpack-dev-server --hot --history-api-fallback --open",
+    "build": "webpack -p"
   },
   "repository": {
     "type": "git",
