@@ -1,20 +1,12 @@
-function Player (world) {
-    this.frame = 0;
-    this.x = 150;
-    this.y = 180;
-    this.z = 0;
-    this.velocityX = 1;
-    this.velocityY = 1;
-    this.velocityZ = 0;
-    this.width = 16;
-    this.height = 8;
-    this.world = world;
+var Actor = require('./actor');
+
+function Player (world, config) {
+    Actor.call(this, world, config);
 }
 
-Player.prototype.update = function () {
-    this.velocityX = 0;
-    this.velocityY = 0;
+Player.prototype = Object.create(Actor.prototype);
 
+Player.prototype.move = function () {
     if (this.going) {
         if ((this.goalX === this.x && this.goalY === this.y) || this.blockedCount > 30) {
             this.going = false;
@@ -41,29 +33,6 @@ Player.prototype.update = function () {
     if (this.goalRadius > 0) {
         this.goalRadius -= 1;
     }
-
-    this.prevX = this.x;
-    this.prevY = this.y;
-
-    this.x = this.x + this.velocityX;
-    this.y = this.y + this.velocityY;
-
-    this.x = Math.min(this.x, this.world.width);
-    this.x = Math.max(this.x, 0);
-    this.y = Math.min(this.y, this.world.height);
-    this.y = Math.max(this.y, 0);
-
-    if (this.z <= 0) {
-        this.z = 0;
-        if (this.velocityX || this.velocityY) {
-            this.velocityZ = 2;
-        } else {
-            this.velocityZ = 0;
-        }
-    } else {
-        this.velocityZ -= 0.25
-    }
-    this.z += this.velocityZ;
 };
 
 module.exports = Player;

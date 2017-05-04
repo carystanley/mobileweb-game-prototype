@@ -4,14 +4,14 @@ var AABB = require('./utils/aabb');
 
 function World(game) {
     this.game = game;
-    this.player = new Player(this);
+    this.player = new Player(this, {x: 150, y: 180, frame: 0});
     this.events = [
         {x: 150, y: 205, z: 0, width: 16, height: 8, frame: 1, eventId: 1},
         {x: 355, y: 220, z: 0, width: 16, height: 8, frame: 1, eventId: 2},
         {x: 175, y: 235, z: 0, width: 16, height: 8, frame: 1, eventId: 3}
     ];
     this.enemies = [
-        new Enemy(this, {x: 320, y: 120, z: 0, width: 16, height: 8, frame: 2, eventId: 1})
+        new Enemy(this, {x: 320, y: 120, frame: 2})
     ];
     this.entities = [].concat(
         [this.player],
