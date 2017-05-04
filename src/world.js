@@ -1,29 +1,6 @@
 var Player = require('./player');
 var AABB = require('./utils/aabb');
 
-function correctionWall(player, obstacle, distX, distY, correctX, correctY) {
-    if (correctX > correctY) {
-        player.x += ((distX > 0) ? 1 : -1) * correctX;
-    } else {
-        player.y += ((distY > 0) ? 1 : -1) * correctY;
-    }
-}
-
-function collideEvent(player, event, distX, distY, correctX, correctY) {
-    if (correctX > correctY) {
-        player.x += ((distX > 0) ? 1 : -1) * correctX;
-    } else {
-        player.y += ((distY > 0) ? 1 : -1) * correctY;
-    }
-    if (event.eventId && (player.goalEvent === event)) {
-        player.going = false;
-        player.goalEvent = null;
-
-        var game = player.world.game;
-        game.state.switch('cutscene', event.eventId);
-    }
-}
-
 function World(game) {
     this.game = game;
     this.player = new Player(this);
@@ -32,8 +9,14 @@ function World(game) {
         {x: 355, y: 220, z: 0, width: 16, height: 8, frame: 1, eventId: 2},
         {x: 175, y: 235, z: 0, width: 16, height: 8, frame: 1, eventId: 3}
     ];
-    this.entities = this.events.slice(0);
-    this.entities.push(this.player);
+    this.enemies = [
+        {x: 320, y: 120, z: 0, width: 16, height: 8, frame: 1, eventId: 1}
+    ];
+    this.entities = [].concat(
+        [this.player],
+        this.events,
+        this.enemies
+    );
 
     this.walls = [
         {x: 0, y: 0, width: 440, height: 100},
@@ -49,6 +32,10 @@ function World(game) {
 
     this.width = 440;
     this.height = 372;
+
+    this.correctionWall = this.correctionWall.bind(this);
+    this.collideEvent = this.collideEvent.bind(this);
+    this.collideEnemy = this.collideEnemy.bind(this);
 }
 
 World.prototype.draw = function (ctx, v, res) {
@@ -92,13 +79,52 @@ World.prototype.draw = function (ctx, v, res) {
 };
 
 World.prototype.update = function () {
+    var self = this;
     var player = this.player;
     this.walls.forEach(function(wall) {
-        AABB.collision(player, wall, correctionWall);
+        AABB.collision(player, wall, self.correctionWall);
     });
     this.events.forEach(function(event) {
-        AABB.collision(player, event, collideEvent);
+        AABB.collision(player, event, self.collideEvent);
     });
+    this.enemies.forEach(function(event) {
+        AABB.collision(player, event, self.collideEnemy);
+    });
+}
+
+World.prototype.correctionWall = function(player, obstacle, distX, distY, correctX, correctY) {
+    if (correctX > correctY) {
+        player.x += ((distX > 0) ? 1 : -1) * correctX;
+    } else {
+        player.y += ((distY > 0) ? 1 : -1) * correctY;
+    }
+}
+
+World.prototype.collideEvent = function(player, event, distX, distY, correctX, correctY) {
+    if (correctX > correctY) {
+        player.x += ((distX > 0) ? 1 : -1) * correctX;
+    } else {
+        player.y += ((distY > 0) ? 1 : -1) * correctY;
+    }
+    if (event.eventId && (player.goalEvent === event)) {
+        player.going = false;
+        player.goalEvent = null;
+
+        this.game.state.switch('cutscene', event.eventId);
+    }
+}
+
+World.prototype.collideEnemy = function(player, event, distX, distY, correctX, correctY) {
+    if (correctX > correctY) {
+        player.x += ((distX > 0) ? 1 : -1) * correctX;
+    } else {
+        player.y += ((distY > 0) ? 1 : -1) * correctY;
+    }
+
+    player.going = false;
+    player.goalEvent = null;
+
+    this.game.state.switch('battlemenu');
 }
 
 module.exports = World;
