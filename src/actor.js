@@ -12,9 +12,6 @@ function Actor (world, config) {
 }
 
 Actor.prototype.update = function () {
-    this.velocityX = 0;
-    this.velocityY = 0;
-
     this.move();
 
     this.prevX = this.x;

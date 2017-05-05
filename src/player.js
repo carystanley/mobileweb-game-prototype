@@ -7,6 +7,9 @@ function Player (world, config) {
 Player.prototype = Object.create(Actor.prototype);
 
 Player.prototype.move = function () {
+    this.velocityX = 0;
+    this.velocityY = 0;
+
     if (this.going) {
         if ((this.goalX === this.x && this.goalY === this.y) || this.blockedCount > 30) {
             this.going = false;

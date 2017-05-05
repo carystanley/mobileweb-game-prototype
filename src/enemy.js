@@ -12,6 +12,9 @@ Enemy.prototype.move = function () {
     var distY = player.y - this.y;
     var distSqr = distX * distX + distY * distY;
 
+    this.velocityX = 0;
+    this.velocityY = 0;
+
     if (distSqr < 10000) {
         if (player.x < this.x) { // Left
             this.velocityX = -1;
