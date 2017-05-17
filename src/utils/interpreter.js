@@ -1,6 +1,7 @@
 
-function Interpreter(commands) {
+function Interpreter(commands, conditions) {
     this.commands = commands;
+    this.conditions = conditions;
 }
 
 Interpreter.prototype.run = function(commands, context, done) {
@@ -29,8 +30,40 @@ Interpreter.prototype.inc = function (err) {
     }
 }
 
+Interpreter.prototype.jump = function (cmds) {
+    do {
+        this.ip++;
+    } while (
+        (this.ip < this.lines.length) &&
+        (cmds.indexOf(this.lines[this.ip].cmd) === -1)
+    );
+}
+
+Interpreter.prototype.keywords = {
+    if: function(params) {
+        if (this.conditions[params.cond](this.context, params)) {
+            this.inc();
+        } else {
+            this.jump(['else', 'endif']);
+            this.inc();
+        }
+    },
+    else: function(params) {
+        this.jump(['endif']);
+        this.inc();
+    },
+    endif: function(params) {
+        this.inc();
+    }
+}
+
 Interpreter.prototype.exec = function(command) {
-    this.commands[command.cmd](this.context, command, this.inc);
+    var keyword = this.keywords[command.cmd];
+    if (keyword) {
+        keyword.call(this, command);
+    } else {
+        this.commands[command.cmd](this.context, command, this.inc);
+    }
 }
 
 /*

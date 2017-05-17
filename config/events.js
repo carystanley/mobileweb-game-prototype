@@ -12,7 +12,11 @@ window.EVENTS = {
         {cmd: 'dialog', text: 'To Understand the Banana, You Must Become the Banana'}
     ],
     3: [
-        {cmd: 'dialog', text: 'When you can snatch the pebble from my hand, it will be time for you to leave.'},
-        {cmd: 'getItem', id: 'sock'}
+        {cmd: 'if', cond: 'hasItem', id: 'sock'},
+            {cmd: 'dialog', text: 'You stole my Socks!'},
+        {cmd: 'else'},
+            {cmd: 'dialog', text: 'When you can snatch the pebble from my hand, it will be time for you to leave.'},
+            {cmd: 'getItem', id: 'sock'},
+        {cmd: 'endif'}
     ]
 }

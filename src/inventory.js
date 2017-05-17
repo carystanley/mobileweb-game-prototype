@@ -19,7 +19,7 @@ Inventory.prototype.getItems = function() {
 }
 
 Inventory.prototype.contains = function(itemId) {
-    this.items.indexOf(itemId);
+    return (this.items.indexOf(itemId) !== -1);
 }
 
 Inventory.prototype.isFull = function() {
