@@ -12,6 +12,7 @@ window.EVENTS = {
         {cmd: 'dialog', text: 'To Understand the Banana, You Must Become the Banana'}
     ],
     3: [
-        {cmd: 'dialog', text: 'When you can snatch the pebble from my hand, it will be time for you to leave.'}
+        {cmd: 'dialog', text: 'When you can snatch the pebble from my hand, it will be time for you to leave.'},
+        {cmd: 'getItem', id: 'sock'}
     ]
 }
