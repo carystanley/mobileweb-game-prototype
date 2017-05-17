@@ -117,8 +117,8 @@ World.prototype.collideEvent = function(player, event, distX, distY, correctX, c
     if (event.eventId && (player.goalEvent === event)) {
         player.going = false;
         player.goalEvent = null;
-
-        this.game.state.switch('cutscene', event.eventId);
+        var commands = this.game.config.events[event.eventId][0].commands;
+        this.game.state.switch('cutscene', commands);
     }
 }
 

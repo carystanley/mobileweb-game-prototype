@@ -12,9 +12,8 @@ function CutSceneState(game) {
     this.done = this.done.bind(this);
 }
 
-CutSceneState.prototype.enter = function (eventId) {
+CutSceneState.prototype.enter = function (commands) {
     this.dialog.reset();
-    var commands = this.game.config.events[eventId];
     this.interpreter.run(commands, this, this.done);
 }
 
