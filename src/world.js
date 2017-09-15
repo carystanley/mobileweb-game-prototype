@@ -65,10 +65,11 @@ World.prototype.draw = function (ctx, v, res) {
             obj.width/2, obj.height/2, 0, 0, Math.PI*2);
         ctx.fill();
         ctx.closePath();
+        var frame = (obj.animation && obj.animation.getCurrentFrame()) || 0
         ctx.drawImage(
             res.sprites,
-            obj.frame * 16, 0, 16, 24,
-            (obj.x - v.x) | 0, (obj.y - 20 - obj.z - v.y) | 0, obj.width, 24
+            frame * 24, obj.frame * 32, 24, 32,
+            (obj.x - 4 - v.x) | 0, (obj.y - 27 - v.y) | 0, 24, 32
         );
     });
 

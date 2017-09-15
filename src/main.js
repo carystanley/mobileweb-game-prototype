@@ -122,7 +122,7 @@ Game.setup = function(canvasId, window, config) {
 
     var resources = {
         world: loadImage('./world.gif'),
-        sprites: loadImage('./sprites.gif'),
+        sprites: loadImage('./sprites.png'),
         basicfontsheet: loadImage('./fonts/basic.png'),
         pattern: loadImage('./pattern.png')
     };
