@@ -43,11 +43,13 @@ World.prototype.draw = function (ctx, v, res) {
     var player = this.player;
     var entities = this.entities;
 
-    ctx.drawImage(
-        res.world,
-        v.x, v.y, v.width, v.height,
-        0, 0, v.width, v.height
-    );
+    if (res.world) {
+        ctx.drawImage(
+            res.world,
+            v.x, v.y, v.width, v.height,
+            0, 0, v.width, v.height
+        );
+    }
 /*
     walls.forEach(function(obj) {
         ctx.fillStyle = 'rgba(80, 80, 80, 0.5)';
