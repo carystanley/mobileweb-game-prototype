@@ -61,12 +61,14 @@ World.prototype.draw = function (ctx, v, res) {
         if (obj.dead) {
             return;
         }
+        /*
         ctx.fillStyle = 'rgba(170, 170, 170, 0.5)';
         ctx.beginPath();
         ctx.ellipse(obj.x + obj.width/2  - v.x, obj.y + obj.height/2  - v.y,
             obj.width/2, obj.height/2, 0, 0, Math.PI*2);
         ctx.fill();
         ctx.closePath();
+        */
         var frame = (obj.animation && obj.animation.getCurrentFrame()) || 0
         ctx.drawImage(
             res.sprites,
