@@ -39,6 +39,7 @@ Map.prototype.render = function(layers, resources) {
         for (var y = 0; y < height; y++) {
             for (var x = 0; x < width; x++) {
                 var gid = self.get(layerId, x, y);
+
                 var tileSetName = null;
                 var tileId = null;
                 var tilemapWidth = null;
