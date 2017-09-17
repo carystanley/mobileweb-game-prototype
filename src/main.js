@@ -8,8 +8,7 @@ var CutSceneState = require('./states/cutscene');
 var BattleMenuState = require('./states/battlemenu');
 var BattleBackgroundState = require('./states/battlebackground');
 var BitmapFont = require('./bitmapfont');
-var Base64 = require('./utils/base64');
-var Canvas = require('./utils/canvas');
+var Map = require('./map');
 
 var mapHouse = require('../maps/house.json');
 
@@ -21,55 +20,6 @@ function loadImage(url, options) {
     }
     image.src = url;
     return image;
-}
-
-function loadMap(map) {
-    var layers = {};
-    Object.keys(map.layers).forEach(function (layerNum) {
-        var layer = map.layers[layerNum];
-        var name = layer.name;
-        if (layer.encoding === 'base64') {
-            layer.data = Base64.decodeAsArray(layer.data, 4);
-        }
-        layers[name] = layer;
-    });
-    map.layers = layers;
-    map.get = function (layerId, x, y) {
-        return this.layers[layerId].data[x + y * this.width];
-    }
-    return map;
-}
-
-
-
-function renderMap(map, layers, tilemap) {
-    var height = map.height;
-    var width = map.width;
-    var tileheight = map.tileheight;
-    var tilewidth = map.tilewidth;
-    var mapHeight = height * tileheight;
-    var mapWidth = width * tilewidth;
-    var mapCanvas = Canvas.create(mapWidth, mapHeight);
-    var tilemapWidth = tilemap.width/tilewidth;
-    var ctx = mapCanvas.getContext('2d');
-    layers.forEach(function(layerId) {
-        for (var y = 0; y < height; y++) {
-            for (var x = 0; x < width; x++) {
-                var tileId = map.get(layerId, x, y) - 1;
-                var sx = (tileId % tilemapWidth) * tilewidth;
-                var sy = (Math.floor(tileId / tilemapWidth)) * tileheight;
-                ctx.drawImage(
-                    tilemap,
-                    sx, sy,
-                    tilewidth, tileheight,
-                    x * tilewidth, y * tileheight,
-                    tilewidth, tileheight
-                );
-            }
-        }
-    });
-
-    return mapCanvas;
 }
 
 var Game = {};
@@ -176,10 +126,10 @@ Game.setup = function(canvasId, window, config) {
         sprites: loadImage('./images/sprites.png'),
         basicfontsheet: loadImage('./fonts/basic.png'),
         pattern: loadImage('./images/pattern.png'),
+        mapHouse: new Map(mapHouse),
         tiles_house: loadImage('./images/tileset.png', {onload: function () {
-            resources.world = renderMap(resources.mapHouse, ['background', 'foreground'], resources.tiles_house)
-        }}),
-        mapHouse: loadMap(mapHouse)
+            resources.world = resources.mapHouse.render(['background', 'foreground'], resources)
+        }})
     };
 
     resources.basicfont = new BitmapFont(BasicFontMeta, resources.basicfontsheet);
