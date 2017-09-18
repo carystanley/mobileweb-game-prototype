@@ -10,8 +10,17 @@ Inventory.prototype.add = function(itemId) {
     }
 }
 
-Inventory.prototype.remove = function(itemPos) {
+Inventory.prototype.removeByPositon = function(itemPos) {
     this.items.splice(itemPos, 1);
+}
+
+Inventory.prototype.removeById = function(itemId) {
+    let pos = this.items.indexOf(itemId);
+    if (pos !== -1) {
+        this.removeByPositon(pos);
+        return true;
+    }
+    return false;
 }
 
 Inventory.prototype.getItems = function() {

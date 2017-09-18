@@ -21,7 +21,7 @@ window.EVENTS = {
                 {cmd: 'dialog', text: 'You took my Socks!'},
             {cmd: 'else'},
                 {cmd: 'dialog', text: 'When you can snatch the pebble from my hand, it will be time for you to leave.'},
-                {cmd: 'getItem', id: 'sock'},
+                {cmd: 'addItemToInventory', id: 'sock'},
             {cmd: 'endif'}
         ]
     }]
