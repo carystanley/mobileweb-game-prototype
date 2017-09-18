@@ -7,6 +7,7 @@ var WorldMenuState = require('./states/worldmenu');
 var CutSceneState = require('./states/cutscene');
 var BattleMenuState = require('./states/battlemenu');
 var BattleBackgroundState = require('./states/battlebackground');
+var LoadingState = require('./states/loading');
 var BitmapFont = require('./bitmapfont');
 var Map = require('./map');
 
@@ -141,8 +142,9 @@ Game.setup = function(canvasId, window, config) {
         worldmenu: new WorldMenuState(game),
         cutscene: new CutSceneState(game),
         battlemenu: new BattleMenuState(game),
-        battlebackground: new BattleBackgroundState(game)
-    }, 'world');
+        battlebackground: new BattleBackgroundState(game),
+        loading: new LoadingState(game)
+    }, 'loading');
 
     function run() {
         // Clear anything drawn to the canvas off.
