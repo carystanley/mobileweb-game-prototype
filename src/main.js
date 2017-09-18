@@ -1,27 +1,14 @@
-/* global BasicFontMeta, window */
+/* global window */
 
 var Inventory = require('./inventory');
 var StateManager = require('./utils/statemanager');
+
 var WorldState = require('./states/world');
 var WorldMenuState = require('./states/worldmenu');
 var CutSceneState = require('./states/cutscene');
 var BattleMenuState = require('./states/battlemenu');
 var BattleBackgroundState = require('./states/battlebackground');
 var LoadingState = require('./states/loading');
-var BitmapFont = require('./bitmapfont');
-var Map = require('./map');
-
-var mapHouse = require('../maps/house.json');
-
-function loadImage(url, options) {
-    options = options || {};
-    var image = new Image();
-    if (options.onload) {
-        image.onload = options.onload;
-    }
-    image.src = url;
-    return image;
-}
 
 var Game = {};
 Game.setup = function(canvasId, window, config) {
@@ -123,20 +110,8 @@ Game.setup = function(canvasId, window, config) {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    var resources = {
-        sprites: loadImage('./images/sprites.png'),
-        basicfontsheet: loadImage('./fonts/basic.png'),
-        pattern: loadImage('./images/pattern.png'),
-        mapHouse: new Map(mapHouse),
-        tiles_house: loadImage('./images/tileset.png', {onload: function () {
-            resources.world = resources.mapHouse.render(['background', 'foreground'], resources)
-        }})
-    };
-
-    resources.basicfont = new BitmapFont(BasicFontMeta, resources.basicfontsheet);
-
     game.ctx = ctx;
-    game.resources = resources;
+    game.resources = {};
     game.state = new StateManager(game, {
         world: new WorldState(game),
         worldmenu: new WorldMenuState(game),
@@ -151,7 +126,7 @@ Game.setup = function(canvasId, window, config) {
         // Clear anything drawn to the canvas off.
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         game.state.update();
-        game.state.draw(ctx, resources);
+        game.state.draw(ctx, game.resources);
 
         window.requestAnimationFrame(run); // 60 fps
     }

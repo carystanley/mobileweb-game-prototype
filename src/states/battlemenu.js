@@ -2,7 +2,10 @@ var TextMenu = require('../ui/textmenu');
 
 function BattleMenuState(game) {
     this.game = game;
-    var basicFont = game.resources.basicfont;
+}
+
+BattleMenuState.prototype.init = function () {
+    var basicFont = this.game.resources.basicfont;
     this.menus = {
         base: new TextMenu(basicFont, 16, 16, 40, 20, 4, [
             {id: 'bash', text: 'Bash'},

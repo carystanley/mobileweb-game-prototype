@@ -13,6 +13,10 @@ StateManager.prototype.switch = function (id, params) {
         oldState.exit();
     }
     var newState = this[id];
+    if (newState && !newState.initied && newState.init) {
+        newState.init();
+        newState.initied = true;
+    }
     this.currentState = newState;
     if (newState && newState.enter) {
         newState.enter(params);
