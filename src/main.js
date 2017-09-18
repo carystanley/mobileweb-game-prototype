@@ -144,7 +144,8 @@ Game.setup = function(canvasId, window, config) {
         battlemenu: new BattleMenuState(game),
         battlebackground: new BattleBackgroundState(game),
         loading: new LoadingState(game)
-    }, 'loading');
+    });
+    game.state.switch('loading');
 
     function run() {
         // Clear anything drawn to the canvas off.

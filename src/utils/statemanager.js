@@ -1,11 +1,10 @@
 
-function StateManager(game, states, initStateId) {
+function StateManager(game, states) {
     var self = this;
     this.game = game;
     Object.keys(states).forEach(function (stateId) {
         self[stateId] = states[stateId];
     });
-    this.currentState = states[initStateId];
 }
 
 StateManager.prototype.switch = function (id, params) {
@@ -14,10 +13,10 @@ StateManager.prototype.switch = function (id, params) {
         oldState.exit();
     }
     var newState = this[id];
+    this.currentState = newState;
     if (newState && newState.enter) {
         newState.enter(params);
     }
-    this.currentState = newState;
 };
 
 StateManager.prototype.update = function () {
