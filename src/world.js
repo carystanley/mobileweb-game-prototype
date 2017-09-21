@@ -2,11 +2,12 @@ var Player = require('./player');
 var Enemy = require('./enemy');
 var AABB = require('./utils/aabb');
 
-function World(game, mapId) {
+function World(game, mapId, location) {
     this.game = game;
     this.map = game.resources[mapId];
     this.mapImage = this.map.render(['background', 'foreground'], game.resources);
-    this.player = new Player(this, {x: 150, y: 180, sprite: 0});
+    var start = this.map.layers.Locations[location || 'start'];
+    this.player = new Player(this, {x: start.cx, y: start.cy, sprite: 0});
     this.events = [
         {x: 150, y: 205, z: 0, width: 16, height: 8, sprite: 1, frame: 4, eventId: 1},
         {x: 355, y: 220, z: 0, width: 16, height: 8, sprite: 1, frame: 4, eventId: 2},

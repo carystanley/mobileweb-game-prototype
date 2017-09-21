@@ -9,10 +9,32 @@ function Map (config) {
         if (layer.encoding === 'base64') {
             layer.data = Base64.decodeAsArray(layer.data, 4);
         }
-        layers[name] = layer;
-    });
+        if (layer.type === 'objectgroup') {
+            switch (name) {
+                case 'Locations':
+                    var locations = {};
+                    layer.objects.forEach(function (location) {
+                        locations[location.name] = location;
+                    })
+                    layers[name] = locations;
+                    break;
 
+                case 'Spawns':
+                case 'Events':
+                    layers[name] = layer.objects;
+                    break;
+            }
+            layer.objects.forEach(function (obj) {
+                obj.cx = obj.x + obj.width/2;
+                obj.cy = obj.y + obj.height/2;
+            })
+        } else {
+            layers[name] = layer;
+        }
+    });
     this.layers = layers;
+
+
     this.width = config.width;
     this.height = config.height;
     this.tilewidth = config.tilewidth;
