@@ -1,7 +1,7 @@
 /* global window */
 
 window.EVENTS = {
-    1: [{
+    'ouch': [{
         commands: [
             {cmd: 'dialog', text: 'Ouch!!'},
             {cmd: 'dialog', text: 'Watch it!!'},
@@ -10,12 +10,12 @@ window.EVENTS = {
             {cmd: 'fadeIn', ticks: 60}
         ]
     }],
-    2: [{
+    'banana_guru': [{
         commands: [
             {cmd: 'dialog', text: 'To Understand the Banana, You Must Become the Banana'}
         ]
     }],
-    3: [{
+    'snatch': [{
         commands: [
             {cmd: 'if', cond: 'hasItem', id: 'sock'},
                 {cmd: 'dialog', text: 'You took my Socks!'},

@@ -8,11 +8,19 @@ function World(game, mapId, location) {
     this.mapImage = this.map.render(['background', 'foreground'], game.resources);
     var start = this.map.layers.Locations[location || 'start'];
     this.player = new Player(this, {x: start.cx, y: start.cy, sprite: 0});
-    this.events = [
-        {x: 150, y: 205, z: 0, width: 16, height: 8, sprite: 1, frame: 4, eventId: 1},
-        {x: 355, y: 220, z: 0, width: 16, height: 8, sprite: 1, frame: 4, eventId: 2},
-        {x: 175, y: 235, z: 0, width: 16, height: 8, sprite: 1, frame: 4, eventId: 3}
-    ];
+
+    var events = [];
+    this.map.layers.Events.forEach(function (event) {
+        events.push({
+            x: event.cx, y: event.cy,
+            width: 16, height: 8,
+            sprite: 1, frame: 4,
+            eventId: event.name
+        });
+        console.error(event);
+    });
+    this.events = events;
+
     this.enemies = [
         new Enemy(this, {x: 320, y: 120, sprite: 2})
     ];
@@ -100,11 +108,16 @@ World.prototype.collideEvent = function(player, event, distX, distY, correctX, c
     } else {
         player.y += ((distY > 0) ? 1 : -1) * correctY;
     }
-    if (event.eventId && (player.goalEvent === event)) {
+    if (player.goalEvent === event) {
         player.going = false;
         player.goalEvent = null;
-        var commands = this.game.config.events[event.eventId][0].commands;
-        this.game.state.switch('cutscene', commands);
+        if (event.eventId) {
+            var eventConfig = this.game.config.events[event.eventId];
+            if (eventConfig) {
+                var commands = eventConfig[0].commands;
+                this.game.state.switch('cutscene', commands);
+            }
+        }
     }
 }
 

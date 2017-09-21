@@ -107,6 +107,47 @@
                  "width":16,
                  "x":48,
                  "y":368
+                }, 
+                {
+                 "height":14,
+                 "id":24,
+                 "name":"snatch",
+                 "properties":
+                    {
+                     "eventId":1
+                    },
+                 "propertytypes":
+                    {
+                     "eventId":"int"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":14,
+                 "x":177,
+                 "y":97.5
+                }, 
+                {
+                 "height":13.5,
+                 "id":25,
+                 "name":"banana_guru",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":13.5,
+                 "x":81.5,
+                 "y":145.5
+                }, 
+                {
+                 "height":13,
+                 "id":27,
+                 "name":"ouch",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":13,
+                 "x":242,
+                 "y":146
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -189,7 +230,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":24,
+ "nextobjectid":31,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",

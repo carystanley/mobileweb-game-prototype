@@ -25,8 +25,8 @@ function Map (config) {
                     break;
             }
             layer.objects.forEach(function (obj) {
-                obj.cx = obj.x + obj.width/2;
-                obj.cy = obj.y + obj.height/2;
+                obj.cx = (obj.x + obj.width/2) | 0;
+                obj.cy = (obj.y + obj.height/2) | 0;
             })
         } else {
             layers[name] = layer;
