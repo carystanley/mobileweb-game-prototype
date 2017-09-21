@@ -2,8 +2,10 @@ var Player = require('./player');
 var Enemy = require('./enemy');
 var AABB = require('./utils/aabb');
 
-function World(game) {
+function World(game, mapId) {
     this.game = game;
+    this.map = game.resources[mapId];
+    this.mapImage = this.map.render(['background', 'foreground'], game.resources);
     this.player = new Player(this, {x: 150, y: 180, frame: 0});
     this.events = [
         {x: 150, y: 205, z: 0, width: 16, height: 8, frame: 1, eventId: 1},
@@ -19,8 +21,8 @@ function World(game) {
         this.enemies
     );
 
-    this.width = 440;
-    this.height = 372;
+    this.width = this.map.mapWidth;
+    this.height = this.map.mapHeight;
 
     this.correctionWall = this.correctionWall.bind(this);
     this.collideEvent = this.collideEvent.bind(this);
@@ -32,7 +34,7 @@ World.prototype.draw = function (ctx, v, res) {
     var entities = this.entities;
 
     ctx.drawImage(
-        res.world,
+        this.mapImage,
         v.x, v.y, v.width, v.height,
         0, 0, v.width, v.height
     );

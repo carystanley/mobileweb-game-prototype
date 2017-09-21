@@ -18,6 +18,8 @@ function Map (config) {
     this.tilewidth = config.tilewidth;
     this.tileheight = config.tileheight;
     this.tilesets = config.tilesets;
+    this.mapHeight = this.height * this.tileheight;
+    this.mapWidth = this.width * this.tilewidth;
 }
 
 Map.prototype.get = function(layerId, x, y) {
@@ -31,8 +33,8 @@ Map.prototype.render = function(layers, resources) {
     var tileheight = self.tileheight;
     var tilewidth = self.tilewidth;
     var tileSets = self.tilesets;
-    var mapHeight = height * tileheight;
-    var mapWidth = width * tilewidth;
+    var mapHeight = self.mapHeight;
+    var mapWidth = self.mapWidth;
     var mapCanvas = Canvas.create(mapWidth, mapHeight);
     var ctx = mapCanvas.getContext('2d');
     layers.forEach(function(layerId) {

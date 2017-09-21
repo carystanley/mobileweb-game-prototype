@@ -27,7 +27,7 @@ LoadingState.prototype.enter = function () {
         pattern: loadImage('./images/pattern.png'),
         mapHouse: new Map(mapHouse),
         tiles_house: loadImage('./images/tileset.png', function () {
-            resources.world = resources.mapHouse.render(['background', 'foreground'], resources);
+            // TODO actually check all assets
             self.game.state.switch('world');
         })
     };
