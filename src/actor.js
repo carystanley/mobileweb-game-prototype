@@ -16,6 +16,7 @@ function Actor (world, config) {
     this.width = 16;
     this.height = 8;
     this.world = world;
+    this.sprite = config.sprite;
     this.animation = new AnimationManager(baseAnimationConfig);
 }
 
@@ -54,6 +55,7 @@ Actor.prototype.update = function () {
     } else {
         this.animation.stop();
     }
+    this.frame = this.animation.getCurrentFrame();
 };
 
 Actor.prototype.move = function () {

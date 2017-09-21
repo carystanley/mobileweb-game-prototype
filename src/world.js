@@ -6,14 +6,14 @@ function World(game, mapId) {
     this.game = game;
     this.map = game.resources[mapId];
     this.mapImage = this.map.render(['background', 'foreground'], game.resources);
-    this.player = new Player(this, {x: 150, y: 180, frame: 0});
+    this.player = new Player(this, {x: 150, y: 180, sprite: 0});
     this.events = [
-        {x: 150, y: 205, z: 0, width: 16, height: 8, frame: 1, eventId: 1},
-        {x: 355, y: 220, z: 0, width: 16, height: 8, frame: 1, eventId: 2},
-        {x: 175, y: 235, z: 0, width: 16, height: 8, frame: 1, eventId: 3}
+        {x: 150, y: 205, z: 0, width: 16, height: 8, sprite: 1, frame: 4, eventId: 1},
+        {x: 355, y: 220, z: 0, width: 16, height: 8, sprite: 1, frame: 4, eventId: 2},
+        {x: 175, y: 235, z: 0, width: 16, height: 8, sprite: 1, frame: 4, eventId: 3}
     ];
     this.enemies = [
-        new Enemy(this, {x: 320, y: 120, frame: 2})
+        new Enemy(this, {x: 320, y: 120, sprite: 2})
     ];
     this.entities = [].concat(
         [this.player],
@@ -52,10 +52,9 @@ World.prototype.draw = function (ctx, v, res) {
         ctx.fill();
         ctx.closePath();
         */
-        var frame = (obj.animation && obj.animation.getCurrentFrame()) || 0
         ctx.drawImage(
             res.sprites,
-            frame * 24, obj.frame * 32, 24, 32,
+            obj.frame * 24, obj.sprite * 32, 24, 32,
             (obj.x - 4 - v.x) | 0, (obj.y - 27 - v.y) | 0, 24, 32
         );
     });
