@@ -1,6 +1,13 @@
 /* global window */
 
 window.EVENTS = {
+    'transport': [{
+        commands: [
+            {cmd: 'fadeOut', ticks: 60},
+            {cmd: 'transport', map: 'mapHouse', location: 'start'},
+            {cmd: 'fadeIn', ticks: 60}
+        ]
+    }],
     'ouch': [{
         commands: [
             {cmd: 'dialog', text: 'Ouch!!'},

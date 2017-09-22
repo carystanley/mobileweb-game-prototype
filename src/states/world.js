@@ -9,7 +9,8 @@ function WorldState(game) {
 
 WorldState.prototype.init = function () {
     this.viewport = new Viewport(this.game.ctx.canvas.width, this.game.ctx.canvas.height);
-    this.world = new World(this.game, 'mapHouse');
+    this.world = new World(this.game);
+    this.world.loadMap('mapHouse', 'start');
     var basicFont = this.game.resources.basicfont;
     this.menuButton = new TextMenu(basicFont, 250, 135, 29, 20, 4, [
         {id: 'menu', text: 'Menu'}
@@ -74,6 +75,10 @@ WorldState.prototype.event = function (type, x, y) {
 
 WorldState.prototype.openMenu = function () {
     this.game.state.switch('worldmenu');
+}
+
+WorldState.prototype.mapTransport = function (mapId, locationId) {
+    this.world.loadMap(mapId, locationId);
 }
 
 module.exports = WorldState;

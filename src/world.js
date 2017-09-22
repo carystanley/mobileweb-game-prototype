@@ -2,11 +2,18 @@ var Player = require('./player');
 var Enemy = require('./enemy');
 var AABB = require('./utils/aabb');
 
-function World(game, mapId, location) {
+function World(game) {
     this.game = game;
+    this.correctionWall = this.correctionWall.bind(this);
+    this.collideEvent = this.collideEvent.bind(this);
+    this.collideEnemy = this.collideEnemy.bind(this);
+}
+
+World.prototype.loadMap = function(mapId, locationId) {
+    var game = this.game;
     this.map = game.resources[mapId];
     this.mapImage = this.map.render(['background', 'foreground'], game.resources);
-    var start = this.map.layers.Locations[location || 'start'];
+    var start = this.map.layers.Locations[locationId];
     this.player = new Player(this, {x: start.cx, y: start.cy, sprite: 0});
 
     var events = [];
@@ -15,9 +22,8 @@ function World(game, mapId, location) {
             x: event.cx, y: event.cy,
             width: 16, height: 8,
             sprite: 1, frame: 4,
-            eventId: event.name
+            eventId: event.type || event.name
         });
-        console.error(event);
     });
     this.events = events;
 
@@ -32,10 +38,6 @@ function World(game, mapId, location) {
 
     this.width = this.map.mapWidth;
     this.height = this.map.mapHeight;
-
-    this.correctionWall = this.correctionWall.bind(this);
-    this.collideEvent = this.collideEvent.bind(this);
-    this.collideEnemy = this.collideEnemy.bind(this);
 }
 
 World.prototype.draw = function (ctx, v, res) {

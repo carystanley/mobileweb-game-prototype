@@ -1,4 +1,8 @@
 var Commands = {
+    transport: function(context, params, done) {
+        context.game.state.world.mapTransport(params.map, params.location);
+        done();
+    },
     dialog: function(context, params, done) {
         context.dialog.showText(params.text, done);
     },
