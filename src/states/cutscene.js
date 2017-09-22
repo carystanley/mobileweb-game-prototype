@@ -23,7 +23,6 @@ CutSceneState.prototype.enter = function (commands) {
 CutSceneState.prototype.update = function () {
     this.dialog.update();
     this.matte.update();
-    this.game.state.world.update(); // TODO should this be done?
 }
 
 CutSceneState.prototype.draw = function (ctx, res) {

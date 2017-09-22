@@ -18,12 +18,17 @@ World.prototype.loadMap = function(mapId, locationId) {
 
     var events = [];
     this.map.layers.Events.forEach(function (event) {
-        events.push({
-            x: event.cx, y: event.cy,
-            width: 16, height: 8,
-            sprite: 1, frame: 4,
-            eventId: event.type || event.name
-        });
+        var eventId = event.type || event.name;
+        var eventConfig = game.config.events[eventId];
+        if (eventConfig) {
+            var sprite = eventConfig[0].sprite;
+            events.push({
+                x: event.cx, y: event.cy,
+                width: 16, height: 8,
+                sprite: sprite, frame: 4,
+                eventId: eventId
+            });
+        }
     });
     this.events = events;
 
@@ -63,11 +68,13 @@ World.prototype.draw = function (ctx, v, res) {
         ctx.fill();
         ctx.closePath();
         */
-        ctx.drawImage(
-            res.sprites,
-            obj.frame * 24, obj.sprite * 32, 24, 32,
-            (obj.x - 4 - v.x) | 0, (obj.y - 27 - v.y) | 0, 24, 32
-        );
+        if (obj.sprite >= 0) {
+            ctx.drawImage(
+                res.sprites,
+                obj.frame * 24, obj.sprite * 32, 24, 32,
+                (obj.x - 4 - v.x) | 0, (obj.y - 27 - v.y) | 0, 24, 32
+            );
+        }
     });
 
     if (player.goalRadius > 0) {

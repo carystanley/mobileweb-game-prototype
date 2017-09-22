@@ -79,6 +79,7 @@ WorldState.prototype.openMenu = function () {
 
 WorldState.prototype.mapTransport = function (mapId, locationId) {
     this.world.loadMap(mapId, locationId);
+    this.update();
 }
 
 module.exports = WorldState;

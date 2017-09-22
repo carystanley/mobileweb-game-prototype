@@ -2,6 +2,7 @@
 
 window.EVENTS = {
     'transport': [{
+        sprite: -1,
         commands: [
             {cmd: 'fadeOut', ticks: 60},
             {cmd: 'transport', map: 'mapHouse', location: 'start'},
@@ -9,6 +10,7 @@ window.EVENTS = {
         ]
     }],
     'ouch': [{
+        sprite: 1,
         commands: [
             {cmd: 'dialog', text: 'Ouch!!'},
             {cmd: 'dialog', text: 'Watch it!!'},
@@ -18,11 +20,13 @@ window.EVENTS = {
         ]
     }],
     'banana_guru': [{
+        sprite: 2,
         commands: [
             {cmd: 'dialog', text: 'To Understand the Banana, You Must Become the Banana'}
         ]
     }],
     'snatch': [{
+        sprite: 3,
         commands: [
             {cmd: 'if', cond: 'hasItem', id: 'sock'},
                 {cmd: 'dialog', text: 'You took my Socks!'},
