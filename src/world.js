@@ -1,6 +1,7 @@
 var Player = require('./player');
 var Enemy = require('./enemy');
 var AABB = require('./utils/aabb');
+var Event = require('./event');
 
 function World(game) {
     this.game = game;
@@ -21,13 +22,7 @@ World.prototype.loadMap = function(mapId, locationId) {
         var eventId = event.type || event.name;
         var eventConfig = game.config.events[eventId];
         if (eventConfig) {
-            var sprite = eventConfig[0].sprite;
-            events.push({
-                x: event.cx, y: event.cy,
-                width: 16, height: 8,
-                sprite: sprite, frame: 4,
-                eventId: eventId
-            });
+            events.push(new Event(game, eventId, event, eventConfig));
         }
     });
     this.events = events;
@@ -120,13 +115,7 @@ World.prototype.collideEvent = function(player, event, distX, distY, correctX, c
     if (player.goalEvent === event) {
         player.going = false;
         player.goalEvent = null;
-        if (event.eventId) {
-            var eventConfig = this.game.config.events[event.eventId];
-            if (eventConfig) {
-                var commands = eventConfig[0].commands;
-                this.game.state.switch('cutscene', commands);
-            }
-        }
+        event.trigger();
     }
 }
 
