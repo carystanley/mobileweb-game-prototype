@@ -94,6 +94,9 @@ World.prototype.update = function () {
     var player = this.player;
 
     this.entities.forEach(function(entity) {
+        if (entity.dead) {
+            return;
+        }
         entity.update();
     });
 
