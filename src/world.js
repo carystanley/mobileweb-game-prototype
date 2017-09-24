@@ -11,14 +11,35 @@ function World(game) {
     this.collideEnemy = this.collideEnemy.bind(this);
 }
 
+World.prototype.buildParty = function(x, y) {
+    var party = [];
+    var isFirst = true;
+    var data = this.game.data;
+    var lastMemeber = null;
+    var self = this;
+
+    data.party.forEach(function (memberId) {
+        var member = data.members[memberId];
+        if (isFirst) {
+            lastMemeber = new Player(self, {x: x, y: y, sprite: member.sprite});
+            self.player = lastMemeber;
+            party.push(lastMemeber);
+            isFirst = false;
+        } else {
+            lastMemeber = new Follower(self, {x: x, y: y, sprite: member.sprite}, lastMemeber);
+            party.push(lastMemeber);
+        }
+    })
+
+    return party;
+}
+
 World.prototype.loadMap = function(mapId, locationId) {
     var game = this.game;
     this.map = game.resources[mapId];
     this.mapImage = this.map.render(['background', 'foreground'], game.resources);
     var start = this.map.layers.Locations[locationId];
-    this.player = new Player(this, {x: start.cx, y: start.cy, sprite: 0});
-    var follower1 = new Follower(this, {x: start.cx, y: start.cy, sprite: 1}, this.player);
-    var follower2 = new Follower(this, {x: start.cx, y: start.cy, sprite: 2}, follower1);
+    this.party = this.buildParty(start.cx, start.cy);
 
     var events = [];
     this.map.layers.Events.forEach(function (event) {
@@ -34,11 +55,7 @@ World.prototype.loadMap = function(mapId, locationId) {
         new Enemy(this, {x: 320, y: 120, sprite: 7})
     ];
     this.entities = [].concat(
-        [
-            this.player,
-            follower1,
-            follower2
-        ],
+        this.party,
         this.events,
         this.enemies
     );

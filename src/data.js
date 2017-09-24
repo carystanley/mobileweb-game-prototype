@@ -7,6 +7,18 @@ function Data(game) {
 
 Data.prototype.init = function() {
     this.inventory = new Inventory(8);
+    this.party = ['hero', 'girl', 'bully'];
+    this.members = {
+        hero: {
+            sprite: 0
+        },
+        girl: {
+            sprite: 1
+        },
+        bully: {
+            sprite: 2
+        }
+    }
 
     this.inventory.add('sneaker');
 }
