@@ -31,7 +31,7 @@ World.prototype.loadMap = function(mapId, locationId) {
     this.events = events;
 
     this.enemies = [
-        new Enemy(this, {x: 320, y: 120, sprite: 2})
+        new Enemy(this, {x: 320, y: 120, sprite: 7})
     ];
     this.entities = [].concat(
         [
@@ -104,6 +104,9 @@ World.prototype.update = function () {
         AABB.collision(player, event, self.collideEvent);
     });
     this.enemies.forEach(function(enemy) {
+        if (enemy.dead) {
+            return;
+        }
         AABB.collision(player, enemy, self.collideEnemy);
     });
 }

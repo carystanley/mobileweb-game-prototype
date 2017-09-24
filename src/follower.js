@@ -2,7 +2,7 @@ var Actor = require('./actor');
 
 function Follower(world, config, followCharacter) {
     Actor.call(this, world, config);
-    this.initQueue(followCharacter, 16);
+    this.initQueue(followCharacter, 20);
 }
 
 Follower.prototype = Object.create(Actor.prototype);
