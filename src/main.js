@@ -1,6 +1,6 @@
 /* global window */
 
-var Inventory = require('./inventory');
+var Data = require('./data');
 var StateManager = require('./utils/statemanager');
 
 var WorldState = require('./states/world');
@@ -22,24 +22,7 @@ Game.setup = function(canvasId, window, config) {
     game.getHeight = function () {
         return canvas.height;
     };
-    game.player = {
-        inventory: new Inventory(8)
-    };
-    game.player.inventory.add('sneaker');
-    game.player.getGoodsMenu = function () {
-        var menuItems = [];
-        var items = this.inventory.getItems();
-        var len = items.length;
-        for (var i = 0; i < len; i++) {
-            var id = items[i];
-            var item = game.config.items[id];
-            menuItems.push({
-                id: id,
-                text: item.label
-            });
-        }
-        return menuItems;
-    }
+    game.data = new Data(game);
 
     var disableSwipeFn = function (e) {
         e.preventDefault();

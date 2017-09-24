@@ -41,7 +41,7 @@ BattleMenuState.prototype.setState = function (state) {
             break;
 
         case 'goods':
-            menus['goods'].setOptions(this.game.player.getGoodsMenu());
+            menus['goods'].setOptions(this.game.data.getGoodsMenu());
             menus['goods'].show();
             menus['base'].show();
             break;

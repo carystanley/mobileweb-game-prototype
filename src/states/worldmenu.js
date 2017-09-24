@@ -27,7 +27,7 @@ WorldMenuState.prototype.setState = function (state) {
     }
     switch (state) {
         case 'goods':
-            menus['goods'].setOptions(this.game.player.getGoodsMenu());
+            menus['goods'].setOptions(this.game.data.getGoodsMenu());
             menus['goods'].show();
             menus['base'].show();
             break;

@@ -13,12 +13,12 @@ var Commands = {
         context.matte.fadeIn(params.ticks, done);
     },
     addItemToInventory: function(context, params, done) {
-        context.game.player.inventory.add(params.id);
+        context.game.data.inventory.add(params.id);
         var item = context.game.config.items[params.id]
         context.dialog.showText('You got ' + item.label + '!', done);
     },
     removeItemFromInventory: function(context, params, done) {
-        context.game.player.inventory.removeById(params.id);
+        context.game.player.data.removeById(params.id);
         done();
     }
 };
