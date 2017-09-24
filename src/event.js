@@ -5,7 +5,6 @@ function Event(game, id, config, pages) {
     this.y = config.cy;
     this.eventId = id;
     this.loadPage(pages[0]);
-    console.error(this);
 }
 
 Event.prototype.loadPage = function (page) {
@@ -17,10 +16,13 @@ Event.prototype.loadPage = function (page) {
     this.commands = config.commands;
 }
 
-Event.prototype.fire = function (event) {
+Event.prototype.trigger = function (event) {
     if (this.commands) {
         this.game.state.switch('cutscene', this.commands);
     }
+}
+
+Event.prototype.update = function () {
 }
 
 module.exports = Event;

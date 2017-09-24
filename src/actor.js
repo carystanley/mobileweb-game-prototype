@@ -11,8 +11,8 @@ function Actor (world, config) {
     this.frame = config.frame;
     this.x = config.x;
     this.y = config.y;
-    this.velocityX = 1;
-    this.velocityY = 1;
+    this.velocityX = 0;
+    this.velocityY = 0;
     this.width = 16;
     this.height = 8;
     this.world = world;

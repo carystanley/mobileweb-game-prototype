@@ -21,7 +21,6 @@ WorldState.prototype.init = function () {
 WorldState.prototype.update = function () {
     var world = this.world;
     var player = world.player;
-    player.update();
     world.update();
     this.viewport.update(player, world);
 }

@@ -1,4 +1,5 @@
 var Player = require('./player');
+var Follower = require('./follower');
 var Enemy = require('./enemy');
 var AABB = require('./utils/aabb');
 var Event = require('./event');
@@ -16,6 +17,8 @@ World.prototype.loadMap = function(mapId, locationId) {
     this.mapImage = this.map.render(['background', 'foreground'], game.resources);
     var start = this.map.layers.Locations[locationId];
     this.player = new Player(this, {x: start.cx, y: start.cy, sprite: 0});
+    var follower1 = new Follower(this, {x: start.cx, y: start.cy, sprite: 1}, this.player);
+    var follower2 = new Follower(this, {x: start.cx, y: start.cy, sprite: 2}, follower1);
 
     var events = [];
     this.map.layers.Events.forEach(function (event) {
@@ -31,7 +34,11 @@ World.prototype.loadMap = function(mapId, locationId) {
         new Enemy(this, {x: 320, y: 120, sprite: 2})
     ];
     this.entities = [].concat(
-        [this.player],
+        [
+            this.player,
+            follower1,
+            follower2
+        ],
         this.events,
         this.enemies
     );
@@ -86,14 +93,14 @@ World.prototype.update = function () {
     var self = this;
     var player = this.player;
 
+    this.entities.forEach(function(entity) {
+        entity.update();
+    });
+
     this.events.forEach(function(event) {
         AABB.collision(player, event, self.collideEvent);
     });
     this.enemies.forEach(function(enemy) {
-        if (enemy.dead) {
-            return;
-        }
-        enemy.update();
         AABB.collision(player, enemy, self.collideEnemy);
     });
 }
