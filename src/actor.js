@@ -17,12 +17,17 @@ function Actor (world, config) {
     this.height = 8;
     this.world = world;
     this.sprite = config.sprite;
+    this.frame = 4;
     this.animation = new AnimationManager(baseAnimationConfig);
 }
 
 Actor.prototype.update = function () {
     var facing = null;
     this.move();
+
+    if (!this.velocityX && !this.velocityY) {
+        return;
+    }
 
     this.prevX = this.x;
     this.prevY = this.y;

@@ -35,6 +35,7 @@ World.prototype.buildParty = function(x, y) {
 }
 
 World.prototype.loadMap = function(mapId, locationId) {
+    var self = this;
     var game = this.game;
     this.map = game.resources[mapId];
     this.mapImage = this.map.render(['background', 'foreground'], game.resources);
@@ -46,7 +47,7 @@ World.prototype.loadMap = function(mapId, locationId) {
         var eventId = event.type || event.name;
         var eventConfig = game.config.events[eventId];
         if (eventConfig) {
-            events.push(new Event(game, eventId, event, eventConfig));
+            events.push(new Event(self, eventId, event, eventConfig));
         }
     });
     this.events = events;
