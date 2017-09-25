@@ -10,7 +10,7 @@ function Event(game, id, config, pages) {
 Event.prototype.loadPage = function (page) {
     var config = this.currentPage = page;
     this.sprite = config.sprite;
-    this.width = config.width || 16;
+    this.width = config.width || 14;
     this.height = config.height || 8;
     this.frame = config.frame || 4;
     this.commands = config.commands;

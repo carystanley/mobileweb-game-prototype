@@ -13,7 +13,7 @@ function Actor (world, config) {
     this.y = config.y;
     this.velocityX = 0;
     this.velocityY = 0;
-    this.width = 16;
+    this.width = 14;
     this.height = 8;
     this.world = world;
     this.sprite = config.sprite;

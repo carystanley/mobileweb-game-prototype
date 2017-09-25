@@ -44,7 +44,7 @@ WorldState.prototype.onMouse = function (x, y) {
 
     for (var i = 0; i < events.length; i++) {
         event = events[i];
-        if (AABB.pointInRect(wx, wy, event.x, event.y-24, 16, 24)) {
+        if (AABB.pointInRect(wx, wy, event.x - 8, event.y - 20, 16, 24)) {
             found = event;
         }
     }

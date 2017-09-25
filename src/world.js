@@ -79,20 +79,23 @@ World.prototype.draw = function (ctx, v, res) {
         if (obj.dead) {
             return;
         }
-        /*
-        ctx.fillStyle = 'rgba(170, 170, 170, 0.5)';
-        ctx.beginPath();
-        ctx.ellipse(obj.x + obj.width/2  - v.x, obj.y + obj.height/2  - v.y,
-            obj.width/2, obj.height/2, 0, 0, Math.PI*2);
-        ctx.fill();
-        ctx.closePath();
-        */
+
         if (obj.sprite >= 0) {
             ctx.drawImage(
                 res.sprites,
                 obj.frame * 24, obj.sprite * 32, 24, 32,
-                (obj.x - 4 - v.x) | 0, (obj.y - 27 - v.y) | 0, 24, 32
+                (obj.x - 12 - v.x) | 0, (obj.y - 27 - v.y) | 0, 24, 32
             );
+            /* Debug
+            ctx.beginPath();
+            ctx.strokeStyle = "red";
+            ctx.rect(
+                obj.x - v.x - obj.width/2, obj.y - v.y - obj.height/2,
+                obj.width, obj.height
+            );
+            ctx.stroke();
+            ctx.closePath();
+            */
         }
     });
 
