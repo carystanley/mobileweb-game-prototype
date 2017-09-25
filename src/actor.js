@@ -27,8 +27,7 @@ Actor.prototype.update = function () {
     this.prevX = this.x;
     this.prevY = this.y;
 
-    this.x = this.x + this.velocityX;
-    this.y = this.y + this.velocityY;
+    this.submove(this.velocityX, this.velocityY);
 
     this.x = Math.min(this.x, this.world.width);
     this.x = Math.max(this.x, 0);
@@ -57,6 +56,19 @@ Actor.prototype.update = function () {
     }
     this.frame = this.animation.getCurrentFrame();
 };
+
+Actor.prototype.submove = function (dx, dy) {
+    var collision = false;
+    var x = this.x;
+    var y = this.y;
+    var hw = this.width/2;
+    var hh = this.height/2;
+    var map = this.world.map;
+    if (!map.collide(x+dx, y+dy)) {
+        this.x += dx;
+        this.y += dy;
+    }
+}
 
 Actor.prototype.move = function () {
 

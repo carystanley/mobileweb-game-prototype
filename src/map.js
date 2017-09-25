@@ -48,6 +48,12 @@ Map.prototype.get = function(layerId, x, y) {
     return this.layers[layerId].data[x + y * this.width];
 }
 
+Map.prototype.collide = function(x, y) {
+    return this.get('collision',
+        (x / this.tilewidth) | 0,
+        (y / this.tileheight) | 0);
+}
+
 Map.prototype.render = function(layers, resources) {
     var self = this;
     var height = self.height;
