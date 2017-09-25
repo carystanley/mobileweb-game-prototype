@@ -27,7 +27,8 @@ Actor.prototype.update = function () {
     this.prevX = this.x;
     this.prevY = this.y;
 
-    this.submove(this.velocityX, this.velocityY);
+    this.submove(this.velocityX, 0);
+    this.submove(0, this.velocityY);
 
     this.x = Math.min(this.x, this.world.width);
     this.x = Math.max(this.x, 0);
