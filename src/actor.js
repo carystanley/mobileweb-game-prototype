@@ -59,15 +59,61 @@ Actor.prototype.update = function () {
 };
 
 Actor.prototype.submove = function (dx, dy) {
-    var collision = false;
+    var collide = false;
     var x = this.x;
     var y = this.y;
     var hw = this.width/2;
     var hh = this.height/2;
     var map = this.world.map;
-    if (!map.collide(x+dx, y+dy)) {
+
+    var l = x + dx - hw;
+    var t = y + dy - hh;
+    var r = x + dx + hw;
+    var b = y + dy + hh;
+
+    if (dy > 0) {
+        if (map.collide(l, b)) { collide = true; }
+        else if (map.collide(r, b)) { collide = true; }
+    }
+
+    if (dy < 0) {
+        if (map.collide(l, t)) { collide = true; }
+        else if (map.collide(r, t)) { collide = true; }
+    }
+
+    if (dx > 0) {
+        if (map.collide(r, t)) { collide = true; }
+        else if (map.collide(r, b)) { collide = true; }
+    }
+
+    if (dx < 0) {
+        if (map.collide(l, t)) { collide = true; }
+        else if (map.collide(l, b)) { collide = true; }
+    }
+
+    if (collide) {
+        if (dx < 0) {
+            this.x = (((x - hw) / 16) | 0) * 16 + hw;
+            // this.Xa = 0;
+        }
+        if (dx > 0) {
+            this.x = (((x + hw) / 16 + 1) | 0) * 16 - hw - 1;
+            // this.Xa = 0;
+        }
+        if (dy < 0) {
+            this.y = (((y - hh) / 16) | 0) * 16 + hh;
+            // this.Ya = 0;
+        }
+        if (dy > 0) {
+            this.y = (((y + hh) / 16 + 1) | 0) * 16 - hh - 1;
+            // this.Ya = 0;
+        }
+
+        return false;
+    } else {
         this.x += dx;
         this.y += dy;
+        return true;
     }
 }
 
