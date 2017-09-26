@@ -6,7 +6,7 @@ function Player (world, config) {
 
 Player.prototype = Object.create(Actor.prototype);
 
-Player.prototype.move = function () {
+Player.prototype.update = function () {
     this.velocityX = 0;
     this.velocityY = 0;
 
@@ -26,6 +26,7 @@ Player.prototype.move = function () {
             if (this.goalY > this.y) { // Down
                 this.velocityY = 1;
             }
+            this.step(this.velocityX, this.velocityY);
         }
     }
 

@@ -26,4 +26,8 @@ Event.prototype.trigger = function (event) {
     }
 }
 
+Event.prototype.update = function () {
+
+}
+
 module.exports = Event;

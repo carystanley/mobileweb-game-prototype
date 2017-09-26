@@ -6,7 +6,7 @@ function Enemy (world, config) {
 
 Enemy.prototype = Object.create(Actor.prototype);
 
-Enemy.prototype.move = function () {
+Enemy.prototype.update = function () {
     var player = this.world.player;
     var distX = player.x - this.x;
     var distY = player.y - this.y;
@@ -29,6 +29,8 @@ Enemy.prototype.move = function () {
             this.velocityY = 1;
         }
     }
+
+    this.step(this.velocityX, this.velocityY);
 };
 
 module.exports = Enemy;

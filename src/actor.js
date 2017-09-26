@@ -21,34 +21,29 @@ function Actor (world, config) {
     this.animation = new AnimationManager(baseAnimationConfig);
 }
 
-Actor.prototype.update = function () {
+Actor.prototype.step = function (dx, dy) {
     var facing = null;
-    this.move();
-
-    if (!this.velocityX && !this.velocityY) {
-        return;
-    }
 
     this.prevX = this.x;
     this.prevY = this.y;
 
-    this.submove(this.velocityX, 0);
-    this.submove(0, this.velocityY);
+    this.submove(dx, 0);
+    this.submove(0, dy);
 
     this.x = Math.min(this.x, this.world.width);
     this.x = Math.max(this.x, 0);
     this.y = Math.min(this.y, this.world.height);
     this.y = Math.max(this.y, 0);
 
-    if (this.velocityX > 0) {
+    if (dx > 0) {
         facing = 'right';
-    } else if (this.velocityX < 0) {
+    } else if (dx < 0) {
         facing = 'left';
     }
 
-    if (this.velocityY > 0) {
+    if (dy > 0) {
         facing = 'down';
-    } else if (this.velocityY < 0) {
+    } else if (dy < 0) {
         facing = 'up';
     }
 
@@ -120,10 +115,6 @@ Actor.prototype.submove = function (dx, dy) {
         this.y += dy;
         return true;
     }
-}
-
-Actor.prototype.move = function () {
-
 }
 
 module.exports = Actor;
