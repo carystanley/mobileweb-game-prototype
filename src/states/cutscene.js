@@ -2,7 +2,6 @@ var Dialog = require('../ui/dialog');
 var Matte = require('../ui/matte');
 var Interpreter = require('../utils/interpreter');
 var Commands = require('../commands');
-var Conditions = require('../conditions');
 
 function CutSceneState(game) {
     this.game = game;
@@ -11,7 +10,7 @@ function CutSceneState(game) {
 CutSceneState.prototype.init = function () {
     this.dialog = new Dialog(this.game.resources.basicfont, 40, 100, 204, 3);
     this.matte = new Matte(this.game);
-    this.interpreter = new Interpreter(Commands, Conditions);
+    this.interpreter = new Interpreter(Commands);
     this.done = this.done.bind(this);
 }
 

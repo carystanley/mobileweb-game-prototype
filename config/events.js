@@ -1,4 +1,5 @@
 /* global window */
+/* eslint quotes: "off" */
 
 window.EVENTS = {
     'transport': [{
@@ -28,7 +29,7 @@ window.EVENTS = {
     'snatch': [{
         sprite: 3,
         commands: [
-            {cmd: 'if', cond: 'hasItem', id: 'sock'},
+            {cmd: 'if', cond: "hasInventoryItem('sock')"},
                 {cmd: 'dialog', text: 'You took my Socks!'},
             {cmd: 'else'},
                 {cmd: 'dialog', text: 'When you can snatch the pebble from my hand, it will be time for you to leave.'},

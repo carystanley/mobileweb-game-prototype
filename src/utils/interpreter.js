@@ -1,7 +1,7 @@
+var scopedEval = require('./scoped-eval');
 
-function Interpreter(commands, conditions) {
+function Interpreter(commands) {
     this.commands = commands;
-    this.conditions = conditions;
 }
 
 Interpreter.prototype.run = function(commands, context, done) {
@@ -41,7 +41,7 @@ Interpreter.prototype.jump = function (cmds) {
 
 Interpreter.prototype.keywords = {
     if: function(params) {
-        if (this.conditions[params.cond](this.context, params)) {
+        if (scopedEval(params.cond, this.context.game.data, {})) {
             this.inc();
         } else {
             this.jump(['else', 'endif']);

@@ -13,13 +13,13 @@ function scopedEval(source, scope) {
 }
 */
 
-function scopedEval(code, scope) {
-    var func = new Function(
-        'with(this){return(function(global,window,document){\"use strict\";return eval(\"' +
+function scopedEval(code, module, scope) {
+    var func = new Function('module',
+        'with(module){return(function(global,window,document){\"use strict\";return eval(\"' +
         code +
         '\");})(this,this,this)}'
     );
-    return func.call(scope);
+    return func.call(scope, module);
 }
 
 module.exports = scopedEval;

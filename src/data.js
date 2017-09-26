@@ -39,4 +39,8 @@ Data.prototype.getGoodsMenu = function () {
     return menuItems;
 };
 
+Data.prototype.hasInventoryItem = function(id) {
+    return (this.inventory.contains(id));
+}
+
 module.exports = Data;
