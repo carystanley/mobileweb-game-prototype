@@ -19,7 +19,7 @@ Data.prototype.init = function() {
             sprite: 2
         }
     }
-    this.game_switches = {};
+    this.flags = {};
 
     this.inventory.add('sneaker');
 }
@@ -44,12 +44,12 @@ Data.prototype.hasInventoryItem = function(id) {
     return (this.inventory.contains(id));
 };
 
-Data.prototype.switches = function(id) {
-    return (this.game_switches[id]);
+Data.prototype.flag = function(id) {
+    return (this.flags[id]);
 };
 
-Data.prototype.setSwitch = function(id, value) {
-    this.game_switches[id] = value;
+Data.prototype.setFlag = function(id, value) {
+    this.flags[id] = value;
 };
 
 module.exports = Data;
