@@ -23,7 +23,7 @@ window.EVENTS = {
     'banana_guru': [{
         sprite: 2,
         commands: [
-            {cmd: 'if', cond: "getSwitch('banana_joke')"},
+            {cmd: 'if', cond: "switches('banana_joke')"},
                 {cmd: 'dialog', text: 'But to Become the Banana might get sticky...'},
                 {cmd: 'setSwitch', id: 'banana_joke', value: false},
             {cmd: 'else'},
