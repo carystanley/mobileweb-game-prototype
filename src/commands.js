@@ -20,6 +20,10 @@ var Commands = {
     removeItemFromInventory: function(context, params, done) {
         context.game.player.data.removeById(params.id);
         done();
+    },
+    setSwitch: function(context, params, done) {
+        context.game.data.setSwitch(params.id, params.value);
+        done();
     }
 };
 

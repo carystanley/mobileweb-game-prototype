@@ -19,6 +19,7 @@ Data.prototype.init = function() {
             sprite: 2
         }
     }
+    this.switches = {};
 
     this.inventory.add('sneaker');
 }
@@ -41,6 +42,14 @@ Data.prototype.getGoodsMenu = function () {
 
 Data.prototype.hasInventoryItem = function(id) {
     return (this.inventory.contains(id));
-}
+};
+
+Data.prototype.getSwitch = function(id) {
+    return (this.switches[id]);
+};
+
+Data.prototype.setSwitch = function(id, value) {
+    this.switches[id] = value;
+};
 
 module.exports = Data;
