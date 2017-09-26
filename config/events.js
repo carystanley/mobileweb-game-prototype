@@ -42,5 +42,12 @@ window.EVENTS = {
                 {cmd: 'addItemToInventory', id: 'sock'},
             {cmd: 'endif'}
         ]
+    }],
+    'bully_join': [{
+        sprite: 2,
+        commands: [
+            {cmd: 'dialog', text: 'Lets kick Mushroom Butt!!!.'},
+            {cmd: 'joinParty', id: 'bully'}
+        ]
     }]
 }

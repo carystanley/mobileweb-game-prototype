@@ -7,7 +7,7 @@ function Data(game) {
 
 Data.prototype.init = function() {
     this.inventory = new Inventory(8);
-    this.party = ['hero', 'girl', 'bully'];
+    this.party = ['hero', 'girl'];
     this.members = {
         hero: {
             sprite: 0
@@ -50,6 +50,10 @@ Data.prototype.flag = function(id) {
 
 Data.prototype.setFlag = function(id, value) {
     this.flags[id] = value;
+};
+
+Data.prototype.joinParty = function(id) {
+    this.party.push(id);
 };
 
 module.exports = Data;

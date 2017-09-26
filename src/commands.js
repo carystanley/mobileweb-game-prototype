@@ -24,6 +24,10 @@ var Commands = {
     setFlag: function(context, params, done) {
         context.game.data.setFlag(params.id, params.value);
         done();
+    },
+    joinParty: function(context, params, done) {
+        context.game.data.joinParty(params.id);
+        done();
     }
 };
 
