@@ -6,7 +6,7 @@ window.EVENTS = {
         sprite: -1,
         commands: [
             {cmd: 'fadeOut', ticks: 60},
-            {cmd: 'transport', map: 'mapHouse', location: 'start'},
+            {cmd: 'transport', map: 'floor1', location: 'start'},
             {cmd: 'fadeIn', ticks: 60}
         ]
     }],
