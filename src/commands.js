@@ -27,6 +27,7 @@ var Commands = {
     },
     joinParty: function(context, params, done) {
         context.game.data.joinParty(params.id);
+        context.game.state.world.refreshParty();
         done();
     }
 };

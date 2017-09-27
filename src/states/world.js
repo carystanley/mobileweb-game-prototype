@@ -81,4 +81,8 @@ WorldState.prototype.mapTransport = function (mapId, locationId) {
     this.update();
 }
 
+WorldState.prototype.refreshParty = function () {
+    this.world.refreshParty();
+}
+
 module.exports = WorldState;

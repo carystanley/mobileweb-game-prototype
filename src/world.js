@@ -4,6 +4,8 @@ var Enemy = require('./enemy');
 var AABB = require('./utils/aabb');
 var Event = require('./event');
 
+var MAX_PARTY_SIZE = 4;
+
 function World(game) {
     this.game = game;
     this.correctionWall = this.correctionWall.bind(this);
@@ -12,26 +14,39 @@ function World(game) {
 }
 
 World.prototype.buildParty = function(x, y) {
+    var self = this;
     var party = [];
     var isFirst = true;
-    var data = this.game.data;
     var lastMemeber = null;
-    var self = this;
 
-    data.party.forEach(function (memberId) {
-        var member = data.members[memberId];
+    for (var i = 0; i < MAX_PARTY_SIZE; i++) {
         if (isFirst) {
-            lastMemeber = new Player(self, {x: x, y: y, sprite: member.sprite});
+            lastMemeber = new Player(self, {x: x, y: y, sprite: -1});
             self.player = lastMemeber;
             party.push(lastMemeber);
             isFirst = false;
         } else {
-            lastMemeber = new Follower(self, {x: x, y: y, sprite: member.sprite}, lastMemeber);
+            lastMemeber = new Follower(self, {x: x, y: y, sprite: -1}, lastMemeber);
             party.push(lastMemeber);
         }
-    })
+    }
 
     return party;
+}
+
+World.prototype.refreshParty = function() {
+    var party = this.party;
+    var data = this.game.data;
+
+    for (var i = 0; i < MAX_PARTY_SIZE; i++) {
+        var memberId = data.party[i];
+        if (memberId) {
+            var member = data.members[memberId];
+            party[i].sprite = member.sprite;
+        } else {
+            party[i].sprite = -1;
+        }
+    }
 }
 
 World.prototype.loadMap = function(mapId, locationId) {
@@ -41,6 +56,7 @@ World.prototype.loadMap = function(mapId, locationId) {
     this.mapImage = this.map.render(['layer0', 'layer1'], game.resources);
     var start = this.map.layers.locations[locationId];
     this.party = this.buildParty(start.cx, start.cy);
+    this.refreshParty();
 
     var events = [];
     this.map.layers.events.forEach(function (event) {
