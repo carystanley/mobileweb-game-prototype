@@ -11,7 +11,7 @@ function Map (config) {
         }
         if (layer.type === 'objectgroup') {
             switch (name) {
-                case 'Locations':
+                case 'locations':
                     var locations = {};
                     layer.objects.forEach(function (location) {
                         locations[location.name] = location;
@@ -19,8 +19,8 @@ function Map (config) {
                     layers[name] = locations;
                     break;
 
-                case 'Spawns':
-                case 'Events':
+                case 'spawns':
+                case 'events':
                     layers[name] = layer.objects;
                     break;
             }
@@ -60,7 +60,7 @@ Map.prototype.render = function(layers, resources) {
     var width = self.width;
     var tileheight = self.tileheight;
     var tilewidth = self.tilewidth;
-    var tileSets = self.tilesets;
+    var tileSets = self.tilesets.reverse();
     var mapHeight = self.mapHeight;
     var mapWidth = self.mapWidth;
     var mapCanvas = Canvas.create(mapWidth, mapHeight);
@@ -83,7 +83,7 @@ Map.prototype.render = function(layers, resources) {
                     return false;
                 }, this);
 
-                if (tileId) {
+                if (tileId !== null) {
                     var sx = (tileId % tilemapWidth) * tilewidth;
                     var sy = (Math.floor(tileId / tilemapWidth)) * tileheight;
 

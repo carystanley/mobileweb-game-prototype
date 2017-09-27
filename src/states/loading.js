@@ -2,7 +2,7 @@
 
 var BitmapFont = require('../bitmapfont');
 var Map = require('../map');
-var mapHouse = require('../../maps/house.json');
+var floor1 = require('../../maps/floor1.json');
 
 function loadImage(url, onload) {
     var image = new Image();
@@ -21,15 +21,23 @@ function LoadingState(game) {
 
 LoadingState.prototype.enter = function () {
     var self = this;
-    var resources = {
-        sprites: loadImage('./images/sprites.png'),
-        basicfontsheet: loadImage('./fonts/basic.png'),
-        pattern: loadImage('./images/pattern.png'),
-        mapHouse: new Map(mapHouse),
-        tiles_house: loadImage('./images/tileset.png', function () {
-            // TODO actually check all assets
+    var count = 0;
+    var total = 5;
+
+    function doneCheck() {
+        count++;
+        if (count >= total) {
             self.game.state.switch('world');
-        })
+        }
+    }
+
+    var resources = {
+        sprites: loadImage('./images/sprites.png', doneCheck),
+        basicfontsheet: loadImage('./fonts/basic.png', doneCheck),
+        pattern: loadImage('./images/pattern.png', doneCheck),
+        floor1: new Map(floor1),
+        layer0: loadImage('./images/layer0.png', doneCheck),
+        layer1: loadImage('./images/layer1.png', doneCheck)
     };
 
     resources.basicfont = new BitmapFont(BasicFontMeta, resources.basicfontsheet);

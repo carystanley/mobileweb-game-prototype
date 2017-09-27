@@ -38,12 +38,12 @@ World.prototype.loadMap = function(mapId, locationId) {
     var self = this;
     var game = this.game;
     this.map = game.resources[mapId];
-    this.mapImage = this.map.render(['background', 'foreground'], game.resources);
-    var start = this.map.layers.Locations[locationId];
+    this.mapImage = this.map.render(['layer0', 'layer1'], game.resources);
+    var start = this.map.layers.locations[locationId];
     this.party = this.buildParty(start.cx, start.cy);
 
     var events = [];
-    this.map.layers.Events.forEach(function (event) {
+    this.map.layers.events.forEach(function (event) {
         var eventId = event.type || event.name;
         var eventConfig = game.config.events[eventId];
         if (eventConfig) {
