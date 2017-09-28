@@ -22,7 +22,7 @@ function LoadingState(game) {
 LoadingState.prototype.enter = function () {
     var self = this;
     var count = 0;
-    var total = 5;
+    var total = 6;
 
     function doneCheck() {
         count++;
@@ -37,7 +37,8 @@ LoadingState.prototype.enter = function () {
         pattern: loadImage('./images/pattern.png', doneCheck),
         floor1: new Map(floor1),
         layer0: loadImage('./images/layer0.png', doneCheck),
-        layer1: loadImage('./images/layer1.png', doneCheck)
+        layer1: loadImage('./images/layer1.png', doneCheck),
+        battlesprites: loadImage('./images/battle-sprites.png', doneCheck)
     };
 
     resources.basicfont = new BitmapFont(BasicFontMeta, resources.basicfontsheet);

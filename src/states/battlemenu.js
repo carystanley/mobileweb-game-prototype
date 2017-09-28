@@ -91,6 +91,13 @@ BattleMenuState.prototype.onCancel = function () {
 
 BattleMenuState.prototype.draw = function (ctx, res) {
     this.game.state.battlebackground.draw(ctx, res);
+    ctx.drawImage(
+        res.battlesprites,
+        0, 0, 64, 64,
+        ((this.game.ctx.canvas.width-64)/2) | 0,
+        ((this.game.ctx.canvas.height-64)/2) | 0,
+        64, 64
+    );
     for (var id in this.menus) {
         if (Object.prototype.hasOwnProperty.call(this.menus, id)) {
             this.menus[id].draw(ctx, res);
