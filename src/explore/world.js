@@ -1,7 +1,7 @@
 var Player = require('./player');
 var Follower = require('./follower');
 var Enemy = require('./enemy');
-var AABB = require('./utils/aabb');
+var AABB = require('../utils/aabb');
 var Event = require('./event');
 
 var MAX_PARTY_SIZE = 4;

@@ -1,7 +1,7 @@
 /* global BasicFontMeta */
 
 var BitmapFont = require('../bitmapfont');
-var Map = require('../map');
+var Map = require('../explore/map');
 var floor1 = require('../../maps/floor1.json');
 
 function loadImage(url, onload) {
@@ -27,7 +27,7 @@ LoadingState.prototype.enter = function () {
     function doneCheck() {
         count++;
         if (count >= total) {
-            self.game.state.switch('world');
+            self.game.state.switch('explore');
         }
     }
 

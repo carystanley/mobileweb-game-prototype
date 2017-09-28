@@ -85,7 +85,7 @@ BattleMenuState.prototype.onCancel = function () {
             break;
 
         case 'base':
-            this.game.state.switch('world');
+            this.game.state.switch('explore');
     }
 }
 

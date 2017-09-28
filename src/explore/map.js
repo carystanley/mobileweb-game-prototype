@@ -1,5 +1,5 @@
-var Base64 = require('./utils/base64');
-var Canvas = require('./utils/canvas');
+var Base64 = require('../utils/base64');
+var Canvas = require('../utils/canvas');
 
 function Map (config) {
     var layers = {};

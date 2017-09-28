@@ -1,5 +1,5 @@
 var Viewport = require('../utils/viewport');
-var World = require('../world');
+var World = require('../explore/world');
 var TextMenu = require('../ui/textmenu');
 var AABB = require('../utils/aabb');
 
@@ -73,7 +73,7 @@ WorldState.prototype.event = function (type, x, y) {
 }
 
 WorldState.prototype.openMenu = function () {
-    this.game.state.switch('worldmenu');
+    this.game.state.switch('exploremenu');
 }
 
 WorldState.prototype.mapTransport = function (mapId, locationId) {

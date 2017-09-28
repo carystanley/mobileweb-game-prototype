@@ -25,14 +25,13 @@ CutSceneState.prototype.update = function () {
 }
 
 CutSceneState.prototype.draw = function (ctx, res) {
-    var worldState = this.game.state.world;
-    worldState.draw(ctx, res);
+    this.game.state.explore.draw(ctx, res);
     this.matte.draw(ctx);
     this.dialog.draw(ctx);
 }
 
 CutSceneState.prototype.done = function () {
-    this.game.state.switch('world');
+    this.game.state.switch('explore');
 }
 
 

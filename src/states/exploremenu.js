@@ -68,13 +68,12 @@ WorldMenuState.prototype.onCancel = function () {
             break;
 
         case 'base':
-            this.game.state.switch('world');
+            this.game.state.switch('explore');
     }
 }
 
 WorldMenuState.prototype.draw = function (ctx, res) {
-    var worldState = this.game.state.world;
-    worldState.draw(ctx, res);
+    this.game.state.explore.draw(ctx, res);
     for (var id in this.menus) {
         if (Object.prototype.hasOwnProperty.call(this.menus, id)) {
             this.menus[id].draw(ctx, res);

@@ -3,8 +3,8 @@
 var Data = require('./data');
 var StateManager = require('./utils/statemanager');
 
-var WorldState = require('./states/world');
-var WorldMenuState = require('./states/worldmenu');
+var ExploreState = require('./states/explore');
+var ExploreMenuState = require('./states/exploremenu');
 var CutSceneState = require('./states/cutscene');
 var BattleMenuState = require('./states/battlemenu');
 var BattleBackgroundState = require('./states/battlebackground');
@@ -96,8 +96,8 @@ Game.setup = function(canvasId, window, config) {
     game.ctx = ctx;
     game.resources = {};
     game.state = new StateManager(game, {
-        world: new WorldState(game),
-        worldmenu: new WorldMenuState(game),
+        explore: new ExploreState(game),
+        exploremenu: new ExploreMenuState(game),
         cutscene: new CutSceneState(game),
         battlemenu: new BattleMenuState(game),
         battlebackground: new BattleBackgroundState(game),

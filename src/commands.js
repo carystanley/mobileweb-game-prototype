@@ -1,6 +1,6 @@
 var Commands = {
     transport: function(context, params, done) {
-        context.game.state.world.mapTransport(params.map, params.location);
+        context.game.state.explore.mapTransport(params.map, params.location);
         done();
     },
     dialog: function(context, params, done) {
@@ -27,7 +27,7 @@ var Commands = {
     },
     joinParty: function(context, params, done) {
         context.game.data.joinParty(params.id);
-        context.game.state.world.refreshParty();
+        context.game.state.explore.refreshParty();
         done();
     }
 };

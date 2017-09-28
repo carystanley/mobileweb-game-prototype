@@ -1,4 +1,4 @@
-var AnimationManager = require('./utils/animationmanager.js');
+var AnimationManager = require('../utils/animationmanager.js');
 
 var baseAnimationConfig = {
     up: {frames: [0, 1], delay: 12, loop: true},
