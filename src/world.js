@@ -68,9 +68,21 @@ World.prototype.loadMap = function(mapId, locationId) {
     });
     this.events = events;
 
-    this.enemies = [
-        new Enemy(this, {x: 320, y: 120, sprite: 7})
-    ];
+    var enemies = [];
+    this.map.layers.spawns.forEach(function (spawn) {
+        var spawnType = spawn.type
+        var enemyConfig = game.config.enemies[spawnType];
+        if (enemyConfig) {
+            if (spawn.properties && spawn.properties.probability) {
+                if (Math.random() > (spawn.properties.probability/100)) {
+                    return;
+                }
+            }
+            enemies.push(new Enemy(self, spawn, enemyConfig));
+        }
+    });
+    this.enemies = enemies;
+
     this.entities = [].concat(
         this.party,
         this.events,

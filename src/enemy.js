@@ -1,7 +1,11 @@
 var Actor = require('./actor');
 
-function Enemy (world, config) {
-    Actor.call(this, world, config);
+function Enemy (world, spawn, config) {
+    Actor.call(this, world, {
+        x: spawn.cx,
+        y: spawn.cy,
+        sprite: config.sprite
+    });
 }
 
 Enemy.prototype = Object.create(Actor.prototype);
