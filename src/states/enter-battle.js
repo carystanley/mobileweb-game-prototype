@@ -10,7 +10,18 @@ EnterBattleState.prototype.enter = function () {
 EnterBattleState.prototype.update = function () {
     this.radius -= 4;
     if (this.radius < 50) {
-        this.game.state.switch('battle');
+        var enemies = this.game.state.explore.world.enemies;
+        var player = this.game.state.explore.world.player;
+        var attacking = [];
+        enemies.forEach(function (enemy) {
+            var dx = player.x - enemy.x;
+            var dy = player.y - enemy.y;
+            if ((dx*dx)+(dy*dy) < (2500)) {
+                attacking.push(enemy);
+                enemy.dead = true;
+            }
+        });
+        this.game.state.switch('battle', attacking);
     }
 }
 
