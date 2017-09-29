@@ -6,6 +6,7 @@ var StateManager = require('./utils/statemanager');
 var ExploreState = require('./states/explore');
 var ExploreMenuState = require('./states/exploremenu');
 var CutSceneState = require('./states/cutscene');
+var EnterBattleState = require('./states/enter-battle');
 var BattleState = require('./states/battle');
 var LoadingState = require('./states/loading');
 
@@ -99,7 +100,8 @@ Game.setup = function(canvasId, window, config) {
         exploremenu: new ExploreMenuState(game),
         cutscene: new CutSceneState(game),
         battle: new BattleState(game),
-        loading: new LoadingState(game)
+        loading: new LoadingState(game),
+        enterbattle: new EnterBattleState(game)
     });
     game.state.switch('loading');
 
