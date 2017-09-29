@@ -5,10 +5,6 @@ function BattleMenuState(game) {
 }
 
 BattleMenuState.prototype.init = function () {
-    if (!this.game.state.battlebackground.inited) {
-        this.game.state.battlebackground.init();
-        this.game.state.battlebackground.inited = true;
-    }
     var basicFont = this.game.resources.basicfont;
     this.menus = {
         base: new TextMenu(basicFont, 16, 16, 40, 20, 4, [
@@ -61,7 +57,7 @@ BattleMenuState.prototype.enter = function () {
 }
 
 BattleMenuState.prototype.update = function () {
-    this.game.state.battlebackground.update();
+
 }
 
 BattleMenuState.prototype.onBaseMenu = function (option) {
@@ -90,7 +86,6 @@ BattleMenuState.prototype.onCancel = function () {
 }
 
 BattleMenuState.prototype.draw = function (ctx, res) {
-    this.game.state.battlebackground.draw(ctx, res);
     ctx.drawImage(
         res.battlesprites,
         0, 0, 64, 64,
