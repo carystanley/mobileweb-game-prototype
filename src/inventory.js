@@ -15,7 +15,7 @@ Inventory.prototype.removeByPositon = function(itemPos) {
 }
 
 Inventory.prototype.removeById = function(itemId) {
-    let pos = this.items.indexOf(itemId);
+    var pos = this.items.indexOf(itemId);
     if (pos !== -1) {
         this.removeByPositon(pos);
         return true;
