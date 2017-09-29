@@ -73,7 +73,7 @@ WorldState.prototype.event = function (type, x, y) {
 }
 
 WorldState.prototype.openMenu = function () {
-    this.game.state.switch('exploremenu');
+    this.game.state.switch('exploreMenu');
 }
 
 WorldState.prototype.mapTransport = function (mapId, locationId) {

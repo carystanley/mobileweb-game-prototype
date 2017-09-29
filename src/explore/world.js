@@ -191,7 +191,7 @@ World.prototype.collideEnemy = function(player, enemy, distX, distY, correctX, c
     player.going = false;
     player.goalEvent = null;
 
-    this.game.state.switch('enterbattle');
+    this.game.state.switch('enterBattle');
 }
 
 module.exports = World;

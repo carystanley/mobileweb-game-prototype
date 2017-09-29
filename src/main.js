@@ -4,7 +4,7 @@ var Data = require('./data');
 var StateManager = require('./utils/statemanager');
 
 var ExploreState = require('./states/explore');
-var ExploreMenuState = require('./states/exploremenu');
+var ExploreMenuState = require('./states/explore-menu');
 var CutSceneState = require('./states/cutscene');
 var EnterBattleState = require('./states/enter-battle');
 var BattleState = require('./states/battle');
@@ -97,11 +97,11 @@ Game.setup = function(canvasId, window, config) {
     game.resources = {};
     game.state = new StateManager(game, {
         explore: new ExploreState(game),
-        exploremenu: new ExploreMenuState(game),
+        exploreMenu: new ExploreMenuState(game),
         cutscene: new CutSceneState(game),
         battle: new BattleState(game),
         loading: new LoadingState(game),
-        enterbattle: new EnterBattleState(game)
+        enterBattle: new EnterBattleState(game)
     });
     game.state.switch('loading');
 
