@@ -105,7 +105,7 @@ World.prototype.draw = function (ctx, v, res) {
 
     entities.sort(function(a, b) { return a.y - b.y; });
     entities.forEach(function(obj) {
-        if (obj.dead) {
+        if (obj.disabled) {
             return;
         }
 
@@ -143,17 +143,20 @@ World.prototype.update = function () {
     var player = this.player;
 
     this.entities.forEach(function(entity) {
-        if (entity.dead) {
+        if (entity.disabled) {
             return;
         }
         entity.update();
     });
 
     this.events.forEach(function(event) {
+        if (event.disabled) {
+            return;
+        }
         AABB.collision(player, event, self.collideEvent);
     });
     this.enemies.forEach(function(enemy) {
-        if (enemy.dead) {
+        if (enemy.disabled) {
             return;
         }
         AABB.collision(player, enemy, self.collideEnemy);
@@ -193,5 +196,12 @@ World.prototype.collideEnemy = function(player, enemy, distX, distY, correctX, c
 
     this.game.state.switch('enterBattle');
 }
+
+World.prototype.refresh = function () {
+    this.events.forEach(function(event) {
+        event.refresh();
+    });
+}
+
 
 module.exports = World;

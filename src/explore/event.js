@@ -1,3 +1,4 @@
+var scopedEval = require('../utils/scoped-eval');
 var Actor = require('./actor');
 
 function Event(world, id, config, pages) {
@@ -7,17 +8,31 @@ function Event(world, id, config, pages) {
     this.x = config.cx;
     this.y = config.cy;
     this.eventId = id;
-    this.loadPage(pages[0]);
+    this.refresh();
 }
 
 Event.prototype = Object.create(Actor.prototype);
 
 Event.prototype.loadPage = function (page) {
     var config = this.currentPage = page;
+    this.disabled = false;
     this.sprite = config.sprite;
     this.width = config.width || 14;
     this.height = config.height || 8;
     this.commands = config.commands;
+}
+
+Event.prototype.refresh = function () {
+    var pages = this.pages;
+    for (var i = this.pages.length-1; i >= 0; i--) {
+        var page = pages[i];
+        console.error(page);
+        if (!page.cond || scopedEval(page.cond, this.game.data, {})) {
+            this.loadPage(page);
+            return;
+        }
+    }
+    this.disabled = true;
 }
 
 Event.prototype.trigger = function (event) {

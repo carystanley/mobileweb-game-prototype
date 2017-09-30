@@ -23,6 +23,7 @@ var Commands = {
     },
     setFlag: function(context, params, done) {
         context.game.data.setFlag(params.id, params.value);
+        context.game.state.explore.world.refresh();
         done();
     },
     joinParty: function(context, params, done) {

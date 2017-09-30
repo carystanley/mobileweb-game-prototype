@@ -18,7 +18,7 @@ EnterBattleState.prototype.update = function () {
             var dy = player.y - enemy.y;
             if ((dx*dx)+(dy*dy) < (2500)) {
                 attacking.push(enemy);
-                enemy.dead = true;
+                enemy.disabled = true;
             }
         });
         this.game.state.switch('battle', attacking);

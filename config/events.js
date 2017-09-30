@@ -10,6 +10,18 @@ window.EVENTS = {
             {cmd: 'fadeIn', ticks: 60}
         ]
     }],
+    'robot': [{
+        sprite: 7,
+        cond: "!flag('robot_explode')",
+        commands: [
+            {cmd: 'dialog', text: "I'm a Robot"},
+            {cmd: 'dialog', text: 'Initiate Self Destruct'},
+            {cmd: 'dialog', text: 'one two three'},
+            {cmd: 'fadeOut', ticks: 30},
+            {cmd: 'setFlag', id: 'robot_explode', value: true},
+            {cmd: 'fadeIn', ticks: 60}
+        ]
+    }],
     'ouch': [{
         sprite: 1,
         commands: [
