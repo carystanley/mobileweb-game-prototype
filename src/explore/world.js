@@ -105,7 +105,7 @@ World.prototype.draw = function (ctx, v, res) {
 
     entities.sort(function(a, b) { return a.y - b.y; });
     entities.forEach(function(obj) {
-        if (obj.disabled) {
+        if (obj.inactive) {
             return;
         }
 
@@ -143,20 +143,20 @@ World.prototype.update = function () {
     var player = this.player;
 
     this.entities.forEach(function(entity) {
-        if (entity.disabled) {
+        if (entity.inactive) {
             return;
         }
         entity.update();
     });
 
     this.events.forEach(function(event) {
-        if (event.disabled) {
+        if (event.inactive) {
             return;
         }
         AABB.collision(player, event, self.collideEvent);
     });
     this.enemies.forEach(function(enemy) {
-        if (enemy.disabled) {
+        if (enemy.inactive) {
             return;
         }
         AABB.collision(player, enemy, self.collideEnemy);

@@ -15,7 +15,7 @@ Event.prototype = Object.create(Actor.prototype);
 
 Event.prototype.loadPage = function (page) {
     var config = this.currentPage = page;
-    this.disabled = false;
+    this.inactive = false;
     this.sprite = config.sprite;
     this.width = config.width || 14;
     this.height = config.height || 8;
@@ -26,13 +26,12 @@ Event.prototype.refresh = function () {
     var pages = this.pages;
     for (var i = this.pages.length-1; i >= 0; i--) {
         var page = pages[i];
-        console.error(page);
         if (!page.cond || scopedEval(page.cond, this.game.data, {})) {
             this.loadPage(page);
             return;
         }
     }
-    this.disabled = true;
+    this.inactive = true;
 }
 
 Event.prototype.trigger = function (event) {
