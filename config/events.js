@@ -10,6 +10,15 @@ window.EVENTS = {
             {cmd: 'fadeIn', ticks: 60}
         ]
     }],
+    'alert': [{
+        sprite: -1,
+        trigger: 'contact',
+        cond: "!flag('gave_alert')",
+        commands: [
+            {cmd: 'dialog', text: "ALERT all students we are being attacked by Mushrooms"},
+            {cmd: 'setFlag', id: 'gave_alert', value: true}
+        ]
+    }],
     'robot': [{
         sprite: 7,
         cond: "!flag('robot_explode')",

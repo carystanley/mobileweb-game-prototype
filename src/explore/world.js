@@ -180,7 +180,9 @@ World.prototype.collideEvent = function(player, event, distX, distY, correctX, c
     if (player.goalEvent === event) {
         player.going = false;
         player.goalEvent = null;
-        event.trigger();
+        event.triggerEvent('action');
+    } else {
+        event.triggerEvent('contact');
     }
 }
 

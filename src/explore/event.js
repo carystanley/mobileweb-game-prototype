@@ -20,6 +20,7 @@ Event.prototype.loadPage = function (page) {
     this.width = config.width || 14;
     this.height = config.height || 8;
     this.commands = config.commands;
+    this.trigger = config.trigger || 'action';
 }
 
 Event.prototype.refresh = function () {
@@ -34,8 +35,8 @@ Event.prototype.refresh = function () {
     this.inactive = true;
 }
 
-Event.prototype.trigger = function (event) {
-    if (this.commands) {
+Event.prototype.triggerEvent = function (type) {
+    if ((type === this.trigger) && this.commands) {
         this.game.state.switch('cutscene', this.commands);
     }
 }
