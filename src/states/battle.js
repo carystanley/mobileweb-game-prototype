@@ -45,18 +45,21 @@ BattleState.prototype.drawPanel = function (ctx, res, name, hp) {
     );
     var num = this.hp;
     var roll = Math.floor((num % 1) * 8);
+    var lastDigit = 9;
 
     for (var i = 0; i < 3; i++) {
-        var digit = Math.floor(num % 10) * 8;
-        if (i === 0 || digit === 9) {
-            digit += roll;
+        var digit = Math.floor(num % 10);
+        var offset = digit * 8;
+        if (lastDigit === 9) {
+            offset += roll;
         }
         num = num / 10;
         ctx.drawImage(
             res.odometer,
-            digit * 9, 0, 8, 8,
+            offset * 9, 0, 8, 8,
             x + 15 - (i * 8), y + 12, 8, 8
         );
+        lastDigit = digit;
     }
 }
 
