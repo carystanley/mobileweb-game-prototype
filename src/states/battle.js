@@ -45,12 +45,12 @@ BattleState.prototype.drawPanel = function (ctx, res, name, hp) {
     );
     var num = this.hp;
     var roll = Math.floor((num % 1) * 8);
-    var lastDigit = 9;
+    var rolling = true;
 
     for (var i = 0; i < 3; i++) {
         var digit = Math.floor(num % 10);
         var offset = digit * 8;
-        if (lastDigit === 9) {
+        if (rolling) {
             offset += roll;
         }
         num = num / 10;
@@ -59,7 +59,7 @@ BattleState.prototype.drawPanel = function (ctx, res, name, hp) {
             offset * 9, 0, 8, 8,
             x + 15 - (i * 8), y + 12, 8, 8
         );
-        lastDigit = digit;
+        rolling = digit === 9 && rolling;
     }
 }
 
