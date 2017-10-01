@@ -23,10 +23,10 @@ BattleState.prototype.update = function () {
     this.background.update();
     this.state.update();
     if (this.hp > 0) {
-        this.hp -= 1/8;
+        this.hp -= 1/16;
     } else {
         this.hp = 0;
-    } 
+    }
 }
 
 BattleState.prototype.draw = function (ctx, res) {
@@ -44,10 +44,13 @@ BattleState.prototype.drawPanel = function (ctx, res, name, hp) {
         x - 30, y, 60, 35
     );
     var num = this.hp;
-    var digit;
+    var roll = Math.floor((num % 1) * 8);
 
     for (var i = 0; i < 3; i++) {
-        digit = Math.floor(num % 10 * 8);
+        var digit = Math.floor(num % 10) * 8;
+        if (i === 0 || digit === 9) {
+            digit += roll;
+        }
         num = num / 10;
         ctx.drawImage(
             res.odometer,
