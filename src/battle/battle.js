@@ -1,9 +1,16 @@
 
-function Battle(game, enemies) {
+function Battle(game) {
     this.game = game;
+}
+
+Battle.prototype.setup = function (enemies) {
+    var game = this.game;
+    console.error(enemies);
+    return;
+
     this.addPlayerCharacters(game);
     this.addEnemies(game, enemies);
-    this.turnOrder = [this.pcs, this.enemies];
+    this.turnOrder = [this.pcs, this.enemies]
 }
 
 Battle.prototype.getPlayerCharacters = function () {
