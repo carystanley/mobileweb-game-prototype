@@ -1,12 +1,21 @@
 var StateManager = require('../utils/statemanager');
+
 var BattleMenuState = require('./battle-menu');
+var BattleEnemyChooseState = require('./battle-enemychoose');
+var BattleStartTurnState = require('./battle-startturn');
+var BattleTurnState = require('./battle-turn');
+var BattleEndTurnState = require('./battle-endturn');
 
 var BattleBackground = require('../ui/battlebackground');
 
 function BattleState(game) {
     this.game = game;
     this.state = new StateManager(game, {
-        menu: new BattleMenuState(game)
+        menu: new BattleMenuState(game),
+        menu: new BattleEnemyChooseState(game),
+        menu: new BattleStartTurnState(game),
+        menu: new BattleTurnState(game),
+        menu: new BattleEndTurnState(game)
     });
 }
 

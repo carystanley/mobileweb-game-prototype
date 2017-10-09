@@ -18,4 +18,17 @@ Battle.prototype.tick = function () {
     // for each PC roll HP toward goal
 }
 
+Battle.prototype.isWon = function () {
+    this.enemies.every(function (enemy) {
+        return enemy.isDead();
+    });
+}
+
+Battle.prototype.isLost = function () {
+    this.pcs.every(function (player) {
+        return player.isDead();
+    });
+}
+
+
 module.exports = Battle;
