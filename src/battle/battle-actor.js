@@ -1,16 +1,21 @@
 
-/*
-hp
-maxhp (based on vitality)
-X maxpp (based on IQ)
-rollhp - for PC
-offense
-defense
-guts
-luck
-speed
-missRate (based on weapon OR enemy) often 1/16
-
-*/
-
 // http://walkthrough.starmen.net/earthbound/enemylist_full.php
+
+function BattleActor(settings) {
+    this.type = settings.type;
+    this.hp = settings.hp;
+    this.maxhp = settings.maxhp;
+    this.rollhp = settings.rollhp;
+    this.offense = settings.offense;
+    this.defense = settings.defense;
+    this.guts = settings.guts;
+    this.luck = settings.luck;
+    this.speed = settings.speed;
+    this.missRate = settings.missRate;
+}
+
+BattleActor.prototype.isDead = function () {
+
+}
+
+module.exports = BattleActor;

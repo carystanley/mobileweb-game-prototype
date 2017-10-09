@@ -12,7 +12,7 @@ var BattleBackground = require('../ui/battlebackground');
 
 function BattleState(game) {
     this.game = game;
-    this.battle = new Battle();
+    this.battle = new Battle(game);
     this.state = new StateManager(game, {
         menu: new BattleMenuState(game, this, this.battle),
         enemy: new BattleEnemyChooseState(game, this, this.battle),

@@ -6,6 +6,7 @@ function Enemy (world, spawn, config) {
         y: spawn.cy,
         sprite: config.sprite
     });
+    this.type = spawn.type;
 }
 
 Enemy.prototype = Object.create(Actor.prototype);
