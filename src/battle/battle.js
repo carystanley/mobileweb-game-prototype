@@ -16,7 +16,8 @@ Battle.prototype.addPlayerCharacters = function () {
     game.data.party.forEach(function (id) {
         var pcData = game.data.members[id] || {};
         pcActors.push({
-            sprite: pcData.sprite
+            sprite: pcData.sprite,
+            hp: 123
         })
     })
     this.pcs = pcActors;
@@ -43,7 +44,13 @@ Battle.prototype.getEnemies = function () {
 }
 
 Battle.prototype.tick = function () {
-    // for each PC roll HP toward goal
+    this.pcs.forEach(function (pc) {
+        if (pc.hp > 0) {
+            pc.hp -= 1/16;
+        } else {
+            pc.hp = 0;
+        }
+    })
 }
 
 Battle.prototype.isWon = function () {

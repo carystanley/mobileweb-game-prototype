@@ -29,27 +29,30 @@ BattleState.prototype.init = function () {
 BattleState.prototype.enter = function (enemies) {
     this.battle.setup(enemies);
     this.state.switch('menu');
-    this.hp = 123;
 }
 
 BattleState.prototype.update = function () {
     this.background.update();
     this.state.update();
-    if (this.hp > 0) {
-        this.hp -= 1/16;
-    } else {
-        this.hp = 0;
-    }
+    this.battle.tick();
 }
 
 BattleState.prototype.draw = function (ctx, res) {
+    var self = this;
     this.background.draw(ctx);
-    this.drawPanel(ctx, res, 'Cary');
+    var pcs = this.battle.getPlayerCharacters();
+    var pcCount = pcs.length;
+    var spacing = 64;
+    var length = ((pcCount-1) * spacing);
+    pcs.forEach(function (pc, idx) {
+        var offset = ((-length/2) + (idx * spacing));
+        self.drawPanel(ctx, res, 'Cary', pc.hp, offset);
+    });
     this.state.draw(ctx, res);
 }
 
-BattleState.prototype.drawPanel = function (ctx, res, name, hp) {
-    var x = this.game.getWidth()/2;
+BattleState.prototype.drawPanel = function (ctx, res, name, num, xOffset) {
+    var x = this.game.getWidth()/2 + xOffset;
     var y = this.game.getHeight() - 22;
     ctx.drawImage(
         res.statuspanel,
@@ -61,7 +64,6 @@ BattleState.prototype.drawPanel = function (ctx, res, name, hp) {
     var nameLen = font.measureText(name);
     font.drawText(ctx, name, x - (nameLen/2), y);
 
-    var num = this.hp;
     var roll = Math.floor((num % 1) * 8);
     var rolling = true;
 

@@ -143,7 +143,7 @@
                  "name":"basic6",
                  "properties":
                     {
-                     "probability":50
+                     "probability":100
                     },
                  "propertytypes":
                     {
@@ -153,8 +153,8 @@
                  "type":"basic",
                  "visible":true,
                  "width":16,
-                 "x":160,
-                 "y":64
+                 "x":96,
+                 "y":80
                 }],
          "opacity":1,
          "type":"objectgroup",
