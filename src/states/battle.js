@@ -42,18 +42,15 @@ BattleState.prototype.draw = function (ctx, res) {
     this.background.draw(ctx);
     var pcs = this.battle.getPlayerCharacters();
     var pcCount = pcs.length;
-    var spacing = 64;
-    var length = ((pcCount-1) * spacing);
     pcs.forEach(function (pc, idx) {
-        var offset = ((-length/2) + (idx * spacing));
-        self.drawPanel(ctx, res, 'Cary', pc.hp, offset);
+        var x = self.game.layout.centeredEvenlySpaced(idx, pcCount, 64);
+        var y = self.game.layout.fromBottom(22);
+        self.drawPanel(ctx, res, 'Cary', pc.hp, x, y);
     });
     this.state.draw(ctx, res);
 }
 
-BattleState.prototype.drawPanel = function (ctx, res, name, num, xOffset) {
-    var x = this.game.getWidth()/2 + xOffset;
-    var y = this.game.getHeight() - 22;
+BattleState.prototype.drawPanel = function (ctx, res, name, num, x, y) {
     ctx.drawImage(
         res.statuspanel,
         0, 0, 60, 35,
