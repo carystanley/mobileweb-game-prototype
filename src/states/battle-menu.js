@@ -1,7 +1,9 @@
 var TextMenu = require('../ui/textmenu');
 
-function BattleMenuState(game) {
+function BattleMenuState(game, battleState, battle) {
     this.game = game;
+    this.battleState = battleState;
+    this.battle = battle;
 }
 
 BattleMenuState.prototype.init = function () {
@@ -43,7 +45,7 @@ BattleMenuState.prototype.setState = function (state) {
             break;
 
         case 'bash':
-            menus['base'].show();
+            this.setChoice('bash');
             break;
 
         case 'base':
@@ -53,7 +55,12 @@ BattleMenuState.prototype.setState = function (state) {
 }
 
 BattleMenuState.prototype.enter = function () {
-    this.setState('base');
+    if (this.battle.allChoosen()) {
+        this.battle.setEnemyChoices();
+        this.battleState.state.switch('turn');
+    } else {
+        this.setState('base');
+    }
 }
 
 BattleMenuState.prototype.update = function () {
@@ -64,12 +71,17 @@ BattleMenuState.prototype.onBaseMenu = function (option) {
     this.setState(option.id);
 }
 
-BattleMenuState.prototype.onGoodsMenu = function (option) {
+BattleMenuState.prototype.setChoice = function (option) {
+    this.battle.setChoice(option);
+    this.battleState.state.switch('menu');
+}
 
+BattleMenuState.prototype.onGoodsMenu = function (option) {
+    this.setChoice('good:' + option);
 }
 
 BattleMenuState.prototype.onPSIMenu = function (option) {
-
+    this.setChoice('psi:' + option);
 }
 
 BattleMenuState.prototype.onCancel = function () {
@@ -81,18 +93,11 @@ BattleMenuState.prototype.onCancel = function () {
             break;
 
         case 'base':
-            this.game.state.switch('explore');
+            break;
     }
 }
 
 BattleMenuState.prototype.draw = function (ctx, res) {
-    ctx.drawImage(
-        res.battlesprites,
-        0, 0, 64, 64,
-        ((this.game.ctx.canvas.width-64)/2) | 0,
-        ((this.game.ctx.canvas.height-64)/2) | 0,
-        64, 64
-    );
     for (var id in this.menus) {
         if (Object.prototype.hasOwnProperty.call(this.menus, id)) {
             this.menus[id].draw(ctx, res);

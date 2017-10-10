@@ -67,6 +67,28 @@ Battle.prototype.tick = function () {
     });
 }
 
+Battle.prototype.startRound = function () {
+    this.turnOrder.forEach(function (actor) {
+        actor.action = undefined;
+    })
+    this.cursor = 0;
+}
+
+Battle.prototype.setChoice = function (choice) {
+    this.pcs[this.cursor].choice = choice;
+    this.cursor++;
+}
+
+Battle.prototype.setEnemyChoices = function (choice) {
+    this.enemies.forEach(function (enemy, idx) {
+        enemy.choice = 'bash';
+    });
+}
+
+Battle.prototype.allChoosen = function () {
+    return (this.cursor >= this.pcs.length);
+}
+
 Battle.prototype.isWon = function () {
     this.enemies.every(function (enemy) {
         return enemy.isDead();

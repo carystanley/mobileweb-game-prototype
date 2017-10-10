@@ -3,7 +3,6 @@ var StateManager = require('../utils/statemanager');
 var Battle = require('../battle/battle');
 
 var BattleMenuState = require('./battle-menu');
-var BattleEnemyChooseState = require('./battle-enemychoose');
 var BattleStartTurnState = require('./battle-startturn');
 var BattleTurnState = require('./battle-turn');
 var BattleEndTurnState = require('./battle-endturn');
@@ -15,7 +14,6 @@ function BattleState(game) {
     this.battle = new Battle(game);
     this.state = new StateManager(game, {
         menu: new BattleMenuState(game, this, this.battle),
-        enemy: new BattleEnemyChooseState(game, this, this.battle),
         startturn: new BattleStartTurnState(game, this, this.battle),
         turn: new BattleTurnState(game, this, this.battle),
         endturn: new BattleEndTurnState(game, this, this.battle)
@@ -28,7 +26,7 @@ BattleState.prototype.init = function () {
 
 BattleState.prototype.enter = function (enemies) {
     this.battle.setup(enemies);
-    this.state.switch('menu');
+    this.state.switch('startturn');
 }
 
 BattleState.prototype.update = function () {
@@ -39,8 +37,19 @@ BattleState.prototype.update = function () {
 
 BattleState.prototype.draw = function (ctx, res) {
     this.background.draw(ctx);
+    this.drawEnemies(ctx, res);
     this.drawPanels(ctx, res);
     this.state.draw(ctx, res);
+}
+
+BattleState.prototype.drawEnemies = function (ctx, res) {
+    ctx.drawImage(
+        res.battlesprites,
+        0, 0, 64, 64,
+        ((this.game.ctx.canvas.width-64)/2) | 0,
+        ((this.game.ctx.canvas.height-64)/2) | 0,
+        64, 64
+    );
 }
 
 BattleState.prototype.drawPanels = function (ctx, res) {
