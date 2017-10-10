@@ -10,13 +10,16 @@ Data.prototype.init = function() {
     this.party = ['hero', 'girl'];
     this.members = {
         hero: {
-            sprite: 0
+            sprite: 0,
+            name: 'Izumi'
         },
         girl: {
-            sprite: 1
+            sprite: 1,
+            name: 'Asami'
         },
         bully: {
-            sprite: 2
+            sprite: 2,
+            name: 'Ryoko'
         }
     }
     this.flags = {};

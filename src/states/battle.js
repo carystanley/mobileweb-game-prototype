@@ -52,8 +52,17 @@ BattleState.prototype.drawPanels = function (ctx, res) {
         var x = layout.centeredEvenlySpaced(idx, pcCount, 64);
         var y = layout.fromBottom(22);
 
-        var num = pc.hp;
-        var name = 'Cary';
+        var num = pc.rollhp;
+        var name = pc.name;
+        var sprite = pc.sprite;
+        var frame = 4;
+        var spriteOffset = pc.offset;
+
+        ctx.drawImage(
+            res.sprites,
+            frame * 24, sprite * 32, 24, 32,
+            (x - 12) | 0, (y - spriteOffset) | 0, 24, 32
+        );
 
         ctx.drawImage(
             res.statuspanel,

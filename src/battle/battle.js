@@ -1,3 +1,10 @@
+var Helpers = require('../utils/helpers');
+var transition = Helpers.transition;
+
+var PC_OFFSET_DELTA = 1/2;
+var PC_OFFSET_MAX = 20;
+var PC_OFFSET_MIN = 0;
+var ROLL_DELTA = 1/16;
 
 function Battle(game) {
     this.game = game;
@@ -7,6 +14,7 @@ Battle.prototype.setup = function (enemies) {
     this.addPlayerCharacters();
     this.addEnemies(enemies);
     this.turnOrder = [].concat(this.pcs, this.enemies);
+    this.cursor = 0;
 }
 
 Battle.prototype.addPlayerCharacters = function () {
@@ -17,7 +25,10 @@ Battle.prototype.addPlayerCharacters = function () {
         var pcData = game.data.members[id] || {};
         pcActors.push({
             sprite: pcData.sprite,
-            hp: 123
+            name: pcData.name,
+            hp: 123,
+            rollhp: 123,
+            offset: 0
         })
     })
     this.pcs = pcActors;
@@ -44,13 +55,16 @@ Battle.prototype.getEnemies = function () {
 }
 
 Battle.prototype.tick = function () {
-    this.pcs.forEach(function (pc) {
-        if (pc.hp > 0) {
-            pc.hp -= 1/16;
+    var cursor = this.cursor;
+    this.pcs.forEach(function (pc, idx) {
+        pc.rollhp = transition(pc.rollhp, pc.hp, ROLL_DELTA);
+
+        if (cursor === idx) {
+            pc.offset = transition(pc.offset, PC_OFFSET_MAX, PC_OFFSET_DELTA);
         } else {
-            pc.hp = 0;
+            pc.offset = transition(pc.offset, PC_OFFSET_MIN, PC_OFFSET_DELTA);
         }
-    })
+    });
 }
 
 Battle.prototype.isWon = function () {
