@@ -26,8 +26,8 @@ Battle.prototype.addPlayerCharacters = function () {
         pcActors.push({
             sprite: pcData.sprite,
             name: pcData.name,
-            hp: 123,
-            rollhp: 123,
+            hp: 10,
+            rollhp: 10,
             offset: 0
         })
     })

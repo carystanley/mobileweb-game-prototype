@@ -10,7 +10,10 @@ BattleTurnState.prototype.init = function () {
 }
 
 BattleTurnState.prototype.enter = function () {
-
+    this.battle.turnOrder.forEach(function (actor) {
+        actor.hp -= 2;
+    });
+    this.battleState.state.switch('startturn');
 }
 
 BattleTurnState.prototype.update = function () {
