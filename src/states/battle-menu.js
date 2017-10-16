@@ -56,7 +56,7 @@ BattleMenuState.prototype.setState = function (state) {
 
 BattleMenuState.prototype.enter = function () {
     if (this.battle.allChoosen()) {
-        this.battle.setEnemyChoices();
+        this.battle.setEnemyActions();
         this.battleState.state.switch('turn');
     } else {
         this.setState('base');
@@ -71,17 +71,17 @@ BattleMenuState.prototype.onBaseMenu = function (option) {
     this.setState(option.id);
 }
 
-BattleMenuState.prototype.setChoice = function (option) {
-    this.battle.setChoice(option);
+BattleMenuState.prototype.setChoice = function (option, param) {
+    this.battle.setAction(option, param);
     this.battleState.state.switch('menu');
 }
 
 BattleMenuState.prototype.onGoodsMenu = function (option) {
-    this.setChoice('good:' + option);
+    this.setChoice('good', option);
 }
 
 BattleMenuState.prototype.onPSIMenu = function (option) {
-    this.setChoice('psi:' + option);
+    this.setChoice('psi', option);
 }
 
 BattleMenuState.prototype.onCancel = function () {

@@ -70,18 +70,21 @@ Battle.prototype.tick = function () {
 Battle.prototype.startRound = function () {
     this.turnOrder.forEach(function (actor) {
         actor.action = undefined;
+        actor.action_param = undefined;
     })
     this.cursor = 0;
 }
 
-Battle.prototype.setChoice = function (choice) {
-    this.pcs[this.cursor].choice = choice;
+Battle.prototype.setAction = function (action, param) {
+    this.pcs[this.cursor].action = action;
+    this.pcs[this.cursor].action_param = param;
     this.cursor++;
 }
 
-Battle.prototype.setEnemyChoices = function (choice) {
+Battle.prototype.setEnemyActions = function () {
     this.enemies.forEach(function (enemy, idx) {
-        enemy.choice = 'bash';
+        enemy.action = 'bash';
+        enemy.action_param = undefined;
     });
 }
 
