@@ -13,6 +13,8 @@ function scopedEval(source, scope) {
 }
 */
 
+// https://gist.github.com/sukima/6088546
+
 function scopedEval(code, module, scope) {
     var func = new Function('module',
         'with(module){return(function(global,window,document){\"use strict\";return eval(\"' +
