@@ -4,6 +4,7 @@
 window.EVENTS = {
     'transport': [{
         sprite: -1,
+        trigger: 'contact',
         commands: [
             {cmd: 'fadeOut', ticks: 60},
             {cmd: 'transport', map: '$$params.map', location: '$$params.location'},

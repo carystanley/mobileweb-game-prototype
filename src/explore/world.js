@@ -177,6 +177,7 @@ World.prototype.collideEvent = function(player, event, distX, distY, correctX, c
     } else {
         player.y += ((distY > 0) ? 1 : -1) * correctY;
     }
+
     if (player.goalEvent === event) {
         player.going = false;
         player.goalEvent = null;

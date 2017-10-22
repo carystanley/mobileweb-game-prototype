@@ -58,29 +58,8 @@
                  "type":"transport",
                  "visible":true,
                  "width":16,
-                 "x":158,
+                 "x":156,
                  "y":112
-                }, 
-                {
-                 "height":16,
-                 "id":7,
-                 "name":"exit2",
-                 "properties":
-                    {
-                     "location":"class1",
-                     "map":"floor1"
-                    },
-                 "propertytypes":
-                    {
-                     "location":"string",
-                     "map":"string"
-                    },
-                 "rotation":0,
-                 "type":"transport",
-                 "visible":true,
-                 "width":16,
-                 "x":48,
-                 "y":48
                 }],
          "opacity":1,
          "type":"objectgroup",

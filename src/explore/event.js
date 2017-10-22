@@ -37,11 +37,13 @@ Event.prototype.refresh = function () {
 }
 
 Event.prototype.triggerEvent = function (type) {
-    if ((type === this.trigger) && this.commands) {
-        this.game.state.switch('cutscene', {
-            params: this.config.properties,
-            commands: this.commands
-        });
+    if (type === this.trigger || this.trigger === 'contact') {
+        if (this.commands) {
+            this.game.state.switch('cutscene', {
+                params: this.config.properties,
+                commands: this.commands
+            });
+        }
     }
 }
 
