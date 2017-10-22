@@ -14,9 +14,10 @@ CutSceneState.prototype.init = function () {
     this.done = this.done.bind(this);
 }
 
-CutSceneState.prototype.enter = function (commands) {
+CutSceneState.prototype.enter = function (data) {
     this.dialog.reset();
-    this.interpreter.run(commands, this, this.done);
+    this.params = data.params;
+    this.interpreter.run(data.commands, this, this.done);
 }
 
 CutSceneState.prototype.update = function () {

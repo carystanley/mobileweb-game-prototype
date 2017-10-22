@@ -1,6 +1,20 @@
+var getobjvalue = require('./utils/getobjvalue');
+
+function x(context, value) {
+    if (typeof value === 'string') {
+        if (value.substr(0, 2) === '$$') {
+            return getobjvalue(context, value.substr(2));
+        }
+    }
+    return value;
+}
+
 var Commands = {
     transport: function(context, params, done) {
-        context.game.state.explore.mapTransport(params.map, params.location);
+        context.game.state.explore.mapTransport(
+            x(context, params.map),
+            x(context, params.location)
+        );
         done();
     },
     dialog: function(context, params, done) {

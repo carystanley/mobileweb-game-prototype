@@ -7,6 +7,7 @@ function Event(world, id, config, pages) {
     this.pages = pages;
     this.x = config.cx;
     this.y = config.cy;
+    this.config = config;
     this.eventId = id;
     this.refresh();
 }
@@ -37,7 +38,10 @@ Event.prototype.refresh = function () {
 
 Event.prototype.triggerEvent = function (type) {
     if ((type === this.trigger) && this.commands) {
-        this.game.state.switch('cutscene', this.commands);
+        this.game.state.switch('cutscene', {
+            params: this.config.properties,
+            commands: this.commands
+        });
     }
 }
 
