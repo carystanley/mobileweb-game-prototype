@@ -60,11 +60,12 @@ Map.prototype.render = function(layers, resources) {
     var width = self.width;
     var tileheight = self.tileheight;
     var tilewidth = self.tilewidth;
-    var tileSets = self.tilesets.reverse();
+    var tileSets = self.tilesets.slice().reverse();
     var mapHeight = self.mapHeight;
     var mapWidth = self.mapWidth;
     var mapCanvas = Canvas.create(mapWidth, mapHeight);
     var ctx = mapCanvas.getContext('2d');
+
     layers.forEach(function(layerId) {
         for (var y = 0; y < height; y++) {
             for (var x = 0; x < width; x++) {
