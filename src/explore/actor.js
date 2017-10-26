@@ -17,7 +17,8 @@ function Actor (world, config) {
     this.height = 8;
     this.world = world;
     this.sprite = config.sprite;
-    this.frame = 4;
+    this.facing = config.facing || 'down';
+    this.frame = baseAnimationConfig[this.facing].frames[0];
     this.animation = new AnimationManager(baseAnimationConfig);
 }
 
@@ -52,6 +53,7 @@ Actor.prototype.step = function (dx, dy) {
             this.animation.play(facing);
         }
         this.animation.update();
+        this.facing = facing;
     } else {
         this.animation.stop();
     }

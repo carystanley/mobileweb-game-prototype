@@ -13,7 +13,7 @@ function World(game) {
     this.collideEnemy = this.collideEnemy.bind(this);
 }
 
-World.prototype.buildParty = function(x, y) {
+World.prototype.buildParty = function(x, y, facing) {
     var self = this;
     var party = [];
     var isFirst = true;
@@ -21,12 +21,12 @@ World.prototype.buildParty = function(x, y) {
 
     for (var i = 0; i < MAX_PARTY_SIZE; i++) {
         if (isFirst) {
-            lastMemeber = new Player(self, {x: x, y: y, sprite: -1});
+            lastMemeber = new Player(self, {x: x, y: y, facing: facing, sprite: -1});
             self.player = lastMemeber;
             party.push(lastMemeber);
             isFirst = false;
         } else {
-            lastMemeber = new Follower(self, {x: x, y: y, sprite: -1}, lastMemeber);
+            lastMemeber = new Follower(self, {x: x, y: y, facing: facing, sprite: -1}, lastMemeber);
             party.push(lastMemeber);
         }
     }
@@ -55,7 +55,7 @@ World.prototype.loadMap = function(mapId, locationId) {
     this.map = game.resources[mapId];
     this.mapImage = this.map.render(['layer0', 'layer1'], game.resources);
     var start = this.map.layers.locations[locationId];
-    this.party = this.buildParty(start.cx, start.cy);
+    this.party = this.buildParty(start.cx, start.cy, start.facing);
     this.refreshParty();
 
     var events = [];

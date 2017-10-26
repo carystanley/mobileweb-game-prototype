@@ -15,6 +15,9 @@ function Map (config) {
                     var locations = {};
                     layer.objects.forEach(function (location) {
                         locations[location.name] = location;
+                        if (location.properties) {
+                            location.facing = location.properties.facing;
+                        }
                     })
                     layers[name] = locations;
                     break;
