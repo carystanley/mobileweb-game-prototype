@@ -6,6 +6,8 @@ var Event = require('./event');
 
 var MAX_PARTY_SIZE = 4;
 
+var DEBUG = false;
+
 function World(game) {
     this.game = game;
     this.correctionWall = this.correctionWall.bind(this);
@@ -115,18 +117,31 @@ World.prototype.draw = function (ctx, v, res) {
                 obj.frame * 24, obj.sprite * 32, 24, 32,
                 (obj.x - 12 - v.x) | 0, (obj.y - 27 - v.y) | 0, 24, 32
             );
-            /* Debug
+            if (DEBUG) {
+                ctx.beginPath();
+                ctx.strokeStyle = 'red';
+                ctx.rect(
+                    obj.x - v.x - obj.width/2, obj.y - v.y - obj.height/2,
+                    obj.width, obj.height
+                );
+                ctx.stroke();
+                ctx.closePath();
+            }
+        }
+    });
+
+    if (DEBUG) {
+        this.events.forEach(function(obj) {
             ctx.beginPath();
-            ctx.strokeStyle = "red";
+            ctx.strokeStyle = 'green';
             ctx.rect(
                 obj.x - v.x - obj.width/2, obj.y - v.y - obj.height/2,
                 obj.width, obj.height
             );
             ctx.stroke();
             ctx.closePath();
-            */
-        }
-    });
+        });
+    }
 
     if (player.goalRadius > 0) {
         ctx.fillStyle = 'rgba(170, 170, 170, 0.5)';
