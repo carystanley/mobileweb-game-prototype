@@ -24,6 +24,8 @@ function Actor (world, config) {
 
 Actor.prototype.step = function (dx, dy) {
     var facing = null;
+    var hw = this.width/2;
+    var hh = this.height/2;
 
     this.prevX = this.x;
     this.prevY = this.y;
@@ -31,10 +33,10 @@ Actor.prototype.step = function (dx, dy) {
     this.submove(dx, 0);
     this.submove(0, dy);
 
-    this.x = Math.min(this.x, this.world.width);
-    this.x = Math.max(this.x, 0);
-    this.y = Math.min(this.y, this.world.height);
-    this.y = Math.max(this.y, 0);
+    this.x = Math.min(this.x, this.world.width - hw);
+    this.x = Math.max(this.x, hw);
+    this.y = Math.min(this.y, this.world.height - hh);
+    this.y = Math.max(this.y, hh);
 
     if (dx > 0) {
         facing = 'right';
