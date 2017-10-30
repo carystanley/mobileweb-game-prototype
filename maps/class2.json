@@ -46,7 +46,7 @@
                  "name":"exit",
                  "properties":
                     {
-                     "location":"fromClass1",
+                     "location":"fromClass2",
                      "map":"floor1"
                     },
                  "propertytypes":

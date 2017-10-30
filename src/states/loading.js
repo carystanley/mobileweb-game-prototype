@@ -4,6 +4,8 @@ var BitmapFont = require('../bitmapfont');
 var Map = require('../explore/map');
 var floor1 = require('../../maps/floor1.json');
 var class1 = require('../../maps/class1.json');
+var class2 = require('../../maps/class2.json');
+var class3 = require('../../maps/class3.json');
 
 function loadImage(url, onload) {
     var image = new Image();
@@ -38,6 +40,8 @@ LoadingState.prototype.enter = function () {
         pattern: loadImage('./images/pattern.png', doneCheck),
         floor1: new Map(floor1),
         class1: new Map(class1),
+        class2: new Map(class2),
+        class3: new Map(class3),
         layer0: loadImage('./images/layer0.png', doneCheck),
         layer1: loadImage('./images/layer1.png', doneCheck),
         odometer: loadImage('./images/odometer.png', doneCheck),
