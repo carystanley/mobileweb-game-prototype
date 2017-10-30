@@ -38,6 +38,7 @@
          "name":"locations",
          "objects":[
                 {
+                 "ellipse":true,
                  "height":16,
                  "id":14,
                  "name":"start",
@@ -49,6 +50,7 @@
                  "y":64
                 }, 
                 {
+                 "ellipse":true,
                  "height":16,
                  "id":28,
                  "name":"class1",
@@ -78,6 +80,7 @@
          "name":"spawns",
          "objects":[
                 {
+                 "ellipse":true,
                  "height":16,
                  "id":16,
                  "name":"basic1",
@@ -89,6 +92,7 @@
                  "y":64
                 }, 
                 {
+                 "ellipse":true,
                  "height":16,
                  "id":17,
                  "name":"basic2",
@@ -100,6 +104,7 @@
                  "y":64
                 }, 
                 {
+                 "ellipse":true,
                  "height":16,
                  "id":19,
                  "name":"basic3",
@@ -119,6 +124,7 @@
                  "y":80
                 }, 
                 {
+                 "ellipse":true,
                  "height":16,
                  "id":20,
                  "name":"basic4",
@@ -138,6 +144,7 @@
                  "y":80
                 }, 
                 {
+                 "ellipse":true,
                  "height":16,
                  "id":21,
                  "name":"basic5",
@@ -155,25 +162,6 @@
                  "width":16,
                  "x":192,
                  "y":48
-                }, 
-                {
-                 "height":16,
-                 "id":22,
-                 "name":"basic6",
-                 "properties":
-                    {
-                     "probability":100
-                    },
-                 "propertytypes":
-                    {
-                     "probability":"int"
-                    },
-                 "rotation":0,
-                 "type":"basic",
-                 "visible":true,
-                 "width":16,
-                 "x":96,
-                 "y":80
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -186,6 +174,7 @@
          "name":"events",
          "objects":[
                 {
+                 "ellipse":true,
                  "height":16,
                  "id":2,
                  "name":"snatch",
@@ -205,6 +194,7 @@
                  "y":48
                 }, 
                 {
+                 "ellipse":true,
                  "height":16,
                  "id":4,
                  "name":"banana_guru",
@@ -216,6 +206,7 @@
                  "y":80
                 }, 
                 {
+                 "ellipse":true,
                  "height":16,
                  "id":5,
                  "name":"ouch",
@@ -227,6 +218,7 @@
                  "y":48
                 }, 
                 {
+                 "ellipse":true,
                  "height":16,
                  "id":6,
                  "name":"bully_join",
@@ -259,6 +251,7 @@
                  "y":43
                 }, 
                 {
+                 "ellipse":true,
                  "height":16,
                  "id":23,
                  "name":"robot",
@@ -270,7 +263,7 @@
                  "y":64
                 }, 
                 {
-                 "height":48,
+                 "height":80,
                  "id":25,
                  "name":"alert",
                  "rotation":0,

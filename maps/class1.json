@@ -72,6 +72,7 @@
          "name":"locations",
          "objects":[
                 {
+                 "ellipse":true,
                  "height":16,
                  "id":3,
                  "name":"door",
