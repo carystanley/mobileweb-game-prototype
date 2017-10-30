@@ -7,6 +7,10 @@ function Event(world, id, config, pages) {
     this.pages = pages;
     this.x = config.cx;
     this.y = config.cy;
+    if (!config.ellipse) {
+        this.width = config.width;
+        this.height = config.height;
+    }
     this.config = config;
     this.eventId = id;
     this.refresh();
@@ -18,8 +22,8 @@ Event.prototype.loadPage = function (page) {
     var config = this.currentPage = page;
     this.inactive = false;
     this.sprite = config.sprite;
-    this.width = config.width || 14;
-    this.height = config.height || 8;
+    // this.width = config.width || 14;
+    // this.height = config.height || 8;
     this.commands = config.commands;
     this.trigger = config.trigger || 'action';
 }
