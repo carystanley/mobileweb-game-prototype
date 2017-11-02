@@ -10,7 +10,7 @@ function WorldState(game) {
 WorldState.prototype.init = function () {
     this.viewport = new Viewport(this.game.ctx.canvas.width, this.game.ctx.canvas.height);
     this.world = new World(this.game);
-    this.world.loadMap('floor1', 'start');
+    this.world.loadMap('floor3', 'start');
     var basicFont = this.game.resources.basicfont;
     this.menuButton = new TextMenu(basicFont, 250, 135, 29, 20, 4, [
         {id: 'menu', text: 'Menu'}
