@@ -48,7 +48,10 @@ function Map (config) {
 }
 
 Map.prototype.get = function(layerId, x, y) {
-    return this.layers[layerId].data[x + y * this.width];
+    if (this.layers[layerId]) {
+        return this.layers[layerId].data[x + y * this.width];
+    }
+    return 0;
 }
 
 Map.prototype.collide = function(x, y) {

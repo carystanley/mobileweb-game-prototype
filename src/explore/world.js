@@ -56,6 +56,7 @@ World.prototype.loadMap = function(mapId, locationId) {
     var game = this.game;
     this.map = game.resources[mapId];
     this.mapImage = this.map.render(['layer0', 'layer1'], game.resources);
+    this.mapFrontImage = this.map.render(['layer2'], game.resources);
     var start = this.map.layers.locations[locationId];
     this.party = this.buildParty(start.cx, start.cy, start.facing);
     this.refreshParty();
@@ -142,6 +143,12 @@ World.prototype.draw = function (ctx, v, res) {
             ctx.closePath();
         });
     }
+
+    ctx.drawImage(
+        this.mapFrontImage,
+        v.x, v.y, v.width, v.height,
+        0, 0, v.width, v.height
+    );
 
     if (player.goalRadius > 0) {
         ctx.fillStyle = 'rgba(170, 170, 170, 0.5)';
