@@ -34,7 +34,7 @@ function LoadingState(game) {
 LoadingState.prototype.enter = function () {
     var self = this;
     var count = 0;
-    var total = 8;
+    var total = 7;
 
     function doneCheck() {
         count++;
@@ -61,7 +61,6 @@ LoadingState.prototype.enter = function () {
         class8: new Map(class8),
         class9: new Map(class9),
         layer0: loadImage('./images/layer0.png', doneCheck),
-        layer1: loadImage('./images/layer1.png', doneCheck),
         odometer: loadImage('./images/odometer.png', doneCheck),
         statuspanel: loadImage('./images/status-panel.png', doneCheck),
         battlesprites: loadImage('./images/battle-sprites.png', doneCheck)
