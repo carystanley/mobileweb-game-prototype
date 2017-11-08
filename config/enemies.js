@@ -20,8 +20,8 @@ window.ENEMIES = {
         battlesprite: 2,
         hp: 5
     },
-    'basic': {
-        name: '???',
+    'pleurotus': {
+        name: 'Pleurotus',
         sprite: 14,
         battlesprite: 3,
         hp: 5

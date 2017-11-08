@@ -145,7 +145,7 @@
                      "probability":"int"
                     },
                  "rotation":0,
-                 "type":"basic",
+                 "type":"pleurotus",
                  "visible":true,
                  "width":16,
                  "x":624,
