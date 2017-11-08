@@ -94,7 +94,7 @@
                  "ellipse":true,
                  "height":16,
                  "id":19,
-                 "name":"basic3",
+                 "name":"hochstetteri1",
                  "properties":
                     {
                      "probability":50
@@ -104,7 +104,7 @@
                      "probability":"int"
                     },
                  "rotation":0,
-                 "type":"basic",
+                 "type":"hochstetteri",
                  "visible":true,
                  "width":16,
                  "x":448,

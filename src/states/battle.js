@@ -43,13 +43,18 @@ BattleState.prototype.draw = function (ctx, res) {
 }
 
 BattleState.prototype.drawEnemies = function (ctx, res) {
-    ctx.drawImage(
-        res.battlesprites,
-        0, 0, 64, 64,
-        ((this.game.ctx.canvas.width-64)/2) | 0,
-        ((this.game.ctx.canvas.height-64)/2) | 0,
-        64, 64
-    );
+    var enemies = this.battle.getEnemies();
+    var canvas = this.game.ctx.canvas;
+    enemies.forEach(function(enemy) {
+        var spriteId = enemy.sprite;
+        ctx.drawImage(
+            res.battlesprites,
+            0, spriteId * 64, 64, 64,
+            ((canvas.width-64)/2) | 0,
+            ((canvas.height-64)/2) | 0,
+            64, 64
+        );
+    });
 }
 
 BattleState.prototype.drawPanels = function (ctx, res) {

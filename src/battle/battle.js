@@ -40,7 +40,8 @@ Battle.prototype.addEnemies = function (enemies) {
     enemies.forEach(function (enemy) {
         var enemyConfig = game.config.enemies[enemy.type] || {};
         enemyActors.push({
-            hp: enemyConfig.hp
+            hp: enemyConfig.hp,
+            sprite: enemyConfig.battlesprite
         })
     })
     this.enemies = enemyActors;
