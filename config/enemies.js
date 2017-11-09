@@ -4,19 +4,19 @@
 window.ENEMIES = {
     'perlatum': {
         name: 'Perlatum',
-        sprite: 14,
+        sprite: 22,
         battlesprite: 0,
         hp: 5
     },
     'shiitake': {
         name: 'Shiitake',
-        sprite: 14,
+        sprite: 24,
         battlesprite: 1,
         hp: 5
     },
     'hochstetteri': {
         name: 'Hochstetteri',
-        sprite: 14,
+        sprite: 23,
         battlesprite: 2,
         hp: 5
     },
