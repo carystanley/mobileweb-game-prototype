@@ -32,6 +32,15 @@ window.EVENTS = {
             {cmd: 'fadeIn', ticks: 60}
         ]
     }],
+    'ramenguy': [{
+        sprite: 13,
+        commands: [
+            {cmd: 'dialog', text: "Want some delicious ramen?"},
+            {cmd: 'fadeOut', ticks: 30},
+            {cmd: 'fadeIn', ticks: 30},
+            {cmd: 'dialog', text: 'You feel fully revived'}
+        ]
+    }],
     'ouch': [{
         sprite: 1,
         commands: [

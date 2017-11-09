@@ -124,13 +124,13 @@
                  "ellipse":true,
                  "height":16,
                  "id":23,
-                 "name":"robot",
+                 "name":"ramenguy",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":96,
-                 "y":80
+                 "x":144,
+                 "y":96
                 }, 
                 {
                  "height":8,
