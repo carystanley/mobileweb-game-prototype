@@ -6,6 +6,7 @@ var floor1 = require('../../maps/floor1.json');
 var floor2 = require('../../maps/floor2.json');
 var floor3 = require('../../maps/floor3.json');
 var roof = require('../../maps/roof.json');
+var roof2 = require('../../maps/roof2.json');
 var class1 = require('../../maps/class1.json');
 var class2 = require('../../maps/class2.json');
 var class3 = require('../../maps/class3.json');
@@ -51,6 +52,7 @@ LoadingState.prototype.enter = function () {
         floor2: new Map(floor2),
         floor3: new Map(floor3),
         roof: new Map(roof),
+        roof2: new Map(roof2),
         class1: new Map(class1),
         class2: new Map(class2),
         class3: new Map(class3),
