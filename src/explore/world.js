@@ -55,6 +55,7 @@ World.prototype.loadMap = function(mapId, locationId) {
     var self = this;
     var game = this.game;
     this.map = game.resources[mapId];
+    this.mapParallax = this.map.render(['layer-'], game.resources);
     this.mapImage = this.map.render(['layer0', 'layer1'], game.resources);
     this.mapFrontImage = this.map.render(['layer2'], game.resources);
     var start = this.map.layers.locations[locationId];
@@ -99,6 +100,12 @@ World.prototype.loadMap = function(mapId, locationId) {
 World.prototype.draw = function (ctx, v, res) {
     var player = this.player;
     var entities = this.entities;
+
+    ctx.drawImage(
+        this.mapParallax,
+        (v.x/16) | 0, (v.y/16) | 0, v.width, v.height,
+        0, 0, v.width, v.height
+    );
 
     ctx.drawImage(
         this.mapImage,
