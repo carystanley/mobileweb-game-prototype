@@ -41,6 +41,6 @@ https://opengameart.org/content/we-are-prophet-happy-energetic-tune
     https://yubatake.bandcamp.com/album/jrpg-collection-2
 (when things are good) https://opengameart.org/content/good-mood-theme-8-bit
 
-
+(more) https://soundcloud.com/abstraction/sets/ludum-dare-challenge
 
 Good for BeatEmUp: https://opengameart.org/content/funny-chase-8-bit-chiptune
