@@ -11,6 +11,52 @@ window.EVENTS = {
             {cmd: 'fadeIn', ticks: 60}
         ]
     }],
+    'ramenguy': [{
+        sprite: 13,
+        commands: [
+            {cmd: 'dialog', text: "Want some delicious ramen?"},
+            {cmd: 'fadeOut', ticks: 30},
+            {cmd: 'fadeIn', ticks: 30},
+            {cmd: 'dialog', text: 'You feel fully revived'}
+        ]
+    }],
+    'npc1': [{
+        sprite: 10,
+        commands: [
+            {cmd: 'dialog', text: "Don't talk to me Nerd"}
+        ]
+    }],
+    'npc2': [{
+        sprite: 11,
+        commands: [
+            {cmd: 'dialog', text: "GIRL is upstairs"}
+        ]
+    }],
+    'npc3': [{
+        sprite: 18,
+        commands: [
+            {cmd: 'dialog', text: "BULLY is looking for you, you better run"}
+        ]
+    }],
+    'npc4': [{
+        sprite: 19,
+        commands: [
+            {cmd: 'dialog', text: "I hear rumors that BULLY through someone off the roof at his last school"}
+        ]
+    }],
+    'npc5': [{
+        sprite: 20,
+        commands: [
+            {cmd: 'dialog', text: "Take a hike Nerd!"}
+        ]
+    }],
+    'npc6': [{
+        sprite: 12,
+        commands: [
+            {cmd: 'dialog', text: "My mom made me stinky tofu for lunch"},
+            {cmd: 'dialog', text: "I hate stinky tofu"}
+        ]
+    }],
     'alert': [{
         sprite: -1,
         trigger: 'contact',
@@ -32,15 +78,7 @@ window.EVENTS = {
             {cmd: 'fadeIn', ticks: 60}
         ]
     }],
-    'ramenguy': [{
-        sprite: 13,
-        commands: [
-            {cmd: 'dialog', text: "Want some delicious ramen?"},
-            {cmd: 'fadeOut', ticks: 30},
-            {cmd: 'fadeIn', ticks: 30},
-            {cmd: 'dialog', text: 'You feel fully revived'}
-        ]
-    }],
+
     'ouch': [{
         sprite: 1,
         commands: [

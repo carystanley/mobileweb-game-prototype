@@ -203,18 +203,6 @@
                  "y":42
                 }, 
                 {
-                 "ellipse":true,
-                 "height":16,
-                 "id":23,
-                 "name":"robot",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":16,
-                 "y":80
-                }, 
-                {
                  "height":8,
                  "id":26,
                  "name":"toClass7",
@@ -297,6 +285,30 @@
                  "width":32,
                  "x":56,
                  "y":42
+                }, 
+                {
+                 "ellipse":true,
+                 "height":16,
+                 "id":40,
+                 "name":"npc3",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":256,
+                 "y":80
+                }, 
+                {
+                 "ellipse":true,
+                 "height":16,
+                 "id":41,
+                 "name":"npc4",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":592,
+                 "y":64
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -304,7 +316,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":40,
+ "nextobjectid":44,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",
