@@ -46,7 +46,7 @@ BattleParticles.prototype.update = function (value, x, y, lifetime, vx, vy, ay) 
 }
 
 BattleParticles.prototype.draw = function (ctx, res) {
-    var font = res.basicfont;
+    var font = res.battlenumbersfont;
     for (var i = 0; i < MAX_PARTICLES; i++) {
         var particle = this.particles[i];
         if (particle.lifetime > 0) {
