@@ -22,12 +22,7 @@ BattleTurnState.prototype.enter = function () {
         this.battleState.state.switch('startturn');
     } else {
         var self = this;
-        this.currentAction = this.battle.getCurrentTurn();
-        var text = this.currentAction.action
-        if (this.currentAction.action_param) {
-            text += ' ' + this.currentAction.action_param.text;
-        }
-        this.battleState.dialog.showText(text, function () {
+        this.battleState.dialog.showText(this.battle.getCurrentTurnText(), function () {
             self.battle.executeTurn();
             self.battleState.state.switch('turn');
         });

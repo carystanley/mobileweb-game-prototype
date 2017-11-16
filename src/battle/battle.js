@@ -43,7 +43,8 @@ Battle.prototype.addEnemies = function (enemies) {
         var enemyConfig = game.config.enemies[enemy.type] || {};
         enemyActors.push({
             hp: enemyConfig.hp,
-            sprite: enemyConfig.battlesprite
+            sprite: enemyConfig.battlesprite,
+            name: enemyConfig.name
         })
     })
     this.enemies = enemyActors;
@@ -114,6 +115,15 @@ Battle.prototype.allChoosen = function () {
 
 Battle.prototype.getCurrentTurn = function () {
     return this.turnOrder[this.turnCursor];
+}
+
+Battle.prototype.getCurrentTurnText = function () {
+    var turn = this.getCurrentTurn();
+    var text = turn.name + ' ' + turn.action;
+    if (turn.action_param) {
+        text += ' ' + turn.action_param.text;
+    }
+    return text;
 }
 
 Battle.prototype.executeTurn = function () {
