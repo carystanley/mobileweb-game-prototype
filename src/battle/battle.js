@@ -112,6 +112,18 @@ Battle.prototype.allChoosen = function () {
     return (this.pcCursor >= this.pcs.length);
 }
 
+Battle.prototype.getCurrentTurn = function () {
+    return this.turnOrder[this.turnCursor];
+}
+
+Battle.prototype.executeTurn = function () {
+    this.turnCursor++;
+}
+
+Battle.prototype.isRoundFinished = function () {
+    return (this.turnCursor >= this.turnOrder.length);
+}
+
 Battle.prototype.isWon = function () {
     this.enemies.every(function (enemy) {
         return enemy.isDead();

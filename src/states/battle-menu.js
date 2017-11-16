@@ -60,6 +60,7 @@ BattleMenuState.prototype.enter = function () {
     this.battleState.dialog.reset();
     if (this.battle.allChoosen()) {
         this.battle.setEnemyActions();
+        this.battle.startTurn();
         this.battleState.state.switch('turn');
     } else {
         this.setState('base');

@@ -10,7 +10,6 @@ BattleTurnState.prototype.init = function () {
 }
 
 BattleTurnState.prototype.enter = function () {
-    this.battle.startTurn();
     /*
     this.battle.turnOrder.forEach(function (actor) {
         actor.hp -= 2;
@@ -18,10 +17,21 @@ BattleTurnState.prototype.enter = function () {
         console.error(actor.action_param);
     });
     */
-    var self = this;
-    this.battleState.dialog.showText('POW', function () {
-        self.battleState.state.switch('startturn');
-    });
+    this.battleState.dialog.reset();
+    if (this.battle.isRoundFinished()) {
+        this.battleState.state.switch('startturn');
+    } else {
+        var self = this;
+        this.currentAction = this.battle.getCurrentTurn();
+        var text = this.currentAction.action
+        if (this.currentAction.action_param) {
+            text += ' ' + this.currentAction.action_param.text;
+        }
+        this.battleState.dialog.showText(text, function () {
+            self.battle.executeTurn();
+            self.battleState.state.switch('turn');
+        });
+    }
 }
 
 BattleTurnState.prototype.update = function () {
