@@ -9,6 +9,7 @@ var BattleEndTurnState = require('./battle-endturn');
 
 var Dialog = require('../ui/dialog');
 var BattleBackground = require('../ui/battlebackground');
+var BattleParticles = require('../battle/battle-particles.js');
 
 function BattleState(game) {
     this.game = game;
@@ -24,6 +25,7 @@ function BattleState(game) {
 BattleState.prototype.init = function () {
     this.dialog = new Dialog(this.game.resources.basicfont, 40, 5, 204, 2);
     this.background = new BattleBackground(this.game);
+    this.particles = new BattleParticles();
 }
 
 BattleState.prototype.enter = function (enemies) {
@@ -36,6 +38,7 @@ BattleState.prototype.update = function () {
     this.background.update();
     this.dialog.update();
     this.state.update();
+    this.particles.update();
     this.battle.tick();
 }
 
@@ -44,6 +47,7 @@ BattleState.prototype.draw = function (ctx, res) {
     this.drawEnemies(ctx, res);
     this.drawPanels(ctx, res);
     this.state.draw(ctx, res);
+    this.particles.draw(ctx, res);
     this.dialog.draw(ctx);
 }
 
