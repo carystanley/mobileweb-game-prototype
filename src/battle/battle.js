@@ -59,9 +59,19 @@ Battle.prototype.getEnemies = function () {
 }
 
 Battle.prototype.tick = function () {
+    // Handle HP Roll
     this.pcs.forEach(function (pc) {
         pc.rollhp = transition(pc.rollhp, pc.hp, ROLL_DELTA);
     });
+    // Handle Shake
+    this.turnOrder.forEach(function (obj) {
+        if (obj.shakeCounter > 0) {
+            obj.shakeCounter--;
+            obj.shakeOffset = Math.random() * 8 - 4;
+        } else {
+            obj.shakeOffset = 0;
+        }
+    })
 
     var set;
     var cursor;
@@ -127,6 +137,8 @@ Battle.prototype.getCurrentTurnText = function () {
 }
 
 Battle.prototype.executeTurn = function () {
+    var turn = this.getCurrentTurn();
+    turn.shakeCounter = 20;
     this.turnCursor++;
 }
 
