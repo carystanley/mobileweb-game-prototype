@@ -1,5 +1,7 @@
 var TextMenu = require('../ui/textmenu');
 
+var DEBUG_LEAVE = false;
+
 function BattleMenuState(game, battleState, battle) {
     this.game = game;
     this.battleState = battleState;
@@ -55,6 +57,7 @@ BattleMenuState.prototype.setState = function (state) {
 }
 
 BattleMenuState.prototype.enter = function () {
+    this.battleState.dialog.reset();
     if (this.battle.allChoosen()) {
         this.battle.setEnemyActions();
         this.battleState.state.switch('turn');
@@ -93,7 +96,9 @@ BattleMenuState.prototype.onCancel = function () {
             break;
 
         case 'base':
-            this.game.state.switch('explore');
+            if (DEBUG_LEAVE) {
+                this.game.state.switch('explore');
+            }
             break;
     }
 }

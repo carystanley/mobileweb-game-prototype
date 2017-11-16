@@ -7,6 +7,7 @@ var BattleStartTurnState = require('./battle-startturn');
 var BattleTurnState = require('./battle-turn');
 var BattleEndTurnState = require('./battle-endturn');
 
+var Dialog = require('../ui/dialog');
 var BattleBackground = require('../ui/battlebackground');
 
 function BattleState(game) {
@@ -21,16 +22,19 @@ function BattleState(game) {
 }
 
 BattleState.prototype.init = function () {
+    this.dialog = new Dialog(this.game.resources.basicfont, 40, 5, 204, 2);
     this.background = new BattleBackground(this.game);
 }
 
 BattleState.prototype.enter = function (enemies) {
     this.battle.setup(enemies);
+    this.dialog.reset();
     this.state.switch('startturn');
 }
 
 BattleState.prototype.update = function () {
     this.background.update();
+    this.dialog.update();
     this.state.update();
     this.battle.tick();
 }
@@ -40,6 +44,7 @@ BattleState.prototype.draw = function (ctx, res) {
     this.drawEnemies(ctx, res);
     this.drawPanels(ctx, res);
     this.state.draw(ctx, res);
+    this.dialog.draw(ctx);
 }
 
 BattleState.prototype.drawEnemies = function (ctx, res) {
@@ -109,6 +114,7 @@ BattleState.prototype.drawPanels = function (ctx, res) {
 }
 
 BattleState.prototype.event = function (type, x, y) {
+    this.dialog.event(type, x, y);
     this.state.event(type, x, y);
 }
 

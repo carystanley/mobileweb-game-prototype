@@ -10,10 +10,18 @@ BattleTurnState.prototype.init = function () {
 }
 
 BattleTurnState.prototype.enter = function () {
+    this.battle.startTurn();
+    /*
     this.battle.turnOrder.forEach(function (actor) {
         actor.hp -= 2;
+        console.error(actor.action);
+        console.error(actor.action_param);
     });
-    this.battleState.state.switch('startturn');
+    */
+    var self = this;
+    this.battleState.dialog.showText('POW', function () {
+        self.battleState.state.switch('startturn');
+    });
 }
 
 BattleTurnState.prototype.update = function () {
@@ -28,7 +36,6 @@ BattleTurnState.prototype.update = function () {
 }
 
 BattleTurnState.prototype.draw = function (ctx, res) {
-
 }
 
 module.exports = BattleTurnState;

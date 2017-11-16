@@ -14,7 +14,9 @@ Battle.prototype.setup = function (enemies) {
     this.addPlayerCharacters();
     this.addEnemies(enemies);
     this.turnOrder = [].concat(this.pcs, this.enemies);
-    this.cursor = 0;
+    this.pcCursor = 0;
+    this.turnCursor = 0;
+    this.mode = 'choose';
 }
 
 Battle.prototype.addPlayerCharacters = function () {
@@ -56,30 +58,47 @@ Battle.prototype.getEnemies = function () {
 }
 
 Battle.prototype.tick = function () {
-    var cursor = this.cursor;
-    this.pcs.forEach(function (pc, idx) {
+    this.pcs.forEach(function (pc) {
         pc.rollhp = transition(pc.rollhp, pc.hp, ROLL_DELTA);
+    });
 
+    var set;
+    var cursor;
+    if (this.mode === 'turn') {
+        set = this.turnOrder;
+        cursor = this.turnCursor;
+    } else {
+        set = this.pcs;
+        cursor = this.pcCursor;
+    }
+
+    set.forEach(function (obj, idx) {
         if (cursor === idx) {
-            pc.offset = transition(pc.offset, PC_OFFSET_MAX, PC_OFFSET_DELTA);
+            obj.offset = transition(obj.offset, PC_OFFSET_MAX, PC_OFFSET_DELTA);
         } else {
-            pc.offset = transition(pc.offset, PC_OFFSET_MIN, PC_OFFSET_DELTA);
+            obj.offset = transition(obj.offset, PC_OFFSET_MIN, PC_OFFSET_DELTA);
         }
     });
 }
 
-Battle.prototype.startRound = function () {
+Battle.prototype.startChoose = function () {
     this.turnOrder.forEach(function (actor) {
         actor.action = undefined;
         actor.action_param = undefined;
     })
-    this.cursor = 0;
+    this.pcCursor = 0;
+    this.mode = 'choose';
+}
+
+Battle.prototype.startTurn = function () {
+    this.turnCursor = 0;
+    this.mode = 'turn';
 }
 
 Battle.prototype.setAction = function (action, param) {
-    this.pcs[this.cursor].action = action;
-    this.pcs[this.cursor].action_param = param;
-    this.cursor++;
+    this.pcs[this.pcCursor].action = action;
+    this.pcs[this.pcCursor].action_param = param;
+    this.pcCursor++;
 }
 
 Battle.prototype.setEnemyActions = function () {
@@ -90,7 +109,7 @@ Battle.prototype.setEnemyActions = function () {
 }
 
 Battle.prototype.allChoosen = function () {
-    return (this.cursor >= this.pcs.length);
+    return (this.pcCursor >= this.pcs.length);
 }
 
 Battle.prototype.isWon = function () {

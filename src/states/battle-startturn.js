@@ -6,7 +6,7 @@ function BattleStartTurnState(game, battleState, battle) {
 }
 
 BattleStartTurnState.prototype.enter = function () {
-    this.battle.startRound();
+    this.battle.startChoose();
     this.battleState.state.switch('menu');
 }
 
