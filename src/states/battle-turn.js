@@ -22,9 +22,10 @@ BattleTurnState.prototype.enter = function () {
         this.battleState.state.switch('startturn');
     } else {
         var self = this;
+        var actor = this.battle.getCurrentTurn();
         this.battleState.dialog.showText(this.battle.getCurrentTurnText(), function () {
             self.battle.executeTurn();
-            self.battleState.particles.add('356', 150, 80, 30, 0, -0.5, 0);
+            self.battleState.particles.add('15', actor.x, actor.y, 30, 0, -0.5, 0);
             self.battleState.state.switch('turn');
         });
     }
