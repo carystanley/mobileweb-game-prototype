@@ -52,11 +52,23 @@ BattleState.prototype.draw = function (ctx, res) {
 }
 
 BattleState.prototype.layoutEnemies = function () {
+    var layout = this.game.layout;
     var enemies = this.battle.getEnemies();
-    var canvas = this.game.ctx.canvas;
-    enemies.forEach(function(enemy) {
-        enemy.x = canvas.width / 2;
-        enemy.y = canvas.height / 2;
+    var enemyCount = enemies.length;
+    enemies.forEach(function(enemy, idx) {
+        enemy.x = layout.centeredEvenlySpaced(idx, enemyCount, 64);
+        enemy.y = layout.middle();
+    });
+}
+
+BattleState.prototype.layoutPanels = function () {
+    var layout = this.game.layout;
+    var pcs = this.battle.getPlayerCharacters();
+    var pcCount = pcs.length;
+
+    pcs.forEach(function (pc, idx) {
+        pc.x = layout.centeredEvenlySpaced(idx, pcCount, 64);
+        pc.y = layout.fromBottom(22);
     });
 }
 
@@ -72,17 +84,6 @@ BattleState.prototype.drawEnemies = function (ctx, res) {
             (enemy.y - 32) | 0,
             64, 64
         );
-    });
-}
-
-BattleState.prototype.layoutPanels = function () {
-    var layout = this.game.layout;
-    var pcs = this.battle.getPlayerCharacters();
-    var pcCount = pcs.length;
-
-    pcs.forEach(function (pc, idx) {
-        pc.x = layout.centeredEvenlySpaced(idx, pcCount, 64);
-        pc.y = layout.fromBottom(22);
     });
 }
 

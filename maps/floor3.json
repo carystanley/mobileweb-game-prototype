@@ -188,8 +188,28 @@
                  "type":"shiitake",
                  "visible":true,
                  "width":16,
-                 "x":144,
-                 "y":96
+                 "x":128,
+                 "y":80
+                }, 
+                {
+                 "ellipse":true,
+                 "height":16,
+                 "id":45,
+                 "name":"shiitake3",
+                 "properties":
+                    {
+                     "probability":100
+                    },
+                 "propertytypes":
+                    {
+                     "probability":"int"
+                    },
+                 "rotation":0,
+                 "type":"shiitake",
+                 "visible":true,
+                 "width":16,
+                 "x":128,
+                 "y":48
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -336,7 +356,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":45,
+ "nextobjectid":46,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",

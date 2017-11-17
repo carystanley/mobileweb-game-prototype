@@ -13,4 +13,8 @@ Layout.prototype.centeredEvenlySpaced = function (idx, total, spacing) {
     return this.game.getWidth()/2 + offset;
 }
 
+Layout.prototype.middle = function () {
+    return this.game.getHeight()/2;
+}
+
 module.exports = Layout;
