@@ -75,15 +75,24 @@ BattleState.prototype.drawEnemies = function (ctx, res) {
     });
 }
 
-BattleState.prototype.drawPanels = function (ctx, res) {
+BattleState.prototype.layoutPanels = function () {
     var layout = this.game.layout;
     var pcs = this.battle.getPlayerCharacters();
     var pcCount = pcs.length;
 
     pcs.forEach(function (pc, idx) {
-        var x = (layout.centeredEvenlySpaced(idx, pcCount, 64) +
-            pc.xOffset) | 0;
-        var y = layout.fromBottom(22);
+        pc.x = layout.centeredEvenlySpaced(idx, pcCount, 64);
+        pc.y = layout.fromBottom(22);
+    });
+}
+
+BattleState.prototype.drawPanels = function (ctx, res) {
+    this.layoutPanels();
+    var pcs = this.battle.getPlayerCharacters();
+
+    pcs.forEach(function (pc, idx) {
+        var x = (pc.x + pc.xOffset) | 0;
+        var y = pc.y;
 
         var num = pc.rollhp;
         var name = pc.name;
