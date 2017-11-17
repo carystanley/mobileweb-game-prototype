@@ -51,16 +51,25 @@ BattleState.prototype.draw = function (ctx, res) {
     this.dialog.draw(ctx);
 }
 
-BattleState.prototype.drawEnemies = function (ctx, res) {
+BattleState.prototype.layoutEnemies = function () {
     var enemies = this.battle.getEnemies();
     var canvas = this.game.ctx.canvas;
+    enemies.forEach(function(enemy) {
+        enemy.x = canvas.width / 2;
+        enemy.y = canvas.height / 2;
+    });
+}
+
+BattleState.prototype.drawEnemies = function (ctx, res) {
+    this.layoutEnemies();
+    var enemies = this.battle.getEnemies();
     enemies.forEach(function(enemy) {
         var spriteId = enemy.sprite;
         ctx.drawImage(
             res.battlesprites,
             0, spriteId * 64, 64, 64,
-            ((canvas.width-64)/2 + enemy.xOffset) | 0,
-            ((canvas.height-64)/2) | 0,
+            (enemy.x - 32 + enemy.xOffset) | 0,
+            (enemy.y - 32) | 0,
             64, 64
         );
     });

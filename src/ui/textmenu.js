@@ -49,7 +49,7 @@ TextMenu.prototype.draw = function (ctx) {
 
 TextMenu.prototype.event = function(type, x, y) {
     if (!this.visible) {
-        return;
+        return false;
     }
 
     var mx = x - this.x;

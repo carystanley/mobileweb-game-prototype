@@ -96,6 +96,7 @@ Battle.prototype.startChoose = function () {
     this.turnOrder.forEach(function (actor) {
         actor.action = undefined;
         actor.action_param = undefined;
+        actor.target = undefined;
     })
     this.pcCursor = 0;
     this.mode = 'choose';
@@ -106,9 +107,11 @@ Battle.prototype.startTurn = function () {
     this.mode = 'turn';
 }
 
-Battle.prototype.setAction = function (action, param) {
-    this.pcs[this.pcCursor].action = action;
-    this.pcs[this.pcCursor].action_param = param;
+Battle.prototype.setAction = function (action, param, target) {
+    var actor = this.pcs[this.pcCursor];
+    actor.action = action;
+    actor.action_param = param;
+    actor.target = target;
     this.pcCursor++;
 }
 
@@ -132,6 +135,9 @@ Battle.prototype.getCurrentTurnText = function () {
     var text = turn.name + ' ' + turn.action;
     if (turn.action_param) {
         text += ' ' + turn.action_param.text;
+    }
+    if (turn.target) {
+        text += ' ' + turn.target.name;
     }
     return text;
 }

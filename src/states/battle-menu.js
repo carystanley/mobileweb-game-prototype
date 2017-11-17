@@ -53,6 +53,12 @@ BattleMenuState.prototype.setState = function (state) {
         case 'base':
             menus['base'].show();
             break;
+
+        case 'friendly':
+            break;
+
+        case 'foe':
+            break;
     }
 }
 
@@ -76,7 +82,13 @@ BattleMenuState.prototype.onBaseMenu = function (option) {
 }
 
 BattleMenuState.prototype.setChoice = function (option, param) {
-    this.battle.setAction(option, param);
+    this.currentAction = option;
+    this.currentActionParam = param;
+    this.setState('foe');
+}
+
+BattleMenuState.prototype.setTarget = function (target) {
+    this.battle.setAction(this.currentAction, this.currentActionParam, target);
     this.battleState.state.switch('menu');
 }
 
@@ -112,6 +124,27 @@ BattleMenuState.prototype.draw = function (ctx, res) {
     }
 }
 
+BattleMenuState.prototype.foeEvent = function (type, x, y) {
+    if (this.state === 'foe' && type === 'click') {
+        var enemies = this.battle.getEnemies();
+        var target = null;
+        var targetDist = 10000000000;
+        enemies.forEach(function(enemy) {
+            var dx = Math.abs(enemy.x - x);
+            var dy = Math.abs(enemy.y - y);
+            if (dx < 32 && dy < 32 && (dx + dy) < targetDist) {
+                target = enemy;
+                targetDist = dx + dy;
+            }
+        });
+        if (target) {
+            this.setTarget(target);
+            return true;
+        }
+    }
+    return false;
+}
+
 
 BattleMenuState.prototype.event = function (type, x, y) {
     for (var id in this.menus) {
@@ -121,6 +154,8 @@ BattleMenuState.prototype.event = function (type, x, y) {
             }
         }
     }
+    if (this.foeEvent(type, x, y)) { return; }
+
     if (type === 'click') {
         this.onCancel();
     }
