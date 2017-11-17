@@ -59,7 +59,7 @@ BattleState.prototype.drawEnemies = function (ctx, res) {
         ctx.drawImage(
             res.battlesprites,
             0, spriteId * 64, 64, 64,
-            ((canvas.width-64)/2 + enemy.shakeOffset) | 0,
+            ((canvas.width-64)/2 + enemy.xOffset) | 0,
             ((canvas.height-64)/2) | 0,
             64, 64
         );
@@ -73,7 +73,7 @@ BattleState.prototype.drawPanels = function (ctx, res) {
 
     pcs.forEach(function (pc, idx) {
         var x = (layout.centeredEvenlySpaced(idx, pcCount, 64) +
-            pc.shakeOffset) | 0;
+            pc.xOffset) | 0;
         var y = layout.fromBottom(22);
 
         var num = pc.rollhp;

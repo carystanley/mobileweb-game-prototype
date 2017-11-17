@@ -67,9 +67,9 @@ Battle.prototype.tick = function () {
     this.turnOrder.forEach(function (obj) {
         if (obj.shakeCounter > 0) {
             obj.shakeCounter--;
-            obj.shakeOffset = Math.random() * 8 - 4;
+            obj.xOffset = Math.random() * 8 - 4;
         } else {
-            obj.shakeOffset = 0;
+            obj.xOffset = 0;
         }
     })
 
