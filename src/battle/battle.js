@@ -115,10 +115,16 @@ Battle.prototype.setAction = function (action, param, target) {
     this.pcCursor++;
 }
 
+Battle.prototype.getEnemyTarget = function () {
+    return this.pcs[Math.floor(Math.random() * this.pcs.length)];
+}
+
 Battle.prototype.setEnemyActions = function () {
+    var self = this;
     this.enemies.forEach(function (enemy, idx) {
         enemy.action = 'bash';
         enemy.action_param = undefined;
+        enemy.target = self.getEnemyTarget();
     });
 }
 
@@ -144,7 +150,7 @@ Battle.prototype.getCurrentTurnText = function () {
 
 Battle.prototype.executeTurn = function () {
     var turn = this.getCurrentTurn();
-    turn.shakeCounter = 20;
+    turn.target.shakeCounter = 20;
     this.turnCursor++;
 }
 

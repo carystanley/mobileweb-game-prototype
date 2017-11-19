@@ -25,7 +25,8 @@ BattleTurnState.prototype.enter = function () {
         var actor = this.battle.getCurrentTurn();
         this.battleState.dialog.showText(this.battle.getCurrentTurnText(), function () {
             self.battle.executeTurn();
-            self.battleState.particles.add('15', actor.x, actor.y, 30, 0, -0.5, 0);
+            var target = actor.target;
+            self.battleState.particles.add('15', target.x, target.y, 30, 0, -0.5, 0);
             self.battleState.state.switch('turn');
         });
     }
