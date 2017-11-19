@@ -1,4 +1,5 @@
 var Helpers = require('../utils/helpers');
+var BattleActions = require('./battle-actions');
 var transition = Helpers.transition;
 
 var PC_OFFSET_DELTA = 1/2;
@@ -148,9 +149,11 @@ Battle.prototype.getCurrentTurnText = function () {
     return text;
 }
 
-Battle.prototype.executeTurn = function () {
+Battle.prototype.executeTurn = function (battleState) {
     var turn = this.getCurrentTurn();
-    turn.target.shakeCounter = 20;
+    if (BattleActions[turn.action]) {
+        BattleActions[turn.action].lambda(battleState, turn.target, turn, turn.action_param);
+    }
     this.turnCursor++;
 }
 

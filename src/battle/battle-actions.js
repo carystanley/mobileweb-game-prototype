@@ -1,34 +1,33 @@
 
-var BattleActions = {
-    attack: {
+var Actions = {
+    bash: {
         friendly: false,
-        trigger: function (game, source, target) {
-            return {
-                animation: '',
-                text: ''
-            }
+        lambda: function (state, target, actor, param) {
+            target.shakeCounter = 20;
+            target.hp -= 15;
+            state.particles.add('15', target.x, target.y, 30, 0, -0.5, 0);
+        }
+    },
+    heal: {
+        friendly: true,
+        lambda: function (state, target, actor, param) {
+
         }
     },
     defend: {
         friendly: true,
-        trigger: function (game, source, target) {
-            return {
-                animation: '',
-                text: ''
-            }
+        lambda: function (state, target, actor, param) {
+
         }
     },
-    useitem: {
+    item: {
         friendly: function () {
 
         },
-        trigger: function (game, source, target) {
-            return {
-                animation: '',
-                text: ''
-            }
+        lambda: function (state, target, actor, param) {
+
         }
     }
 };
 
-module.exports = BattleActions;
+module.exports = Actions;
