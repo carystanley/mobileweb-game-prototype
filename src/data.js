@@ -25,9 +25,10 @@ Data.prototype.init = function() {
     this.flags = {};
 
     this.inventory.add('sneaker');
+    this.inventory.add('rice');
 }
 
-Data.prototype.getGoodsMenu = function () {
+Data.prototype.getItemsMenu = function () {
     var game = this.game;
     var menuItems = [];
     var items = this.inventory.getItems();

@@ -14,10 +14,10 @@ BattleMenuState.prototype.init = function () {
         base: new TextMenu(basicFont, 16, 16, 40, 20, 4, [
             {id: 'bash', text: 'Bash'},
             {id: 'psi', text: 'PSI'},
-            {id: 'goods', text: 'Goods'}
+            {id: 'items', text: 'Items'}
         ], this.onBaseMenu.bind(this)),
-        goods: new TextMenu(basicFont, 72, 16, 80, 20, 4, [
-        ], this.onGoodsMenu.bind(this)),
+        items: new TextMenu(basicFont, 72, 16, 80, 20, 4, [
+        ], this.onItemsMenu.bind(this)),
         psi: new TextMenu(basicFont, 72, 16, 80, 20, 4, [
             {id: 'love', text: 'Love'},
             {id: 'freeze', text: 'Freeze'},
@@ -40,9 +40,9 @@ BattleMenuState.prototype.setState = function (state) {
             menus['base'].show();
             break;
 
-        case 'goods':
-            menus['goods'].setOptions(this.game.data.getGoodsMenu());
-            menus['goods'].show();
+        case 'items':
+            menus['items'].setOptions(this.game.data.getItemsMenu());
+            menus['items'].show();
             menus['base'].show();
             break;
 
@@ -84,7 +84,12 @@ BattleMenuState.prototype.onBaseMenu = function (option) {
 BattleMenuState.prototype.setChoice = function (option, param) {
     this.currentAction = option;
     this.currentActionParam = param;
-    this.setState('foe');
+    var target = this.battle.getActionTarget(this, option, param);
+    if (target) {
+        this.setState(target);
+    } else {
+        this.setTarget(null);
+    }
 }
 
 BattleMenuState.prototype.setTarget = function (target) {
@@ -92,8 +97,8 @@ BattleMenuState.prototype.setTarget = function (target) {
     this.battleState.state.switch('menu');
 }
 
-BattleMenuState.prototype.onGoodsMenu = function (option) {
-    this.setChoice('good', option);
+BattleMenuState.prototype.onItemsMenu = function (option) {
+    this.setChoice('item', option);
 }
 
 BattleMenuState.prototype.onPSIMenu = function (option) {
@@ -102,7 +107,7 @@ BattleMenuState.prototype.onPSIMenu = function (option) {
 
 BattleMenuState.prototype.onCancel = function () {
     switch (this.state) {
-        case 'goods':
+        case 'items':
         case 'psi':
         case 'bash':
             this.setState('base');
@@ -145,6 +150,27 @@ BattleMenuState.prototype.foeEvent = function (type, x, y) {
     return false;
 }
 
+BattleMenuState.prototype.friendlyEvent = function (type, x, y) {
+    if (this.state === 'friendly' && type === 'click') {
+        var pcs = this.battle.getPlayerCharacters();
+        var target = null;
+        var targetDist = 10000000000;
+        pcs.forEach(function(pc) {
+            var dx = Math.abs(pc.x - x);
+            var dy = Math.abs(pc.y - y);
+            if (dx < 32 && dy < 32 && (dx + dy) < targetDist) {
+                target = pc;
+                targetDist = dx + dy;
+            }
+        });
+        if (target) {
+            this.setTarget(target);
+            return true;
+        }
+    }
+    return false;
+}
+
 
 BattleMenuState.prototype.event = function (type, x, y) {
     for (var id in this.menus) {
@@ -154,7 +180,9 @@ BattleMenuState.prototype.event = function (type, x, y) {
             }
         }
     }
+
     if (this.foeEvent(type, x, y)) { return; }
+    if (this.friendlyEvent(type, x, y)) { return; }
 
     if (type === 'click') {
         this.onCancel();

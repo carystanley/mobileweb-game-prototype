@@ -149,6 +149,17 @@ Battle.prototype.getCurrentTurnText = function () {
     return text;
 }
 
+Battle.prototype.getActionTarget = function (battleState, action, param) {
+    if (BattleActions[action]) {
+        if (typeof BattleActions[action].target === 'function') {
+            return BattleActions[action].target(battleState, param);
+        } else {
+            return BattleActions[action].target;
+        }
+    }
+    return null;
+}
+
 Battle.prototype.executeTurn = function (battleState) {
     var turn = this.getCurrentTurn();
     if (BattleActions[turn.action]) {
