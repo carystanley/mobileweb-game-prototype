@@ -27,6 +27,8 @@ BattleTurnState.prototype.enter = function () {
 
             if (self.battle.isWon()) {
                 self.battleState.state.switch('win');
+            } else if (self.battle.isLost()) {
+                self.battleState.state.switch('lose');
             } else {
                 self.battleState.state.switch('turn');
             }
