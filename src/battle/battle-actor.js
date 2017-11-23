@@ -19,4 +19,16 @@ BattleActor.prototype.isDead = function () {
     return this.hp <= 0;
 }
 
+BattleActor.prototype.damage = function (amount) {
+    var delta = Math.min(this.hp, amount);
+    this.hp -= delta;
+    return delta;
+}
+
+BattleActor.prototype.heal = function (amount) {
+    var delta = Math.min(this.maxhp - this.hp, amount);
+    this.hp += delta;
+    return delta;
+}
+
 module.exports = BattleActor;

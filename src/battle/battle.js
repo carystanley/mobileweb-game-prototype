@@ -31,6 +31,7 @@ Battle.prototype.addPlayerCharacters = function () {
             sprite: pcData.sprite,
             name: pcData.name,
             hp: 10,
+            maxhp: 10,
             rollhp: 10,
             offset: 0
         }));
@@ -45,6 +46,7 @@ Battle.prototype.addEnemies = function (enemies) {
         var enemyConfig = game.config.enemies[enemy.type] || {};
         enemyActors.push(new BattleActor({
             hp: enemyConfig.hp,
+            maxhp: enemyConfig.hp,
             sprite: enemyConfig.battlesprite,
             name: enemyConfig.name
         }));
