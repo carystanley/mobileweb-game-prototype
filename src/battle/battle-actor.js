@@ -2,6 +2,7 @@
 // http://walkthrough.starmen.net/earthbound/enemylist_full.php
 
 function BattleActor(settings) {
+    Object.assign(this, settings);
     this.type = settings.type;
     this.hp = settings.hp;
     this.maxhp = settings.maxhp;
@@ -15,7 +16,7 @@ function BattleActor(settings) {
 }
 
 BattleActor.prototype.isDead = function () {
-
+    return this.hp <= 0;
 }
 
 module.exports = BattleActor;

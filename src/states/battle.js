@@ -6,6 +6,7 @@ var BattleMenuState = require('./battle-menu');
 var BattleStartTurnState = require('./battle-startturn');
 var BattleTurnState = require('./battle-turn');
 var BattleEndTurnState = require('./battle-endturn');
+var BattleWinState = require('./battle-win');
 
 var Dialog = require('../ui/dialog');
 var BattleBackground = require('../ui/battlebackground');
@@ -18,7 +19,8 @@ function BattleState(game) {
         menu: new BattleMenuState(game, this, this.battle),
         startturn: new BattleStartTurnState(game, this, this.battle),
         turn: new BattleTurnState(game, this, this.battle),
-        endturn: new BattleEndTurnState(game, this, this.battle)
+        endturn: new BattleEndTurnState(game, this, this.battle),
+        win: new BattleWinState(game, this, this.battle)
     });
 }
 
@@ -76,6 +78,9 @@ BattleState.prototype.drawEnemies = function (ctx, res) {
     this.layoutEnemies();
     var enemies = this.battle.getEnemies();
     enemies.forEach(function(enemy) {
+        if (enemy.isDead()) {
+            return;
+        }
         var spriteId = enemy.sprite;
         ctx.drawImage(
             res.battlesprites,

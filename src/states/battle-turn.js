@@ -24,7 +24,12 @@ BattleTurnState.prototype.enter = function () {
         var self = this;
         this.battleState.dialog.showText(this.battle.getCurrentTurnText(), function () {
             self.battle.executeTurn(self.battleState);
-            self.battleState.state.switch('turn');
+
+            if (self.battle.isWon()) {
+                self.battleState.state.switch('win');
+            } else {
+                self.battleState.state.switch('turn');
+            }
         });
     }
 }

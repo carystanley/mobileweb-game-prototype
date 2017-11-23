@@ -1,5 +1,6 @@
 var Helpers = require('../utils/helpers');
 var BattleActions = require('./battle-actions');
+var BattleActor = require('./battle-actor');
 var transition = Helpers.transition;
 
 var PC_OFFSET_DELTA = 1/2;
@@ -26,13 +27,13 @@ Battle.prototype.addPlayerCharacters = function () {
 
     game.data.party.forEach(function (id) {
         var pcData = game.data.members[id] || {};
-        pcActors.push({
+        pcActors.push(new BattleActor({
             sprite: pcData.sprite,
             name: pcData.name,
             hp: 10,
             rollhp: 10,
             offset: 0
-        })
+        }));
     })
     this.pcs = pcActors;
 }
@@ -42,11 +43,11 @@ Battle.prototype.addEnemies = function (enemies) {
     var game = this.game;
     enemies.forEach(function (enemy) {
         var enemyConfig = game.config.enemies[enemy.type] || {};
-        enemyActors.push({
+        enemyActors.push(new BattleActor({
             hp: enemyConfig.hp,
             sprite: enemyConfig.battlesprite,
             name: enemyConfig.name
-        })
+        }));
     })
     this.enemies = enemyActors;
 }
@@ -173,13 +174,13 @@ Battle.prototype.isRoundFinished = function () {
 }
 
 Battle.prototype.isWon = function () {
-    this.enemies.every(function (enemy) {
+    return this.enemies.every(function (enemy) {
         return enemy.isDead();
     });
 }
 
 Battle.prototype.isLost = function () {
-    this.pcs.every(function (player) {
+    return this.pcs.every(function (player) {
         return player.isDead();
     });
 }
