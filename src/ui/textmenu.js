@@ -37,7 +37,15 @@ TextMenu.prototype.draw = function (ctx) {
     var font = this.font;
 
     for (var i = 0; i < optionsSize; i++) {
-        font.drawText(ctx, options[i].text, x + offset, y + offset)
+        font.drawText(ctx, options[i].text, x + offset, y + offset);
+        var subtext = options[i].subtext;
+        if (subtext) {
+            subtext = '' + subtext;
+            font.drawText(ctx, subtext,
+                x + this.width - offset - font.measureText(subtext),
+                y + offset
+            );
+        }
         y += rowHeight;
     }
 

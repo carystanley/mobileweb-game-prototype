@@ -9,6 +9,6 @@ window.ITEMS = {
         battleAction: 'heal',
         action: 'heal',
         amount: 15,
-        cost: 10
+        cost: 'free'
     }
 };

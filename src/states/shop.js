@@ -26,7 +26,7 @@ ShopState.prototype.getShopMenu = function (shopId) {
         menuItems.push({
             id: id,
             text: item.label,
-            cost: item.cost
+            subtext: item.cost
         });
     }
     return menuItems;
@@ -56,7 +56,6 @@ ShopState.prototype.event = function (type, x, y) {
     }
 
     if (type === 'click') {
-        console.error('cancel');
         this.onCancel();
     }
 }
