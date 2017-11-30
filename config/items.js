@@ -8,6 +8,7 @@ window.ITEMS = {
         label: 'Rice',
         battleAction: 'heal',
         action: 'heal',
-        amount: 15
+        amount: 15,
+        cost: 10
     }
 };

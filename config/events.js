@@ -15,9 +15,7 @@ window.EVENTS = {
         sprite: 13,
         commands: [
             {cmd: 'dialog', text: "Want some delicious ramen?"},
-            {cmd: 'fadeOut', ticks: 30},
-            {cmd: 'fadeIn', ticks: 30},
-            {cmd: 'dialog', text: 'You feel fully revived'}
+            {cmd: 'shop', id: 'ramenguy1'}
         ]
     }],
     'npc1': [{

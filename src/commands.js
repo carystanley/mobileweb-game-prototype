@@ -17,6 +17,10 @@ var Commands = {
         );
         done();
     },
+    shop: function(context, params, done) {
+        context.game.state.switch('shop', params.id);
+        // done();
+    },
     dialog: function(context, params, done) {
         context.dialog.showText(params.text, done);
     },
