@@ -26,7 +26,7 @@ ShopState.prototype.getShopMenu = function (shopId) {
         menuItems.push({
             id: id,
             text: item.label,
-            subtext: item.cost
+            subtext: '$' + item.cost
         });
     }
     return menuItems;
