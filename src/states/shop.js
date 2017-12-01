@@ -37,7 +37,18 @@ ShopState.prototype.update = function () {
 }
 
 ShopState.prototype.onMenu = function (option) {
+    var game = this.game;
+    var data = game.data;
+    var config = game.config;
 
+    var itemId = option.id;
+    var item = config.items[itemId];
+    var cost = item.cost;
+    if (cost <= data.getCash()) {
+        data.adjustCash(-cost);
+        data.inventory.add(itemId);
+        console.error('You got ' + item.label + '!');
+    }
 }
 
 ShopState.prototype.onCancel = function () {
@@ -47,6 +58,21 @@ ShopState.prototype.onCancel = function () {
 ShopState.prototype.draw = function (ctx, res) {
     this.game.state.explore.draw(ctx, res);
     this.menu.draw(ctx, res);
+    var x = 24;
+    var y = 16;
+    var margin = 4;
+    var width = 40;
+    var height = 20;
+    var font = res.basicfont;
+    var offset = Math.max(Math.floor((height - font.data.lineHeight) / 2), 0);
+
+    ctx.fillStyle = 'black';
+    ctx.fillRect(x - margin, y - margin, width + margin * 2, height + margin * 2);
+    var cashTxt = '$' + this.game.data.getCash();
+    font.drawText(ctx, cashTxt,
+        x + width - offset - font.measureText(cashTxt),
+        y + offset
+    );
 }
 
 

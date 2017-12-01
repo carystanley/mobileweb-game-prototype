@@ -6,6 +6,11 @@ function Data(game) {
 };
 
 Data.prototype.init = function() {
+    this.vars = {
+        chapter: 0,
+        cash: 1000,
+        reserve: 0
+    };
     this.inventory = new Inventory(8);
     this.party = ['hero', 'girl'];
     this.members = {
@@ -46,6 +51,14 @@ Data.prototype.getItemsMenu = function () {
 
 Data.prototype.hasInventoryItem = function(id) {
     return (this.inventory.contains(id));
+};
+
+Data.prototype.getCash = function() {
+    return (this.vars.cash);
+};
+
+Data.prototype.adjustCash = function(delta) {
+    this.vars.cash += delta;
 };
 
 Data.prototype.flag = function(id) {
