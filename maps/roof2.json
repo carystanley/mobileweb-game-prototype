@@ -100,27 +100,7 @@
         {
          "draworder":"topdown",
          "name":"spawns",
-         "objects":[
-                {
-                 "ellipse":true,
-                 "height":16,
-                 "id":19,
-                 "name":"hochstetteri1",
-                 "properties":
-                    {
-                     "probability":50
-                    },
-                 "propertytypes":
-                    {
-                     "probability":"int"
-                    },
-                 "rotation":0,
-                 "type":"hochstetteri",
-                 "visible":true,
-                 "width":16,
-                 "x":448,
-                 "y":80
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
