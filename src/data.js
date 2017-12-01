@@ -1,36 +1,22 @@
 var Inventory = require('./inventory');
 
 function Data(game) {
-    this.init();
     this.game = game;
+    this.init();
 };
 
 Data.prototype.init = function() {
-    this.vars = {
-        chapter: 0,
-        cash: 1000,
-        reserve: 0
-    };
-    this.inventory = new Inventory(8);
-    this.party = ['hero', 'girl'];
-    this.members = {
-        hero: {
-            sprite: 0,
-            name: 'Izumi'
-        },
-        girl: {
-            sprite: 1,
-            name: 'Asami'
-        },
-        bully: {
-            sprite: 2,
-            name: 'Ryoko'
-        }
-    }
-    this.flags = {};
+    var config = this.game.config.party;
 
-    this.inventory.add('sneaker');
-    this.inventory.add('rice');
+    this.vars = config.vars || {};
+    this.party = config.party || [];
+    this.members = config.members || {};
+    this.flags = config.flags || {};
+    this.inventory = new Inventory(8);
+
+    (config.inventory || []).forEach(function (id) {
+        this.inventory.add(id);
+    }, this);
 }
 
 Data.prototype.getItemsMenu = function () {
