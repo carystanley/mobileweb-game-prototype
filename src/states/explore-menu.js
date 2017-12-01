@@ -12,7 +12,9 @@ WorldMenuState.prototype.init = function () {
             {id: 'status', text: 'Status'}
         ], this.onBaseMenu.bind(this)),
         items: new TextMenu(basicFont, 72, 16, 80, 20, 4, [
-        ], this.onItemsMenu.bind(this))
+        ], this.onItemsMenu.bind(this)),
+        status: new TextMenu(basicFont, 72, 16, 80, 20, 4, [
+        ])
     };
 }
 
@@ -32,6 +34,8 @@ WorldMenuState.prototype.setState = function (state) {
             break;
 
         case 'status':
+            menus['status'].setOptions(this.getStatusMenu());
+            menus['status'].show();
             menus['base'].show();
             break;
 
@@ -56,6 +60,23 @@ WorldMenuState.prototype.onBaseMenu = function (option) {
 WorldMenuState.prototype.onItemsMenu = function (option) {
     console.error(option);
 }
+
+WorldMenuState.prototype.getStatusMenu = function () {
+    var game = this.game;
+    var data = game.data;
+    var cursor = 0;
+    var menuList = [];
+    var pc = data.members[data.party[cursor]];
+
+    menuList.push({ id: 'hp', text: 'Health', subtext: '' + pc.hp + '/' + pc.maxhp });
+    menuList.push({ id: 'offense', text: 'Offense', subtext: pc.offense });
+    menuList.push({ id: 'defense', text: 'Defense', subtext: pc.defense });
+    menuList.push({ id: 'guts', text: 'Guts', subtext: pc.guts });
+    menuList.push({ id: 'luck', text: 'Luck', subtext: pc.luck });
+    menuList.push({ id: 'speed', text: 'Speed', subtext: pc.speed });
+
+    return menuList;
+};
 
 WorldMenuState.prototype.onCancel = function () {
     switch (this.state) {

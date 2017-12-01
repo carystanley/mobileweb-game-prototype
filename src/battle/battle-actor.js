@@ -13,6 +13,7 @@ function BattleActor(settings) {
     this.luck = settings.luck;
     this.speed = settings.speed;
     this.missRate = settings.missRate;
+    this.offset = 0;
 }
 
 BattleActor.prototype.isDead = function () {

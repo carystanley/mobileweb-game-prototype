@@ -68,11 +68,15 @@ TextMenu.prototype.event = function(type, x, y) {
         var optionIdx = Math.floor(my / rowHeight);
         switch (type) {
             case 'click':
-                this.choiceHandler(this.options[optionIdx]);
+                if (this.choiceHandler) {
+                    this.choiceHandler(this.options[optionIdx]);
+                }
                 this.selected = null;
                 break;
             case 'down':
-                this.selected = optionIdx;
+                if (this.choiceHandler) {
+                    this.selected = optionIdx;
+                }
                 break;
         }
         return true;

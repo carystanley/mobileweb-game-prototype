@@ -22,21 +22,14 @@ Battle.prototype.setup = function (enemies) {
 }
 
 Battle.prototype.addPlayerCharacters = function () {
-    var pcActors = [];
+    var actors = [];
     var game = this.game;
 
     game.data.party.forEach(function (id) {
-        var pcData = game.data.members[id] || {};
-        pcActors.push(new BattleActor({
-            sprite: pcData.sprite,
-            name: pcData.name,
-            hp: 10,
-            maxhp: 10,
-            rollhp: 10,
-            offset: 0
-        }));
+        var data = game.data.members[id] || {};
+        actors.push(new BattleActor(data));
     })
-    this.pcs = pcActors;
+    this.pcs = actors;
 }
 
 Battle.prototype.addEnemies = function (enemies) {
