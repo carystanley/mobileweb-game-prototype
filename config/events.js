@@ -13,7 +13,7 @@ window.EVENTS = {
     }],
     'enemy': [{
         sprite: -1,
-        trigger: 'auto',
+        trigger: 'load',
         commands: [
             {
                 cmd: 'enemy',

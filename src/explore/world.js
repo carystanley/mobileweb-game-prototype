@@ -83,15 +83,22 @@ World.prototype.loadMap = function(mapId, locationId) {
     this.width = this.map.mapWidth;
     this.height = this.map.mapHeight;
 
-    this.runEventAuto = true;
+    this.resetLoadEvents();
 }
 
-World.prototype.runAutoEvents = function () {
-    this.events.forEach(function(event) {
-        if (event.trigger === 'auto') {
-            event.triggerEvent('auto');
-        }
-    });
+World.prototype.resetLoadEvents = function () {
+    this.shouldRunLoadEvents = true;
+}
+
+World.prototype.runLoadEvents = function () {
+    if (this.shouldRunLoadEvents) {
+        this.events.forEach(function(event) {
+            if (event.trigger === 'load') {
+                event.triggerEvent('load');
+            }
+        });
+        this.shouldRunLoadEvents = false;
+    }
 }
 
 World.prototype.draw = function (ctx, v, res) {
@@ -165,11 +172,7 @@ World.prototype.draw = function (ctx, v, res) {
 };
 
 World.prototype.update = function () {
-    if (this.runEventAuto) {
-        this.runAutoEvents();
-        this.runEventAuto = false;
-        return;
-    }
+    this.runLoadEvents();
 
     var self = this;
     var player = this.player;
