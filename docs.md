@@ -44,3 +44,8 @@ https://opengameart.org/content/we-are-prophet-happy-energetic-tune
 (more) https://soundcloud.com/abstraction/sets/ludum-dare-challenge
 
 Good for BeatEmUp: https://opengameart.org/content/funny-chase-8-bit-chiptune
+
+Notes:
+
+Earthbound Enemy Config:
+https://datacrystal.romhacking.net/wiki/EarthBound:Enemy_Configuration_Table

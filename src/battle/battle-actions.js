@@ -21,9 +21,8 @@ var Actions = {
         }
     },
     item: {
-        target: function (state, param) {
+        target: function (game, param) {
             var itemId = param.id;
-            var game = state.game;
             var item = game.config.items[itemId];
             if (item.battleAction) {
                 return Actions[item.battleAction].target;

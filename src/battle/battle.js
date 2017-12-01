@@ -1,4 +1,5 @@
 var Helpers = require('../utils/helpers');
+var Random = require('../utils/random');
 var BattleActions = require('./battle-actions');
 var BattleActor = require('./battle-actor');
 var transition = Helpers.transition;
@@ -41,7 +42,8 @@ Battle.prototype.addEnemies = function (enemies) {
             hp: enemyConfig.hp,
             maxhp: enemyConfig.hp,
             sprite: enemyConfig.battlesprite,
-            name: enemyConfig.name
+            name: enemyConfig.name,
+            config: enemyConfig
         }));
     })
     this.enemies = enemyActors;
@@ -112,16 +114,19 @@ Battle.prototype.setAction = function (action, param, target) {
     this.pcCursor++;
 }
 
-Battle.prototype.getEnemyTarget = function () {
-    return this.pcs[Math.floor(Math.random() * this.pcs.length)];
-}
-
 Battle.prototype.setEnemyActions = function () {
     var self = this;
     this.enemies.forEach(function (enemy, idx) {
-        enemy.action = 'bash';
+        var action = enemy.getAction();
+        enemy.action = action;
         enemy.action_param = undefined;
-        enemy.target = self.getEnemyTarget();
+        var target = self.getActionTarget(action);
+
+        if (target === 'friendly') {
+            enemy.target = enemy;
+        } else {
+            enemy.target = Random.choose(self.pcs)
+        }
     });
 }
 
@@ -145,10 +150,10 @@ Battle.prototype.getCurrentTurnText = function () {
     return text;
 }
 
-Battle.prototype.getActionTarget = function (battleState, action, param) {
+Battle.prototype.getActionTarget = function (action, param) {
     if (BattleActions[action]) {
         if (typeof BattleActions[action].target === 'function') {
-            return BattleActions[action].target(battleState, param);
+            return BattleActions[action].target(this.game, param);
         } else {
             return BattleActions[action].target;
         }

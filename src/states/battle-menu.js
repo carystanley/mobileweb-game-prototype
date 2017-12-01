@@ -84,7 +84,7 @@ BattleMenuState.prototype.onBaseMenu = function (option) {
 BattleMenuState.prototype.setChoice = function (option, param) {
     this.currentAction = option;
     this.currentActionParam = param;
-    var target = this.battle.getActionTarget(this, option, param);
+    var target = this.battle.getActionTarget(option, param);
     if (target) {
         this.setState(target);
     } else {
