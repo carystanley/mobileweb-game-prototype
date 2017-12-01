@@ -13,7 +13,9 @@ WorldMenuState.prototype.init = function () {
         ], this.onBaseMenu.bind(this)),
         items: new TextMenu(basicFont, 72, 16, 80, 20, 4, [
         ], this.onItemsMenu.bind(this)),
-        status: new TextMenu(basicFont, 72, 16, 80, 20, 4, [
+        members: new TextMenu(basicFont, 72, 16, 40, 20, 4, [
+        ], this.onMembersMenu.bind(this)),
+        status: new TextMenu(basicFont, 128, 16, 80, 20, 4, [
         ])
     };
 }
@@ -35,6 +37,8 @@ WorldMenuState.prototype.setState = function (state) {
 
         case 'status':
             menus['status'].setOptions(this.getStatusMenu());
+            menus['members'].setOptions(this.getMembersMenu());
+            menus['members'].show();
             menus['status'].show();
             menus['base'].show();
             break;
@@ -61,12 +65,31 @@ WorldMenuState.prototype.onItemsMenu = function (option) {
     console.error(option);
 }
 
-WorldMenuState.prototype.getStatusMenu = function () {
+WorldMenuState.prototype.onMembersMenu = function (option) {
+    this.menus['status'].setOptions(this.getStatusMenu(option.id));
+}
+
+WorldMenuState.prototype.getMembersMenu = function () {
     var game = this.game;
     var data = game.data;
-    var cursor = 0;
+    var membersList = [];
+    var party = data.party;
+    var members = data.members;
+
+    party.forEach(function (id) {
+        var member = members[id];
+        membersList.push({ id: id, text: member.name });
+    });
+
+    return membersList;
+};
+
+WorldMenuState.prototype.getStatusMenu = function (memberId) {
+    var game = this.game;
+    var data = game.data;
     var menuList = [];
-    var pc = data.members[data.party[cursor]];
+    var memberId = memberId || data.party[0];
+    var pc = data.members[memberId];
 
     menuList.push({ id: 'hp', text: 'Health', subtext: '' + pc.hp + '/' + pc.maxhp });
     menuList.push({ id: 'offense', text: 'Offense', subtext: pc.offense });
