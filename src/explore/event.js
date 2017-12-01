@@ -43,8 +43,13 @@ Event.prototype.refresh = function () {
 Event.prototype.triggerEvent = function (type) {
     if (type === this.trigger || this.trigger === 'contact') {
         if (this.commands) {
+            var config = this.config;
             this.game.state.switch('cutscene', {
-                params: this.config.properties,
+                params: Object.assign({
+                    x: config.cx,
+                    y: config.cy,
+                    type: config.type
+                }, this.config.properties),
                 commands: this.commands
             });
         }

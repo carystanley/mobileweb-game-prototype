@@ -72,20 +72,7 @@ World.prototype.loadMap = function(mapId, locationId) {
     });
     this.events = events;
 
-    var enemies = [];
-    this.map.layers.spawns.forEach(function (spawn) {
-        var spawnType = spawn.type
-        var enemyConfig = game.config.enemies[spawnType];
-        if (enemyConfig) {
-            if (spawn.properties && spawn.properties.probability) {
-                if (Math.random() > (spawn.properties.probability/100)) {
-                    return;
-                }
-            }
-            enemies.push(new Enemy(self, spawn, enemyConfig));
-        }
-    });
-    this.enemies = enemies;
+    this.enemies = [];
 
     this.entities = [].concat(
         this.party,
@@ -95,6 +82,16 @@ World.prototype.loadMap = function(mapId, locationId) {
 
     this.width = this.map.mapWidth;
     this.height = this.map.mapHeight;
+
+    this.runEventAuto = true;
+}
+
+World.prototype.runAutoEvents = function () {
+    this.events.forEach(function(event) {
+        if (event.trigger === 'auto') {
+            event.triggerEvent('auto');
+        }
+    });
 }
 
 World.prototype.draw = function (ctx, v, res) {
@@ -168,6 +165,12 @@ World.prototype.draw = function (ctx, v, res) {
 };
 
 World.prototype.update = function () {
+    if (this.runEventAuto) {
+        this.runAutoEvents();
+        this.runEventAuto = false;
+        return;
+    }
+
     var self = this;
     var player = this.player;
 
@@ -233,6 +236,20 @@ World.prototype.refresh = function () {
     this.events.forEach(function(event) {
         event.refresh();
     });
+}
+
+World.prototype.spawnEnemy = function(spawn) {
+    var spawnType = spawn.type
+    var probability = spawn.probability || 100;
+    var enemyConfig = this.game.config.enemies[spawnType];
+    if (enemyConfig) {
+        if (Math.random() > (probability/100)) {
+            return;
+        }
+        var enemy = new Enemy(this, spawn, enemyConfig);
+        this.enemies.push(enemy);
+        this.entities.push(enemy);
+    }
 }
 
 

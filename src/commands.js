@@ -48,6 +48,15 @@ var Commands = {
         context.game.data.joinParty(params.id);
         context.game.state.explore.refreshParty();
         done();
+    },
+    enemy: function(context, params, done) {
+        context.game.state.explore.world.spawnEnemy({
+            type: x(context, params.type),
+            x: x(context, params.x),
+            y: x(context, params.y),
+            probability: x(context, params.probability)
+        });
+        done();
     }
 };
 

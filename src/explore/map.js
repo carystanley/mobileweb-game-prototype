@@ -22,7 +22,6 @@ function Map (config) {
                     layers[name] = locations;
                     break;
 
-                case 'spawns':
                 case 'events':
                     layers[name] = layer.objects;
                     break;

@@ -11,6 +11,18 @@ window.EVENTS = {
             {cmd: 'fadeIn', ticks: 60}
         ]
     }],
+    'enemy': [{
+        sprite: -1,
+        trigger: 'auto',
+        commands: [
+            {
+                cmd: 'enemy',
+                type: '$$params.type',
+                x: '$$params.x', y: '$$params.y',
+                probability: '$$params.probability'
+            }
+        ]
+    }],
     'ramenguy': [{
         sprite: 13,
         commands: [

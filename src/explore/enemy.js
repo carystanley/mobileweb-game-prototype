@@ -2,8 +2,8 @@ var Actor = require('./actor');
 
 function Enemy (world, spawn, config) {
     Actor.call(this, world, {
-        x: spawn.cx,
-        y: spawn.cy,
+        x: spawn.x,
+        y: spawn.y,
         sprite: config.sprite
     });
     this.type = spawn.type;
