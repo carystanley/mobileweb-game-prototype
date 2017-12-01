@@ -10,5 +10,12 @@ window.ITEMS = {
         action: 'heal',
         amount: 15,
         cost: 15
+    },
+    ramen: {
+        label: 'Ramen',
+        battleAction: 'heal',
+        action: 'heal',
+        amount: 150,
+        cost: 200
     }
 };
