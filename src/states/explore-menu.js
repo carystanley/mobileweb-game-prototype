@@ -8,12 +8,11 @@ WorldMenuState.prototype.init = function () {
     var basicFont = this.game.resources.basicfont;
     this.menus = {
         base: new TextMenu(basicFont, 16, 16, 40, 20, 4, [
-            {id: 'goods', text: 'Goods'},
-            {id: 'equip', text: 'Equip'},
+            {id: 'items', text: 'Items'},
             {id: 'status', text: 'Status'}
         ], this.onBaseMenu.bind(this)),
-        goods: new TextMenu(basicFont, 72, 16, 80, 20, 4, [
-        ], this.onGoodsMenu.bind(this))
+        items: new TextMenu(basicFont, 72, 16, 80, 20, 4, [
+        ], this.onItemsMenu.bind(this))
     };
 }
 
@@ -26,13 +25,12 @@ WorldMenuState.prototype.setState = function (state) {
         }
     }
     switch (state) {
-        case 'goods':
-            menus['goods'].setOptions(this.game.data.getItemsMenu());
-            menus['goods'].show();
+        case 'items':
+            menus['items'].setOptions(this.game.data.getItemsMenu());
+            menus['items'].show();
             menus['base'].show();
             break;
 
-        case 'equip':
         case 'status':
             menus['base'].show();
             break;
@@ -55,14 +53,13 @@ WorldMenuState.prototype.onBaseMenu = function (option) {
     this.setState(option.id);
 }
 
-WorldMenuState.prototype.onGoodsMenu = function (option) {
-
+WorldMenuState.prototype.onItemsMenu = function (option) {
+    console.error(option);
 }
 
 WorldMenuState.prototype.onCancel = function () {
     switch (this.state) {
-        case 'goods':
-        case 'equip':
+        case 'items':
         case 'status':
             this.setState('base');
             break;
