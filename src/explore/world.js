@@ -101,21 +101,27 @@ World.prototype.runLoadEvents = function () {
     }
 }
 
+World.prototype.drawLayer = function (ctx, layer, v, scale) {
+    scale = scale || 1;
+    var x = (v.x / scale) | 0;
+    var y = (v.y / scale) | 0;
+    var width = v.width;
+    var height = v.height;
+
+    ctx.drawImage(
+        layer,
+        x, y, width, height,
+        0, 0, width, height
+    );
+}
+
 World.prototype.draw = function (ctx, v, res) {
     var player = this.player;
     var entities = this.entities;
 
-    ctx.drawImage(
-        this.mapParallax,
-        (v.x/16) | 0, (v.y/16) | 0, v.width, v.height,
-        0, 0, v.width, v.height
-    );
+    this.drawLayer(ctx, this.mapParallax, v, 16);
 
-    ctx.drawImage(
-        this.mapImage,
-        v.x, v.y, v.width, v.height,
-        0, 0, v.width, v.height
-    );
+    this.drawLayer(ctx, this.mapImage, v);
 
     entities.sort(function(a, b) { return a.y - b.y; });
     entities.forEach(function(obj) {
@@ -155,11 +161,7 @@ World.prototype.draw = function (ctx, v, res) {
         });
     }
 
-    ctx.drawImage(
-        this.mapFrontImage,
-        v.x, v.y, v.width, v.height,
-        0, 0, v.width, v.height
-    );
+    this.drawLayer(ctx, this.mapFrontImage, v);
 
     if (player.goalRadius > 0) {
         ctx.fillStyle = 'rgba(170, 170, 170, 0.5)';
