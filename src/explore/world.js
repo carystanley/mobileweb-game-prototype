@@ -122,15 +122,15 @@ World.prototype.drawLayer = function (ctx, layer, v, scale) {
         height += overy;
     }
 
-    if (x < 0) {
-        ox = -x;
-        width += x;
+    if (v.x < 0) {
+        ox = -v.x;
+        width += v.x;
         x = 0;
     }
 
-    if (y < 0) {
-        oy = -y;
-        height += y;
+    if (v.y < 0) {
+        oy = -v.y;
+        height += v.y;
         y = 0;
     }
 
