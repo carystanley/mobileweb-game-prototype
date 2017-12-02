@@ -112,6 +112,16 @@ World.prototype.drawLayer = function (ctx, layer, v, scale) {
     var ox = 0;
     var oy = 0;
 
+    var overx = mapWidth - (v.x + width)
+    if (overx < 0) {
+        width += overx;
+    }
+
+    var overy = mapHeight - (v.y + height)
+    if (overy < 0) {
+        height += overy;
+    }
+
     if (x < 0) {
         ox = -x;
         width += x;
@@ -122,16 +132,6 @@ World.prototype.drawLayer = function (ctx, layer, v, scale) {
         oy = -y;
         height += y;
         y = 0;
-    }
-
-    var overx = mapWidth - (v.x + width)
-    if (overx < 0) {
-        width += overx;
-    }
-
-    var overy = mapHeight - (v.y + height)
-    if (overy < 0) {
-        height += overy;
     }
 
     ctx.drawImage(
