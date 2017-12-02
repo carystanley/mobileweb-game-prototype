@@ -1,6 +1,7 @@
 var Random = require('../utils/random');
 
 // http://walkthrough.starmen.net/earthbound/enemylist_full.php
+// https://datacrystal.romhacking.net/wiki/EarthBound:Enemy_Configuration_Table
 
 function BattleActor(settings) {
     Object.assign(this, settings);

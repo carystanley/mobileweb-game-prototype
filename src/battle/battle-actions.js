@@ -10,8 +10,9 @@ var Actions = {
     heal: {
         target: 'friendly',
         lambda: function (state, target, actor, param) {
+            var amount = parseInt(param, 10);
             target.shakeCounter = 20;
-            state.particles.add(target.heal(param.amount), target.x, target.y, 30, 0, -0.5, 0);
+            state.particles.add(target.heal(amount), target.x, target.y, 30, 0, -0.5, 0);
         }
     },
     defend: {
@@ -21,22 +22,22 @@ var Actions = {
         }
     },
     item: {
-        target: function (game, param) {
-            var itemId = param.id;
+        target: function (game, itemId) {
             var item = game.config.items[itemId];
             if (item.battleAction) {
-                return Actions[item.battleAction].target;
+                var action = item.battleAction.split(':', 2);
+                return Actions[action[0]].target;
             }
         },
-        lambda: function (state, target, actor, param) {
-            var itemId = param.id;
+        lambda: function (state, target, actor, itemId) {
             var game = state.game;
             var item = game.config.items[itemId];
 
             if (item.battleAction) {
                 if (game.data.hasInventoryItem(itemId)) {
                     game.data.inventory.removeById(itemId);
-                    Actions[item.battleAction].lambda(state, target, actor, item);
+                    var parts = item.battleAction.split(':', 2);
+                    Actions[parts[0]].lambda(state, target, actor, parts[1]);
                 }
             }
         }

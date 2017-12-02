@@ -6,16 +6,14 @@ window.ITEMS = {
     sock: {label: 'Sock'},
     rice: {
         label: 'Rice',
-        battleAction: 'heal',
-        action: 'heal',
-        amount: 15,
+        battleAction: 'heal:15',
+        action: 'heal:15',
         cost: 15
     },
     ramen: {
         label: 'Ramen',
-        battleAction: 'heal',
-        action: 'heal',
-        amount: 150,
+        battleAction: 'heal:150',
+        action: 'heal:150',
         cost: 200
     }
 };

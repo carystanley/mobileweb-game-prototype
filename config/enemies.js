@@ -8,7 +8,7 @@ window.ENEMIES = {
         battlesprite: 0,
         hp: 5,
         strategy: 'random',
-        actions: ['bash', 'heal', 'other', 'other']
+        actions: ['bash', 'heal:5', 'other', 'other']
     },
     'shiitake': {
         name: 'Shiitake',
@@ -16,7 +16,7 @@ window.ENEMIES = {
         battlesprite: 1,
         hp: 5,
         strategy: 'inorder',
-        actions: ['bash', 'heal', 'other', 'other']
+        actions: ['bash', 'heal:3', 'other', 'other']
     },
     'hochstetteri': {
         name: 'Hochstetteri',
@@ -24,7 +24,7 @@ window.ENEMIES = {
         battlesprite: 2,
         hp: 5,
         strategy: 'inorder',
-        actions: ['bash', 'heal', 'other', 'other']
+        actions: ['bash', 'heal:3', 'other', 'other']
     },
     'pleurotus': {
         name: 'Pleurotus',
@@ -32,6 +32,6 @@ window.ENEMIES = {
         battlesprite: 3,
         hp: 5,
         strategy: 'inorder',
-        actions: ['bash', 'heal', 'other', 'other']
+        actions: ['bash', 'heal:3', 'other', 'other']
     }
 }

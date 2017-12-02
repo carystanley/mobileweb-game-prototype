@@ -98,11 +98,11 @@ BattleMenuState.prototype.setTarget = function (target) {
 }
 
 BattleMenuState.prototype.onItemsMenu = function (option) {
-    this.setChoice('item', option);
+    this.setChoice('item', option.id);
 }
 
 BattleMenuState.prototype.onPSIMenu = function (option) {
-    this.setChoice('psi', option);
+    this.setChoice('psi', option.id);
 }
 
 BattleMenuState.prototype.onCancel = function () {

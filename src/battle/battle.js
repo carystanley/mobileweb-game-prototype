@@ -117,10 +117,10 @@ Battle.prototype.setAction = function (action, param, target) {
 Battle.prototype.setEnemyActions = function () {
     var self = this;
     this.enemies.forEach(function (enemy, idx) {
-        var action = enemy.getAction();
-        enemy.action = action;
-        enemy.action_param = undefined;
-        var target = self.getActionTarget(action);
+        var action = enemy.getAction().split(':', 2);
+        enemy.action = action[0];
+        enemy.action_param = action[1];
+        var target = self.getActionTarget(action[0]);
 
         if (target === 'friendly') {
             enemy.target = enemy;
@@ -142,7 +142,7 @@ Battle.prototype.getCurrentTurnText = function () {
     var turn = this.getCurrentTurn();
     var text = turn.name + ' ' + turn.action;
     if (turn.action_param) {
-        text += ' ' + turn.action_param.text;
+        text += ' ' + turn.action_param;
     }
     if (turn.target) {
         text += ' ' + turn.target.name;
