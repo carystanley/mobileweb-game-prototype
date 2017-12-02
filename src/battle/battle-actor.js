@@ -8,7 +8,7 @@ function BattleActor(settings) {
     this.type = settings.type;
     this.hp = settings.hp;
     this.maxhp = settings.maxhp;
-    this.rollhp = settings.rollhp;
+    this.rollhp = settings.hp;
     this.offense = settings.offense;
     this.defense = settings.defense;
     this.guts = settings.guts;
