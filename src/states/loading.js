@@ -16,6 +16,7 @@ var class6 = require('../../maps/class6.json');
 var class7 = require('../../maps/class7.json');
 var class8 = require('../../maps/class8.json');
 var class9 = require('../../maps/class9.json');
+var debug = require('../../maps/debug.json');
 
 function loadImage(url, onload) {
     var image = new Image();
@@ -52,8 +53,8 @@ LoadingState.prototype.enter = function () {
         floor1: new Map(floor1),
         floor2: new Map(floor2),
         floor3: new Map(floor3),
-        roof: new Map(roof2),
-        roof2: new Map(roof),
+        roof: new Map(roof),
+        roof2: new Map(roof2),
         class1: new Map(class1),
         class2: new Map(class2),
         class3: new Map(class3),
@@ -63,6 +64,7 @@ LoadingState.prototype.enter = function () {
         class7: new Map(class7),
         class8: new Map(class8),
         class9: new Map(class9),
+        debug: new Map(debug),
         layer0: loadImage('./images/layer0.png', doneCheck),
         odometer: loadImage('./images/odometer.png', doneCheck),
         statuspanel: loadImage('./images/status-panel.png', doneCheck),
