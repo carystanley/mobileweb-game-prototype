@@ -6,6 +6,8 @@ window.ENEMIES = {
         name: 'Perlatum',
         sprite: 22,
         battlesprite: 0,
+        cash: 2,
+        xp: 10,
         hp: 5,
         strategy: 'random',
         actions: ['bash', 'heal:5', 'other', 'other']
@@ -14,6 +16,8 @@ window.ENEMIES = {
         name: 'Shiitake',
         sprite: 24,
         battlesprite: 1,
+        cash: 2,
+        xp: 10,
         hp: 5,
         strategy: 'inorder',
         actions: ['bash', 'heal:3', 'other', 'other']
@@ -22,6 +26,8 @@ window.ENEMIES = {
         name: 'Hochstetteri',
         sprite: 23,
         battlesprite: 2,
+        cash: 2,
+        xp: 10,
         hp: 5,
         strategy: 'inorder',
         actions: ['bash', 'heal:3', 'other', 'other']
@@ -30,6 +36,8 @@ window.ENEMIES = {
         name: 'Pleurotus',
         sprite: 14,
         battlesprite: 3,
+        cash: 2,
+        xp: 10,
         hp: 5,
         strategy: 'inorder',
         actions: ['bash', 'heal:3', 'other', 'other']
