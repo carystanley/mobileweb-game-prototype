@@ -18,6 +18,17 @@ var class8 = require('../../maps/class8.json');
 var class9 = require('../../maps/class9.json');
 var debug = require('../../maps/debug.json');
 
+var Howl = require('howler').Howl;
+
+function loadSound(urls, loop, onload) {
+    var sound = new Howl({
+        src: urls,
+        loop: loop
+    });
+    sound.once('load', onload);
+    return sound;
+}
+
 function loadImage(url, onload) {
     var image = new Image();
     if (onload) {
@@ -36,7 +47,7 @@ function LoadingState(game) {
 LoadingState.prototype.enter = function () {
     var self = this;
     var count = 0;
-    var total = 7;
+    var total = 11;
 
     function doneCheck() {
         count++;
@@ -68,7 +79,17 @@ LoadingState.prototype.enter = function () {
         layer0: loadImage('./images/layer0.png', doneCheck),
         odometer: loadImage('./images/odometer.png', doneCheck),
         statuspanel: loadImage('./images/status-panel.png', doneCheck),
-        battlesprites: loadImage('./images/battle-sprites.png', doneCheck)
+        battlesprites: loadImage('./images/battle-sprites.png', doneCheck),
+        se: {
+            cursor_ok: loadSound(['./sounds/se/cursor_ok.wav'], false, doneCheck),
+            item1: loadSound(['./sounds/se/item1.wav'], false, doneCheck)
+        },
+        me: {
+            joins_party: loadSound(['./sounds/me/joins_party.wav'], false, doneCheck)
+        },
+        bgm: {
+            school_happy: loadSound(['./sounds/bgm/school_happy.mp3'], true, doneCheck)
+        }
     };
 
     resources.basicfont = new BitmapFont(BasicFontMeta, resources.basicfontsheet);

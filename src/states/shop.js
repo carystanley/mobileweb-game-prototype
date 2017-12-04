@@ -47,6 +47,7 @@ ShopState.prototype.onMenu = function (option) {
     if (cost <= data.getCash()) {
         data.adjustCash(-cost);
         data.inventory.add(itemId);
+        this.game.resources.se.item1.play();
         console.error('You got ' + item.label + '!');
     }
 }
