@@ -2,7 +2,7 @@
 function SoundManager(game) {
     this.game = game;
     this.channels = {};
-    this.music = null;
+    this.activeMusic = null;
 }
 
 SoundManager.prototype.se = function (id) {
@@ -18,12 +18,12 @@ SoundManager.prototype.bgm = function (channel, id) {
     if (id) {
         this.channels[channel] = id;
     }
-    if (this.channels[channel] !== this.music) {
-        if (this.music) {
-            bgm[this.music].stop();
+    if (this.channels[channel] !== this.activeMusic) {
+        if (this.activeMusic) {
+            bgm[this.activeMusic].stop();
         }
-        this.music = this.channels[channel];
-        bgm[this.music].play();
+        this.activeMusic = this.channels[channel];
+        bgm[this.activeMusic].play();
     }
 }
 
