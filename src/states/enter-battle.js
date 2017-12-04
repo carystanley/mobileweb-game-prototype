@@ -5,6 +5,7 @@ function EnterBattleState(game) {
 
 EnterBattleState.prototype.enter = function () {
     this.radius = 150;
+    this.game.sound.se('encounter');
 }
 
 EnterBattleState.prototype.update = function () {

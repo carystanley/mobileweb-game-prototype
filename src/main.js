@@ -3,6 +3,7 @@
 var Data = require('./data');
 var StateManager = require('./utils/statemanager');
 var Layout = require('./ui/layout');
+var SoundManager = require('./soundmanager');
 
 var ExploreState = require('./states/explore');
 var ExploreMenuState = require('./states/explore-menu');
@@ -98,6 +99,7 @@ Game.setup = function(canvasId, window, config) {
 
     game.ctx = ctx;
     game.resources = {};
+    game.sound = new SoundManager(game);
     game.state = new StateManager(game, {
         explore: new ExploreState(game),
         exploreMenu: new ExploreMenuState(game),

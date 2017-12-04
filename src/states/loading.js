@@ -47,7 +47,7 @@ function LoadingState(game) {
 LoadingState.prototype.enter = function () {
     var self = this;
     var count = 0;
-    var total = 11;
+    var total = 12;
 
     function doneCheck() {
         count++;
@@ -82,13 +82,15 @@ LoadingState.prototype.enter = function () {
         battlesprites: loadImage('./images/battle-sprites.png', doneCheck),
         se: {
             cursor_ok: loadSound(['./sounds/se/cursor_ok.wav'], false, doneCheck),
-            item1: loadSound(['./sounds/se/item1.wav'], false, doneCheck)
+            item1: loadSound(['./sounds/se/item1.wav'], false, doneCheck),
+            encounter: loadSound(['./sounds/se/encounter.wav'], false, doneCheck)
         },
         me: {
             joins_party: loadSound(['./sounds/me/joins_party.wav'], false, doneCheck)
         },
         bgm: {
-            school_happy: loadSound(['./sounds/bgm/school_happy.mp3'], true, doneCheck)
+            school_happy: loadSound(['./sounds/bgm/school_happy.mp3'], true, doneCheck),
+            battle1: loadSound(['./sounds/bgm/battle1.mp3'], true, doneCheck)
         }
     };
 
