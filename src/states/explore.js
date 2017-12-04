@@ -16,7 +16,7 @@ WorldState.prototype.init = function () {
         {id: 'menu', text: 'Menu'}
     ], this.openMenu.bind(this));
     this.menuButton.show();
-    this.game.sound.bgm('school_happy');
+    this.game.sound.bgm('explore', 'school_happy');
 }
 
 WorldState.prototype.update = function () {

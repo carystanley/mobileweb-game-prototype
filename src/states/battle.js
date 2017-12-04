@@ -35,7 +35,7 @@ BattleState.prototype.init = function () {
 BattleState.prototype.enter = function (enemies) {
     this.battle.setup(enemies);
     this.dialog.reset();
-    this.game.sound.bgm('battle1');
+    this.game.sound.bgm('battle', 'battle1');
     this.state.switch('startturn');
 }
 

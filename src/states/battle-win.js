@@ -13,6 +13,7 @@ BattleWinState.prototype.enter = function () {
     var self = this;
     this.battleState.dialog.reset();
     this.battleState.dialog.showText('You Won!', function () {
+        self.game.sound.bgm('explore');
         self.game.state.switch('explore');
     });
 }

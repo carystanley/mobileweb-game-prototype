@@ -1,6 +1,8 @@
 
 function SoundManager(game) {
     this.game = game;
+    this.channels = {};
+    this.music = null;
 }
 
 SoundManager.prototype.se = function (id) {
@@ -8,11 +10,21 @@ SoundManager.prototype.se = function (id) {
 }
 
 SoundManager.prototype.me = function (id) {
-    this.game.resources.me[id].play();
+    this.bgm('effect', id);
 }
 
-SoundManager.prototype.bgm = function (id) {
-    this.game.resources.bgm[id].play();
+SoundManager.prototype.bgm = function (channel, id) {
+    var bgm = this.game.resources.bgm;
+    if (id) {
+        this.channels[channel] = id;
+    }
+    if (this.channels[channel] !== this.music) {
+        if (this.music) {
+            bgm[this.music].stop();
+        }
+        this.music = this.channels[channel];
+        bgm[this.music].play();
+    }
 }
 
 module.exports = SoundManager;
