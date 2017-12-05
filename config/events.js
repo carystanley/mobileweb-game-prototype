@@ -135,7 +135,7 @@ window.EVENTS = {
         sprite: 3,
         cond: "!flag('principal_join')",
         commands: [
-            {cmd: 'dialog', text: 'Help me boy, I should have to deal with this!!!.'},
+            {cmd: 'dialog', text: 'Help me boy, I shouldn\'t have to deal with this!!!.'},
             {cmd: 'joinParty', id: 'principal'},
             {cmd: 'setFlag', id: 'principal_join', value: true}
         ]
