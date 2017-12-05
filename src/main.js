@@ -12,6 +12,7 @@ var EnterBattleState = require('./states/enter-battle');
 var BattleState = require('./states/battle');
 var LoadingState = require('./states/loading');
 var ShopState = require('./states/shop');
+var GameOverState = require('./states/gameover');
 
 var Game = {};
 Game.setup = function(canvasId, window, config) {
@@ -107,7 +108,8 @@ Game.setup = function(canvasId, window, config) {
         battle: new BattleState(game),
         loading: new LoadingState(game),
         enterBattle: new EnterBattleState(game),
-        shop: new ShopState(game)
+        shop: new ShopState(game),
+        gameover: new GameOverState(game)
     });
     game.state.switch('loading');
 
