@@ -17,9 +17,15 @@ function Actor (world, config) {
     this.height = 8;
     this.world = world;
     this.sprite = config.sprite;
-    this.facing = config.facing || 'down';
-    this.frame = baseAnimationConfig[this.facing].frames[0];
     this.animation = new AnimationManager(baseAnimationConfig);
+    this.setFacing(config.facing || 'down');
+}
+
+Actor.prototype.setFacing = function (dir) {
+    this.facing = dir;
+    this.animation.play(dir);
+    this.animation.stop();
+    this.frame = this.animation.getCurrentFrame();
 }
 
 Actor.prototype.step = function (dx, dy) {

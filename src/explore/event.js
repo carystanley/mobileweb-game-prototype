@@ -22,6 +22,7 @@ Event.prototype.loadPage = function (page) {
     var config = this.currentPage = page;
     this.inactive = false;
     this.sprite = config.sprite;
+    this.setFacing(config.facing || 'down');
     // this.width = config.width || 14;
     // this.height = config.height || 8;
     this.commands = config.commands;
@@ -57,7 +58,7 @@ Event.prototype.triggerEvent = function (type) {
 }
 
 Event.prototype.update = function () {
-
+    this.step(0, 0);
 }
 
 module.exports = Event;
