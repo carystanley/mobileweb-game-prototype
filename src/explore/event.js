@@ -58,7 +58,7 @@ Event.prototype.triggerEvent = function (type) {
 }
 
 Event.prototype.update = function () {
-    this.step(0, 0);
+    // this.step(0, 0);
 }
 
 module.exports = Event;
