@@ -128,5 +128,17 @@ window.EVENTS = {
             {cmd: 'dialog', text: 'Lets kick Mushroom Butt!!!.'},
             {cmd: 'joinParty', id: 'bully'}
         ]
+    }],
+    'principal': [{
+        sprite: -1,
+        commands: []
+    }, {
+        sprite: 3,
+        cond: "!flag('principal_join')",
+        commands: [
+            {cmd: 'dialog', text: 'Help me boy, I should have to deal with this!!!.'},
+            {cmd: 'joinParty', id: 'principal'},
+            {cmd: 'setFlag', id: 'principal_join', value: true}
+        ]
     }]
 }

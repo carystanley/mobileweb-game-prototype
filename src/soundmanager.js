@@ -10,7 +10,8 @@ SoundManager.prototype.se = function (id) {
 }
 
 SoundManager.prototype.me = function (id) {
-    this.bgm('effect', id);
+    // this.bgm('effect', id);
+    this.game.resources.me[id].play();
 }
 
 SoundManager.prototype.bgm = function (channel, id) {

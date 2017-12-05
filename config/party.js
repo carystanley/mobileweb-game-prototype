@@ -36,6 +36,17 @@ window.PARTY = {
             guts: 10,
             luck: 14,
             speed: 25
+        },
+        principal: {
+            sprite: 3,
+            name: 'Principal',
+            hp: 100,
+            maxhp: 100,
+            offense: 1,
+            defense: 1,
+            guts: 1,
+            luck: 1,
+            speed: 1
         }
     },
     inventory: ['sneaker', 'rice'],

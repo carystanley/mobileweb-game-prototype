@@ -45,9 +45,13 @@ var Commands = {
         done();
     },
     joinParty: function(context, params, done) {
-        context.game.data.joinParty(params.id);
-        context.game.state.explore.refreshParty();
-        done();
+        var game = context.game;
+        game.data.joinParty(params.id);
+        game.sound.me('joins_party');
+        context.dialog.showText(params.id + ' joined the party!', function () {
+            game.state.explore.refreshParty();
+            done();
+        });
     },
     enemy: function(context, params, done) {
         context.game.state.explore.world.spawnEnemy({
