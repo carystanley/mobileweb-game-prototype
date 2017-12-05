@@ -2,6 +2,6 @@
 
 window.SHOPS = {
     ramenguy1: {
-        items: ['rice', 'ramen']
+        items: ['pocky', 'onigiri', 'ramen']
     }
 };

@@ -49,7 +49,7 @@ window.PARTY = {
             speed: 1
         }
     },
-    inventory: ['sneaker', 'rice'],
+    inventory: ['sneaker', 'pocky'],
     vars: {
         chapter: 0,
         cash: 1000,
