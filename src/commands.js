@@ -31,8 +31,10 @@ var Commands = {
         context.matte.fadeIn(params.ticks, done);
     },
     addItemToInventory: function(context, params, done) {
-        context.game.data.inventory.add(params.id);
-        var item = context.game.config.items[params.id]
+        var id = x(context, params.id);
+        context.game.data.inventory.add(id);
+        var item = context.game.config.items[id]
+        context.game.sound.se('item1');
         context.dialog.showText('You got ' + item.label + '!', done);
     },
     removeItemFromInventory: function(context, params, done) {

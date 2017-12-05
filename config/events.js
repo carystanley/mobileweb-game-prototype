@@ -23,6 +23,18 @@ window.EVENTS = {
             }
         ]
     }],
+    'trash': [{
+        sprite: 16,
+        facing: 'up'
+    }, {
+        sprite: 16,
+        cond: "!flag('got_trash')",
+        facing: 'down',
+        commands: [
+            {cmd: 'addItemToInventory', id: '$$params.item'},
+            {cmd: 'setFlag', id: 'got_trash', value: true}
+        ]
+    }],
     'ramenguy': [{
         sprite: 13,
         commands: [
