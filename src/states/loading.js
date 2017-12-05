@@ -16,6 +16,7 @@ var class6 = require('../../maps/class6.json');
 var class7 = require('../../maps/class7.json');
 var class8 = require('../../maps/class8.json');
 var class9 = require('../../maps/class9.json');
+var gym = require('../../maps/gym.json');
 var debug = require('../../maps/debug.json');
 
 var Howl = require('howler').Howl;
@@ -75,6 +76,7 @@ LoadingState.prototype.enter = function () {
         class7: new Map(class7),
         class8: new Map(class8),
         class9: new Map(class9),
+        gym: new Map(gym),
         debug: new Map(debug),
         layer0: loadImage('./images/layer0.png', doneCheck),
         odometer: loadImage('./images/odometer.png', doneCheck),
