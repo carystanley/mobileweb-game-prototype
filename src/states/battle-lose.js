@@ -10,8 +10,10 @@ BattleLoseState.prototype.init = function () {
 }
 
 BattleLoseState.prototype.enter = function () {
+    var self = this;
     this.battleState.dialog.reset();
     this.battleState.dialog.showText('You Lost!', function () {
+        self.game.state.switch('gameover');
     });
 }
 

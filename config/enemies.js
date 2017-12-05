@@ -30,7 +30,7 @@ window.ENEMIES = {
         xp: 10,
         hp: 5,
         strategy: 'inorder',
-        actions: ['bash', 'heal:3', 'other', 'other']
+        actions: ['bash']
     },
     'pleurotus': {
         name: 'Pleurotus',
