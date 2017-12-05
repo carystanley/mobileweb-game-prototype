@@ -6,6 +6,7 @@ window.PARTY = {
     members: {
         hero: {
             sprite: 0,
+            dead_sprite: 4,
             name: 'Izumi',
             hp: 10,
             maxhp: 10,
@@ -17,6 +18,7 @@ window.PARTY = {
         },
         girl: {
             sprite: 1,
+            dead_sprite: 5,
             name: 'Asami',
             hp: 6,
             maxhp: 6,
@@ -28,6 +30,7 @@ window.PARTY = {
         },
         bully: {
             sprite: 2,
+            dead_sprite: 6,
             name: 'Ryoko',
             hp: 65,
             maxhp: 65,
@@ -39,6 +42,7 @@ window.PARTY = {
         },
         principal: {
             sprite: 3,
+            dead_sprite: 3,
             name: 'Principal',
             hp: 100,
             maxhp: 100,

@@ -44,7 +44,11 @@ World.prototype.refreshParty = function() {
         var memberId = data.party[i];
         if (memberId) {
             var member = data.members[memberId];
-            party[i].sprite = member.sprite;
+            if (member.hp <= 0) {
+                party[i].sprite = member.dead_sprite;
+            } else {
+                party[i].sprite = member.sprite;
+            }
         } else {
             party[i].sprite = -1;
         }

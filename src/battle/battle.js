@@ -185,5 +185,16 @@ Battle.prototype.isLost = function () {
     });
 }
 
+Battle.prototype.updatePlayerCharacters = function () {
+    var pcs = this.pcs;
+    var gamedata = this.game.data;
+    var i = 0;
+
+    gamedata.party.forEach(function (id) {
+        var data = gamedata.members[id] || {};
+        data.hp = pcs[i].hp;
+        i++;
+    })
+}
 
 module.exports = Battle;
