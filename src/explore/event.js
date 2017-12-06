@@ -56,15 +56,23 @@ Event.prototype.triggerEvent = function (type) {
     if (type === this.trigger || this.trigger === 'contact') {
         if (this.commands) {
             var config = this.config;
-            this.game.state.switch('cutscene', {
-                event: this,
-                params: Object.assign({
-                    x: config.cx,
-                    y: config.cy,
-                    type: config.type
-                }, this.config.properties),
-                commands: this.commands
-            });
+            var params = Object.assign({
+                x: config.cx,
+                y: config.cy,
+                type: config.type
+            }, this.config.properties);
+            var commands = this.commands;
+
+            if (type === 'load') {
+                console.error(this.game.state);
+                this.game.state.explore.execute(this, params, commands);
+            } else {
+                this.game.state.switch('cutscene', {
+                    event: this,
+                    params: params,
+                    commands: commands
+                });
+            }
         }
     }
 }

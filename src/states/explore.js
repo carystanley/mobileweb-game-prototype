@@ -2,6 +2,8 @@ var Viewport = require('../utils/viewport');
 var World = require('../explore/world');
 var TextMenu = require('../ui/textmenu');
 var AABB = require('../utils/aabb');
+var Interpreter = require('../utils/interpreter');
+var Commands = require('../commands');
 
 function WorldState(game) {
     this.game = game;
@@ -16,6 +18,7 @@ WorldState.prototype.init = function () {
         {id: 'menu', text: 'Menu'}
     ], this.openMenu.bind(this));
     this.menuButton.show();
+    this.interpreter = new Interpreter(Commands);
     // this.game.sound.bgm('explore', 'school_happy');
 }
 
@@ -84,6 +87,12 @@ WorldState.prototype.mapTransport = function (mapId, locationId) {
 
 WorldState.prototype.refreshParty = function () {
     this.world.refreshParty();
+}
+
+WorldState.prototype.execute = function (event, params, commands) {
+    this.params = params;
+    this.eventObj = event;
+    this.interpreter.run(commands, this, function() {});
 }
 
 module.exports = WorldState;
