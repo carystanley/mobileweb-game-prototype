@@ -5,9 +5,13 @@ function Matte(game) {
     this.color = {r: 0, b: 0, g: 0};
     this.width = game.getWidth();
     this.height = game.getHeight();
+    this.tween = new Tween();
+    this.reset();
+}
+
+Matte.prototype.reset = function() {
     this.visible = false;
     this.alpha = 0;
-    this.tween = new Tween();
 }
 
 Matte.prototype.fadeIn = function(frames, done) {
