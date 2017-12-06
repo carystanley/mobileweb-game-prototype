@@ -1,5 +1,3 @@
-var scopedEval = require('./scoped-eval');
-
 function Interpreter(commands) {
     this.commands = commands;
 }
@@ -40,13 +38,7 @@ Interpreter.prototype.jump = function (cmds) {
 }
 
 Interpreter.prototype.eval = function (statement) {
-    var context = this.context;
-    var gameData = context.game.data;
-    return scopedEval(statement, gameData, {
-        flag: function (id) {
-            return gameData.getEventFlag(context.eventObj.id, id);
-        }
-    });
+    return this.context.eventObj.eval(statement);
 }
 
 Interpreter.prototype.keywords = {

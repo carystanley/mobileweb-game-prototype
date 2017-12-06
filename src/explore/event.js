@@ -32,20 +32,24 @@ Event.prototype.loadPage = function (page) {
 
 Event.prototype.refresh = function () {
     var pages = this.pages;
-    var gameData = this.game.data;
-    var self = this;
     for (var i = this.pages.length-1; i >= 0; i--) {
         var page = pages[i];
-        if (!page.cond || scopedEval(page.cond, gameData, {
-            flag: function (id) {
-                return gameData.getEventFlag(self.id, id);
-            }
-        })) {
+        if (!page.cond || this.eval(page.cond)) {
             this.loadPage(page);
             return;
         }
     }
     this.inactive = true;
+}
+
+Event.prototype.eval = function (statement) {
+    var self = this;
+    var gameData = this.game.data;
+    return scopedEval(statement, gameData, {
+        flag: function (id) {
+            return gameData.getEventFlag(self.id, id);
+        }
+    })
 }
 
 Event.prototype.triggerEvent = function (type) {
