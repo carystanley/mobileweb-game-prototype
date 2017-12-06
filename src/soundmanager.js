@@ -24,7 +24,9 @@ SoundManager.prototype.bgm = function (channel, id) {
             bgm[this.activeMusic].stop();
         }
         this.activeMusic = this.channels[channel];
-        bgm[this.activeMusic].play();
+        if (bgm[this.activeMusic]) {
+            bgm[this.activeMusic].play();
+        }
     }
 }
 
