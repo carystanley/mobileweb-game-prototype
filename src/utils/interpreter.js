@@ -39,9 +39,19 @@ Interpreter.prototype.jump = function (cmds) {
     );
 }
 
+Interpreter.prototype.eval = function (statement) {
+    var context = this.context;
+    var gameData = context.game.data;
+    return scopedEval(statement, gameData, {
+        flag: function (id) {
+            return gameData.getEventFlag(context.eventObj.id, id);
+        }
+    });
+}
+
 Interpreter.prototype.keywords = {
     if: function(params) {
-        if (scopedEval(params.cond, this.context.game.data, {})) {
+        if (this.eval(params.cond)) {
             this.inc();
         } else {
             this.jump(['else', 'endif']);

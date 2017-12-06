@@ -46,6 +46,11 @@ var Commands = {
         context.game.state.explore.world.refresh();
         done();
     },
+    setSelfFlag: function(context, params, done) {
+        context.game.data.setEventFlag(context.eventObj.id, params.id, params.value);
+        context.game.state.explore.world.refresh();
+        done();
+    },
     joinParty: function(context, params, done) {
         var game = context.game;
         game.data.joinParty(params.id);

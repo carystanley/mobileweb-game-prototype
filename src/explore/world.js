@@ -59,6 +59,7 @@ World.prototype.loadMap = function(mapId, locationId) {
     var self = this;
     var game = this.game;
     this.map = game.resources[mapId];
+    this.mapId = mapId;
     this.mapParallax = this.map.render(['layer-'], game.resources);
     this.mapImage = this.map.render(['layer0', 'layer1'], game.resources);
     this.mapFrontImage = this.map.render(['layer2'], game.resources);

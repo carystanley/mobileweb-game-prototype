@@ -17,9 +17,9 @@ function scopedEval(source, scope) {
 
 function scopedEval(code, module, scope) {
     var func = new Function('module',
-        'with(module){return(function(global,window,document){\"use strict\";return eval(\"' +
+        'with(module){return(function(global,window,document,self){\"use strict\";return eval(\"' +
         code +
-        '\");})(this,this,this)}'
+        '\");})(this,this,this,this)}'
     );
     return func.call(scope, module);
 }

@@ -12,6 +12,7 @@ Data.prototype.init = function() {
     this.party = config.party || [];
     this.members = config.members || {};
     this.flags = config.flags || {};
+    this.eventflags = config.eventflags || {};
     this.inventory = new Inventory(8);
 
     (config.inventory || []).forEach(function (id) {
@@ -53,6 +54,15 @@ Data.prototype.flag = function(id) {
 
 Data.prototype.setFlag = function(id, value) {
     this.flags[id] = value;
+};
+
+Data.prototype.getEventFlag = function(eventId, id) {
+    return (this.eventflags[eventId] && this.eventflags[eventId][id]);
+};
+
+Data.prototype.setEventFlag = function(eventId, id, value) {
+    this.eventflags[eventId] = this.eventflags[eventId] || {};
+    this.eventflags[eventId][id] = value;
 };
 
 Data.prototype.joinParty = function(id) {

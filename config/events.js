@@ -28,11 +28,11 @@ window.EVENTS = {
         facing: 'up'
     }, {
         sprite: 16,
-        cond: "!flag('got_trash')",
+        cond: "!self.flag('got')",
         facing: 'down',
         commands: [
             {cmd: 'addItemToInventory', id: '$$params.item'},
-            {cmd: 'setFlag', id: 'got_trash', value: true}
+            {cmd: 'setSelfFlag', id: 'got', value: true}
         ]
     }],
     'ramenguy': [{

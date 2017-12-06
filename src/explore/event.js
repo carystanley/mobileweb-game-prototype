@@ -13,6 +13,7 @@ function Event(world, id, config, pages) {
     }
     this.config = config;
     this.eventId = id;
+    this.id = world.mapId + ':' + config.name;
     this.refresh();
 }
 
@@ -31,9 +32,15 @@ Event.prototype.loadPage = function (page) {
 
 Event.prototype.refresh = function () {
     var pages = this.pages;
+    var gameData = this.game.data;
+    var self = this;
     for (var i = this.pages.length-1; i >= 0; i--) {
         var page = pages[i];
-        if (!page.cond || scopedEval(page.cond, this.game.data, {})) {
+        if (!page.cond || scopedEval(page.cond, gameData, {
+            flag: function (id) {
+                return gameData.getEventFlag(self.id, id);
+            }
+        })) {
             this.loadPage(page);
             return;
         }
@@ -46,6 +53,7 @@ Event.prototype.triggerEvent = function (type) {
         if (this.commands) {
             var config = this.config;
             this.game.state.switch('cutscene', {
+                event: this,
                 params: Object.assign({
                     x: config.cx,
                     y: config.cy,
