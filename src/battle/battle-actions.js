@@ -4,8 +4,9 @@ var Equations = require('./equations');
 var Actions = {
     bash: {
         target: 'foe',
-        lambda: function (state, target, actor, param) {
-            var damage = Equations.calcBashDamage(2, actor, target);
+        lambda: function (state, target, actor, multiple) {
+            multiple = multiple || 2;
+            var damage = Equations.calcBashDamage(multiple, actor, target);
             target.shakeCounter = 20;
             state.particles.add(target.damage(damage), target.x, target.y, 30, 0, -0.5, 0);
         }

@@ -11,6 +11,7 @@ window.ENEMIES = {
         hp: 5,
         offense: 1,
         defense: 1,
+        missRate: 1/16,
         strategy: 'random',
         actions: ['bash', 'heal:5', 'other', 'other']
     },
@@ -23,6 +24,7 @@ window.ENEMIES = {
         hp: 5,
         offense: 1,
         defense: 1,
+        missRate: 1/16,
         strategy: 'inorder',
         actions: ['bash', 'heal:3', 'other', 'other']
     },
@@ -35,6 +37,7 @@ window.ENEMIES = {
         hp: 5,
         offense: 1,
         defense: 1,
+        missRate: 1/16,
         strategy: 'inorder',
         actions: ['bash']
     },
@@ -47,6 +50,7 @@ window.ENEMIES = {
         hp: 5,
         offense: 1,
         defense: 1,
+        missRate: 1/16,
         strategy: 'inorder',
         actions: ['bash', 'heal:3', 'other', 'other']
     }
