@@ -5,9 +5,11 @@ var Actions = {
     bash: {
         target: 'foe',
         lambda: function (state, target, actor, multiple) {
-            multiple = multiple || 2;
+            multiple = parseInt(multiple, 10) || 2;
             var damage = Equations.calcBashDamage(multiple, actor, target);
-            target.shakeCounter = 20;
+            if (damage > 0) {
+                target.shakeCounter = 20;
+            }
             state.particles.add(target.damage(damage), target.x, target.y, 30, 0, -0.5, 0);
         }
     },
