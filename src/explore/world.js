@@ -2,6 +2,7 @@ var Player = require('./player');
 var Follower = require('./follower');
 var Enemy = require('./enemy');
 var AABB = require('../utils/aabb');
+var Random = require('../utils/random');
 var Event = require('./event');
 
 var MAX_PARTY_SIZE = 4;
@@ -279,7 +280,7 @@ World.prototype.spawnEnemy = function(spawn) {
     var probability = spawn.probability || 100;
     var enemyConfig = this.game.config.enemies[spawnType];
     if (enemyConfig) {
-        if (Math.random() > (probability/100)) {
+        if (!Random.chance(probability/100)) {
             return;
         }
         var enemy = new Enemy(this, spawn, enemyConfig);
