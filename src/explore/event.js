@@ -64,7 +64,6 @@ Event.prototype.triggerEvent = function (type) {
             var commands = this.commands;
 
             if (type === 'load') {
-                console.error(this.game.state);
                 this.game.state.explore.execute(this, params, commands);
             } else {
                 this.game.state.switch('cutscene', {

@@ -100,7 +100,7 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":320,
+                 "x":464,
                  "y":48
                 }, 
                 {
@@ -247,6 +247,28 @@
                  "width":16,
                  "x":256,
                  "y":96
+                }, 
+                {
+                 "ellipse":true,
+                 "height":16,
+                 "id":37,
+                 "name":"hochstetteri1",
+                 "properties":
+                    {
+                     "probability":100,
+                     "type":"hochstetteri"
+                    },
+                 "propertytypes":
+                    {
+                     "probability":"int",
+                     "type":"string"
+                    },
+                 "rotation":0,
+                 "type":"enemy",
+                 "visible":true,
+                 "width":16,
+                 "x":32,
+                 "y":112
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -254,7 +276,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":37,
+ "nextobjectid":38,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",

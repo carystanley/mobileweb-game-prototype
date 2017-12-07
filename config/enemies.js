@@ -9,6 +9,8 @@ window.ENEMIES = {
         cash: 2,
         xp: 10,
         hp: 5,
+        offense: 1,
+        defense: 1,
         strategy: 'random',
         actions: ['bash', 'heal:5', 'other', 'other']
     },
@@ -19,6 +21,8 @@ window.ENEMIES = {
         cash: 2,
         xp: 10,
         hp: 5,
+        offense: 1,
+        defense: 1,
         strategy: 'inorder',
         actions: ['bash', 'heal:3', 'other', 'other']
     },
@@ -29,6 +33,8 @@ window.ENEMIES = {
         cash: 2,
         xp: 10,
         hp: 5,
+        offense: 1,
+        defense: 1,
         strategy: 'inorder',
         actions: ['bash']
     },
@@ -39,6 +45,8 @@ window.ENEMIES = {
         cash: 2,
         xp: 10,
         hp: 5,
+        offense: 1,
+        defense: 1,
         strategy: 'inorder',
         actions: ['bash', 'heal:3', 'other', 'other']
     }

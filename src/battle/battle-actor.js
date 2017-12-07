@@ -8,7 +8,7 @@ function BattleActor(settings) {
     Object.assign(this, settings);
     this.type = settings.type;
     this.hp = settings.hp;
-    this.maxhp = settings.maxhp;
+    this.maxhp = settings.maxhp || settings.hp;
     this.rollhp = settings.hp;
     this.offense = settings.offense;
     this.defense = settings.defense;
@@ -16,8 +16,10 @@ function BattleActor(settings) {
     this.luck = settings.luck;
     this.speed = settings.speed;
     this.missRate = settings.missRate;
+    this.sprite = settings.battlesprite;
+    this.actions = settings.actions;
+    this.stategy = settings.strategy;
     this.offset = 0;
-    this.config = settings.config;
 }
 
 BattleActor.prototype.isDead = function () {
@@ -37,8 +39,8 @@ BattleActor.prototype.heal = function (amount) {
 }
 
 BattleActor.prototype.getAction = function () {
-    var actions = this.config.actions;
-    var strategy = this.config.strategy;
+    var actions = this.actions;
+    var strategy = this.strategy;
 
     switch (strategy) {
         case 'inorder':
