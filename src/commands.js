@@ -18,8 +18,12 @@ var Commands = {
         done();
     },
     shop: function(context, params, done) {
+        done();
         context.game.state.switch('shop', params.id);
-        // done();
+    },
+    battle: function(context, params, done) {
+        done();
+        context.game.state.switch('battle', [{ type: params.id }]);
     },
     dialog: function(context, params, done) {
         context.dialog.showText(params.text, done);

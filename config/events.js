@@ -79,6 +79,15 @@ window.EVENTS = {
             {cmd: 'dialog', text: "I hate stinky tofu"}
         ]
     }],
+    'miniboss': [{
+        sprite: -1,
+        trigger: 'contact',
+        cond: "!flag('beat_miniboss')",
+        commands: [
+            {cmd: 'dialog', text: "I'm ready for you NERD! Come and get me!"},
+            {cmd: 'battle', id: 'pleurotus' }
+        ]
+    }],
     'alert': [{
         sprite: -1,
         trigger: 'contact',
