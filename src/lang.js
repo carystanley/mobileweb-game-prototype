@@ -15,7 +15,7 @@ Lang.prototype.find = function (id) {
                 return strings[i];
             }
         }
-        return null;
+        return '';
     }
     if (strings[id]) {
         return strings[id];
@@ -24,8 +24,13 @@ Lang.prototype.find = function (id) {
 }
 
 Lang.prototype.string = function (id, params) {
+    return this.fill(this.find(id), params);
+}
+
+Lang.prototype.fill = function (text, params) {
     var strings = this.strings;
-    return this.find(id).replace(/{(\w+)}/g, function(match, id) {
+    params = params || {};
+    return text.replace(/{([\w.]+)}/g, function(match, id) {
         if (id in params) {
             return params[id];
         } else if (id in strings) {

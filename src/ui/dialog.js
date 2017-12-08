@@ -1,10 +1,11 @@
-function Dialog(font, x, y, width, lineCount) {
+function Dialog(game, fontId, x, y, width, lineCount) {
+    this.game = game;
     this.x = x;
     this.y = y;
     this.width = width;
     this.lineCount = lineCount;
     this.lineHeight = 16;
-    this.font = font;
+    this.fontId = fontId;
     this.visible = false;
     this.reset();
     this.callback = null;
@@ -19,7 +20,7 @@ Dialog.prototype.hide = function() {
 }
 
 Dialog.prototype.showText = function(text, callback) {
-    this.buffer += text;
+    this.buffer += this.game.lang.fill(text);
     this.finished = false;
     this.callback = callback;
     this.show();
@@ -55,7 +56,7 @@ Dialog.prototype.getNextLine = function() {
     var done = false;
     var length;
     var i = 0;
-    var font = this.font;
+    var font = this.game.resources[this.fontId];
 
     while (!done && chunks[i]) {
         length = font.measureText(line + chunks[i] + ' ');
@@ -71,12 +72,12 @@ Dialog.prototype.getNextLine = function() {
     return line;
 }
 
-Dialog.prototype.draw = function(ctx) {
+Dialog.prototype.draw = function(ctx, res) {
     if (!this.visible) {
         return;
     }
 
-    var font = this.font;
+    var font = res[this.fontId];
     var margin = 8;
     var width = this.width;
     var lineCount = this.lineCount;

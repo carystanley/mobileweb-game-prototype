@@ -84,7 +84,7 @@ window.EVENTS = {
         trigger: 'contact',
         cond: "!flag('beat_miniboss')",
         commands: [
-            {cmd: 'dialog', text: "I'm ready for you NERD! Come and get me!"},
+            {cmd: 'dialog', text: "I'm ready for you {NAME.hero}! Come and get me!"},
             {cmd: 'battle', id: 'pleurotus' }
         ]
     }],

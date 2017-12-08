@@ -32,7 +32,7 @@ WorldState.prototype.update = function () {
 WorldState.prototype.draw = function (ctx, res) {
     this.world.draw(ctx, this.viewport, res);
     if (this.game.state.currentState === this) {
-        this.menuButton.draw(ctx);
+        this.menuButton.draw(ctx, res);
     }
 }
 

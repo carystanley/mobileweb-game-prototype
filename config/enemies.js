@@ -52,6 +52,6 @@ window.ENEMIES = {
         defense: 20,
         missRate: 1/16,
         strategy: 'inorder',
-        actions: ['bash', 'heal:3', 'other', 'other']
+        actions: ['bash', 'bash', 'bash', 'heal:3']
     }
 }

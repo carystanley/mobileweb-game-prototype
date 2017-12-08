@@ -9,7 +9,7 @@ GameOverState.prototype.init = function () {
     var basicFont = this.game.resources.basicfont;
     this.menu = new TextMenu(basicFont, 72, 50, 80, 20, 4, [
     ], this.onMenu.bind(this));
-    this.dialog = new Dialog(basicFont, 40, 5, 204, 2);
+    this.dialog = new Dialog(this.game, 'basicfont', 40, 5, 204, 2);
 }
 
 GameOverState.prototype.enter = function (shopId) {
@@ -20,7 +20,7 @@ GameOverState.prototype.enter = function (shopId) {
 
     this.dialog.reset();
     this.dialog.show();
-    this.dialog.showText('NERD, it looks like you got your head handed to you.', function () {
+    this.dialog.showText('{NAME.hero}, it looks like you got your head handed to you.', function () {
         self.dialog.showText('So, how about giving it another shot?', function () {
             self.menu.show();
         });
@@ -47,16 +47,16 @@ GameOverState.prototype.onMenu = function (option) {
     this.menu.hide();
     if (choice === 'continue') {
         this.dialog.showText('With his strength regained...', function () {
-            self.dialog.showText('NERD continues on', function () {
-                self.dialog.showText('Do your best NERD!', function () {
+            self.dialog.showText('{NAME.hero} continues on', function () {
+                self.dialog.showText('Do your best {NAME.hero}!', function () {
                     self.game.sound.bgm('explore');
                     self.game.state.switch('explore');
                 });
             });
         });
     } else if (choice === 'end') {
-        this.dialog.showText('It must have all been a bad dream NERD', function () {
-            self.dialog.showText('See you, NERD!');
+        this.dialog.showText('It must have all been a bad dream {NAME.hero}', function () {
+            self.dialog.showText('See you, {NAME.hero}!');
         });
     }
 }
