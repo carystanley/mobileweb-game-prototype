@@ -2,6 +2,11 @@
 /* eslint quotes: "off" */
 
 window.LANG = {
+    'NAME.hero': 'Izumi',
+    'NAME.girl': 'Asami',
+    'NAME.bully': 'Ryoko',
+    'NAME.principal': 'Principal',
+
     'BATTLE.ENCOUNTER': 'You encountered a #',
     'BATTLE.ENCOUNTER2': '# suddenly attacked',
 

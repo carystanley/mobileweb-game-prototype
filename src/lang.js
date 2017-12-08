@@ -1,6 +1,6 @@
 
 function Lang (game) {
-    this.strings = game.config.lang;
+    this.strings = Object.assign({}, game.config.lang);
 }
 
 Lang.prototype.find = function (id) {
@@ -12,19 +12,20 @@ Lang.prototype.find = function (id) {
                 i = i.join('.');
             }
             if (strings[i]) {
-                return i;
+                return strings[i];
             }
         }
         return null;
+    }
+    if (strings[id]) {
+        return strings[id];
     }
     return id;
 }
 
 Lang.prototype.string = function (id, params) {
     var strings = this.strings;
-    var text = strings[this.find(id)];
-
-    return text.replace(/{(\w+)}/g, function(match, id) {
+    return this.find(id).replace(/{(\w+)}/g, function(match, id) {
         if (id in params) {
             return params[id];
         } else if (id in strings) {

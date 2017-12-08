@@ -4,7 +4,9 @@ var Random = require('../utils/random');
 // https://datacrystal.romhacking.net/wiki/EarthBound:Enemy_Configuration_Table
 // https://forum.starmen.net/forum/Games/Mother2/34866/page/2#post734858
 
-function BattleActor(settings) {
+function BattleActor(id, name, settings) {
+    this.id = id;
+    this.name = name;
     Object.assign(this, settings);
     this.type = settings.type;
     this.hp = settings.hp;

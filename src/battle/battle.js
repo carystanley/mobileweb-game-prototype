@@ -28,7 +28,7 @@ Battle.prototype.addPlayerCharacters = function () {
 
     game.data.party.forEach(function (id) {
         var data = game.data.members[id] || {};
-        actors.push(new BattleActor(data));
+        actors.push(new BattleActor(id, game.lang.string([['NAME', id]]), data));
     })
     this.pcs = actors;
 }
@@ -38,7 +38,7 @@ Battle.prototype.addEnemies = function (enemies) {
     var game = this.game;
     enemies.forEach(function (enemy) {
         var enemyConfig = game.config.enemies[enemy.type] || {};
-        enemyActors.push(new BattleActor(enemyConfig));
+        enemyActors.push(new BattleActor(enemy.type, enemy.type, enemyConfig));
     })
     this.enemies = enemyActors;
 }
@@ -136,7 +136,7 @@ Battle.prototype.getCurrentTurnText = function () {
     var turn = this.getCurrentTurn();
     var lang = this.game.lang;
     return lang.string([
-        ['BATTLE', turn.name, turn.action],
+        ['BATTLE', turn.id, turn.action],
         ['BATTLE', turn.action]
     ], {attacker: turn.name});
     /*
