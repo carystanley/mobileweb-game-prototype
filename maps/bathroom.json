@@ -51,7 +51,49 @@
         {
          "draworder":"topdown",
          "name":"events",
-         "objects":[],
+         "objects":[
+                {
+                 "height":8,
+                 "id":8,
+                 "name":"toStall1",
+                 "properties":
+                    {
+                     "location":"door",
+                     "map":"stall1"
+                    },
+                 "propertytypes":
+                    {
+                     "location":"string",
+                     "map":"string"
+                    },
+                 "rotation":0,
+                 "type":"transport",
+                 "visible":true,
+                 "width":16,
+                 "x":32,
+                 "y":42
+                }, 
+                {
+                 "height":8,
+                 "id":9,
+                 "name":"toStall2",
+                 "properties":
+                    {
+                     "location":"door",
+                     "map":"stall2"
+                    },
+                 "propertytypes":
+                    {
+                     "location":"string",
+                     "map":"string"
+                    },
+                 "rotation":0,
+                 "type":"transport",
+                 "visible":true,
+                 "width":16,
+                 "x":64,
+                 "y":42
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -61,14 +103,62 @@
         {
          "draworder":"topdown",
          "name":"locations",
-         "objects":[],
+         "objects":[
+                {
+                 "ellipse":true,
+                 "height":16,
+                 "id":12,
+                 "name":"fromStall1",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":32,
+                 "y":49
+                }, 
+                {
+                 "ellipse":true,
+                 "height":16,
+                 "id":14,
+                 "name":"fromStall2",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":64,
+                 "y":49
+                }, 
+                {
+                 "ellipse":true,
+                 "height":16,
+                 "id":15,
+                 "name":"fromHall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":144,
+                 "y":49
+                }, 
+                {
+                 "ellipse":true,
+                 "height":16,
+                 "id":17,
+                 "name":"start",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":32,
+                 "y":80
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
          "x":0,
          "y":0
         }],
- "nextobjectid":8,
+ "nextobjectid":18,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",
