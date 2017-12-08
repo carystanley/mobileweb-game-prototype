@@ -4,6 +4,7 @@ var Data = require('./data');
 var StateManager = require('./utils/statemanager');
 var Layout = require('./ui/layout');
 var SoundManager = require('./soundmanager');
+var Lang = require('./lang');
 
 var ExploreState = require('./states/explore');
 var ExploreMenuState = require('./states/explore-menu');
@@ -28,6 +29,7 @@ Game.setup = function(canvasId, window, config) {
     };
     game.data = new Data(game);
     game.layout = new Layout(game);
+    game.lang = new Lang(game);
 
     var disableSwipeFn = function (e) {
         e.preventDefault();

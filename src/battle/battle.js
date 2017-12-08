@@ -134,6 +134,12 @@ Battle.prototype.getCurrentTurn = function () {
 
 Battle.prototype.getCurrentTurnText = function () {
     var turn = this.getCurrentTurn();
+    var lang = this.game.lang;
+    return lang.string([
+        ['BATTLE', turn.name, turn.action],
+        ['BATTLE', turn.action]
+    ], {attacker: turn.name});
+    /*
     var text = turn.name + ' ' + turn.action;
     if (turn.action_param) {
         text += ' ' + turn.action_param;
@@ -142,6 +148,7 @@ Battle.prototype.getCurrentTurnText = function () {
         text += ' ' + turn.target.name;
     }
     return text;
+    */
 }
 
 Battle.prototype.getActionTarget = function (action, param) {

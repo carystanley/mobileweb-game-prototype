@@ -2,30 +2,26 @@
 /* eslint quotes: "off" */
 
 window.LANG = {
-    '': 'You encountered a #',
-    '': '# suddenly attacked',
+    'BATTLE.ENCOUNTER': 'You encountered a #',
+    'BATTLE.ENCOUNTER2': '# suddenly attacked',
 
-    '': '# attacks!',
-    '': '# charged',
+    'BATTLE.bash': '{attacker} attacks!',
+    'BATTLE.bash2': '{attacker} charged',
 
-    '': '# dodged quickly!',
-    '': '# took mortal damage',
-    '': '# got hurt and collapsed...',
+    'BATTLE.dodge': '# dodged quickly!',
+    'BATTLE.mortal': '# took mortal damage',
+    'BATTLE.dead': '# got hurt and collapsed...',
 
-    '': 'It didn\'t work on #!',
-    '': 'It had no visible effect on #!',
+    'BATTLE.noop': 'It didn\'t work on #!',
+    'BATTLE.noop2': 'It had no visible effect on #!',
 
-    '': '# became tame!',
-    '': '# was taught a lesson!',
+    'BATTLE.tame': '# became tame!',
+    'BATTLE.tame2': '# was taught a lesson!',
 
-    '': 'You Won!',
-    '': 'The battle was lost...',
+    'BATTLE.won': 'You Won!',
+    'BATTLE.lost': 'The battle was lost...',
 
-    '': '# earned # experience points!',
+    'BATTLE.xp': '# earned # experience points!',
 
-    '': '# took the #',
-
-    '': '',
-    '': '',
-    '': ''
+    'BATTLE.drop': '# took the #'
 }
