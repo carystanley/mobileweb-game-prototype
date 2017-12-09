@@ -90,6 +90,18 @@
                  "width":16,
                  "x":336,
                  "y":82
+                }, 
+                {
+                 "ellipse":true,
+                 "height":16,
+                 "id":41,
+                 "name":"trash",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":384,
+                 "y":80
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -153,7 +165,7 @@
                  "type":"enemy",
                  "visible":true,
                  "width":16,
-                 "x":448,
+                 "x":496,
                  "y":96
                 }],
          "opacity":1,
@@ -162,7 +174,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":41,
+ "nextobjectid":42,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",

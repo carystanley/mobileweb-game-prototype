@@ -10,13 +10,19 @@ BattleWinState.prototype.init = function () {
 }
 
 BattleWinState.prototype.enter = function () {
+    var self = this;
     var game = this.game;
     this.battleState.dialog.reset();
     this.battle.updatePlayerCharacters();
     this.battleState.dialog.showText('You Won!', function () {
         game.sound.bgm('explore');
         game.state.explore.refreshParty();
-        game.state.switch('explore');
+        if (self.battleState.onEnd) {
+            var eventId = self.battleState.onEnd;
+            Event.orphan(self.game, eventId).triggerEvent('action');
+        } else {
+            game.state.switch('explore');
+        }
     });
 }
 

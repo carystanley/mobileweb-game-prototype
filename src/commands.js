@@ -23,7 +23,10 @@ var Commands = {
     },
     battle: function(context, params, done) {
         done();
-        context.game.state.switch('battle', [{ type: params.id }]);
+        context.game.state.switch('battle', {
+            enemies: [{type: params.type}],
+            onEnd: params.onEnd
+        });
     },
     dialog: function(context, params, done) {
         context.dialog.showText(params.text, done);

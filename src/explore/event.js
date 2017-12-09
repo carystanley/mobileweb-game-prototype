@@ -17,6 +17,11 @@ function Event(world, id, config, pages) {
     this.refresh();
 }
 
+Event.orphan = function (game, eventId) {
+    var eventConfig = game.config.events[eventId];
+    return new Event({ game: game }, '', {}, eventConfig);
+}
+
 Event.prototype = Object.create(Actor.prototype);
 
 Event.prototype.loadPage = function (page) {

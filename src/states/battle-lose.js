@@ -1,4 +1,6 @@
 
+var Event = require('../explore/event');
+
 function BattleLoseState(game, battleState, battle) {
     this.game = game;
     this.battleState = battleState;
@@ -13,7 +15,13 @@ BattleLoseState.prototype.enter = function () {
     var self = this;
     this.battleState.dialog.reset();
     this.battleState.dialog.showText('You Lost!', function () {
-        self.game.state.switch('gameover');
+        if (self.battleState.onEnd) {
+            var eventId = self.battleState.onEnd;
+            self.game.sound.bgm('explore');
+            Event.orphan(self.game, eventId).triggerEvent('action');
+        } else {
+            self.game.state.switch('gameover');
+        }
     });
 }
 

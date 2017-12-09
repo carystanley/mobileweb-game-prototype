@@ -22,7 +22,9 @@ EnterBattleState.prototype.update = function () {
                 enemy.inactive = true;
             }
         });
-        this.game.state.switch('battle', attacking);
+        this.game.state.switch('battle', {
+            enemies: attacking
+        });
     }
 }
 

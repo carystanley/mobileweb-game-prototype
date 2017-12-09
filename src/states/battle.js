@@ -32,8 +32,9 @@ BattleState.prototype.init = function () {
     this.particles = new BattleParticles();
 }
 
-BattleState.prototype.enter = function (enemies) {
-    this.battle.setup(enemies);
+BattleState.prototype.enter = function (options) {
+    this.battle.setup(options.enemies);
+    this.onEnd = options.onEnd;
     this.dialog.reset();
     this.game.sound.bgm('battle', 'battle1');
     this.state.switch('startturn');

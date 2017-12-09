@@ -93,7 +93,7 @@ window.EVENTS = {
         cond: "!flag('beat_miniboss')",
         commands: [
             {cmd: 'dialog', text: "I'm ready for you {NAME.hero}! Come and get me!"},
-            {cmd: 'battle', id: 'pleurotus' }
+            {cmd: 'battle', type: 'pleurotus' }
         ]
     }],
     'bully_fight': [{
@@ -102,7 +102,15 @@ window.EVENTS = {
         commands: [
             {cmd: 'dialog', text: "I thought you would be to chicken to come"},
             {cmd: 'dialog', text: "This is going to be fun!"},
-            {cmd: 'battle', id: 'bully' }
+            {cmd: 'battle', type: 'bully', onEnd: 'bully_fight_over' }
+        ]
+    }],
+    'bully_fight_over': [{
+        commands: [
+            {cmd: 'fadeOut', ticks: 1},
+            {cmd: 'dialog', text: "Ohhhh! My head hurts....."},
+            {cmd: 'transport', map: 'roof2', location: 'trash'},
+            {cmd: 'fadeIn', ticks: 180}
         ]
     }],
     'alert': [{
