@@ -96,6 +96,15 @@ window.EVENTS = {
             {cmd: 'battle', id: 'pleurotus' }
         ]
     }],
+    'bully_fight': [{
+        sprite: 2,
+        facing: 'right',
+        commands: [
+            {cmd: 'dialog', text: "I thought you would be to chicken to come"},
+            {cmd: 'dialog', text: "This is going to be fun!"},
+            {cmd: 'battle', id: 'bully' }
+        ]
+    }],
     'alert': [{
         sprite: -1,
         trigger: 'contact',

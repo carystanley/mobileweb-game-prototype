@@ -38,7 +38,7 @@ Battle.prototype.addEnemies = function (enemies) {
     var game = this.game;
     enemies.forEach(function (enemy) {
         var enemyConfig = game.config.enemies[enemy.type] || {};
-        enemyActors.push(new BattleActor(enemy.type, enemy.type, enemyConfig));
+        enemyActors.push(new BattleActor(enemy.type, game.lang.string([['NAME', enemy.type]]), enemyConfig));
     })
     this.enemies = enemyActors;
 }

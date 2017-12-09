@@ -53,5 +53,17 @@ window.ENEMIES = {
         missRate: 1/16,
         strategy: 'inorder',
         actions: ['bash', 'bash', 'bash', 'heal:3']
+    },
+    'bully': {
+        sprite: 2,
+        battlesprite: 10,
+        cash: 2,
+        xp: 10,
+        hp: 200,
+        offense: 4,
+        defense: 20,
+        missRate: 1/16,
+        strategy: 'inorder',
+        actions: ['bash', 'bash', 'bash']
     }
 }

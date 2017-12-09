@@ -68,8 +68,8 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":64,
-                 "y":96
+                 "x":288,
+                 "y":80
                 }, 
                 {
                  "ellipse":true,
@@ -99,29 +99,19 @@
         }, 
         {
          "draworder":"topdown",
-         "name":"spawns",
-         "objects":[],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
          "name":"events",
          "objects":[
                 {
                  "ellipse":true,
                  "height":16,
                  "id":23,
-                 "name":"robot",
+                 "name":"bully_fight",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":96,
-                 "y":80
+                 "x":80,
+                 "y":96
                 }, 
                 {
                  "height":8,
