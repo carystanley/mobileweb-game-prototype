@@ -93,6 +93,27 @@
                  "width":16,
                  "x":64,
                  "y":42
+                }, 
+                {
+                 "height":8,
+                 "id":18,
+                 "name":"toHall",
+                 "properties":
+                    {
+                     "location":"fromBathroom",
+                     "map":"floor2"
+                    },
+                 "propertytypes":
+                    {
+                     "location":"string",
+                     "map":"string"
+                    },
+                 "rotation":0,
+                 "type":"transport",
+                 "visible":true,
+                 "width":16,
+                 "x":144,
+                 "y":42
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -158,7 +179,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":18,
+ "nextobjectid":19,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",
