@@ -119,7 +119,9 @@ Battle.prototype.setEnemyActions = function () {
         if (target === 'friendly') {
             enemy.target = enemy;
         } else {
-            enemy.target = Random.choose(self.pcs)
+            enemy.target = Random.choose(self.pcs.filter(function (pc) {
+                return pc.rollhp > 0;
+            }))
         }
     });
 }
