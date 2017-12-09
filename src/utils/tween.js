@@ -50,7 +50,7 @@ Tween.prototype.start = function (target, prop, ease, start, end, frames, done) 
 
 Tween.prototype.update = function () {
     if (this.playing && this.target) {
-        if (this.x < this.frames) {
+        if (this.x <= this.frames) {
             var normalizedTime = this.x / this.frames;
             var curvedTime = this.ease(normalizedTime);
             this.target[this.prop] = (this.e * curvedTime) + (this.s * (1 - curvedTime));
