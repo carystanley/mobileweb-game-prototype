@@ -290,6 +290,18 @@
                  "width":16,
                  "x":368,
                  "y":42
+                }, 
+                {
+                 "ellipse":true,
+                 "height":16,
+                 "id":39,
+                 "name":"girl_join",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":400,
+                 "y":48
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -297,7 +309,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":39,
+ "nextobjectid":40,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",

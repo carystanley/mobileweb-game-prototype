@@ -2,7 +2,7 @@
 /* eslint quotes: "off" */
 
 window.PARTY = {
-    party: ['hero', 'girl'],
+    party: ['hero'],
     members: {
         hero: {
             sprite: 0,

@@ -5,6 +5,19 @@ window.ITEMS = {
     stungun: {label: 'Stun Gun'},
     sock: {label: 'Sock'},
 
+    smokebomb: {
+        label: 'Smoke Bomb',
+        cost: 30
+    },
+    cherrybomb: {
+        label: 'Cherry Bomb',
+        cost: 50
+    },
+    bomb: {
+        label: 'Bomb',
+        cost: 150
+    },
+
     // Heal
     pocky: {
         label: 'Pocky',

@@ -42,6 +42,14 @@ window.EVENTS = {
             {cmd: 'shop', id: 'ramenguy1'}
         ]
     }],
+    'armsdealer': [{
+        sprite: 20,
+        commands: [
+            {cmd: 'dialog', text: "Ssshhh! Don\'t talk too load!"},
+            {cmd: 'dialog', text: "Want do you want?"},
+            {cmd: 'shop', id: 'armsdealer'}
+        ]
+    }],
     'npc1': [{
         sprite: 10,
         commands: [
@@ -150,6 +158,15 @@ window.EVENTS = {
             {cmd: 'dialog', text: 'Lets kick Mushroom Butt!!!.'},
             {cmd: 'joinParty', id: 'bully'},
             {cmd: 'setFlag', id: 'bully_join', value: true}
+        ]
+    }],
+    'girl_join': [{
+        sprite: 1,
+        cond: "!flag('girl_join')",
+        commands: [
+            {cmd: 'dialog', text: 'Oh {NAME.hero}, you saved me!!!.'},
+            {cmd: 'joinParty', id: 'girl'},
+            {cmd: 'setFlag', id: 'girl_join', value: true}
         ]
     }],
     'principal': [{

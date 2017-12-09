@@ -58,7 +58,7 @@
                  "name":"exit",
                  "properties":
                     {
-                     "location":"fromStall1",
+                     "location":"fromStall2",
                      "map":"bathroom"
                     },
                  "propertytypes":
@@ -72,18 +72,6 @@
                  "width":32,
                  "x":16,
                  "y":88
-                }, 
-                {
-                 "ellipse":true,
-                 "height":16,
-                 "id":10,
-                 "name":"armsdealer",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":40,
-                 "y":48
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -113,7 +101,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":11,
+ "nextobjectid":10,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",
