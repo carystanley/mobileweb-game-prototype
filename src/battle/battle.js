@@ -51,6 +51,31 @@ Battle.prototype.getEnemies = function () {
     return this.enemies;
 }
 
+Battle.prototype.getOnlyPlayerCharacter = function () {
+    var loner = null;
+    var count = 0;
+    this.pcs.forEach(function (pc) {
+        if (!pc.isDead()) {
+            loner = pc;
+            count++;
+        }
+    });
+    console.error(count, loner);
+    return (count === 1 ? loner : null);
+}
+
+Battle.prototype.getOnlyEnemy = function () {
+    var loner = null;
+    var count = 0;
+    this.enemies.forEach(function (enemy) {
+        if (!enemy.isDead()) {
+            loner = enemy;
+            count++;
+        }
+    });
+    return (count === 1 ? loner : null);
+}
+
 Battle.prototype.tick = function () {
     // Handle HP Roll
     this.pcs.forEach(function (pc) {

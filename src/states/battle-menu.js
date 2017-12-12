@@ -86,7 +86,13 @@ BattleMenuState.prototype.setChoice = function (option, param) {
     this.currentActionParam = param;
     var target = this.battle.getActionTarget(option, param);
     if (target) {
-        this.setState(target);
+        if (target === 'friendly' && this.battle.getOnlyPlayerCharacter()) {
+            this.setTarget(this.battle.getOnlyPlayerCharacter());
+        } else if (target === 'foe' && this.battle.getOnlyEnemy()) {
+            this.setTarget(this.battle.getOnlyEnemy());
+        } else {
+            this.setState(target);
+        }
     } else {
         this.setTarget(null);
     }
