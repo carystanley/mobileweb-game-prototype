@@ -123,8 +123,7 @@ BattleState.prototype.drawPanels = function (ctx, res) {
         );
 
         var font = res.basicblackfont;
-        var nameLen = font.measureText(name);
-        font.drawText(ctx, name, x - (nameLen/2), y+1);
+        font.drawText(ctx, name, x, y+1, 'center');
 
         var roll = Math.floor((num % 1) * 8);
         var rolling = true;

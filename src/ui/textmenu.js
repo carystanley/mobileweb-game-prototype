@@ -42,8 +42,9 @@ TextMenu.prototype.draw = function (ctx) {
         if (subtext) {
             subtext = '' + subtext;
             font.drawText(ctx, subtext,
-                x + this.width - offset - font.measureText(subtext),
-                y + offset
+                x + this.width - offset,
+                y + offset,
+                'right'
             );
         }
         y += rowHeight;

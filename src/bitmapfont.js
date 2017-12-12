@@ -43,6 +43,8 @@ function BitmapFont(json, sheet, xSpacing, ySpacing) {
 BitmapFont.prototype.drawText = function(ctx, text, x, y, align) {
     if (align === 'center') {
         x -= this.measureText(text)/2;
+    } else if (align === 'right') {
+        x -= this.measureText(text);
     }
     x = x | 0;
     y = y | 0;

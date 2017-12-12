@@ -50,10 +50,8 @@ BattleParticles.prototype.draw = function (ctx, res) {
     for (var i = 0; i < MAX_PARTICLES; i++) {
         var particle = this.particles[i];
         if (particle.lifetime > 0) {
-            var txtLen = font.measureText(particle.value);
             font.drawText(ctx, particle.value,
-                (particle.x - (txtLen/2)) | 0,
-                particle.y | 0
+                particle.x, particle.y, 'center'
             );
         }
     }
