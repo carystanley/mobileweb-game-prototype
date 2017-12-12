@@ -17,7 +17,7 @@ EnterBattleState.prototype.update = function () {
         enemies.forEach(function (enemy) {
             var dx = player.x - enemy.x;
             var dy = player.y - enemy.y;
-            if ((dx*dx)+(dy*dy) < (2500)) {
+            if (!enemy.inactive && (dx*dx)+(dy*dy) < (2500)) {
                 attacking.push(enemy);
                 enemy.inactive = true;
             }
