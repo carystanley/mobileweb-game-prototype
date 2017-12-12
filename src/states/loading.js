@@ -1,4 +1,4 @@
-/* global BasicFontMeta, BattleNumberFontMeta */
+/* global BasicFontMeta, BasicBlackFontMeta, BattleNumberFontMeta */
 
 var BitmapFont = require('../bitmapfont');
 var Map = require('../explore/map');
@@ -63,6 +63,7 @@ LoadingState.prototype.enter = function () {
     var resources = {
         sprites: loadImage('./images/sprites.png', doneCheck),
         basicfontsheet: loadImage('./fonts/basic.png', doneCheck),
+        basicblackfontsheet: loadImage('./fonts/basic-black.png', doneCheck),
         battlenumbersfontsheet: loadImage('./fonts/battle-numbers.gif', doneCheck),
         pattern: loadImage('./images/pattern.png', doneCheck),
         floor1: new Map(floor1),
@@ -105,6 +106,7 @@ LoadingState.prototype.enter = function () {
     };
 
     resources.basicfont = new BitmapFont(BasicFontMeta, resources.basicfontsheet);
+    resources.basicblackfont = new BitmapFont(BasicBlackFontMeta, resources.basicblackfontsheet);
     resources.battlenumbersfont = new BitmapFont(BattleNumberFontMeta, resources.battlenumbersfontsheet);
     this.game.resources = resources;
 }
