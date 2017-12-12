@@ -133,6 +133,15 @@ BattleMenuState.prototype.draw = function (ctx, res) {
             this.menus[id].draw(ctx, res);
         }
     }
+
+    if (this.state === 'foe' || this.state === 'friendly') {
+        var game = this.game;
+        var layout = game.layout;
+        var lang = game.lang;
+        var font = res.basicfont;
+        var text = lang.string('BATTLE.CHOOSE');
+        font.drawText(ctx, text, layout.center(), 20, 'center');
+    }
 }
 
 BattleMenuState.prototype.foeEvent = function (type, x, y) {

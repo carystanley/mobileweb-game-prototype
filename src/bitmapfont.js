@@ -40,7 +40,13 @@ function BitmapFont(json, sheet, xSpacing, ySpacing) {
     this.data = data;
 }
 
-BitmapFont.prototype.drawText = function(ctx, text, x, y) {
+BitmapFont.prototype.drawText = function(ctx, text, x, y, align) {
+    if (align === 'center') {
+        x -= this.measureText(text)/2;
+    }
+    x = x | 0;
+    y = y | 0;
+
     var i;
     var ch;
     var chars = this.data.chars;

@@ -10,11 +10,15 @@ Layout.prototype.fromBottom = function (delta) {
 Layout.prototype.centeredEvenlySpaced = function (idx, total, spacing) {
     var length = ((total-1) * spacing);
     var offset = ((-length/2) + (idx * spacing))
-    return this.game.getWidth()/2 + offset;
+    return this.center() + offset;
 }
 
 Layout.prototype.middle = function () {
     return this.game.getHeight()/2;
+}
+
+Layout.prototype.center = function () {
+    return this.game.getWidth()/2;
 }
 
 module.exports = Layout;

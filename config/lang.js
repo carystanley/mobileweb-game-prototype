@@ -10,6 +10,8 @@ window.LANG = {
     'BATTLE.ENCOUNTER': 'You encountered a #',
     'BATTLE.ENCOUNTER2': '# suddenly attacked',
 
+    'BATTLE.CHOOSE': 'Choose Target',
+
     'BATTLE.bash': '{attacker} attacks!',
     'BATTLE.bash2': '{attacker} charged',
 
