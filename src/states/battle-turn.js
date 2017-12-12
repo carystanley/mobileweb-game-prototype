@@ -10,18 +10,15 @@ BattleTurnState.prototype.init = function () {
 }
 
 BattleTurnState.prototype.enter = function () {
-    /*
-    this.battle.turnOrder.forEach(function (actor) {
-        actor.hp -= 2;
-        console.error(actor.action);
-        console.error(actor.action_param);
-    });
-    */
+    var self = this;
+
     this.battleState.dialog.reset();
     if (this.battle.isRoundFinished()) {
         this.battleState.state.switch('startturn');
+    } else if (this.battle.isTurnDeceased()) {
+        this.battle.executeTurn(this.battleState);
+        this.battleState.state.switch('turn');
     } else {
-        var self = this;
         this.battleState.dialog.showText(this.battle.getCurrentTurnText(), function () {
             self.battle.executeTurn(self.battleState);
 

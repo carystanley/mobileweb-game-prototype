@@ -164,9 +164,13 @@ Battle.prototype.getActionTarget = function (action, param) {
     return null;
 }
 
+Battle.prototype.isTurnDeceased = function () {
+    return this.getCurrentTurn().isDead();
+}
+
 Battle.prototype.executeTurn = function (battleState) {
     var turn = this.getCurrentTurn();
-    if (BattleActions[turn.action]) {
+    if (!turn.isDead() && BattleActions[turn.action]) {
         BattleActions[turn.action].lambda(battleState, turn.target, turn, turn.action_param);
     }
     this.turnCursor++;
