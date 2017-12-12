@@ -56,6 +56,13 @@ window.EVENTS = {
             {cmd: 'dialog', text: "Don't talk to me Nerd"}
         ]
     }],
+    'school_music': [{
+        sprite: -1,
+        trigger: 'load',
+        commands: [
+            { cmd: 'bgm', id: 'school_mystery' }
+        ]
+    }],
     'npc2': [{
         sprite: 11,
         commands: [

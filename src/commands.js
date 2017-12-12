@@ -37,6 +37,9 @@ var Commands = {
     fadeIn: function(context, params, done) {
         context.matte.fadeIn(params.ticks, done);
     },
+    bgm: function(context, params, done) {
+        context.game.sound.bgm(params.type || 'explore', params.id);
+    },
     addItemToInventory: function(context, params, done) {
         var id = x(context, params.id);
         context.game.data.inventory.add(id);

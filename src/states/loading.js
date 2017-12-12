@@ -51,7 +51,7 @@ function LoadingState(game) {
 LoadingState.prototype.enter = function () {
     var self = this;
     var count = 0;
-    var total = 15;
+    var total = 16;
 
     function doneCheck() {
         count++;
@@ -98,6 +98,7 @@ LoadingState.prototype.enter = function () {
         },
         bgm: {
             school_happy: loadSound(['./sounds/bgm/school_happy.mp3'], true, doneCheck),
+            school_mystery: loadSound(['./sounds/bgm/school_mystery.mp3'], true, doneCheck),
             battle1: loadSound(['./sounds/bgm/battle1.mp3'], true, doneCheck),
             game_over: loadSound(['./sounds/bgm/game_over.mp3'], true, doneCheck)
         }

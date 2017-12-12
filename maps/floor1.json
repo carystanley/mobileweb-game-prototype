@@ -296,6 +296,17 @@
                  "width":16,
                  "x":3,
                  "y":88
+                }, 
+                {
+                 "height":16,
+                 "id":40,
+                 "name":"school_music",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":0,
+                 "y":0
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -303,7 +314,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":40,
+ "nextobjectid":42,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",
