@@ -18,7 +18,7 @@ function BattleActor(id, name, settings) {
     this.luck = settings.luck;
     this.speed = settings.speed;
     this.missRate = settings.missRate;
-    this.sprite = settings.battlesprite;
+    this.sprite = settings.battlesprite !== undefined ? settings.battlesprite : settings.sprite;
     this.actions = settings.actions;
     this.stategy = settings.strategy;
     this.offset = 0;
