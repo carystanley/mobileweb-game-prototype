@@ -92,7 +92,14 @@ Battle.prototype.startChoose = function () {
         actor.target = undefined;
     })
     this.pcCursor = 0;
+    this.nextChoose();
     this.mode = 'choose';
+}
+
+Battle.prototype.nextChoose = function () {
+    while (this.pcCursor < this.pcs.length && this.pcs[this.pcCursor].isDead()) {
+        this.pcCursor++;
+    }
 }
 
 Battle.prototype.startTurn = function () {
@@ -106,6 +113,7 @@ Battle.prototype.setAction = function (action, param, target) {
     actor.action_param = param;
     actor.target = target;
     this.pcCursor++;
+    this.nextChoose();
 }
 
 Battle.prototype.setEnemyActions = function () {
