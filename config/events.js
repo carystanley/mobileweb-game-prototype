@@ -72,30 +72,35 @@ window.EVENTS = {
     }],
     'npc2': [{
         sprite: 11,
+        cond: "0 === value('chapter')",
         commands: [
             {cmd: 'dialog', text: "GIRL is upstairs"}
         ]
     }],
     'npc3': [{
         sprite: 18,
+        cond: "0 === value('chapter')",
         commands: [
             {cmd: 'dialog', text: "BULLY is looking for you, you better run"}
         ]
     }],
     'npc4': [{
         sprite: 19,
+        cond: "0 === value('chapter')",
         commands: [
             {cmd: 'dialog', text: "I hear rumors that BULLY through someone off the roof at his last school"}
         ]
     }],
     'npc5': [{
         sprite: 20,
+        cond: "0 === value('chapter')",
         commands: [
             {cmd: 'dialog', text: "Take a hike Nerd!"}
         ]
     }],
     'npc6': [{
         sprite: 12,
+        cond: "0 === value('chapter')",
         commands: [
             {cmd: 'dialog', text: "My mom made me stinky tofu for lunch"},
             {cmd: 'dialog', text: "I hate stinky tofu"}
