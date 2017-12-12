@@ -118,7 +118,7 @@ BattleState.prototype.drawPanels = function (ctx, res) {
 
         ctx.drawImage(
             res.statuspanel,
-            0, 0, 60, 35,
+            0, pc.rollhp > 0 ? 0 : 35, 60, 35,
             x - 30, y, 60, 35
         );
 
