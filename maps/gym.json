@@ -48,6 +48,18 @@
                  "width":16,
                  "x":80,
                  "y":96
+                }, 
+                {
+                 "ellipse":true,
+                 "height":16,
+                 "id":37,
+                 "name":"fromHall",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":797,
+                 "y":133
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -68,14 +80,35 @@
         {
          "draworder":"topdown",
          "name":"events",
-         "objects":[],
+         "objects":[
+                {
+                 "height":48,
+                 "id":36,
+                 "name":"toHall",
+                 "properties":
+                    {
+                     "location":"fromGym",
+                     "map":"floor1"
+                    },
+                 "propertytypes":
+                    {
+                     "location":"string",
+                     "map":"string"
+                    },
+                 "rotation":0,
+                 "type":"transport",
+                 "visible":true,
+                 "width":16,
+                 "x":813,
+                 "y":118
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
          "x":0,
          "y":0
         }],
- "nextobjectid":36,
+ "nextobjectid":39,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",

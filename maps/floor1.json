@@ -5,6 +5,14 @@
          "height":8,
          "name":"layer0",
          "opacity":1,
+         "properties":
+            {
+             "facing":"right"
+            },
+         "propertytypes":
+            {
+             "facing":"string"
+            },
          "type":"tilelayer",
          "visible":true,
          "width":51,
@@ -120,6 +128,18 @@
                  "width":16,
                  "x":544,
                  "y":50
+                }, 
+                {
+                 "ellipse":true,
+                 "height":16,
+                 "id":39,
+                 "name":"fromGym",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":20,
+                 "y":101
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -255,6 +275,27 @@
                  "width":80,
                  "x":32,
                  "y":44
+                }, 
+                {
+                 "height":40,
+                 "id":38,
+                 "name":"toGym",
+                 "properties":
+                    {
+                     "location":"fromHall",
+                     "map":"gym"
+                    },
+                 "propertytypes":
+                    {
+                     "location":"string",
+                     "map":"string"
+                    },
+                 "rotation":0,
+                 "type":"transport",
+                 "visible":true,
+                 "width":16,
+                 "x":3,
+                 "y":88
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -262,7 +303,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":38,
+ "nextobjectid":40,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",
