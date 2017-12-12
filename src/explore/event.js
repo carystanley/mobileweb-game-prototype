@@ -70,6 +70,7 @@ Event.prototype.triggerEvent = function (type) {
 
             if (type === 'load') {
                 this.game.state.explore.execute(this, params, commands);
+                this.inactive = true;
             } else {
                 this.game.state.switch('cutscene', {
                     event: this,
