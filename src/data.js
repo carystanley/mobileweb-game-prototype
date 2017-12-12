@@ -52,8 +52,16 @@ Data.prototype.flag = function(id) {
     return (this.flags[id]);
 };
 
+Data.prototype.value = function(id) {
+    return (this.vars[id]);
+};
+
 Data.prototype.setFlag = function(id, value) {
     this.flags[id] = value;
+};
+
+Data.prototype.setValue = function(id, value) {
+    this.vars[id] = value;
 };
 
 Data.prototype.getEventFlag = function(eventId, id) {

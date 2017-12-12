@@ -56,6 +56,11 @@ var Commands = {
         context.game.state.explore.world.refresh();
         done();
     },
+    setValue: function(context, params, done) {
+        context.game.data.setValue(params.id, params.value);
+        context.game.state.explore.world.refresh();
+        done();
+    },
     setSelfFlag: function(context, params, done) {
         context.game.data.setEventFlag(context.eventObj.id, params.id, params.value);
         context.game.state.explore.world.refresh();

@@ -62,6 +62,13 @@ window.EVENTS = {
         commands: [
             { cmd: 'bgm', id: 'school_mystery' }
         ]
+    }, {
+        sprite: -1,
+        cond: "0 === value('chapter')",
+        trigger: 'load',
+        commands: [
+            { cmd: 'bgm', id: 'school_happy' }
+        ]
     }],
     'npc2': [{
         sprite: 11,
@@ -115,6 +122,7 @@ window.EVENTS = {
     'bully_fight_over': [{
         commands: [
             {cmd: 'fadeOut', ticks: 1},
+            {cmd: 'setValue', id: 'chapter', value: 1},
             {cmd: 'dialog', text: "Ohhhh! My head hurts....."},
             {cmd: 'transport', map: 'roof2', location: 'trash'},
             {cmd: 'fadeIn', ticks: 180}
