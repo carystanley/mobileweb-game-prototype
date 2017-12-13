@@ -11,11 +11,10 @@ BattleWinState.prototype.init = function () {
 
 BattleWinState.prototype.enter = function () {
     var self = this;
-    var game = this.game;
     this.battleState.dialog.reset();
     var xp = this.battle.updatePlayerCharacters();
     this.battleState.dialog.showText('You Won!', function () {
-        self.battleState.dialog.showText(game.lang.string('BATTLE.xp', {amount: xp}), function () {
+        self.battleState.dialog.lang('BATTLE.xp', {amount: xp}, function () {
             self.leaveBattle();
         });
     });

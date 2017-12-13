@@ -26,6 +26,13 @@ Dialog.prototype.showText = function(text, callback) {
     this.show();
 }
 
+Dialog.prototype.lang = function(id, params, callback) {
+    this.buffer += this.game.lang.string(id, params);
+    this.finished = false;
+    this.callback = callback;
+    this.show();
+}
+
 Dialog.prototype.update = function() {
     if (this.visible) {
         this.tick++;
