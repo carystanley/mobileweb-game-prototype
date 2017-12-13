@@ -47,7 +47,7 @@ BattleWinState.prototype.levelUp = function (id, pc, done) {
     var self = this;
     var lang = this.game.lang;
     this.battleState.dialog.lang('LEVELUP.UPDATE', {
-        name: lang.string(['NAME', id]),
+        name: lang.string([['NAME', id]]),
         level: pc.level
     }, function () {
         Async.forEach(PCSTATS, function (statId, done) {
@@ -55,7 +55,7 @@ BattleWinState.prototype.levelUp = function (id, pc, done) {
             if (inc > 0) {
                 pc[statId] += inc;
                 self.battleState.dialog.lang('LEVELUP.STAT', {
-                    stat: lang.string(['STAT', statId]),
+                    stat: lang.string([['STAT', statId]]),
                     amount: inc
                 }, done);
             } else {
