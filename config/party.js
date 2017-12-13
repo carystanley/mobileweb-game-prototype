@@ -8,8 +8,8 @@ window.PARTY = {
             sprite: 0,
             dead_sprite: 4,
             level: 1,
-            hp: 10,
-            maxhp: 10,
+            hp: 5,
+            maxhp: 5,
             offense: 2,
             defense: 3,
             guts: 1,
@@ -18,6 +18,7 @@ window.PARTY = {
             xp: 0,
             levelXp: 0,
             growth: {
+                maxhp: 20,
                 offense: 18,
                 defense: 5,
                 guts: 7,
@@ -29,8 +30,8 @@ window.PARTY = {
             sprite: 1,
             dead_sprite: 5,
             level: 1,
-            hp: 6,
-            maxhp: 6,
+            hp: 4,
+            maxhp: 4,
             offense: 1,
             defense: 2,
             guts: 1,
@@ -39,6 +40,7 @@ window.PARTY = {
             xp: 0,
             levelXp: 0,
             growth: {
+                maxhp: 10,
                 offense: 12,
                 defense: 3,
                 guts: 5,
@@ -60,6 +62,7 @@ window.PARTY = {
             xp: 0,
             levelXp: 0,
             growth: {
+                maxhp: 16,
                 offense: 21,
                 defense: 18,
                 guts: 3,
@@ -81,6 +84,7 @@ window.PARTY = {
             xp: 0,
             levelXp: 0,
             growth: {
+                maxhp: 0,
                 offense: 0,
                 defense: 0,
                 guts: 0,

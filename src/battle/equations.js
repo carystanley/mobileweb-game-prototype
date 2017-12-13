@@ -51,8 +51,8 @@ r is given by one of the following:
 * Otherwise, r is a random number from 3 to 6.
 */
 function levelUpStatGain(growthRate, level, statValue) {
-    var r = (level % 4) ? randomInt(7, 10) : randomInt(3, 6);
-    return ((growthRate * (level-1)) - ((statValue-2) * 10)) * r/50;
+    var r = (level <= 10) ? 5 : (level % 4) ? randomInt(7, 10) : randomInt(3, 6);
+    return Math.floor(((growthRate * (level-1)) - ((statValue-2) * 10)) * r/50);
 }
 
 function nextLevel(level) {

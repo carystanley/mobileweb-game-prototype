@@ -7,6 +7,13 @@ window.LANG = {
     'NAME.bully': 'Ryoko',
     'NAME.principal': 'Principal',
 
+    'STAT.maxhp': 'Maximum HP',
+    'STAT.offense': 'Offense',
+    'STAT.defense': 'Defense',
+    'STAT.guts': 'Guts',
+    'STAT.luck': 'Luck',
+    'STAT.speed': 'Speed',
+
     'BATTLE.ENCOUNTER': 'You encountered a #',
     'BATTLE.ENCOUNTER2': '# suddenly attacked',
 
@@ -35,8 +42,8 @@ window.LANG = {
 
     'SHOP.SELL': 'I\'ll give you ${amount} for those mushrooms you have there',
 
-    'LEVELUP.update': '{name}\'s level is now {level}',
-    'LEVELUP.stat': '{stat} went up by {amount}!',
+    'LEVELUP.UPDATE': '{name}\'s level is now {level}!',
+    'LEVELUP.STAT': '{stat} went up by {amount}!',
 
     'GAMEOVER.OUCH': '{NAME.hero}, it looks like you got your head handed to you.',
     'GAMEOVER.PROMPT': 'So, how about giving it another shot?',

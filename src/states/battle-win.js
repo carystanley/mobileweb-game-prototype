@@ -1,4 +1,7 @@
 var Equations = require('../battle/equations');
+var Async = require('../utils/async');
+
+var PCSTATS = ['maxhp', 'offense', 'defense', 'guts', 'luck', 'speed'];
 
 function BattleWinState(game, battleState, battle) {
     this.game = game;
@@ -22,34 +25,43 @@ BattleWinState.prototype.enter = function () {
 }
 
 BattleWinState.prototype.checkLevelUp = function () {
+    var self = this;
     var gamedata = this.game.data;
-    var pcId = null;
-    var level = 0;
 
-    gamedata.party.forEach(function (id) {
+    Async.forEach(gamedata.party, function (id, done) {
         var data = gamedata.members[id] || {};
         var nextLevelXp = Equations.nextLevel(data.level);
         if (data.levelXp >= nextLevelXp) {
             data.levelXp -= nextLevelXp;
             data.level++;
-            pcId = id;
-            level = data.level;
+            self.levelUp(id, data, done);
+        } else {
+            done();
         }
+    }, function () {
+        self.leaveBattle();
     });
-
-    if (pcId) {
-        this.levelUp(pcId, level);
-    } else {
-        this.leaveBattle();
-    }
 }
 
-BattleWinState.prototype.levelUp = function (id, level) {
+BattleWinState.prototype.levelUp = function (id, pc, done) {
     var self = this;
-    this.battleState.dialog.lang('LEVELUP.update', {name: id, level: level}, function () {
-        self.battleState.dialog.lang('LEVELUP.stat', {stat: 'stat', amount: 10}, function () {
-            self.leaveBattle();
-        });
+    var lang = this.game.lang;
+    this.battleState.dialog.lang('LEVELUP.UPDATE', {
+        name: lang.string(['NAME', id]),
+        level: pc.level
+    }, function () {
+        Async.forEach(PCSTATS, function (statId, done) {
+            var inc = Equations.levelUpStatGain(pc.growth[statId], pc.level, pc[statId]);
+            if (inc > 0) {
+                pc[statId] += inc;
+                self.battleState.dialog.lang('LEVELUP.STAT', {
+                    stat: lang.string(['STAT', statId]),
+                    amount: inc
+                }, done);
+            } else {
+                done();
+            }
+        }, done);
     });
 }
 
