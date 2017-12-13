@@ -76,7 +76,7 @@ WorldMenuState.prototype.getMembersMenu = function () {
     var party = data.party;
 
     party.forEach(function (id) {
-        membersList.push({ id: id, text: game.lang.string('NAME.' + id) });
+        membersList.push({ id: id, text: game.lang.string([['NAME', id]]) });
     });
 
     return membersList;
