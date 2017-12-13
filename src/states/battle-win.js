@@ -13,7 +13,7 @@ BattleWinState.prototype.enter = function () {
     var self = this;
     this.battleState.dialog.reset();
     var xp = this.battle.updatePlayerCharacters();
-    this.battleState.dialog.showText('You Won!', function () {
+    this.battleState.dialog.lang('BATTLE.won', {}, function () {
         self.battleState.dialog.lang('BATTLE.xp', {amount: xp}, function () {
             self.leaveBattle();
         });
