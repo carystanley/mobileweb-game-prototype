@@ -77,4 +77,17 @@ Data.prototype.joinParty = function(id) {
     this.party.push(id);
 };
 
+Data.prototype.forEachMember = function(iterator) {
+    var self = this;
+    this.party.forEach(function (id) {
+        iterator(id, self.members[id]);
+    })
+};
+
+Data.prototype.restoreParty = function() {
+    this.forEachMember(function (id, member) {
+        member.hp = member.maxhp;
+    });
+};
+
 module.exports = Data;

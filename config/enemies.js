@@ -9,8 +9,8 @@ window.ENEMIES = {
         cash: 2,
         xp: 10,
         hp: 5,
-        offense: 1,
-        defense: 1,
+        offense: 3,
+        defense: 2,
         missRate: 1/16,
         strategy: 'random',
         actions: ['bash', 'heal:5', 'other', 'other']

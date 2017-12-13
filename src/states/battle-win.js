@@ -1,4 +1,5 @@
 var Equations = require('../battle/equations');
+var Event = require('../explore/event');
 var Async = require('../utils/async');
 
 var PCSTATS = ['maxhp', 'offense', 'defense', 'guts', 'luck', 'speed'];

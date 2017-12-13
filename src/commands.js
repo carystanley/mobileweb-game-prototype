@@ -32,6 +32,12 @@ var Commands = {
             done();
         }
     },
+    restore: function(context, params, done) {
+        var game = context.game;
+        game.data.restoreParty();
+        game.state.explore.refreshParty();
+        done();
+    },
     battle: function(context, params, done) {
         done();
         context.game.state.switch('battle', {
