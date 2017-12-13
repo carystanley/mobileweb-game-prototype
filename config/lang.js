@@ -33,5 +33,13 @@ window.LANG = {
 
     'BATTLE.drop': '# took the #',
 
-    'SHOP.SELL': 'I\'ll give you ${amount} for those mushrooms you have there'
+    'SHOP.SELL': 'I\'ll give you ${amount} for those mushrooms you have there',
+
+    'GAMEOVER.OUCH': '{NAME.hero}, it looks like you got your head handed to you.',
+    'GAMEOVER.PROMPT': 'So, how about giving it another shot?',
+    'GAMEOVER.CONTINUE1': 'With his strength regained...',
+    'GAMEOVER.CONTINUE2': '{NAME.hero} continues on',
+    'GAMEOVER.CONTINUE3': 'Do your best {NAME.hero}!',
+    'GAMEOVER.END1': 'It must have all been a bad dream {NAME.hero}',
+    'GAMEOVER.END2': 'See you, {NAME.hero}!'
 }

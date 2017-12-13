@@ -20,8 +20,8 @@ GameOverState.prototype.enter = function (shopId) {
 
     this.dialog.reset();
     this.dialog.show();
-    this.dialog.showText('{NAME.hero}, it looks like you got your head handed to you.', function () {
-        self.dialog.showText('So, how about giving it another shot?', function () {
+    this.dialog.lang('GAMEOVER.OUCH', {}, function () {
+        self.dialog.lang('GAMEOVER.PROMPT', {}, function () {
             self.menu.show();
         });
     });
@@ -46,17 +46,17 @@ GameOverState.prototype.onMenu = function (option) {
     var choice = option.id;
     this.menu.hide();
     if (choice === 'continue') {
-        this.dialog.showText('With his strength regained...', function () {
-            self.dialog.showText('{NAME.hero} continues on', function () {
-                self.dialog.showText('Do your best {NAME.hero}!', function () {
+        this.dialog.lang('GAMEOVER.CONTINUE1', {}, function () {
+            self.dialog.lang('GAMEOVER.CONTINUE2', {}, function () {
+                self.dialog.lang('GAMEOVER.CONTINUE3', {}, function () {
                     self.game.sound.bgm('explore');
                     self.game.state.switch('explore');
                 });
             });
         });
     } else if (choice === 'end') {
-        this.dialog.showText('It must have all been a bad dream {NAME.hero}', function () {
-            self.dialog.showText('See you, {NAME.hero}!');
+        this.dialog.lang('GAMEOVER.END1', {}, function () {
+            self.dialog.lang('GAMEOVER.END2', {});
         });
     }
 }
