@@ -19,6 +19,7 @@ Battle.prototype.setup = function (enemies) {
     this.turnOrder = [].concat(this.pcs, this.enemies);
     this.pcCursor = 0;
     this.turnCursor = 0;
+    this.escaped = false;
     this.mode = 'choose';
 }
 
@@ -223,6 +224,10 @@ Battle.prototype.isLost = function () {
     return this.pcs.every(function (player) {
         return player.isDead();
     });
+}
+
+Battle.prototype.isEscaped = function () {
+    return this.escaped;
 }
 
 Battle.prototype.updatePlayerCharacters = function () {

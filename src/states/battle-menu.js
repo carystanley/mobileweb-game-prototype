@@ -19,9 +19,8 @@ BattleMenuState.prototype.init = function () {
         items: new TextMenu(basicFont, 72, 16, 80, 20, 4, [
         ], this.onItemsMenu.bind(this)),
         psi: new TextMenu(basicFont, 72, 16, 80, 20, 4, [
-            {id: 'love', text: 'Love'},
-            {id: 'freeze', text: 'Freeze'},
-            {id: 'fire', text: 'Fire'}
+            {id: 'runaway', text: 'Run Away'},
+            {id: 'love', text: 'Love'}
         ], this.onPSIMenu.bind(this))
     };
 }
@@ -108,7 +107,7 @@ BattleMenuState.prototype.onItemsMenu = function (option) {
 }
 
 BattleMenuState.prototype.onPSIMenu = function (option) {
-    this.setChoice('psi', option.id);
+    this.setChoice(option.id);
 }
 
 BattleMenuState.prototype.onCancel = function () {

@@ -27,6 +27,11 @@ var Actions = {
 
         }
     },
+    runaway: {
+        lambda: function (state, target, actor, param) {
+            state.battle.escaped = true;
+        }
+    },
     item: {
         target: function (game, itemId) {
             var item = game.config.items[itemId];
