@@ -16,16 +16,21 @@ BattleWinState.prototype.enter = function () {
     var xp = this.battle.updatePlayerCharacters();
     this.battleState.dialog.showText('You Won!', function () {
         self.battleState.dialog.showText(game.lang.string('BATTLE.xp', {amount: xp}), function () {
-            game.sound.bgm('explore');
-            game.state.explore.refreshParty();
-            if (self.battleState.onEnd) {
-                var eventId = self.battleState.onEnd;
-                Event.orphan(self.game, eventId).triggerEvent('action');
-            } else {
-                game.state.switch('explore');
-            }
+            self.leaveBattle();
         });
     });
+}
+
+BattleWinState.prototype.leaveBattle = function () {
+    var game = this.game;
+    game.sound.bgm('explore');
+    game.state.explore.refreshParty();
+    if (this.battleState.onEnd) {
+        var eventId = this.battleState.onEnd;
+        Event.orphan(game, eventId).triggerEvent('action');
+    } else {
+        game.state.switch('explore');
+    }
 }
 
 BattleWinState.prototype.update = function () {
