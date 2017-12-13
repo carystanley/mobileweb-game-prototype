@@ -11,6 +11,7 @@ function Event(world, id, config, pages) {
         this.width = config.width;
         this.height = config.height;
     }
+    this.inactive = false;
     this.config = config;
     this.eventId = id;
     this.id = world.mapId + ':' + config.name;
@@ -26,7 +27,6 @@ Event.prototype = Object.create(Actor.prototype);
 
 Event.prototype.loadPage = function (page) {
     var config = this.currentPage = page;
-    this.inactive = false;
     this.sprite = config.sprite;
     this.setFacing(config.facing || 'down');
     // this.width = config.width || 14;
