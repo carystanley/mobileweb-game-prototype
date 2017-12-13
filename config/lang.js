@@ -35,6 +35,9 @@ window.LANG = {
 
     'SHOP.SELL': 'I\'ll give you ${amount} for those mushrooms you have there',
 
+    'LEVELUP.update': '{name}\'s level is now {level}',
+    'LEVELUP.stat': '{stat} went up by {amount}!',
+
     'GAMEOVER.OUCH': '{NAME.hero}, it looks like you got your head handed to you.',
     'GAMEOVER.PROMPT': 'So, how about giving it another shot?',
     'GAMEOVER.CONTINUE1': 'With his strength regained...',

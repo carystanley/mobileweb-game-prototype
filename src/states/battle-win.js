@@ -15,6 +15,24 @@ BattleWinState.prototype.enter = function () {
     var xp = this.battle.updatePlayerCharacters();
     this.battleState.dialog.lang('BATTLE.won', {}, function () {
         self.battleState.dialog.lang('BATTLE.xp', {amount: xp}, function () {
+            self.checkLevelUp();
+        });
+    });
+}
+
+BattleWinState.prototype.checkLevelUp = function () {
+    var shouldLevelUp = false;
+    if (shouldLevelUp) {
+        this.levelUp();
+    } else {
+        this.leaveBattle();
+    }
+}
+
+BattleWinState.prototype.levelUp = function () {
+    var self = this;
+    this.battleState.dialog.lang('LEVELUP.update', {name: 'name', level: 20}, function () {
+        self.battleState.dialog.lang('LEVELUP.stat', {stat: 'stat', amount: 10}, function () {
             self.leaveBattle();
         });
     });
