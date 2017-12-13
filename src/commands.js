@@ -21,6 +21,19 @@ var Commands = {
         done();
         context.game.state.switch('shop', params.id);
     },
+    sell: function(context, params, done) {
+        var game = context.game;
+        var lang = game.lang;
+        var data = game.data;
+        var cash = data.value('reserve');
+        if (cash > 0) {
+            data.setValue('reserve', 0);
+            data.adjustCash(cash);
+            context.dialog.showText(lang.string('SHOP.SELL', {amount: cash}), done);
+        } else {
+            done();
+        }
+    },
     battle: function(context, params, done) {
         done();
         context.game.state.switch('battle', {

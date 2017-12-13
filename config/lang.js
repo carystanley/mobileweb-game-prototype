@@ -31,5 +31,7 @@ window.LANG = {
 
     'BATTLE.xp': 'You earned {amount} experience points!',
 
-    'BATTLE.drop': '# took the #'
+    'BATTLE.drop': '# took the #',
+
+    'SHOP.SELL': 'I\'ll give you ${amount} for those mushrooms you have there'
 }
