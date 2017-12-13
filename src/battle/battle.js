@@ -246,6 +246,7 @@ Battle.prototype.updatePlayerCharacters = function () {
         var data = gamedata.members[id] || {};
         data.hp = pcs[i].hp;
         data.xp += xp;
+        data.levelXp += xp;
         i++;
     });
 

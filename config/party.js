@@ -16,6 +16,7 @@ window.PARTY = {
             luck: 1,
             speed: 4,
             xp: 0,
+            levelXp: 0,
             growth: {
                 offense: 18,
                 defense: 5,
@@ -36,6 +37,7 @@ window.PARTY = {
             luck: 3,
             speed: 5,
             xp: 0,
+            levelXp: 0,
             growth: {
                 offense: 12,
                 defense: 3,
@@ -56,6 +58,7 @@ window.PARTY = {
             luck: 14,
             speed: 25,
             xp: 0,
+            levelXp: 0,
             growth: {
                 offense: 21,
                 defense: 18,
@@ -76,6 +79,7 @@ window.PARTY = {
             luck: 1,
             speed: 1,
             xp: 0,
+            levelXp: 0,
             growth: {
                 offense: 0,
                 defense: 0,

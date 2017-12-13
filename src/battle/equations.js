@@ -55,11 +55,18 @@ function levelUpStatGain(growthRate, level, statValue) {
     return ((growthRate * (level-1)) - ((statValue-2) * 10)) * r/50;
 }
 
+function nextLevel(level) {
+    var exponent = 1.5;
+    var baseXP = 15;
+    return Math.floor(baseXP * (level ^ exponent));
+}
+
 module.exports = {
     surviveMortalDamage: surviveMortalDamage,
     didMiss: didMiss,
     didSmash: didSmash,
     didDodge: didDodge,
     calcBashDamage: calcBashDamage,
-    levelUpStatGain: levelUpStatGain
+    levelUpStatGain: levelUpStatGain,
+    nextLevel: nextLevel
 };

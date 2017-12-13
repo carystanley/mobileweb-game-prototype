@@ -1,3 +1,4 @@
+var Equations = require('../battle/equations');
 
 function BattleWinState(game, battleState, battle) {
     this.game = game;
@@ -21,17 +22,31 @@ BattleWinState.prototype.enter = function () {
 }
 
 BattleWinState.prototype.checkLevelUp = function () {
-    var shouldLevelUp = false;
-    if (shouldLevelUp) {
-        this.levelUp();
+    var gamedata = this.game.data;
+    var pcId = null;
+    var level = 0;
+
+    gamedata.party.forEach(function (id) {
+        var data = gamedata.members[id] || {};
+        var nextLevelXp = Equations.nextLevel(data.level);
+        if (data.levelXp >= nextLevelXp) {
+            data.levelXp -= nextLevelXp;
+            data.level++;
+            pcId = id;
+            level = data.level;
+        }
+    });
+
+    if (pcId) {
+        this.levelUp(pcId, level);
     } else {
         this.leaveBattle();
     }
 }
 
-BattleWinState.prototype.levelUp = function () {
+BattleWinState.prototype.levelUp = function (id, level) {
     var self = this;
-    this.battleState.dialog.lang('LEVELUP.update', {name: 'name', level: 20}, function () {
+    this.battleState.dialog.lang('LEVELUP.update', {name: id, level: level}, function () {
         self.battleState.dialog.lang('LEVELUP.stat', {stat: 'stat', amount: 10}, function () {
             self.leaveBattle();
         });

@@ -15,7 +15,7 @@ WorldMenuState.prototype.init = function () {
         ], this.onItemsMenu.bind(this)),
         members: new TextMenu(basicFont, 72, 16, 40, 20, 4, [
         ], this.onMembersMenu.bind(this)),
-        status: new TextMenu(basicFont, 128, 16, 80, 20, 4, [
+        status: new TextMenu(basicFont, 128, 16, 80, 16, 4, [
         ])
     };
 }
@@ -74,11 +74,9 @@ WorldMenuState.prototype.getMembersMenu = function () {
     var data = game.data;
     var membersList = [];
     var party = data.party;
-    var members = data.members;
 
     party.forEach(function (id) {
-        var member = members[id];
-        membersList.push({ id: id, text: member.name });
+        membersList.push({ id: id, text: game.lang.string('NAME.' + id) });
     });
 
     return membersList;
@@ -91,12 +89,14 @@ WorldMenuState.prototype.getStatusMenu = function (memberId) {
     var memberId = memberId || data.party[0];
     var pc = data.members[memberId];
 
+    menuList.push({ id: 'level', text: 'Level', subtext: pc.level });
     menuList.push({ id: 'hp', text: 'Health', subtext: '' + pc.hp + '/' + pc.maxhp });
     menuList.push({ id: 'offense', text: 'Offense', subtext: pc.offense });
     menuList.push({ id: 'defense', text: 'Defense', subtext: pc.defense });
     menuList.push({ id: 'guts', text: 'Guts', subtext: pc.guts });
     menuList.push({ id: 'luck', text: 'Luck', subtext: pc.luck });
     menuList.push({ id: 'speed', text: 'Speed', subtext: pc.speed });
+    menuList.push({ id: 'xp', text: 'XP', subtext: '' + pc.xp });
 
     return menuList;
 };
