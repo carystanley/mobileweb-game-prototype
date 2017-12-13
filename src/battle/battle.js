@@ -228,13 +228,24 @@ Battle.prototype.isLost = function () {
 Battle.prototype.updatePlayerCharacters = function () {
     var pcs = this.pcs;
     var gamedata = this.game.data;
+    var xp = 0;
+    var cash = 0;
     var i = 0;
+
+    this.enemies.forEach(function (enemy) {
+        xp += enemy.xp;
+        cash += enemy.cash;
+    });
 
     gamedata.party.forEach(function (id) {
         var data = gamedata.members[id] || {};
         data.hp = pcs[i].hp;
+        data.xp += xp;
         i++;
-    })
+    });
+
+    gamedata.setValue('reserve', gamedata.value('reserve') + cash);
+    return xp;
 }
 
 module.exports = Battle;

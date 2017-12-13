@@ -13,7 +13,8 @@ window.PARTY = {
             defense: 3,
             guts: 1,
             luck: 1,
-            speed: 4
+            speed: 4,
+            xp: 0
         },
         girl: {
             sprite: 1,
@@ -24,7 +25,8 @@ window.PARTY = {
             defense: 2,
             guts: 1,
             luck: 3,
-            speed: 5
+            speed: 5,
+            xp: 0
         },
         bully: {
             sprite: 2,
@@ -35,7 +37,8 @@ window.PARTY = {
             defense: 23,
             guts: 10,
             luck: 14,
-            speed: 25
+            speed: 25,
+            xp: 0
         },
         principal: {
             sprite: 3,
@@ -46,13 +49,14 @@ window.PARTY = {
             defense: 1,
             guts: 1,
             luck: 1,
-            speed: 1
+            speed: 1,
+            xp: 0
         }
     },
     inventory: ['sneaker', 'pocky'],
     vars: {
         chapter: 0,
-        cash: 1000,
+        cash: 100,
         reserve: 0
     },
     flags: {}

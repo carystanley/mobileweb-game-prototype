@@ -28,7 +28,7 @@ window.LANG = {
     'BATTLE.won': 'You Won!',
     'BATTLE.lost': 'The battle was lost...',
 
-    'BATTLE.xp': '# earned # experience points!',
+    'BATTLE.xp': 'You earned {amount} experience points!',
 
     'BATTLE.drop': '# took the #'
 }
