@@ -198,7 +198,7 @@ World.prototype.draw = function (ctx, v, res) {
     if (player.goalRadius > 0) {
         ctx.fillStyle = 'rgba(170, 170, 170, 0.5)';
         ctx.beginPath();
-        ctx.ellipse(player.goalX + 8 - v.x, player.goalY + 4 - v.y,
+        ctx.ellipse(player.goalX - v.x, player.goalY - v.y,
             player.goalRadius, player.goalRadius, 0, 0, Math.PI*2);
         ctx.fill();
         ctx.closePath();

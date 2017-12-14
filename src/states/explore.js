@@ -53,12 +53,12 @@ WorldState.prototype.onMouse = function (x, y) {
         }
     }
     if (found) {
-        player.goalX = found.x + found.width/2 - 8;
-        player.goalY = found.y + found.height/2 - 4;
+        player.goalX = Math.floor(found.x);
+        player.goalY = Math.floor(found.y);
         player.goalEvent = found;
     } else {
-        player.goalX = wx - 8;
-        player.goalY = wy - 4;
+        player.goalX = wx;
+        player.goalY = wy;
         player.goalEvent = null;
     }
     player.goalRadius = 20;
