@@ -13,7 +13,7 @@ window.ENEMIES = {
         defense: 2,
         missRate: 1/16,
         strategy: 'random',
-        actions: ['bash', 'heal:5', 'other', 'other']
+        actions: ['bash']
     },
     'shiitake': {
         name: 'Shiitake',
@@ -26,7 +26,7 @@ window.ENEMIES = {
         defense: 1,
         missRate: 1/16,
         strategy: 'inorder',
-        actions: ['bash', 'heal:3', 'other', 'other']
+        actions: ['bash']
     },
     'hochstetteri': {
         name: 'Hochstetteri',
@@ -142,6 +142,6 @@ window.ENEMIES = {
         defense: 20,
         missRate: 1/16,
         strategy: 'inorder',
-        actions: ['bash', 'bash', 'bash']
+        actions: ['bash']
     }
 }
