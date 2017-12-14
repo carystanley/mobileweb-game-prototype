@@ -10,6 +10,10 @@ Player.prototype.update = function () {
     this.velocityX = 0;
     this.velocityY = 0;
 
+    if (this.going && (this.prevX === this.x && this.prevY === this.y)) {
+        this.blockedCount++;
+    }
+
     if (this.going) {
         if ((this.goalX === this.x && this.goalY === this.y) || this.blockedCount > 30) {
             this.going = false;
@@ -28,10 +32,6 @@ Player.prototype.update = function () {
             }
             this.step(this.velocityX, this.velocityY);
         }
-    }
-
-    if (this.going && (this.prevX === this.x && this.prevY === this.y)) {
-        this.blockedCount++;
     }
 
     if (this.goalRadius > 0) {
