@@ -22,6 +22,8 @@ window.LANG = {
     'BATTLE.bash': '{attacker} attacks!',
     'BATTLE.bash2': '{attacker} charged',
 
+    'BATTLE.item': '{attacker} used {itemName}',
+    'BATTLE.heal': '{attacker} healed',
     'BATTLE.runaway': '{attacker} tried to run away',
     'BATTLE.dodge': '# dodged quickly!',
     'BATTLE.mortal': '# took mortal damage',

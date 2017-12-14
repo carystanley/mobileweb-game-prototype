@@ -61,7 +61,6 @@ Battle.prototype.getOnlyPlayerCharacter = function () {
             count++;
         }
     });
-    console.error(count, loner);
     return (count === 1 ? loner : null);
 }
 
@@ -168,13 +167,20 @@ Battle.prototype.getCurrentTurn = function () {
     return this.turnOrder[this.turnCursor];
 }
 
+Battle.prototype.getItemName = function (id) {
+    return this.game.config.items[id].label;
+}
+
 Battle.prototype.getCurrentTurnText = function () {
     var turn = this.getCurrentTurn();
     var lang = this.game.lang;
     return lang.string([
         ['BATTLE', turn.id, turn.action],
         ['BATTLE', turn.action]
-    ], {attacker: turn.name});
+    ], {
+        attacker: turn.name,
+        itemName: (turn.action === 'item') ? this.getItemName(turn.action_param) : null
+    });
     /*
     var text = turn.name + ' ' + turn.action;
     if (turn.action_param) {
