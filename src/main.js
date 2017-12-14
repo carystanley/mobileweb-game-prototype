@@ -69,13 +69,17 @@ Game.setup = function(canvasId, window, config) {
     var mouseMap = {
         click: 'click',
         mouseup: 'up',
-        mousedown: 'down'
+        mousedown: 'down',
+        mousemove: 'move'
     };
     var e;
     for (e in mouseMap) {
         if (Object.prototype.hasOwnProperty.call(mouseMap, e)) {
             (function (event) {
                 canvas.addEventListener(event, function(e) {
+                    if (event === 'mousemove' && !e.buttons) {
+                        return;
+                    }
                     normalizeEvent(mouseMap[event], e.offsetX, e.offsetY);
                 }, false);
             })(e);
