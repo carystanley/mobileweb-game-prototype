@@ -31,14 +31,15 @@ BattleWinState.prototype.checkLevelUp = function () {
 
     Async.forEach(gamedata.party, function (id, done) {
         var data = gamedata.members[id] || {};
-        var nextLevelXp = Equations.nextLevel(data.level);
-        if (data.levelXp >= nextLevelXp) {
-            data.levelXp -= nextLevelXp;
-            data.level++;
-            self.levelUp(id, data, done);
-        } else {
-            done();
+        if (data.hp > 0) {
+            var nextLevelXp = Equations.nextLevel(data.level);
+            if (data.levelXp >= nextLevelXp) {
+                data.levelXp -= nextLevelXp;
+                data.level++;
+                return self.levelUp(id, data, done);
+            }
         }
+        done();
     }, function () {
         self.leaveBattle();
     });
