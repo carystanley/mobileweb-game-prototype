@@ -500,6 +500,18 @@
                  "width":16,
                  "x":624,
                  "y":96
+                }, 
+                {
+                 "ellipse":true,
+                 "height":16,
+                 "id":50,
+                 "name":"armsdealer",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":336,
+                 "y":96
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -507,7 +519,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":50,
+ "nextobjectid":51,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",

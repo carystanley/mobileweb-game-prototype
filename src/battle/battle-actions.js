@@ -1,5 +1,6 @@
 
 var Equations = require('./equations');
+var Random = require('../utils/random');
 
 var Actions = {
     bash: {
@@ -19,6 +20,16 @@ var Actions = {
             var amount = parseInt(param, 10);
             target.shakeCounter = 20;
             state.particles.add(target.heal(amount), target.x, target.y, 30, 0, -0.5, 0);
+        }
+    },
+    bomb: {
+        target: 'foe',
+        lambda: function (state, target, actor, power) {
+            var damage = Random.vary(parseInt(power, 10), 0.5);
+            if (damage > 0) {
+                target.shakeCounter = 20;
+            }
+            state.particles.add(target.damage(damage), target.x, target.y, 30, 0, -0.5, 0);
         }
     },
     defend: {

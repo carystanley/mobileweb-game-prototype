@@ -96,7 +96,7 @@ window.PARTY = {
     inventory: ['sneaker', 'pocky'],
     vars: {
         chapter: 0,
-        cash: 100,
+        cash: 1000,
         reserve: 0
     },
     flags: {}

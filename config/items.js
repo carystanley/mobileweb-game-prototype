@@ -7,14 +7,17 @@ window.ITEMS = {
 
     smokebomb: {
         label: 'Smoke Bomb',
+        battleAction: 'bomb:35',
         cost: 30
     },
     cherrybomb: {
         label: 'Cherry Bomb',
+        battleAction: 'bomb:70',
         cost: 50
     },
     bomb: {
         label: 'Bomb',
+        battleAction: 'bomb:150',
         cost: 150
     },
 

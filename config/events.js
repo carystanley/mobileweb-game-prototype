@@ -47,7 +47,7 @@ window.EVENTS = {
     'armsdealer': [{
         sprite: 20,
         commands: [
-            {cmd: 'dialog', text: "Ssshhh! Don\'t talk too load!"},
+            {cmd: 'dialog', text: "Ssshhh! Don\'t talk too loud!"},
             {cmd: 'dialog', text: "Want do you want?"},
             {cmd: 'shop', id: 'armsdealer'}
         ]
