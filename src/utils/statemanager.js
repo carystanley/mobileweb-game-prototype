@@ -32,7 +32,7 @@ StateManager.prototype.update = function () {
 
 StateManager.prototype.draw = function (ctx, res) {
     var state = this.currentState;
-    if (state && state.update) {
+    if (state && state.draw) {
         state.draw(ctx, res);
     }
 }
