@@ -51,12 +51,13 @@ function LoadingState(game) {
 LoadingState.prototype.enter = function () {
     var self = this;
     var count = 0;
-    var total = 16;
+    var total = 17;
 
     function doneCheck() {
         count++;
         if (count >= total) {
             self.game.state.switch('explore');
+            // self.game.state.switch('title');
         }
     }
 
