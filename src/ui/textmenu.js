@@ -1,13 +1,11 @@
 
-function TextMenu(font, x, y, width, rowHeight, winMargin, options, choiceHandler) {
-    this.font = font;
+function TextMenu(fontId, x, y, width, rowHeight, winMargin, options, choiceHandler) {
+    this.fontId = fontId;
     this.x = x;
     this.y = y;
     this.winMargin = winMargin;
     this.width = width;
-    this.lineHeight = font.data.lineHeight;
     this.rowHeight = rowHeight;
-    this.itemOffset = Math.max(Math.floor((this.rowHeight - this.lineHeight) / 2), 0);
     this.setOptions(options);
     this.choiceHandler = choiceHandler;
     this.selected = null;
@@ -18,15 +16,17 @@ TextMenu.prototype.setOptions = function(options) {
     this.options = options || [];
 };
 
-TextMenu.prototype.draw = function (ctx) {
+TextMenu.prototype.draw = function (ctx, res) {
     if (!this.visible) {
         return;
     }
+    var font = res[this.fontId];
     var options = this.options;
     var optionsSize = options.length;
     var rowHeight = this.rowHeight;
     var winMargin = this.winMargin;
-    var offset = this.itemOffset;
+    var lineHeight = font.data.lineHeight;
+    var offset = Math.max(Math.floor((rowHeight - lineHeight) / 2), 0);
 
     ctx.fillStyle = 'black';
     ctx.fillRect(this.x - winMargin, this.y - winMargin,
@@ -34,7 +34,6 @@ TextMenu.prototype.draw = function (ctx) {
 
     var x = this.x;
     var y = this.y;
-    var font = this.font;
 
     for (var i = 0; i < optionsSize; i++) {
         font.drawText(ctx, options[i].text, x + offset, y + offset);
