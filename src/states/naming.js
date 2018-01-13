@@ -5,7 +5,7 @@ function NamingState(game) {
 }
 
 NamingState.prototype.init = function () {
-    this.keyboard = new GridMenu('basicfont', 40, 40, 14, 16, 2, 2, 4, [
+    this.keyboard = new GridMenu('basicfont', 40, 40, 14, 16, 8, 5, 4, [
     ], this.onKeyboard.bind(this));
 }
 
@@ -15,7 +15,15 @@ NamingState.prototype.enter = function () {
 }
 
 NamingState.prototype.getKeyboard = function () {
-    return ['A', 'B', 'C', 'D']
+    var i;
+    var keyboard = [];
+    for (i = 'A'.charCodeAt(0); i <= 'Z'.charCodeAt(0); i++) {
+        keyboard.push(String.fromCharCode(i));
+    }
+    for (i = '0'.charCodeAt(0); i <= '9'.charCodeAt(0); i++) {
+        keyboard.push(String.fromCharCode(i));
+    }
+    return keyboard;
 };
 
 NamingState.prototype.onKeyboard = function (option) {

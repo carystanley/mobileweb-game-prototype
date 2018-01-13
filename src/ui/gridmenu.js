@@ -40,15 +40,19 @@ GridMenu.prototype.draw = function (ctx, res) {
         width + winMargin * 2, height + winMargin * 2);
 
     for (var ix = 0; ix < xCount; ix++) {
-        for (var iy = 0; iy < xCount; iy++) {
+        for (var iy = 0; iy < yCount; iy++) {
             var optionIdx = ix + (iy * xCount);
             var x = ix * cellWidth + this.x;
             var y = iy * cellHeight + this.y;
-            if (this.selected === optionIdx) {
-                ctx.fillStyle = 'rgba(170, 170, 170, 0.5)';
-                ctx.fillRect(x, y, cellWidth, cellHeight);
+            var option = options[optionIdx];
+
+            if (option) {
+                if (this.selected === optionIdx) {
+                    ctx.fillStyle = 'rgba(170, 170, 170, 0.5)';
+                    ctx.fillRect(x, y, cellWidth, cellHeight);
+                }
+                font.drawText(ctx, options[optionIdx], x + xOffset, y + yOffset, 'center');
             }
-            font.drawText(ctx, options[optionIdx], x + xOffset, y + yOffset, 'center');
         }
     }
 }
@@ -66,7 +70,7 @@ GridMenu.prototype.event = function(type, x, y) {
     var mx = Math.floor((x - this.x) / cellWidth);
     var my = Math.floor((y - this.y) / cellHeight);
     if (mx >= 0 && my >= 0 && mx < xCount && my < yCount) {
-        var optionIdx = mx + my * yCount;
+        var optionIdx = mx + (my * xCount);
         switch (type) {
             case 'click':
                 if (this.choiceHandler) {
