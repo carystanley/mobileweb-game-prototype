@@ -1,12 +1,11 @@
 var trackingQueue = window._gaq;
-console.error(trackingQueue);
 
 var Tracking = {
     init: function (account) {
-        this.send(['_trackPageview']);
         if (account) {
             this.setAccount(account);
         }
+        this.send(['_trackPageview']);
     },
 
     setAccount: function(account) {
@@ -23,6 +22,7 @@ var Tracking = {
 
     send: function(args) {
         if (trackingQueue) {
+            console.error(args);
             trackingQueue.push(args);
         } else {
             console.log('Tracking object missing.');
