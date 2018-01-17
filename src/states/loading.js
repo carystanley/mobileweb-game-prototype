@@ -49,6 +49,8 @@ function LoadingState(game) {
 }
 
 LoadingState.prototype.enter = function () {
+    this.game.tracking.trackPage('/game/loading');
+    this.game.tracking.trackEvent('game', 'loading');
     var self = this;
     var count = 0;
     var total = 17;
@@ -58,6 +60,7 @@ LoadingState.prototype.enter = function () {
         if (count >= total) {
             self.game.state.switch('explore');
             // self.game.state.switch('title');
+            // self.game.state.switch('naming');
         }
     }
 

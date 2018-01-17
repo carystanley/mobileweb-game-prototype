@@ -10,6 +10,8 @@ TitleState.prototype.init = function () {
 }
 
 TitleState.prototype.enter = function () {
+    this.game.tracking.trackPage('/game/title');
+    this.game.tracking.trackEvent('game', 'title');
     this.menu.setOptions(this.getMenu());
     this.menu.show();
 }
@@ -34,8 +36,10 @@ TitleState.prototype.onMenu = function (option) {
     var choice = option.id;
 
     if (choice === 'new') {
+        this.game.tracking.trackEvent('game', 'new');
         state.switch('explore');
     } else if (choice === 'continue') {
+        this.game.tracking.trackEvent('game', 'continue');
         state.switch('explore');
     }
 }

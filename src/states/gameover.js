@@ -12,6 +12,8 @@ GameOverState.prototype.init = function () {
 }
 
 GameOverState.prototype.enter = function (shopId) {
+    this.game.tracking.trackPage('/game/gameover');
+    this.game.tracking.trackEvent('game', 'over');
     var self = this;
     this.game.sound.bgm('gameover', 'game_over');
     this.menu.setOptions(this.getMenu(shopId));

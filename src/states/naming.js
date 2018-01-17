@@ -10,6 +10,7 @@ NamingState.prototype.init = function () {
 }
 
 NamingState.prototype.enter = function () {
+    this.game.tracking.trackPage('/game/naming');
     this.keyboard.setOptions(this.getKeyboard());
     this.keyboard.show();
 }
