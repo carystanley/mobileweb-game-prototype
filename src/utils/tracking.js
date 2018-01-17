@@ -12,11 +12,11 @@ var Tracking = {
         this.send(['_setAccount', account]);
     },
 
-    trackPage: function(url){
+    trackPage: function(url) {
         this.send(['_trackPageview', url]);
     },
 
-    trackEvent: function(category, action, label, value ){
+    trackEvent: function(category, action, label, value) {
         this.send(['_trackEvent', category, action, label, value]);
     },
 
