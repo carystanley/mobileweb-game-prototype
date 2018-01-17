@@ -33,16 +33,7 @@
 <script src="fonts/basic-black.js"></script>
 <script src="fonts/battle-numbers.js"></script>
 <script src="app.js"></script>
-<script>
-    Game.setup('gameCanvas', window, {
-        events: EVENTS,
-        items: ITEMS,
-        enemies: ENEMIES,
-        shops: SHOPS,
-        party: PARTY,
-        lang: LANG
-    });
-</script>
+
 <script type="text/javascript">
 
     var _gaq = _gaq || [];
@@ -52,6 +43,17 @@
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
+</script>
+
+<script>
+    Game.setup('gameCanvas', window, {
+        events: EVENTS,
+        items: ITEMS,
+        enemies: ENEMIES,
+        shops: SHOPS,
+        party: PARTY,
+        lang: LANG
+    });
 </script>
 </body>
 </html>
