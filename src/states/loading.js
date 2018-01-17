@@ -58,8 +58,8 @@ LoadingState.prototype.enter = function () {
     function doneCheck() {
         count++;
         if (count >= total) {
-            self.game.state.switch('explore');
-            // self.game.state.switch('title');
+            // self.game.state.switch('explore');
+            self.game.state.switch('title');
             // self.game.state.switch('naming');
         }
     }

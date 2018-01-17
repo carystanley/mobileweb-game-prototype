@@ -123,8 +123,9 @@ Game.setup = function(canvasId, window, config) {
         title: new TitleState(game),
         naming: new NamingState(game)
     });
-    game.state.switch('loading');
     game.tracking.init(game.config.trackerId);
+    game.state.switch('loading');
+
 
     function run() {
         // Clear anything drawn to the canvas off.

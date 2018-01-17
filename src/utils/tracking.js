@@ -7,6 +7,7 @@ var Tracking = {
         if (account) {
             ga('create', account, 'auto');
         }
+        // ga('set', 'transport', 'beacon');
         ga('send', 'pageview');
     },
 
@@ -15,7 +16,6 @@ var Tracking = {
     },
 
     trackEvent: function(category, action, label, value) {
-        console.error(arguments);
         ga('send', 'event', category, action, label, value);
     }
 };
