@@ -1,4 +1,5 @@
 var trackingQueue = window._gaq;
+console.error(trackingQueue);
 
 var Tracking = {
     init: function (account) {
