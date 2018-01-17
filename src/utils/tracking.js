@@ -1,31 +1,22 @@
-var trackingQueue = window._gaq;
+var ga = window.ga || function () {
+    console.error('Analytics Missing');
+};
 
 var Tracking = {
     init: function (account) {
         if (account) {
-            this.setAccount(account);
+            ga('create', account, 'auto');
         }
-        this.send(['_trackPageview']);
-    },
-
-    setAccount: function(account) {
-        this.send(['_setAccount', account]);
+        ga('send', 'pageview');
     },
 
     trackPage: function(url) {
-        this.send(['_trackPageview', url]);
+        ga('send', 'pageview', url);
     },
 
     trackEvent: function(category, action, label, value) {
-        this.send(['_trackEvent', category, action, label, value]);
-    },
-
-    send: function(args) {
-        if (trackingQueue) {
-            trackingQueue.push(args);
-        } else {
-            console.log('Tracking object missing.');
-        }
+        console.error(arguments);
+        ga('send', 'event', category, action, label, value);
     }
 };
 
