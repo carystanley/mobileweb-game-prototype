@@ -22,7 +22,6 @@ var Tracking = {
 
     send: function(args) {
         if (trackingQueue) {
-            console.error(args);
             trackingQueue.push(args);
         } else {
             console.log('Tracking object missing.');
