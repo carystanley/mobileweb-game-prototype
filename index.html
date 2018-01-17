@@ -20,7 +20,15 @@
     <div id="screen"><canvas id="gameCanvas" height="160" width="284"></canvas></div>
     <div id="must-landscape"><h1>Sorry</h1>you must switch to landscape view</div>
 
-<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-5075951-7"]),_gaq.push(["_trackPageview"]),function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}()</script>
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
 
 <script src="config/events.js"></script>
 <script src="config/items.js"></script>
@@ -34,19 +42,9 @@
 <script src="fonts/battle-numbers.js"></script>
 <script src="app.js"></script>
 
-<script type="text/javascript">
-
-    var _gaq = _gaq || [];
-
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-</script>
-
 <script>
     Game.setup('gameCanvas', window, {
+        trackerId: 'UA-5075951-7',
         events: EVENTS,
         items: ITEMS,
         enemies: ENEMIES,

@@ -5,6 +5,7 @@ var StateManager = require('./utils/statemanager');
 var Layout = require('./ui/layout');
 var SoundManager = require('./soundmanager');
 var Lang = require('./lang');
+var Tracking = require('./utils/tracking');
 
 var ExploreState = require('./states/explore');
 var ExploreMenuState = require('./states/explore-menu');
@@ -32,6 +33,7 @@ Game.setup = function(canvasId, window, config) {
     game.data = new Data(game);
     game.layout = new Layout(game);
     game.lang = new Lang(game);
+    game.tracking = Tracking;
 
     var disableSwipeFn = function (e) {
         e.preventDefault();
@@ -122,6 +124,7 @@ Game.setup = function(canvasId, window, config) {
         naming: new NamingState(game)
     });
     game.state.switch('loading');
+    game.tracking.init(game.config.trackerId);
 
     function run() {
         // Clear anything drawn to the canvas off.
