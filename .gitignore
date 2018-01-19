@@ -1,3 +1,7 @@
 /node_modules/
 .eslintcache
 app.js.map
+.DS_Store
+images/sheet.png
+images/sheet.json
+ynpm-debug.log
