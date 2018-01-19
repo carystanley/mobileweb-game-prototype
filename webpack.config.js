@@ -19,12 +19,12 @@ module.exports = {
     plugins: [
         new SpritesmithPlugin({
             src: {
-                cwd: path.resolve(__dirname, 'images'),
+                cwd: path.resolve(__dirname, 'sprites'),
                 glob: '*.png'
             },
             target: {
-                image: path.resolve(__dirname, 'sprites/sprite.png'),
-                css: [[path.resolve(__dirname, 'sprites/sprite.json'), {
+                image: path.resolve(__dirname, 'images/sheet.png'),
+                css: [[path.resolve(__dirname, 'images/sheet.json'), {
                     format: 'json_texture'
                 }]]
             }
