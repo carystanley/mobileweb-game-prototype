@@ -1,0 +1,70 @@
+{
+    "frames": {
+        "ailment-asleep": {
+            "frame": {
+                "x": 0,
+                "y": 50,
+                "w": 16,
+                "h": 16
+            }
+        },
+        "ailment-confused": {
+            "frame": {
+                "x": 16,
+                "y": 50,
+                "w": 16,
+                "h": 16
+            }
+        },
+        "ailment-paralyzed": {
+            "frame": {
+                "x": 32,
+                "y": 50,
+                "w": 16,
+                "h": 16
+            }
+        },
+        "ailment-poisoned": {
+            "frame": {
+                "x": 48,
+                "y": 50,
+                "w": 16,
+                "h": 16
+            }
+        },
+        "smaaaash": {
+            "frame": {
+                "x": 0,
+                "y": 35,
+                "w": 71,
+                "h": 15
+            }
+        },
+        "status-panel-unconscious": {
+            "frame": {
+                "x": 0,
+                "y": 0,
+                "w": 60,
+                "h": 35
+            }
+        },
+        "status-panel": {
+            "frame": {
+                "x": 60,
+                "y": 0,
+                "w": 60,
+                "h": 35
+            }
+        }
+    },
+    "meta": {
+        "app": "spritesheet-templates",
+        "version": "10.2.2",
+        "image": "/Users/cary/mobileweb-game-prototype/images/sheet.png",
+        "scale": 1,
+        "size": {
+            "w": 120,
+            "h": 66
+        }
+    }
+}
