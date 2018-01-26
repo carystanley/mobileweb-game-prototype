@@ -116,6 +116,11 @@ BattleState.prototype.drawPanels = function (ctx, res) {
             (x - 12) | 0, (y - spriteOffset) | 0, 24, 32
         );
 
+        var ailment = 'asleep';
+        if (ailment) {
+            res.sheet['ailment-'+ailment].drawRelative(ctx, x, y - spriteOffset, 0, 1);
+        }
+
         var panelSprite = pc.rollhp > 0 ? 'status-panel' : 'status-panel-unconscious';
         res.sheet[panelSprite].drawRelative(ctx, x, y, 0.5, 0);
 
