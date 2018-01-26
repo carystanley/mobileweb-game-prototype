@@ -2,6 +2,7 @@
 
 var BitmapFont = require('../bitmapfont');
 var Map = require('../explore/map');
+var Sprite = require('../utils/sprite');
 var floor1 = require('../../maps/floor1.json');
 var floor2 = require('../../maps/floor2.json');
 var floor3 = require('../../maps/floor3.json');
@@ -21,6 +22,7 @@ var bathroom = require('../../maps/bathroom.json');
 var stall1 = require('../../maps/stall1.json');
 var stall2 = require('../../maps/stall2.json');
 var debug = require('../../maps/debug.json');
+var sheetConfig = require('../../images/sheet.json');
 
 var Howl = require('howler').Howl;
 
@@ -91,8 +93,8 @@ LoadingState.prototype.enter = function () {
         debug: new Map(debug),
         layer0: loadImage('./images/layer0.png', doneCheck),
         odometer: loadImage('./images/odometer.png', doneCheck),
-        statuspanel: loadImage('./images/status-panel.png', doneCheck),
         battlesprites: loadImage('./images/battle-sprites.png', doneCheck),
+        sheet: Sprite.load(loadImage('./images/sheet.png', doneCheck), sheetConfig),
         se: {
             cursor_ok: loadSound(['./sounds/se/cursor_ok.wav'], false, doneCheck),
             item1: loadSound(['./sounds/se/item1.wav'], false, doneCheck),

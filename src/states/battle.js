@@ -116,11 +116,8 @@ BattleState.prototype.drawPanels = function (ctx, res) {
             (x - 12) | 0, (y - spriteOffset) | 0, 24, 32
         );
 
-        ctx.drawImage(
-            res.statuspanel,
-            0, pc.rollhp > 0 ? 0 : 35, 60, 35,
-            x - 30, y, 60, 35
-        );
+        var panelSprite = pc.rollhp > 0 ? 'status-panel' : 'status-panel-unconscious';
+        res.sheet[panelSprite].drawRelative(ctx, x, y, 0.5, 0);
 
         var font = res.basicblackfont;
         font.drawText(ctx, name, x, y+1, 'center');
