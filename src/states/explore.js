@@ -52,17 +52,10 @@ WorldState.prototype.onMouse = function (x, y) {
         }
     }
     if (found) {
-        player.goalX = Math.floor(found.x);
-        player.goalY = Math.floor(found.y);
-        player.goalEvent = found;
+        player.goTo(Math.floor(found.x), Math.floor(found.y), found);
     } else {
-        player.goalX = wx;
-        player.goalY = wy;
-        player.goalEvent = null;
+        player.goTo(wx, wy, null);
     }
-    player.goalRadius = 20;
-    player.going = true;
-    player.blockedCount = 0;
 }
 
 WorldState.prototype.event = function (type, x, y) {

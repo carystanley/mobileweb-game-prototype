@@ -6,6 +6,16 @@ function Player (world, config) {
 
 Player.prototype = Object.create(Actor.prototype);
 
+Player.prototype.goTo = function (x, y, event) {
+    this.goalX = x;
+    this.goalY = y;
+    this.goalEvent = event;
+
+    this.goalRadius = 20;
+    this.going = true;
+    this.blockedCount = 0;
+}
+
 Player.prototype.update = function () {
     this.velocityX = 0;
     this.velocityY = 0;
