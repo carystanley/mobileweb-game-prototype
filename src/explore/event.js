@@ -102,9 +102,10 @@ Event.prototype.update = function () {
         if ((this.goalX === this.x && this.goalY === this.y) || this.blockedCount > 30) {
             this.moving = false;
             if (this.goalDone) {
-                this.goalDone();
+                var done = this.goalDone;
+                this.goalDone = null;
+                done();
             }
-            this.goalDone = null;
         } else {
             if (this.goalX < this.x) { // Left
                 this.velocityX = -1;

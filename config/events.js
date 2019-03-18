@@ -205,6 +205,7 @@ window.EVENTS = {
         commands: [
             {cmd: 'dialog', text: 'Oh {NAME.hero}, you saved me!!!.'},
             {cmd: 'walk', id: 'girl_join', x: -16, y: 0},
+            {cmd: 'walk', id: 'girl_join', x: 0, y: 16},
             {cmd: 'joinParty', id: 'girl'},
             {cmd: 'setFlag', id: 'girl_join', value: true}
         ]
