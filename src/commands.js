@@ -92,6 +92,15 @@ var Commands = {
             done();
         });
     },
+    walk: function(context, params, done) {
+        var game = context.game;
+        var event = game.state.explore.world.getEventById(params.id);
+        if (event) {
+            event.goTo(event.x + params.x, event.y + params.y, done);
+        } else {
+            done();
+        }
+    },
     enemy: function(context, params, done) {
         context.game.state.explore.world.spawnEnemy({
             type: x(context, params.type),

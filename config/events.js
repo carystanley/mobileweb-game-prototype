@@ -204,6 +204,7 @@ window.EVENTS = {
         cond: "!flag('girl_join')",
         commands: [
             {cmd: 'dialog', text: 'Oh {NAME.hero}, you saved me!!!.'},
+            {cmd: 'walk', id: 'girl_join', x: -16, y: 0},
             {cmd: 'joinParty', id: 'girl'},
             {cmd: 'setFlag', id: 'girl_join', value: true}
         ]

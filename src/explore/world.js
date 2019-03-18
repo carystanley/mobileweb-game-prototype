@@ -92,6 +92,16 @@ World.prototype.loadMap = function(mapId, locationId) {
     this.resetLoadEvents();
 }
 
+World.prototype.getEventById = function (id) {
+    var found = null;
+    this.events.forEach(function (event) {
+        if (event.eventId === id) {
+            found = event;
+        }
+    });
+    return found;
+}
+
 World.prototype.resetLoadEvents = function () {
     this.shouldRunLoadEvents = true;
 }
