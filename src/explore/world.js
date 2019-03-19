@@ -242,6 +242,15 @@ World.prototype.update = function () {
     });
 }
 
+World.prototype.cutsceneUpdate = function () {
+    this.events.forEach(function(event) {
+        if (event.inactive) {
+            return;
+        }
+        event.cutsceneUpdate();
+    });
+}
+
 World.prototype.correctionWall = function(player, obstacle, distX, distY, correctX, correctY) {
     if (correctX > correctY) {
         player.x += ((distX > 0) ? 1 : -1) * correctX;

@@ -28,6 +28,11 @@ WorldState.prototype.update = function () {
     this.viewport.update(player, world);
 }
 
+WorldState.prototype.cutsceneUpdate = function () {
+    var world = this.world;
+    world.cutsceneUpdate();
+}
+
 WorldState.prototype.draw = function (ctx, res) {
     this.world.draw(ctx, this.viewport, res);
     if (this.game.state.currentState === this) {

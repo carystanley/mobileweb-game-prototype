@@ -25,7 +25,7 @@ CutSceneState.prototype.enter = function (data) {
 CutSceneState.prototype.update = function () {
     this.dialog.update();
     this.matte.update();
-    this.game.state.explore.update();
+    this.game.state.explore.cutsceneUpdate();
 }
 
 CutSceneState.prototype.draw = function (ctx, res) {

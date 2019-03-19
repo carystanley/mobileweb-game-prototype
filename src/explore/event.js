@@ -91,6 +91,9 @@ Event.prototype.goTo = function (x, y, done) {
 }
 
 Event.prototype.update = function () {
+}
+
+Event.prototype.cutsceneUpdate = function () {
     this.velocityX = 0;
     this.velocityY = 0;
 
