@@ -203,6 +203,7 @@ window.EVENTS = {
         sprite: 1,
         cond: "!flag('girl_join')",
         commands: [
+            {cmd: 'face', direction: 'left'},
             {cmd: 'dialog', text: 'Oh {NAME.hero}, you saved me!!!.'},
             {cmd: 'walk', dx: -16, dy: 0},
             {cmd: 'walk', dx: 0, dy: 16},

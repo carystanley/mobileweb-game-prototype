@@ -109,6 +109,15 @@ var Commands = {
         }
         done();
     },
+    face: function(context, params, done) {
+        var game = context.game;
+        var event = params.id ? game.state.explore.world.getEventById(params.id) : context.eventObj;
+        var direction = params.direction;
+        if (event && direction) {
+            event.setFacing(direction);
+        }
+        done();
+    },
     enemy: function(context, params, done) {
         context.game.state.explore.world.spawnEnemy({
             type: x(context, params.type),
