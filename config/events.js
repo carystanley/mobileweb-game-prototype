@@ -204,6 +204,13 @@ window.EVENTS = {
         cond: "!flag('girl_join')",
         commands: [
             {cmd: 'face', direction: 'left'},
+            {cmd: 'wait', delay: 60},
+            {cmd: 'face', direction: 'up'},
+            {cmd: 'wait', delay: 60},
+            {cmd: 'face', direction: 'right'},
+            {cmd: 'wait', delay: 60},
+            {cmd: 'face', direction: 'down'},
+            {cmd: 'wait', delay: 60},
             {cmd: 'dialog', text: 'Oh {NAME.hero}, you saved me!!!.'},
             {cmd: 'walk', dx: -16, dy: 0},
             {cmd: 'walk', dx: 0, dy: 16},

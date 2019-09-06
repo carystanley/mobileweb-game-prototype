@@ -118,6 +118,11 @@ var Commands = {
         }
         done();
     },
+    wait: function(context, params, done) {
+        var game = context.game;
+        var delay = params.delay;
+        game.state.cutscene.time.add(delay, done);
+    },
     enemy: function(context, params, done) {
         context.game.state.explore.world.spawnEnemy({
             type: x(context, params.type),
