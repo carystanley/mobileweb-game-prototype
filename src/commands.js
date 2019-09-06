@@ -96,7 +96,7 @@ var Commands = {
         var game = context.game;
         var event = game.state.explore.world.getEventById(params.id);
         if (event) {
-            event.goTo(event.x + params.x, event.y + params.y, done);
+            event.goTo(event.x + params.dx, event.y + params.dy, done);
         } else {
             done();
         }
