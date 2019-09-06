@@ -2,6 +2,7 @@ var Dialog = require('../ui/dialog');
 var Matte = require('../ui/matte');
 var Interpreter = require('../utils/interpreter');
 var Commands = require('../commands');
+var TimerManager = require('../utils/timermanager');
 
 function CutSceneState(game) {
     this.game = game;
@@ -11,6 +12,7 @@ CutSceneState.prototype.init = function () {
     this.dialog = new Dialog(this.game, 'basicfont', 40, 100, 204, 3);
     this.matte = new Matte(this.game);
     this.interpreter = new Interpreter(Commands);
+    this.time = new TimerManager();
     this.done = this.done.bind(this);
 }
 
@@ -25,6 +27,7 @@ CutSceneState.prototype.enter = function (data) {
 CutSceneState.prototype.update = function () {
     this.dialog.update();
     this.matte.update();
+    this.time.update();
     this.game.state.explore.cutsceneUpdate();
 }
 
