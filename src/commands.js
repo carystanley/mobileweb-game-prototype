@@ -101,6 +101,14 @@ var Commands = {
             done();
         }
     },
+    sprite: function(context, params, done) {
+        var game = context.game;
+        var event = params.id ? game.state.explore.world.getEventById(params.id) : context.eventObj;
+        if (event) {
+            event.sprite = params.sprite;
+        }
+        done();
+    },
     enemy: function(context, params, done) {
         context.game.state.explore.world.spawnEnemy({
             type: x(context, params.type),
