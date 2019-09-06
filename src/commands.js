@@ -94,7 +94,7 @@ var Commands = {
     },
     walk: function(context, params, done) {
         var game = context.game;
-        var event = game.state.explore.world.getEventById(params.id);
+        var event = params.id ? game.state.explore.world.getEventById(params.id) : context.eventObj;
         if (event) {
             event.goTo(event.x + params.dx, event.y + params.dy, done);
         } else {
