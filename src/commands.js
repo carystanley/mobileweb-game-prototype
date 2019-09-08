@@ -131,6 +131,14 @@ var Commands = {
             probability: x(context, params.probability)
         });
         done();
+    },
+    with: function(context, params, done) {
+        /* TODO test */
+        var game = context.game;
+        var event = params.id ? game.state.explore.world.getEventById(params.id) : context.eventObj;
+        this.run(params.run, Object.assign({}, context, {
+            eventObj: event
+        }), done);
     }
 };
 

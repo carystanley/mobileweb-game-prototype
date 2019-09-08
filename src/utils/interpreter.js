@@ -20,9 +20,6 @@ var baseCommands = {
     },
     parallel: function(context, params, done) {
         /* TODO */
-    },
-    with: function(context, params, done) {
-        /* TODO */
     }
 };
 
