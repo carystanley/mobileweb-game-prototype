@@ -197,16 +197,16 @@ window.EVENTS = {
                         {cmd: 'face', direction: 'down'},
                         {cmd: 'wait', delay: 60}
                     ],
-                    [
-                        {cmd: 'face', id: 'banana_guru', irection: 'left'},
-                        {cmd: 'wait', id: 'banana_guru', delay: 60},
-                        {cmd: 'face', id: 'banana_guru', direction: 'up'},
-                        {cmd: 'wait', id: 'banana_guru', delay: 60},
-                        {cmd: 'face', id: 'banana_guru', direction: 'right'},
-                        {cmd: 'wait', id: 'banana_guru', delay: 60},
-                        {cmd: 'face', id: 'banana_guru', direction: 'down'},
-                        {cmd: 'wait', id: 'banana_guru', delay: 60}
-                    ]
+                    {cmd: 'with', id: 'banana_guru', run: [
+                        {cmd: 'face', direction: 'left'},
+                        {cmd: 'wait', delay: 60},
+                        {cmd: 'face', direction: 'up'},
+                        {cmd: 'wait', delay: 60},
+                        {cmd: 'face', direction: 'right'},
+                        {cmd: 'wait', delay: 60},
+                        {cmd: 'face', direction: 'down'},
+                        {cmd: 'wait', delay: 60}
+                    ]}
                 ]},
                 {cmd: 'addItemToInventory', id: 'sock'}
             ]}

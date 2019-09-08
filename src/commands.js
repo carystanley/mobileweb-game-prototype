@@ -139,7 +139,6 @@ var Commands = {
         done();
     },
     with: function(context, params, done) {
-        /* TODO test */
         var event = getTargetEvent(context, params);
         this.run(params.run, Object.assign({}, context, {
             eventObj: event
