@@ -16,28 +16,7 @@ var baseCommands = {
         }
     },
     series: function(context, params, done) {
-        var self = this;
-        var lines = params.run;
-        var ip = 0;
-
-        function inc(err) {
-            if (err) {
-                done(err);
-            } else {
-                ip++;
-                next();
-            }
-        }
-
-        function next() {
-            if (ip < lines.length) {
-                self.exec(lines[ip], context, inc);
-            } else {
-                done();
-            }
-        }
-
-        next();
+        this.run(params.run, context, done);
     },
     parallel: function(context, params, done) {
         /* TODO */
@@ -60,9 +39,27 @@ Interpreter.prototype.exec = function(command, context, done) {
 }
 
 Interpreter.prototype.run = function(commands, context, done) {
-    this.commands['series'].call(this, context, {
-        run: commands
-    }, done);
+    var self = this;
+    var ip = 0;
+
+    function inc(err) {
+        if (err) {
+            done(err);
+        } else {
+            ip++;
+            next();
+        }
+    }
+
+    function next() {
+        if (ip < commands.length) {
+            self.exec(commands[ip], context, inc);
+        } else {
+            done();
+        }
+    }
+
+    next();
 }
 
 
