@@ -19,7 +19,8 @@ var baseCommands = {
         this.run(params.run, context, done);
     },
     parallel: function(context, params, done) {
-        /* TODO */
+        var running = params.run.length;
+
     }
 };
 
@@ -36,6 +37,10 @@ Interpreter.prototype.exec = function(command, context, done) {
 }
 
 Interpreter.prototype.run = function(commands, context, done) {
+    if (!Array.isArray(commands)) {
+        commands = [commands];
+    }
+
     var self = this;
     var ip = 0;
 
