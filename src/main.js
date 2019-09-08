@@ -132,6 +132,7 @@ Game.setup = function(canvasId, window, config) {
     var mspf = 1000 / fps;
 
     function run(timestamp) {
+        window.requestAnimationFrame(run);
         if (!lastTs) {
             lastTs = timestamp
         };
@@ -148,8 +149,6 @@ Game.setup = function(canvasId, window, config) {
         }
 
         lastTs = timestamp
-
-        window.requestAnimationFrame(run);
     }
     window.requestAnimationFrame(run);
 }
