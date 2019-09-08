@@ -186,6 +186,28 @@ window.EVENTS = {
                 {cmd: 'dialog', text: 'You took my Socks!'}
             ], else: [
                 {cmd: 'dialog', text: 'When you can snatch the pebble from my hand, it will be time for you to leave.'},
+                {cmd: 'parallel', run: [
+                    [
+                        {cmd: 'face', direction: 'left'},
+                        {cmd: 'wait', delay: 60},
+                        {cmd: 'face', direction: 'up'},
+                        {cmd: 'wait', delay: 60},
+                        {cmd: 'face', direction: 'right'},
+                        {cmd: 'wait', delay: 60},
+                        {cmd: 'face', direction: 'down'},
+                        {cmd: 'wait', delay: 60}
+                    ],
+                    [
+                        {cmd: 'face', id: 'banana_guru', irection: 'left'},
+                        {cmd: 'wait', id: 'banana_guru', delay: 60},
+                        {cmd: 'face', id: 'banana_guru', direction: 'up'},
+                        {cmd: 'wait', id: 'banana_guru', delay: 60},
+                        {cmd: 'face', id: 'banana_guru', direction: 'right'},
+                        {cmd: 'wait', id: 'banana_guru', delay: 60},
+                        {cmd: 'face', id: 'banana_guru', direction: 'down'},
+                        {cmd: 'wait', id: 'banana_guru', delay: 60}
+                    ]
+                ]},
                 {cmd: 'addItemToInventory', id: 'sock'}
             ]}
         ]

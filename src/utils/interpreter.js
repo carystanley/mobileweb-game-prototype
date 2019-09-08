@@ -19,8 +19,19 @@ var baseCommands = {
         this.run(params.run, context, done);
     },
     parallel: function(context, params, done) {
+        var self = this;
         var running = params.run.length;
 
+        function cb() {
+            running--;
+            if (running <= 0) {
+                done();
+            }
+        }
+
+        params.run.forEach(function (commands) {
+            self.run(commands, context, cb);
+        });
     }
 };
 
