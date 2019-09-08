@@ -9,9 +9,12 @@ function x(context, value) {
     return value;
 }
 
+function getWorld(context) {
+    return context.game.state.explore.world;
+}
+
 function getTargetEvent(context, params) {
-    var game = context.game;
-    var event = params.id ? game.state.explore.world.getEventById(params.id) : context.eventObj;
+    var event = params.id ? getWorld(context).getEventById(params.id) : context.eventObj;
     return event;
 }
 
@@ -76,17 +79,17 @@ var Commands = {
     },
     setFlag: function(context, params, done) {
         context.game.data.setFlag(params.id, params.value);
-        context.game.state.explore.world.refresh();
+        getWorld(context).refresh();
         done();
     },
     setValue: function(context, params, done) {
         context.game.data.setValue(params.id, params.value);
-        context.game.state.explore.world.refresh();
+        getWorld(context).refresh();
         done();
     },
     setSelfFlag: function(context, params, done) {
         context.game.data.setEventFlag(context.eventObj.id, params.id, params.value);
-        context.game.state.explore.world.refresh();
+        getWorld(context).refresh();
         done();
     },
     joinParty: function(context, params, done) {
@@ -127,7 +130,7 @@ var Commands = {
         game.state.cutscene.time.add(delay, done);
     },
     enemy: function(context, params, done) {
-        context.game.state.explore.world.spawnEnemy({
+        getWorld(context).spawnEnemy({
             type: x(context, params.type),
             x: x(context, params.x),
             y: x(context, params.y),
