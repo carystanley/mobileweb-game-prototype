@@ -31,8 +31,8 @@ window.EVENTS = {
         cond: "!self.flag('got')",
         facing: 'down',
         commands: [
-            {cmd: 'addItemToInventory', id: '$$params.item'},
-            {cmd: 'setSelfFlag', id: 'got', value: true}
+            {cmd: 'setSelfFlag', id: 'got', value: true},
+            {cmd: 'addItemToInventory', id: '$$params.item'}
         ]
     }],
     'ramenguy': [{
