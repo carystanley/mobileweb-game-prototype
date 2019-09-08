@@ -9,6 +9,12 @@ function x(context, value) {
     return value;
 }
 
+function getTargetEvent(context, params) {
+    var game = context.game;
+    var event = params.id ? game.state.explore.world.getEventById(params.id) : context.eventObj;
+    return event;
+}
+
 var Commands = {
     transport: function(context, params, done) {
         context.game.state.explore.mapTransport(
@@ -93,8 +99,7 @@ var Commands = {
         });
     },
     walk: function(context, params, done) {
-        var game = context.game;
-        var event = params.id ? game.state.explore.world.getEventById(params.id) : context.eventObj;
+        var event = getTargetEvent(context, params);
         if (event) {
             event.goTo(event.x + params.dx, event.y + params.dy, done);
         } else {
@@ -102,16 +107,14 @@ var Commands = {
         }
     },
     sprite: function(context, params, done) {
-        var game = context.game;
-        var event = params.id ? game.state.explore.world.getEventById(params.id) : context.eventObj;
+        var event = getTargetEvent(context, params);
         if (event) {
             event.sprite = params.sprite;
         }
         done();
     },
     face: function(context, params, done) {
-        var game = context.game;
-        var event = params.id ? game.state.explore.world.getEventById(params.id) : context.eventObj;
+        var event = getTargetEvent(context, params);
         var direction = params.direction;
         if (event && direction) {
             event.setFacing(direction);
@@ -134,8 +137,7 @@ var Commands = {
     },
     with: function(context, params, done) {
         /* TODO test */
-        var game = context.game;
-        var event = params.id ? game.state.explore.world.getEventById(params.id) : context.eventObj;
+        var event = getTargetEvent(context, params);
         this.run(params.run, Object.assign({}, context, {
             eventObj: event
         }), done);
