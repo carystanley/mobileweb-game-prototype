@@ -3,13 +3,13 @@ var baseCommands = {
     if: function(context, params, done) {
         if (this.eval(context, params.cond)) {
             if (params.then) {
-                done();
+                this.run(params.then, context, done);
             } else {
                 done();
             }
         } else {
             if (params.else) {
-                done();
+                this.run(params.else, context, done);
             } else {
                 done();
             }
