@@ -126,16 +126,32 @@ Game.setup = function(canvasId, window, config) {
     game.tracking.init(game.config.trackerId);
     game.state.switch('loading');
 
+    var lastTs = null;
+    var elapsedTime = 0;
+    var fps = game.config.fps || 30;
+    var mspf = 1000 / fps;
 
-    function run() {
-        // Clear anything drawn to the canvas off.
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        game.state.update();
-        game.state.draw(ctx, game.resources);
+    function run(timestamp) {
+        if (!lastTs) {
+            lastTs = timestamp
+        };
+        elapsedTime += (timestamp - lastTs);
 
-        window.requestAnimationFrame(run); // 60 fps
+        if (elapsedTime >= mspf) {
+            // Clear anything drawn to the canvas off.
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            game.state.update();
+            game.state.draw(ctx, game.resources);
+        }
+        while (elapsedTime >= mspf) { /* Drop extra/missing frames */
+            elapsedTime -= mspf;
+        }
+
+        lastTs = timestamp
+
+        window.requestAnimationFrame(run);
     }
-    run();
+    window.requestAnimationFrame(run);
 }
 
 window.Game = Game;
