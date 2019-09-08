@@ -168,7 +168,7 @@ window.EVENTS = {
         ]
     }],
     'banana_guru': [{
-        sprite: 2,
+        sprite: 18,
         commands: [
             {cmd: 'if', cond: "flag('banana_joke')"},
                 {cmd: 'dialog', text: 'But to Become the Banana might get sticky...'},
@@ -180,7 +180,7 @@ window.EVENTS = {
         ]
     }],
     'snatch': [{
-        sprite: 3,
+        sprite: 13,
         commands: [
             {cmd: 'if', cond: "hasInventoryItem('sock')"},
                 {cmd: 'dialog', text: 'You took my Socks!'},
