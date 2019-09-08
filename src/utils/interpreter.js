@@ -40,7 +40,10 @@ var baseCommands = {
         next();
     },
     parallel: function(context, params, done) {
-
+        /* TODO */
+    },
+    with: function(context, params, done) {
+        /* TODO */
     }
 };
 
