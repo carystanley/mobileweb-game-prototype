@@ -53,7 +53,6 @@ Interpreter.prototype.eval = function (context, statement) {
 }
 
 Interpreter.prototype.exec = function(command, context, done) {
-    console.error(command);
     this.commands[command.cmd].call(this, context, command, done);
 }
 
