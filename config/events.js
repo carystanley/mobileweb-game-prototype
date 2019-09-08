@@ -170,24 +170,24 @@ window.EVENTS = {
     'banana_guru': [{
         sprite: 18,
         commands: [
-            {cmd: 'if', cond: "flag('banana_joke')"},
+            {cmd: 'if', cond: "flag('banana_joke')", then: [
                 {cmd: 'dialog', text: 'But to Become the Banana might get sticky...'},
-                {cmd: 'setFlag', id: 'banana_joke', value: false},
-            {cmd: 'else'},
+                {cmd: 'setFlag', id: 'banana_joke', value: false}
+            ], else: [
                 {cmd: 'dialog', text: 'To Understand the Banana, You Must Become the Banana'},
-                {cmd: 'setFlag', id: 'banana_joke', value: true},
-            {cmd: 'endif'}
+                {cmd: 'setFlag', id: 'banana_joke', value: true}
+            ]}
         ]
     }],
     'snatch': [{
         sprite: 13,
         commands: [
-            {cmd: 'if', cond: "hasInventoryItem('sock')"},
-                {cmd: 'dialog', text: 'You took my Socks!'},
-            {cmd: 'else'},
+            {cmd: 'if', cond: "hasInventoryItem('sock')", then: [
+                {cmd: 'dialog', text: 'You took my Socks!'}
+            ], else: [
                 {cmd: 'dialog', text: 'When you can snatch the pebble from my hand, it will be time for you to leave.'},
-                {cmd: 'addItemToInventory', id: 'sock'},
-            {cmd: 'endif'}
+                {cmd: 'addItemToInventory', id: 'sock'}
+            ]}
         ]
     }],
     'bully_join': [{
