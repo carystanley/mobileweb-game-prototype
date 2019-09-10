@@ -57,6 +57,9 @@ var Commands = {
     dialog: function(context, params, done) {
         context.dialog.showText(params.text, done);
     },
+    prompt: function(context, params, done) {
+        context.dialog.showPrompt(params.choices, done);
+    },
     fadeOut: function(context, params, done) {
         context.matte.fadeOut(params.ticks, done);
     },

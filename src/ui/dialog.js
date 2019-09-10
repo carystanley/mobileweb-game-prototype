@@ -32,6 +32,15 @@ Dialog.prototype.showText = function(text, callback) {
     this.show();
 }
 
+Dialog.prototype.showPrompt = function(choices, callback) {
+    this.prompt.setOptions(choices);
+    this.prompt.show();
+    this.finished = false;
+    this.isPrompting = true;
+    this.callback = callback;
+    this.show();
+}
+
 Dialog.prototype.lang = function(id, params, callback) {
     this.buffer += this.game.lang.string(id, params);
     this.finished = false;
@@ -115,6 +124,10 @@ Dialog.prototype.draw = function(ctx, res) {
         y += lineHeight;
     }
 
+    if (this.isPrompting) {
+        this.prompt.draw(ctx, res);
+    }
+
     if (this.finished) {
         var arrowTop = this.y + (lineCount * lineHeight) + (Math.floor(this.tick / 10) % 3);
         var arrowCenter = this.x + width/2;
@@ -171,6 +184,8 @@ Dialog.prototype.event = function(type, x, y) {
 
 Dialog.prototype.onChoose = function(choice) {
     console.error(choice);
+    this.prompt.hide();
+    this.isPrompting = false;
     this.done();
 }
 

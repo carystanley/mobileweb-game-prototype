@@ -175,7 +175,8 @@ window.EVENTS = {
                 {cmd: 'setFlag', id: 'banana_joke', value: false}
             ], else: [
                 {cmd: 'dialog', text: 'To Understand the Banana, You Must Become the Banana'},
-                {cmd: 'setFlag', id: 'banana_joke', value: true}
+                {cmd: 'setFlag', id: 'banana_joke', value: true},
+                {cmd: 'prompt', choices: ['Banana', 'Apple']}
             ]}
         ]
     }],
