@@ -1,3 +1,5 @@
+var GridMenu = require('../ui/gridmenu');
+
 function Dialog(game, fontId, x, y, width, lineCount) {
     this.game = game;
     this.x = x;
@@ -9,6 +11,10 @@ function Dialog(game, fontId, x, y, width, lineCount) {
     this.visible = false;
     this.reset();
     this.callback = null;
+    this.prompt = new GridMenu('basicfont', 40, 40, 14, 16, 2, 1, 4, [
+    ], this.onChoose.bind(this));
+    this.prompt.hide();
+    this.isPrompting = false;
 }
 
 Dialog.prototype.show = function() {
@@ -150,13 +156,22 @@ Dialog.prototype.action = function() {
     }
 }
 
-Dialog.prototype.event = function(type) {
+Dialog.prototype.event = function(type, x, y) {
     if (!this.visible) {
         return;
     }
     if (type === 'click') {
-        this.action();
+        if (this.isPrompting) {
+            this.prompt.event(type, x, y);
+        } else {
+            this.action();
+        }
     }
+}
+
+Dialog.prototype.onChoose = function(choice) {
+    console.error(choice);
+    this.done();
 }
 
 Dialog.prototype.done = function() {
