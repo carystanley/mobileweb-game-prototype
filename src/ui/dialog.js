@@ -11,7 +11,7 @@ function Dialog(game, fontId, x, y, width, lineCount) {
     this.visible = false;
     this.reset();
     this.callback = null;
-    this.prompt = new GridMenu('basicfont', 40, 40, 14, 16, 2, 1, 4, [
+    this.prompt = new GridMenu('basicfont', 40, 40, width/2, this.lineHeight, 2, 1, 4, [
     ], this.onChoose.bind(this));
     this.prompt.hide();
     this.isPrompting = false;
@@ -34,6 +34,8 @@ Dialog.prototype.showText = function(text, callback) {
 
 Dialog.prototype.showPrompt = function(choices, callback) {
     this.prompt.setOptions(choices);
+    this.prompt.x = this.x;
+    this.prompt.y = this.y + (this.lineHeight * this.cursorLine);
     this.prompt.show();
     this.finished = false;
     this.isPrompting = true;
