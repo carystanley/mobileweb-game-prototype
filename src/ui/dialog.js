@@ -33,9 +33,13 @@ Dialog.prototype.showText = function(text, callback) {
 }
 
 Dialog.prototype.showPrompt = function(choices, callback) {
+    if (this.lines.length === this.lineCount) {
+        this.lines.shift();
+        this.cursorLine = this.lines.length - 1;
+    }
     this.prompt.setOptions(choices);
     this.prompt.x = this.x;
-    this.prompt.y = this.y + (this.lineHeight * this.cursorLine);
+    this.prompt.y = this.y + (this.lineHeight * (this.cursorLine + 1));
     this.prompt.show();
     this.finished = false;
     this.isPrompting = true;
