@@ -126,16 +126,14 @@ Game.setup = function(canvasId, window, config) {
     game.tracking.init(game.config.trackerId);
     game.state.switch('loading');
 
-    var lastTs = null;
+    var lastTs = window.performance.now();
     var elapsedTime = 0;
     var fps = game.config.fps || 30;
     var mspf = 1000 / fps;
 
-    function run(timestamp) {
+    function run() {
         window.requestAnimationFrame(run);
-        if (!lastTs) {
-            lastTs = timestamp
-        };
+        var timestamp = window.performance.now();
         elapsedTime += (timestamp - lastTs);
 
         if (elapsedTime >= mspf) {
