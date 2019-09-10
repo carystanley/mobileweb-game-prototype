@@ -74,7 +74,7 @@ GridMenu.prototype.event = function(type, x, y) {
         switch (type) {
             case 'click':
                 if (this.choiceHandler) {
-                    this.choiceHandler(this.options[optionIdx]);
+                    this.choiceHandler(this.options[optionIdx], optionIdx);
                 }
                 this.selected = null;
                 break;

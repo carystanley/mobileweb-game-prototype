@@ -188,8 +188,8 @@ Dialog.prototype.event = function(type, x, y) {
     }
 }
 
-Dialog.prototype.onChoose = function(choice) {
-    console.error(choice);
+Dialog.prototype.onChoose = function(choice, choiceIdx) {
+    console.error(choiceIdx);
     this.prompt.hide();
     this.isPrompting = false;
     this.done();
