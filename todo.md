@@ -39,6 +39,7 @@
    * Battle "no escape" flag?
    * Battle Dropped Item / Frequency
    * Sound Effects
+   * Add SMAAAASSH visual + Green Blink
 
 ### Important
    * Movement "AI"?
@@ -52,3 +53,4 @@
    * "While" loop event command
    * "Execute" other script event command
    * Timer using "fps"
+   * Put all images into Sprite
