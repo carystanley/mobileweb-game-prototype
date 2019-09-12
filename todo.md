@@ -38,6 +38,7 @@
    * End Battle Script ?
    * Battle "no escape" flag?
    * Battle Dropped Item / Frequency
+   * Sound Effects
 
 ### Important
    * Movement "AI"?
