@@ -9,6 +9,7 @@
    * Music
    * Intro Cutscene
    * Wake up in Trashcan Cutscene
+   * Lots of Events & Cutscenes
 
 ### Optional
    *
@@ -16,6 +17,7 @@
 ## Engine
 
 ### Most Important
+   * Naming System
    * Status Effects / Ailments
    * Battle "AI" / Battle Strategies
         00	Random
@@ -31,6 +33,7 @@
 
 ### Important
    * Movement "AI"?
+   * You Names in Dialog
 
 ### Optional
    * i18n Dialog Strings
