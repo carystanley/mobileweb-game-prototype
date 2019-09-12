@@ -3,16 +3,24 @@
 ## Game
 
 ### Most Important
+   * Music Placeholders
    * Cave Map
+   * Gym Map - Bleachers & Stage
+   * Extend Rooftop Map
+   * Classroom Maps
+   * Lots of Events & Cutscenes
+   * Enemy & Battle Sprites
+   * Dialog
+   * Battle Backgrounds
 
 ### Important
    * Music
    * Intro Cutscene
    * Wake up in Trashcan Cutscene
-   * Lots of Events & Cutscenes
+   * White Outline on Menus?
 
 ### Optional
-   *
+   * Join Party Walk to Position?
 
 ## Engine
 
@@ -20,14 +28,14 @@
    * Naming System
    * Status Effects / Ailments
    * Battle "AI" / Battle Strategies
-        00	Random
+        X 00	Random
         01	Random, favor third
-        02	In order
+        X 02	In order
         03	Staggered order (pattern like 1 or 2 then 3 or 4, repeat ...)
    * Battle Music id?
-   * Battle Logic
+   * Battle Logic (handle all stuff [status effects, dodges, ...])
    * Start Battle Script
-   * End Battle Script
+   * End Battle Script ?
    * Battle "no escape" flag?
    * Battle Dropped Item / Frequency
 
