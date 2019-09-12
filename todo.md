@@ -21,7 +21,7 @@
         00	Random
         01	Random, favor third
         02	In order
-        03	Staggered order (pattern like 34343434341212121212)
+        03	Staggered order (pattern like 1 or 2 then 3 or 4, repeat ...)
    * Battle Music id?
    * Battle Logic
    * Start Battle Script
