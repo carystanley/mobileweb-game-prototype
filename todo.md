@@ -25,25 +25,25 @@
 ## Engine
 
 ### Most Important
-   * Naming System
-   * Status Effects / Ailments
-   * Battle "AI" / Battle Strategies
+   * Naming System [?]
+   * Status Effects / Ailments [?]
+   * Battle "AI" / Battle Strategies [1]
         X 00	Random
         01	Random, favor third
         X 02	In order
         03	Staggered order (pattern like 1 or 2 then 3 or 4, repeat ...)
-   * Battle Music id?
-   * Battle Logic (handle all stuff [status effects, dodges, ...])
+   * Battle Music id? [1]
+   * Battle Logic (handle all stuff [status effects, dodges, ...]) [?]
    * Start Battle Script
    * End Battle Script ?
-   * Battle "no escape" flag?
-   * Battle Dropped Item / Frequency
-   * Sound Effects
-   * Add SMAAAASSH visual + Green Blink
+   * Battle "no escape" flag? [1]
+   * Battle Dropped Item / Frequency [1]
+   * Sound Effects [?]
+   * Add SMAAAASSH visual + Green Blink [3]
 
 ### Important
    * Movement "AI"?
-   * You Names in Dialog
+   * You Names in Dialog [?]
 
 ### Optional
    * i18n Dialog Strings
