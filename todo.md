@@ -30,6 +30,10 @@
    * Battle "AI" / Battle Strategies [1]
         X 00	Random
         01	Random, favor third
+            1/2 first action
+            1/4 second action
+            1/8 third action
+            1/8 fourth action
         X 02	In order
         03	Staggered order (pattern like 1 or 2 then 3 or 4, repeat ...)
    * Battle Music id? [1]
