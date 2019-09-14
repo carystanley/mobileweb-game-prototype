@@ -46,11 +46,13 @@ BattleActor.prototype.getAction = function () {
 
     switch (strategy) {
         case 'inorder':
+            // In Sequencial Order
             var actionCursor = this.actionCursor || 0;
             this.actionCursor = (actionCursor + 1) % actions.length;
             return actions[actionCursor];
 
         case 'staggered':
+            // Choose one from First Half, then one from 2nd Half, Repeat
             var actionCursor = this.actionCursor || 0;
             this.actionCursor++;
             var actionCount = actions.length;
@@ -64,6 +66,7 @@ BattleActor.prototype.getAction = function () {
 
         case 'random':
         default:
+            // Random Even Distribution
             return Random.choose(actions);
     }
 }
