@@ -68,7 +68,7 @@ BattleActor.prototype.getAction = function () {
             // 1st is 4x likely, 2nd is 2x likely, eveything else is evenly likely
             var actionCount = actions.length;
 
-            if (actionCount <== 1) { // Handle corner-case
+            if (actionCount <= 1) { // Handle corner-case
                 return actions[0];
             }
             var randomNum = Random.int(0, actionCount - 1 + 4);
