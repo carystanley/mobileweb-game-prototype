@@ -50,6 +50,18 @@ BattleActor.prototype.getAction = function () {
             this.actionCursor = (actionCursor + 1) % actions.length;
             return actions[actionCursor];
 
+        case 'staggered':
+            var actionCursor = this.actionCursor || 0;
+            this.actionCursor++;
+            var actionCount = actions.length;
+            var halfCount = Math.floor(actionCount / 2);
+
+            if (actionCount % 2 === 0) {
+                return actions[Random.int(0, halfCount - 1)];
+            } else {
+                return actions[Random.int(halfCount, actionCount - 1)];
+            }
+
         case 'random':
         default:
             return Random.choose(actions);
