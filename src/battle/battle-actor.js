@@ -64,6 +64,22 @@ BattleActor.prototype.getAction = function () {
                 return actions[Random.int(halfCount, actionCount - 1)];
             }
 
+        case 'weighted':
+            // 1st is 4x likely, 2nd is 2x likely, eveything else is evenly likely
+            var actionCount = actions.length;
+
+            if (actionCount <== 1) { // Handle corner-case
+                return actions[0];
+            }
+            var randomNum = Random.int(0, actionCount - 1 + 4);
+            if (randomNum < 4) {
+                return actions[0];
+            } else if (randomNum < 6) {
+                return actions[1];
+            } else {
+                return actions[randomNum - 4];
+            }
+
         case 'random':
         default:
             // Random Even Distribution
