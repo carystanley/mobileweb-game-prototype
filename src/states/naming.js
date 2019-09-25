@@ -5,7 +5,7 @@ function NamingState(game) {
 }
 
 NamingState.prototype.init = function () {
-    this.keyboard = new GridMenu('basicfont', 40, 40, 14, 16, 8, 5, 4, [
+    this.keyboard = new GridMenu('basicfont', 40, 40, 14, 16, 8, 5, 4, 1, [
     ], this.onKeyboard.bind(this));
 }
 
