@@ -1,3 +1,4 @@
+var Window = require('../utils/window');
 
 function TextMenu(fontId, x, y, width, rowHeight, winMargin, options, choiceHandler) {
     this.fontId = fontId;
@@ -27,13 +28,10 @@ TextMenu.prototype.draw = function (ctx, res) {
     var winMargin = this.winMargin;
     var lineHeight = font.data.lineHeight;
     var offset = Math.max(Math.floor((rowHeight - lineHeight) / 2), 0);
-
-    ctx.fillStyle = 'black';
-    ctx.fillRect(this.x - winMargin, this.y - winMargin,
-        this.width + winMargin * 2, optionsSize * rowHeight + winMargin * 2);
-
     var x = this.x;
     var y = this.y;
+
+    Window.draw(ctx, x, y, this.width, optionsSize * rowHeight, winMargin, 1);
 
     for (var i = 0; i < optionsSize; i++) {
         font.drawText(ctx, options[i].text, x + offset, y + offset);

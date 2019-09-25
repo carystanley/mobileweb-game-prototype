@@ -1,3 +1,4 @@
+var Window = require('../utils/window');
 
 function GridMenu(fontId, x, y, cellWidth, cellHeight, xCount, yCount, winMargin, options, choiceHandler) {
     this.fontId = fontId;
@@ -35,9 +36,15 @@ GridMenu.prototype.draw = function (ctx, res) {
     var yOffset = Math.max(Math.floor((cellHeight - lineHeight) / 2), 0);
     var xOffset = Math.floor(cellWidth/2);
 
-    ctx.fillStyle = 'black';
+    Window.draw(ctx, this.x, this.y, width, height, winMargin, 1);
+
+    ctx.fillStyle = 'white';
     ctx.fillRect(this.x - winMargin, this.y - winMargin,
         width + winMargin * 2, height + winMargin * 2);
+
+    ctx.fillStyle = 'black';
+    ctx.fillRect(this.x - winMargin + 1, this.y - winMargin + 1,
+        width + winMargin * 2 - 2, height + winMargin * 2 - 2);
 
     for (var ix = 0; ix < xCount; ix++) {
         for (var iy = 0; iy < yCount; iy++) {
