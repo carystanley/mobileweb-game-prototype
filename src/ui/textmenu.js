@@ -1,10 +1,11 @@
 var Window = require('../utils/window');
 
-function TextMenu(fontId, x, y, width, rowHeight, winMargin, options, choiceHandler) {
+function TextMenu(fontId, x, y, width, rowHeight, winMargin, border, options, choiceHandler) {
     this.fontId = fontId;
     this.x = x;
     this.y = y;
     this.winMargin = winMargin;
+    this.border = border;
     this.width = width;
     this.rowHeight = rowHeight;
     this.setOptions(options);
@@ -31,7 +32,7 @@ TextMenu.prototype.draw = function (ctx, res) {
     var x = this.x;
     var y = this.y;
 
-    Window.draw(ctx, x, y, this.width, optionsSize * rowHeight, winMargin, 1);
+    Window.draw(ctx, x, y, this.width, optionsSize * rowHeight, winMargin, this.border);
 
     for (var i = 0; i < optionsSize; i++) {
         font.drawText(ctx, options[i].text, x + offset, y + offset);

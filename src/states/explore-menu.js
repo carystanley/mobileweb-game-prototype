@@ -6,15 +6,15 @@ function WorldMenuState(game) {
 
 WorldMenuState.prototype.init = function () {
     this.menus = {
-        base: new TextMenu('basicfont', 16, 16, 40, 20, 4, [
+        base: new TextMenu('basicfont', 16, 16, 40, 20, 4, 1, [
             {id: 'items', text: 'Items'},
             {id: 'status', text: 'Status'}
         ], this.onBaseMenu.bind(this)),
-        items: new TextMenu('basicfont', 72, 16, 80, 20, 4, [
+        items: new TextMenu('basicfont', 72, 16, 80, 20, 4, 1, [
         ], this.onItemsMenu.bind(this)),
-        members: new TextMenu('basicfont', 72, 16, 40, 20, 4, [
+        members: new TextMenu('basicfont', 72, 16, 40, 20, 4, 1, [
         ], this.onMembersMenu.bind(this)),
-        status: new TextMenu('basicfont', 128, 16, 80, 16, 4, [
+        status: new TextMenu('basicfont', 128, 16, 80, 16, 4, 1, [
         ])
     };
 }

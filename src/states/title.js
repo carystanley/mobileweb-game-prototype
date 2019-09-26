@@ -5,7 +5,7 @@ function TitleState(game) {
 }
 
 TitleState.prototype.init = function () {
-    this.menu = new TextMenu('basicfont', 120, 90, 80, 20, 4, [
+    this.menu = new TextMenu('basicfont', 120, 90, 80, 20, 4, 0, [
     ], this.onMenu.bind(this));
 }
 

@@ -5,7 +5,7 @@ function ShopState(game) {
 }
 
 ShopState.prototype.init = function () {
-    this.menu = new TextMenu('basicfont', 72, 16, 80, 20, 4, [
+    this.menu = new TextMenu('basicfont', 72, 16, 80, 20, 4, 1, [
     ], this.onMenu.bind(this));
 }
 

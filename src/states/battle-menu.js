@@ -10,14 +10,14 @@ function BattleMenuState(game, battleState, battle) {
 
 BattleMenuState.prototype.init = function () {
     this.menus = {
-        base: new TextMenu('basicfont', 16, 16, 40, 20, 4, [
+        base: new TextMenu('basicfont', 16, 16, 40, 20, 4, 1, [
             {id: 'bash', text: 'Bash'},
             {id: 'psi', text: 'PSI'},
             {id: 'items', text: 'Items'}
         ], this.onBaseMenu.bind(this)),
-        items: new TextMenu('basicfont', 72, 16, 80, 20, 4, [
+        items: new TextMenu('basicfont', 72, 16, 80, 20, 4, 1, [
         ], this.onItemsMenu.bind(this)),
-        psi: new TextMenu('basicfont', 72, 16, 80, 20, 4, [
+        psi: new TextMenu('basicfont', 72, 16, 80, 20, 4, 1, [
             {id: 'runaway', text: 'Run Away'},
             {id: 'love', text: 'Love'}
         ], this.onPSIMenu.bind(this))

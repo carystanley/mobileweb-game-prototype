@@ -6,7 +6,7 @@ function GameOverState(game) {
 }
 
 GameOverState.prototype.init = function () {
-    this.menu = new TextMenu('basicfont', 72, 50, 80, 20, 4, [
+    this.menu = new TextMenu('basicfont', 72, 50, 80, 20, 4, 1, [
     ], this.onMenu.bind(this));
     this.dialog = new Dialog(this.game, 'basicfont', 40, 5, 204, 2);
 }
