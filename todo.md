@@ -50,3 +50,5 @@
    * "Execute" other script event command
    * Timer using "fps"
    * Put all images into Sprite
+   * Move all config into build (include battle-action / commands)
+   * Move images into spriteSheet
