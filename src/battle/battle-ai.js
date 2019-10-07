@@ -10,7 +10,7 @@ var BattleAI = {
 
     staggered: function(actions) {
         // Choose one from First Half, then one from 2nd Half, Repeat
-        var actionCursor = this.actionCursor || 0;
+        this.actionCursor = this.actionCursor || 0;
         this.actionCursor++;
         var actionCount = actions.length;
         var halfCount = Math.floor(actionCount / 2);
