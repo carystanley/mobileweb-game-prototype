@@ -1,4 +1,4 @@
-var Random = require('../utils/random');
+var BattleAI = require('./battle-ai');
 
 // http://walkthrough.starmen.net/earthbound/enemylist_full.php
 // https://datacrystal.romhacking.net/wiki/EarthBound:Enemy_Configuration_Table
@@ -41,50 +41,7 @@ BattleActor.prototype.heal = function (amount) {
 }
 
 BattleActor.prototype.getAction = function () {
-    var actions = this.actions;
-    var strategy = this.strategy;
-
-    switch (strategy) {
-        case 'inorder':
-            // In Sequencial Order
-            var actionCursor = this.actionCursor || 0;
-            this.actionCursor = (actionCursor + 1) % actions.length;
-            return actions[actionCursor];
-
-        case 'staggered':
-            // Choose one from First Half, then one from 2nd Half, Repeat
-            var actionCursor = this.actionCursor || 0;
-            this.actionCursor++;
-            var actionCount = actions.length;
-            var halfCount = Math.floor(actionCount / 2);
-
-            if (actionCount % 2 === 0) {
-                return actions[Random.int(0, halfCount - 1)];
-            } else {
-                return actions[Random.int(halfCount, actionCount - 1)];
-            }
-
-        case 'weighted':
-            // 1st is 4x likely, 2nd is 2x likely, eveything else is evenly likely
-            var actionCount = actions.length;
-
-            if (actionCount <= 1) { // Handle corner-case
-                return actions[0];
-            }
-            var randomNum = Random.int(0, actionCount - 1 + 4);
-            if (randomNum < 4) {
-                return actions[0];
-            } else if (randomNum < 6) {
-                return actions[1];
-            } else {
-                return actions[randomNum - 4];
-            }
-
-        case 'random':
-        default:
-            // Random Even Distribution
-            return Random.choose(actions);
-    }
+    return BattleAI[this.strategy || 'random'].call(this, this.actions)
 }
 
 module.exports = BattleActor;
