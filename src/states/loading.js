@@ -55,7 +55,7 @@ LoadingState.prototype.enter = function () {
     this.game.tracking.trackEvent('game', 'loading');
     var self = this;
     var count = 0;
-    var total = 17;
+    var total = 18;
 
     function doneCheck() {
         count++;
@@ -101,7 +101,8 @@ LoadingState.prototype.enter = function () {
             encounter: loadSound(['./sounds/se/encounter.wav'], false, doneCheck)
         },
         me: {
-            joins_party: loadSound(['./sounds/me/joins_party.wav'], false, doneCheck)
+            joins_party: loadSound(['./sounds/me/joins_party.wav'], false, doneCheck),
+            defeated_enemy: loadSound(['./sounds/me/defeated_enemy.wav'], false, doneCheck)
         },
         bgm: {
             school_happy: loadSound(['./sounds/bgm/school_happy.mp3'], true, doneCheck),

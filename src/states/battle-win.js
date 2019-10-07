@@ -16,6 +16,8 @@ BattleWinState.prototype.init = function () {
 
 BattleWinState.prototype.enter = function () {
     var self = this;
+    this.game.sound.bgm('battle', 'silence');
+    this.game.sound.me('defeated_enemy');
     this.battleState.dialog.reset();
     var xp = this.battle.updatePlayerCharacters();
     this.battleState.dialog.lang('BATTLE.won', {}, function () {

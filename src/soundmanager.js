@@ -20,7 +20,7 @@ SoundManager.prototype.bgm = function (channel, id) {
         this.channels[channel] = id;
     }
     if (this.channels[channel] !== this.activeMusic) {
-        if (this.activeMusic) {
+        if (this.activeMusic && bgm[this.activeMusic]) {
             bgm[this.activeMusic].stop();
         }
         this.activeMusic = this.channels[channel];
