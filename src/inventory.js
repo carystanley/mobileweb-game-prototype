@@ -1,6 +1,6 @@
 
-function Inventory () {
-    this.load({});
+function Inventory (config) {
+    this.load(config);
 };
 
 Inventory.prototype.add = function(itemId) {
@@ -42,6 +42,7 @@ Inventory.prototype.serialize = function() {
 };
 
 Inventory.prototype.load = function(payload) {
+    payload = payload || {};
     this.items = payload.items || [];
     this.maxSize = payload.maxSize || 8;
 };

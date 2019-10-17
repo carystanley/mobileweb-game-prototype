@@ -90,8 +90,8 @@ Data.prototype.serialize = function() {
         members: this.members,
         flags: this.flags,
         eventflags: this.eventflags,
-        mapId: payload.mapId,
-        locationId: payload.locationId,
+        mapId: this.mapId,
+        locationId: this.locationId,
         inventory: this.inventory.serialize()
     };
 };
@@ -104,8 +104,7 @@ Data.prototype.load = function(payload) {
     this.eventflags = payload.eventflags || {};
     this.mapId = payload.mapId;
     this.locationId = payload.locationId;
-    this.inventory = new Inventory();
-    this.inventory.load(payload.inventory || {});
+    this.inventory = new Inventory(payload.inventory || {});
 };
 
 module.exports = Data;
