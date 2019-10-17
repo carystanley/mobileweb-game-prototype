@@ -90,4 +90,24 @@ Data.prototype.restoreParty = function() {
     });
 };
 
+Data.prototype.serialize = function() {
+    return {
+        vars: this.vars,
+        party: this.party,
+        members: this.members,
+        flags: this.flags,
+        eventflags: this.eventflags,
+        inventory: this.inventory.serialize()
+    };
+};
+
+Data.prototype.load = function(payload) {
+    this.vars = payload.vars;
+    this.party = payload.party;
+    this.members = payload.members;
+    this.flags = payload.flags;
+    this.eventflags = payload.eventflags;
+    this.inventory.load(payload.inventory);
+};
+
 module.exports = Data;

@@ -35,4 +35,16 @@ Inventory.prototype.isFull = function() {
     return (this.items.length >= this.maxSize);
 }
 
+Inventory.prototype.serialize = function() {
+    return {
+        items: this.items,
+        maxSize: this.maxSize
+    };
+};
+
+Inventory.prototype.load = function(payload) {
+    this.items = payload.items;
+    this.maxSize = payload.maxSize;
+};
+
 module.exports = Inventory;
