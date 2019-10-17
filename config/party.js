@@ -2,6 +2,8 @@
 /* eslint quotes: "off" */
 
 window.PARTY = {
+    mapId: 'debug',
+    locationId: 'start',
     party: ['hero'],
     members: {
         hero: {

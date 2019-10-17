@@ -10,9 +10,10 @@ function WorldState(game) {
 }
 
 WorldState.prototype.init = function () {
+    var data = this.game.data; console.error(data);
     this.viewport = new Viewport(this.game.ctx.canvas.width, this.game.ctx.canvas.height);
     this.world = new World(this.game);
-    this.world.loadMap('debug', 'start');
+    this.world.loadMap(data.getMapId(), data.getLocationId());
     this.menuButton = new TextMenu('basicfont', 250, 135, 29, 20, 4, 0, [
         {id: 'menu', text: 'Menu'}
     ], this.openMenu.bind(this));

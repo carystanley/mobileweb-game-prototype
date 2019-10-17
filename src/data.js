@@ -2,22 +2,15 @@ var Inventory = require('./inventory');
 
 function Data(game) {
     this.game = game;
-    this.init();
+    this.load(game.config.party);
 };
 
-Data.prototype.init = function() {
-    var config = this.game.config.party;
+Data.prototype.getMapId = function() {
+    return this.mapId;
+}
 
-    this.vars = config.vars || {};
-    this.party = config.party || [];
-    this.members = config.members || {};
-    this.flags = config.flags || {};
-    this.eventflags = config.eventflags || {};
-    this.inventory = new Inventory(8);
-
-    (config.inventory || []).forEach(function (id) {
-        this.inventory.add(id);
-    }, this);
+Data.prototype.getLocationId = function() {
+    return this.locationId;
 }
 
 Data.prototype.getItemsMenu = function () {
@@ -97,17 +90,22 @@ Data.prototype.serialize = function() {
         members: this.members,
         flags: this.flags,
         eventflags: this.eventflags,
+        mapId: payload.mapId,
+        locationId: payload.locationId,
         inventory: this.inventory.serialize()
     };
 };
 
 Data.prototype.load = function(payload) {
-    this.vars = payload.vars;
-    this.party = payload.party;
-    this.members = payload.members;
-    this.flags = payload.flags;
-    this.eventflags = payload.eventflags;
-    this.inventory.load(payload.inventory);
+    this.vars = payload.vars || {};
+    this.party = payload.party || [];
+    this.members = payload.members || {};
+    this.flags = payload.flags || {};
+    this.eventflags = payload.eventflags || {};
+    this.mapId = payload.mapId;
+    this.locationId = payload.locationId;
+    this.inventory = new Inventory();
+    this.inventory.load(payload.inventory || {});
 };
 
 module.exports = Data;

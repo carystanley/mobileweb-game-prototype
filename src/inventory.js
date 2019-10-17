@@ -1,7 +1,6 @@
 
-function Inventory (maxSize) {
-    this.items = [];
-    this.maxSize = maxSize;
+function Inventory () {
+    this.load({});
 };
 
 Inventory.prototype.add = function(itemId) {
@@ -43,8 +42,8 @@ Inventory.prototype.serialize = function() {
 };
 
 Inventory.prototype.load = function(payload) {
-    this.items = payload.items;
-    this.maxSize = payload.maxSize;
+    this.items = payload.items || [];
+    this.maxSize = payload.maxSize || 8;
 };
 
 module.exports = Inventory;
